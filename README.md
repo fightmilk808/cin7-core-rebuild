@@ -18,9 +18,11 @@ web app, its public scripts and Cin7's published API spec (October 2026). Busine
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | The hosts, the tech stack, what a page is, and the build order |
 | [docs/INTERNAL-API.md](docs/INTERNAL-API.md) | The contract the web app's 2,177 internal endpoints follow |
 | [docs/PUBLIC-API.md](docs/PUBLIC-API.md) | The public `/ExternalApi/v2` contract: auth, paging, errors, shapes |
-| [modules/](modules/README.md) | **One folder per module**: what it is, how to rebuild it, its pages, data models (with generated `schema.sql`), internal endpoints, public API operations and reports |
+| [docs/UI.md](docs/UI.md) | The visual system (themes, colours, type, icons, widgets), the shell and the main menu |
+| [modules/](modules/README.md) | **One folder per module** (and per integration): `README.md` with what it is, how to rebuild it, its pages, data models, internal endpoints, public API operations and reports; `UI.md` with every grid and column, field, button, menu and dialog its screens build; `schema.sql` |
 | [data/](data/) | The machine-readable map the module folders are generated from |
 | [tools/generate.py](tools/generate.py) | Rebuilds `modules/` from `data/` |
+| [tools/extract_ui.js](tools/extract_ui.js) | Rebuilds `data/ui.json` from the page bundles (`node tools/extract_ui.js <bundle dir> data/ui.json`, needs `acorn`) |
 
 ## The modules
 
@@ -36,9 +38,9 @@ web app, its public scripts and Cin7's published API spec (October 2026). Busine
 | 07 | [Production](modules/07-production/README.md) | 24 | [MES shop-floor app](modules/24-mes/README.md) |
 | 08 | [Financials](modules/08-financials/README.md) | 25 | [B2B and RMA portals](modules/25-portals/README.md) |
 | 09 | [CRM](modules/09-crm/README.md) | | |
-| 10 | [AI](modules/10-ai/README.md) | | |
+| 10 | [AI](modules/10-ai/README.md) | 16 | [MRP](modules/16-mrp/README.md) |
 | 11 | [Reports](modules/11-reports/README.md) | | |
-| 12 | [Integrations](modules/12-integrations/README.md) | | |
+| 12 | [Integrations](modules/12-integrations/README.md) (one subfolder per connector, 42) | | |
 
 ## At a glance
 

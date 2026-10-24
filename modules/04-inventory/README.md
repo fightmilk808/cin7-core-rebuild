@@ -1,19 +1,19 @@
 # Inventory
 
-The product master (products, services, fixed assets, families/variants), stock availability per location and bin, stock adjustments, stocktakes, stock transfers, MRP runs, batch recall, price lists and gift cards.
+The product master (products, services, fixed assets, families/variants), stock availability per location and bin, stock adjustments, stocktakes, stock transfers, batch recall, price lists and gift cards. MRP is its own module: [`16-mrp`](../16-mrp/README.md).
 
 | | Count |
 |---|---:|
-| Pages | 17 |
-| Data models | 142 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 237 (95 write) |
+| Pages | 15 |
+| Data models | 127 (plus [shared](../00-shared/README.md)) |
+| Internal endpoints | 215 (84 write) |
 | Public API operations | 33 |
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (142), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
+1. **Schema.** Create one table per data model below (127), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
 2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Pages.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)).
+3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
 4. **Public API.** Expose the 33 operations below under `/ExternalApi/v2` with header auth ([public API contract](../../docs/PUBLIC-API.md)).
 
 ## Pages
@@ -21,8 +21,6 @@ The product master (products, services, fixed assets, families/variants), stock 
 | Route | Menu label | Title | Bundle | Endpoints (write) |
 |---|---|---|---|---:|
 | `/GiftCards` | Gift cards | Gift cards | `GiftCards2019` | 2 (1) |
-| `/MRP` | MRP run | MRP run settings | `ReportService MRPRunSettings` | 22 (13) |
-| `/MRPList` | MRP | MRP list | `MRPList` | 3 (4) |
 | `/PriceList` | Print the products price list | Price list | `PriceList2019` | 4 (0) |
 | `/Product` | Product/Service/Asset | Products | `MultilingualSupport2019 Customization2019 FixedAssetType2019 Product2019` | 77 (50) |
 | `/ProductFamily` | Product family | Product family | `ProductFamily2019` | 29 (14) |
@@ -96,24 +94,15 @@ ExtJS models the pages use; `v` prefix = view-model. Full DDL in [`schema.sql`](
 | `vBillOfMaterials` | FakeID:int, ItemID:string, ComponentProductID:string, ProductID:string, ProductCode:string, Name:string, Quantity:float, WastagePercent:float, WastageQuantity:float, CostPercentage:float, Cost:float, TotalCost:float, CostingMethod:string, ValidationText:string, ValidationState:string |
 | `vBinGroup` | ID:string, Name:string |
 | `vBomVersion` | BomID:string, Version:int, Name:string, DisplayName:string, IsDefault:boolean |
-| `vBrand` | BrandID:string, Name:string |
-| `vCategory` | CategoryID:string, Name:string |
 | `vCountryOfOrigin` | Code:string, Name:string |
 | `vCustomPrice` | ProductID:string, CustomerID:string, Price:float, IsDeleted:bool |
-| `vCustomerID` | CustomerID:string, Name:string, MRPSettingsID:string |
 | `vDiscountMatrix` | FakeID:int, ID:string, DiscountID:string, CustomerID:string, ProductID:string, Customer:string, DiscountName:string, CustomerTag:string, ValidationText:string, ValidationState:string |
 | `vDiscountMatrixCustomer` | CustomerID:string, Name:string |
-| `vError` | Message:string |
-| `vForecastError` | Line:int, DemandLocation:string, ProductSku:string, ProductName:string, Quantity:float, RequiredByDate:date, ValidationState:string, ValidationText:string |
 | `vGiftCardRecord` | ID:string, GiftCardCode:string, InitialBalance:float, CurrentBalance:float, Date:date, ExpirationDate:date, TaskID:string, RefundID:string, IsUsedInPayments:bool, SaleOrderNumber:string, IsBreakeraged:bool, Currency:string, SaleType:string, Selected:bool |
 | `vInventoryAdjustment` | FakeID:int, ID:string, TaskID:string, ProductID:string, BatchSN:string, ExpiryDate:date, CostingMethod:string, QuantityOnHand:float, Adjustment:float, Available:float, LocationID:string, Name:string, UnitOfMeasure:string, ProductCode:string, Comments:string, ValidationText:string, ValidationState:string |
 | `vInventoryAdjustmentNew` | FakeID:int, ID:string, TaskID:string, ProductID:string, LocationID:string, BatchSN:string, ExpiryDate:date, CostingMethod:string, Quantity:float, UnitCost:float, Available:float, Name:string, UnitOfMeasureName:string, ProductCode:string, Comments:string, ReceivedDate:date, ValidationText:string, ValidationState:string, ProductType:string |
 | `vInventoryTask` | TaskID:string, CreatedDate:date, Type:string, IncludeQuantityOnHand:bool, StocktakeNumber:string, LastUpdatedDate:date, LastUpdatedBy:string, Status:string, Account:string, ValidationText:string, ValidationState:string, CustomerReference:string, CostEstimationMethod:string, Comment:string |
-| `vLocationID` | LocationID:string, Name:string, MRPSettingsID:string |
 | `vLocationsWithBins` | LocationID:string, Description:string |
-| `vLog` | LogID:string, Action:string, Message:string, AdditionalInfo:string, LogDate:date, Error:string, LogType:string, SyncID:string, AffectedEntitiesCount:int, ValidationText:string, ValidationState:string |
-| `vMRP` | Number:string, CreatedBy:string, CreatedAt:date, Status:string |
-| `vMRPSettings` | ID:string, Name:string, PlanningPeriodStart:date, PlanningPeriodEnd:date, SupplyCalculation:string, SupplyTask:int, IsIgnoreStockOnHand:bool, IsProcureUpToStockLevel:bool, IsProcureUpToMinimumBeforeReorder:bool, IsIncludePastDueDemand:bool, IsIncludeDraft:bool, IsBomExplosion:bool, IsIncludeForecast:bool, ForecastID:string, DemandSales:string, IsDemandProductionDraft:bool, IsDemandProductionPlanned:bool, IsDemandProductionReleased:bool, IsDemandAssemblyDraft:bool, IsDemandAssemblyReleased:bool, IsDemandTransferDraft:bool, SupplyTaskPurchaseStatus:string, SupplyTaskTransferStatus:string, Suppl… |
 | `vMakeToOrderBomConfiguration` | BOMConfigurationID:string, HasValidationErrors:bool, MenuConfigurationID:string, Name:string, ProductID:string, TemplateID:string, TemplateName:string, QuantityRelationsJSON:string, QuantityConfigurationJSON:string, ValidationState:string, ValidationText:string, IsExpanded:bool |
 | `vMakeToOrderBomImage` | MenuConfigurationID:string, TemplateName:string, OperationID:string, OriginalDetailedImageUrl:string, OriginalSketchUrl:string, UpdatedDetailedImageUrl:string, UpdatedSketchUrl:string |
 | `vMakeToOrderBomProductFamily` | ID:string, Name:string, Unit:string |
@@ -175,13 +164,7 @@ ExtJS models the pages use; `v` prefix = view-model. Full DDL in [`schema.sql`](
 | `vStockTransferOrderLine` | FakeID:int, ID:string, TaskID:string, ProductID:string, Quantity:float, AvailableQuantity:float, OnHandQuantity:float, Name:string, UnitOfMeasure:string, UnitName:string, ProductCode:string, Comments:string, CostingMethod:string, NonInventory:bool, ValidationText:string, ValidationState:string |
 | `vStockTransferPutAwayLine` | FakeID:int, ID:string, TaskID:string, ProductID:string, Name:string, UnitOfMeasure:string, UnitName:string, ProductCode:string, CostingMethod:string, BatchSN:string, ExpiryDate:date, LocationID:string, Location:string, ReceivedQuantity:float, NonInventory:bool, ValidationText:string, ValidationState:string |
 | `vStockTransferTask` | TaskID:string, CreatedDate:date, From:string, FromLocation:string, To:string, ToLocation:string, ToLocationIsBin:boolean, LastUpdatedBy:string, Status:string, Number:string, CompletionDate:date, DepartureDate:date, InTransitAccount:string, CostDistributionType:string, CountrySpecificKey:string, CountrySpecificData:string, ValidationText:string, ValidationState:string, CustomerReference:string, SkipOrder:bool, OrderStatus:string, RequiredByDate:date, UsePutAway:bool, IsCoMan:bool, HasMultipleShipments:bool, InboundShipmentID:string, ECSConfigID:string, LinkedProductionOrderID:string, Comment:s… |
-| `vSuggestionProduct` | ProductID:string, ProductCode:string, ProductName:string, Quantity:float, UnitOfMeasure:string, ProductBOM:string, MrpSupplySuggestionID:string, IsSplitted:bool |
 | `vSupplierProduct` | FakeID:int, SupplierProductID:string, SupplierID:string, ProductID:string, SupplierName:string, Currency:string, SupplierInventoryCode:string, URL:string, Cost:float, FixedCost:float, SupplierProductName:string, SysDate:date, DropShip:bool, IncludeInPricing:bool, ValidationText:string, ValidationState:string |
-| `vSupplyItem` | ID:string, Name:string |
-| `vSupplyResult` | ID:string, TaskID:string, TaskNumber:string, TaskType:string, CreatedAt:date, SupplyName:string, DemandLocationName:string, RequiredByDate:date, TaskStatus:string, CreatedBy:string, TotalQuantity:float |
-| `vSupplySuggestion` | ID:string, MRPID:string, SupplyTask:string, DemandLocationID:string, DemandLocationName:string, SupplyID:string, SupplyName:string, RequiredByDate:date, DocumentDate:date, TaskStatus:string, IsSelected:bool, ValidationState:string, ValidationText:string, IsSupplyTaskChanged:bool |
-| `vSupplyTask` | Value:string |
-| `vSuppySuggestionsWrapper` | ID:int |
 | `vTenantCategory` | ID:string, Name:string |
 | `vTenantLocationBin` | ID:string, Name:string, BinGroupID:string |
 | `vWarrantySetup` | ID:string, Name:string |
@@ -264,33 +247,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/MakeToOrder/DownloadMakeToOrderImage` | mvc | GET | 🟢 read | id |  |  |
 | `/MakeToOrder/GetMakeToOrderArtImage` | mvc |  | 🟢 read | ArtID |  |  |
 | `/MakeToOrder/UploadArtImage` | mvc | POST | 🔴 write |  |  |  |
-
-### MRP
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/MRP/ImportForecast` | mvc | POST | 🔴 write |  |  |  |
-| `/api/MRP_CheckLongExecution` | api | GET | 🟢 read |  |  |  |
-| `/api/MRP_Complete` | api | POST | 🔴 write |  | MrpID |  |
-| `/api/MRP_DemandDetails` | api | GET | 🟢 read |  |  |  |
-| `/api/MRP_Errors` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | MrpID errorType |  | root |
-| `/api/MRP_LoadDataFromDB` | api | POST | 🟢 read |  |  |  |
-| `/api/MRP_Logs` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | MrpID |  | root |
-| `/api/MRP_Operation` | api | POST | 🔴 write |  |  |  |
-| `/api/MRP_Recalculate` | api | POST | 🔴 write |  |  |  |
-| `/api/MRP_ReferenceData` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
-| `/api/MRP_Results` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | MrpID |  | root |
-| `/api/MRP_Run` | api | POST | 🔴 write |  | Status |  |
-| `/api/MRP_Split` | api | POST | 🔴 write |  | OriginalMrpID OriginalSuggestionID Suggestions |  |
-| `/api/MRP_SupplySuggestionFilters` | api | POST(read) | 🟢 read |  |  |  |
-| `/api/MRP_SupplySuggestionProducts` | api | POST | 🟢 read |  |  |  |
-| `/api/MRP_SupplySuggestions` | api | POST(read) | 🟢 read |  |  | root |
-| `/api/MRP_vMRP` | api | DELETE GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | ID search |  | root |
-| `/api/MRP_vMRPMerge` | api | POST | 🔴 write |  |  |  |
-| `/api/MRP_vMRPReorder` | api | POST | 🔴 write |  |  |  |
-| `/api/MRP_vMRPSettings` | api | DELETE POST REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | limit |  |  |
-| `/api/MRP_vMRPVoidTask` | api | POST | 🔴 write |  |  |  |
-| `/api/MRP_vTenantLocation` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | IsShopFloor |  |  |
 
 ### MySubscription
 

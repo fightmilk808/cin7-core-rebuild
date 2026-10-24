@@ -1,19 +1,19 @@
 # Production
 
-Manufacturing: production BOMs and operations, production orders and runs, the production scheduler, capacity planner, MRP scheduler, resources and work centres, the factory calendar, assemblies (finished goods), disassemblies, job costing and inventory write-offs.
+Manufacturing: production BOMs and operations, production orders and runs, the production scheduler, capacity planner, resources and work centres, the factory calendar, assemblies (finished goods), disassemblies, job costing and inventory write-offs. MRP is its own module: [`16-mrp`](../16-mrp/README.md).
 
 | | Count |
 |---|---:|
-| Pages | 16 |
+| Pages | 15 |
 | Data models | 142 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 205 (68 write) |
+| Internal endpoints | 198 (67 write) |
 | Public API operations | 66 |
 
 ## How to rebuild it
 
 1. **Schema.** Create one table per data model below (142), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
 2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Pages.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)).
+3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
 4. **Public API.** Expose the 66 operations below under `/ExternalApi/v2` with header auth ([public API contract](../../docs/PUBLIC-API.md)).
 
 ## Pages
@@ -29,7 +29,6 @@ Manufacturing: production BOMs and operations, production orders and runs, the p
 | `/IssueToProductionList` | Inventory write-offs | Inventory write-off list | `IssueToProductionList2019` | 1 (0) |
 | `/JobCosting` | Job | Job details | `JobCosting2019` | 17 (7) |
 | `/JobCostingList` | Jobs | Job costings | `JobCostingList2019` | 2 (0) |
-| `/MRPScheduler` | MRP scheduler | MRP Scheduler | `MRPScheduler` | 17 (2) |
 | `/ProductionCalendar` | Factory calendar | Factory Calendar | `ProductionCalendar` | 4 (3) |
 | `/ProductionOrder` | Production order | Production order | `Customization2019 ProductionOrder` | 40 (20) |
 | `/ProductionOrders` | Production orders | Production orders list | `ProductionOrdersList` | 13 (9) |
@@ -366,23 +365,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/MakeToOrder/GetMakeToOrderArtImage` | mvc |  | 🟢 read | ArtID |  |  |
 | `/MakeToOrder/UploadArtImage` | mvc | POST | 🔴 write |  |  |  |
 | `/api/MakeToOrder_MakeToOrderConfiguration` | api | GET | 🟢 read | ProductID |  |  |
-
-### MRP
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/MRP_SupplySuggestionProducts` | api | POST | 🟢 read |  |  |  |
-
-### MRPScheduler
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/MRPScheduler_Demand` | api |  | 🟢 read |  |  |  |
-| `/api/MRPScheduler_ExistedSupply` | api |  | 🟢 read |  |  |  |
-| `/api/MRPScheduler_LocationCalendar` | api |  | 🟢 read |  |  |  |
-| `/api/MRPScheduler_MRP` | api |  | 🟢 read | mrpID |  |  |
-| `/api/MRPScheduler_Supply` | api |  | 🟢 read |  |  |  |
-| `/api/MRPScheduler_vMRPReorder` | api | POST | 🔴 write |  |  |  |
 
 ### MySubscription
 
