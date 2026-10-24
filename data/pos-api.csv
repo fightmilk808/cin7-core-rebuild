@@ -1,0 +1,88 @@
+path,methods,base,params,client_functions
+/ExternalApi/v2/advanced-purchase,DELETE POST PUT,baseURL,ID void,deleteUndoPurchase saveNewPurchase updatePurchase
+/ExternalApi/v2/purchase/order,POST,baseURL,,savePurchaseOrder
+/lanes/,DELETE GET,configService.getTriPOSLaneUrl() + '/lan,,
+/Pos/GetServerAddress,GET,relative,,getApiUrl
+/PosAccount,POST,connectionURL,,
+/PosCashManagement,GET POST,connectionURL,CloseRegistryID Data,addCashMovements getCashMovements
+/PosChangeEvent,GET,connectionURL,,dataChangeStatuses
+/PosCheckoutProductsAvailability,POST,connectionURL,,checkCheckoutProductsAvailability
+/PosCheckSerialNumber,GET,connectionURL,OutletID ProductID SerialNumber,checkSerialNumber
+/PosClickAndCollect,GET,connectionURL,CustomerSearch FromOrderLines Limit OutletID Page SaleNumberSearch TaskID limit page,loadClickAndCollectSale loadClickAndCollectSales
+/PosClickAndCollectAutoPick,GET,connectionURL,FromOrderLines OutletID TaskID,clickAndCollectAutoPick
+/PosClickAndCollectFulfilment,POST,connectionURL,,clickAndCollectFulfill
+/PosCloseRegistry,GET POST,connectionURL,Data IsActive RegistryID UserName isMobile,closeRegistry getClosedRegistries
+/PosCORSProxy,DELETE GET POST,connectionURL,initialUrl,
+/POSCorsProxy,POST,,,
+/PosCountry,GET,connectionURL,,loadCountries
+/PosCoupon,GET,connectionURL,CouponCode,getSaleCoupons
+/PosCustomer,DELETE POST PUT,connectionURL,,createCustomer removeCustomer
+/PosCustomer2,GET,connectionURL,Email FakeServerKey ID,getCustomer loadFakeCustomer
+/PosDashboard,GET,connectionURL,ApplicationID DateFrom DateTo OutletID UserID ViewMode outletID,getDashboardData
+/PosDelivery,GET,connectionURL,,loadDeliveries
+/PosDeliveryDetails,GET POST PUT,connectionURL,deliveryID deliveryTaskID locationID newStatus posOrderID,CreateDelivery UpdateDelivery UpdateDeliveryTaskStatus loadDelivery loadProductsAvailableForDelivery
+/PosDeliveryDetails/YearCalendarSettings,POST,connectionURL,ecsLocationMappingID,loadCalendars
+/PosDiscounts,GET,connectionURL,,getPosDiscounts
+/PosExternalAuth,POST,connectionURL,ExternalToken Password Platform PosApplicationName TokenType UserName,linkingExternal
+/PosGetRate,GET,connectionURL,date from to,getExchangeRate
+/PosGiftCard,POST,connectionURL,,getGiftCardForPayment getGiftCardSettings isGiftCardsRefundAvailable
+/PosGiftCard/,POST,connectionURL,,checkGiftCardExists
+/PosLoadCustomer2,GET,connectionURL,checkCount isLiveDataRequest,loadLiveCustomers
+/PosLoadSaleRepresentatives,GET,connectionURL,SaleRepresentativesHash,loadSaleRepresentativesAll
+/PosLoyaltyLionCustomerRewards,GET,connectionURL,MerchantID,getLLCustomerRewards
+/PosOpenRegistry,POST,connectionURL,Data ID IsMobile RegistryID SalesRepresentative,openRegistry
+/PosOrder,DELETE GET POST,connectionURL,Data ID PosOrderID,checkSaleOrderExists discardParkedSale processSale voidSale
+/PosOrder/GetNextSequence,GET,connectionURL,RegistryID,getNextSequence
+/PosOrderAttachment,DELETE POST,connectionURL,attachmentId orderID userName,attachFilesToOrder removeAttachment
+/PosOrderList,GET,connectionURL,ApplicationID ID Limit OutletID Page SaleID Status,
+/PosOrderListDEARSales,GET,connectionURL,TaskID,loadDEARSale loadDEARSales
+/PosOutlet,GET,connectionURL,ID UserID,getPosOutlet getPosOutletsRegistry getUserPosOutletsRegistry
+/PosPasswordRecovery,POST,connectionURL,PosApplicationName UserName,recoverPassword
+/PosPing,GET,connectionURL,configID tenantID,
+/PosProduct3,GET,connectionURL,ProductHash hash ignoreNullValues isLiveDataRequest outletLocationMappingID,getLiveSearchProducs loadProducts
+/PosProductAvailability,GET,connectionURL,,getProductAvailability
+/PosProductManagement,GET POST PUT,connectionURL,,loadProductList
+/PosProductSearch2,GET,connectionURL,Barcode Family Limit Name ProductCode ProductID QuickKeyID QuickKeyTemplateID outletLocationMappingID,getProductByID search
+/PosPurchaseOrderData,GET,connectionURL,,loadPurchaseOrderRelatedData
+/PosPurchaseOrderEmail,GET POST,connectionURL,TaskID TemplateID User,getPurchaseOrderEmail sendPurchaseOrderEmail
+/PosPurchaseOrderPrint,GET,connectionURL,TaskID TemplateID User,printPurchaseOrder
+/PosPurchaseOrderProcess,GET,connectionURL,Direction FieldName Limit LocationID Page SortDirection SortField TaskID limit page,loadPurchaseOrderDetails
+/PosPurchaseOrderTask,GET,connectionURL,taskID,loadPurchaseTask
+/PosPurchaseReorder,GET,connectionURL,locationID supplierID,loadPurchaseReorderData
+/PosReceipt,GET,connectionURL,ID ReportShortName RootProperty Type,getLabelTemplate getReceiptTemplate getReceiptTemplateByName
+/PosReceiptEmail,POST,connectionURL,BaseOrderID DocumentBody Email EmailBody EmailSubject IgnoreOrderID OrderID TemplateID,sendEmailReceipt
+/PosRegistrySequence/GetCurrentSequence,GET,connectionURL,RegistryID,getCurrentSequence
+/PosSearchSaleRepresentatives,GET,connectionURL,,
+/PosSetPassword,POST,connectionURL,FinalizeID Password,setPassword
+/PosSquareRefund,POST,connectionURL,,squareRefund
+/PosStockOrderingTasks,GET,connectionURL,,loadStockOrderingList
+/PosSurcharge,GET,connectionURL,,loadSurcharges
+/PosTaxRules,GET,connectionURL,,loadTaxRules
+/PosTemplate,GET,connectionURL,Name Process RootProperty Type,getTemplates
+/PosUser,GET PUT,connectionURL,ID NewPassword OldPassword,changePassword loadPosUsers
+/PosUserActivation,PUT,connectionURL,ID isLocked,activateUser deactivateUser
+/PosUserManagement,DELETE GET POST PUT,connectionURL,CurrentUser ID Name OutletID RoleName UserName,createPosUser removePosUser updatePosUser
+/PosUserPin,PUT,connectionURL,PinToken UserID,savePin
+/PosUtils,POST,connectionURL,,posUtils
+/ProductDataParams,GET,connectionURL,,getProductData
+/ReportCloseRegistry,GET,connectionURL,,loadRegistryCloseList
+/ReportCloseRegistryDetails,GET,connectionURL,RegistryCloseID,loadClosureRegistryDetails
+/ReportGiftCard,GET POST PUT,connectionURL,,loadReportGiftCard loadReportGiftCardCSV loadReportGiftCardEmail
+/ReportInTransit,GET POST PUT,connectionURL,,loadInTransitReport loadInTransitReportCSV loadInTransitReportEmail
+/ReportInventory,GET POST PUT,connectionURL,,loadInventoryReport loadInventoryReportCSV loadInventoryReportEmail
+/ReportPaymentTypeSummary,GET POST PUT,connectionURL,,loadPaymentTypeSummary loadPaymentTypeSummaryReportCSV loadPaymentTypeSummaryReportEmail
+/ReportProdPerf,GET POST PUT,connectionURL,,loadProductPerformanceReport loadProductPerformanceReportCSV loadProductPerformanceReportEmail
+/ReportSalesSummary,GET POST PUT,connectionURL,,loadSalesSummary loadSalesSummaryCSV loadSalesSummaryEmail
+/ReportStoreCredit,GET POST PUT,connectionURL,,loadStoreCredit loadStoreCreditCSV loadStoreCreditEmail
+/ReportSurcharge,GET POST PUT,connectionURL,,loadSurchargeReport loadSurchargeReportCSV loadSurchargeReportEmail
+/sale,POST,configService.getTriPOSUrl() + '/sale',,
+/StockTake,GET,connectionURL,,getStockTakeData
+/Stocktake,PUT,connectionURL,localDate status taskID userName,cancelStocktake completeStocktake startStocktake undoStocktake
+/StocktakeProcess,GET POST PUT,connectionURL,LocationID SearchString TaskID batchSN expiryDate isAbsolute itemID locationID productID receivedDate taskID value,adjustStocktakeItem loadStocktake scanStockTakeInventoryMode
+/StocktakeTask,DELETE GET POST PUT,connectionURL,Direction FieldName Limit Page SortDirection SortField Status TaskID limit page,deleteStocktake loadStocktakeList saveNewStockTake updateStockTake
+/StockTransfer,DELETE GET PUT,connectionURL,TaskID completionDate mode,completeStockTransfer deleteStockTransfer loadStockTransferList undoStockTransfer
+/StockTransferData,GET,connectionURL,,loadStockTransferSatelliteData
+/StockTransferOrderData,GET,connectionURL,,loadStockTransferOrderRelatedData
+/StockTransferOrderProcess,GET POST PUT,connectionURL,Direction FieldName Limit Page SortDirection SortField TaskID limit page,loadStockTransferOrderDetails saveNewStockTransferOrder updateStockTransferOrder
+/StockTransferProcess,GET POST PUT,connectionURL,Direction FieldName Limit Page SortDirection SortField TaskID limit page,loadStockTransferDetails saveNewStockTransfer updateStockTransfer
+/StockTransferReorder,GET,connectionURL,fromLocationID onlyAvailable toLocationID,loadStockTransferReorderData

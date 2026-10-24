@@ -1,0 +1,296 @@
+group,resource,method,path,query,action,params
+Attribute Set,Attribute Set,GET,/ref/attributeset,"ID,Page,Limit,Name",GET,Page Limit ID Name Request
+Attribute Set,Attribute Set,POST,/ref/attributeset,,POST,
+Attribute Set,Attribute Set,PUT,/ref/attributeset,,PUT,
+Attribute Set,Attribute Set,DELETE,/ref/attributeset,ID,DELETE,ID* Request
+Bank Accounts,Bank Accounts,GET,/ref/account/bank,"Page,Limit,ID,Name,Bank",GET,Page Limit ID Name Bank Request
+Brand,Brand,GET,/ref/brand,"Page,Limit,Name",GET,Page Limit Name Request
+Brand,Brand,POST,/ref/brand,,POST,
+Brand,Brand,PUT,/ref/brand,,PUT,
+Brand,Brand,DELETE,/ref/brand,ID,DELETE,ID* Request
+Carrier,Carrier,GET,/ref/carrier,"Page,Limit,CarrierID,Description",GET,Page Limit CarrierID Description Request
+Carrier,Carrier,POST,/ref/carrier,,POST,
+Carrier,Carrier,PUT,/ref/carrier,,PUT,
+Carrier,Carrier,DELETE,/ref/carrier,ID,DELETE,ID* Request
+Chart of Accounts,Chart of Accounts,GET,/ref/account,"Page,Limit,Code,Name,Type,Status",GET,Page Limit Code Name Type Status Request
+Chart of Accounts,Chart of Accounts,POST,/ref/account,,POST,
+Chart of Accounts,Chart of Accounts,PUT,/ref/account,,PUT,
+Chart of Accounts,Chart of Accounts,DELETE,/ref/account,Code,DELETE,Code* Request
+Customer,Customer,GET,/customer,"Page,Limit,ID,Name,ModifiedSince,IncludeDeprecated,IncludeProductPrices,ContactFilter",GET,Page Limit ID Name ContactFilter ModifiedSince IncludeDeprecated IncludeProductPrices Request
+Customer,Customer,POST,/customer,,POST,
+Customer,Customer,PUT,/customer,,PUT,
+Customer,Customer Default Template,GET,/ref/customer/templates,"Page,Limit,CustomerId",GET,Page Limit CustomerId Request
+Customer,Customer Default Template,POST,/ref/customer/templates,,POST,
+Customer,Customer Default Template,DELETE,/ref/customer/templates,"TemplateId,CustomerId",DELETE,TemplateId* CustomerId* Request
+Customer,Customer Credits,GET,/ref/customer/credits,"Page,Limit,CustomerID,ShowUsedCredits",GET,Page Limit CustomerID ShowUsedCredits Request
+Disassembly,Disassembly List,GET,/disassemblyList,"Page,Limit,Status,Search",GET,Page Limit Status Search Request
+Disassembly,Disassembly,GET,/disassembly,TaskID,GET,TaskID Request
+Disassembly,Disassembly,POST,/disassembly,,POST,
+Disassembly,Disassembly,DELETE,/disassembly,"ID,Void",Delete,ID* Void Request
+Disassembly,Disassembly Order,GET,/disassembly/order,TaskID,GET,TaskID Request
+Disassembly,Disassembly Order,POST,/disassembly/order,,POST,
+Finished Goods,Finished Goods List,GET,/finishedGoodsList,"Page,Limit,Status,Search,SaleID",GET,Page Limit Status Search SaleID Request
+Finished Goods,Finished Goods,GET,/finishedGoods,TaskID,GET,TaskID Request
+Finished Goods,Finished Goods,POST,/finishedGoods,,POST,
+Finished Goods,Finished Goods,PUT,/finishedGoods,,PUT,
+Finished Goods,Finished Goods,DELETE,/finishedGoods,"ID,Void",Delete,ID* Void Request
+Finished Goods,Finished Goods Order,GET,/finishedGoods/order,TaskID,GET,TaskID Request
+Finished Goods,Finished Goods Order,POST,/finishedGoods/order,,POST,
+Finished Goods,Finished Goods Pick,GET,/finishedGoods/pick,TaskID,GET,TaskID Request
+Finished Goods,Finished Goods Pick,POST,/finishedGoods/pick,,POST,
+Fixed Asset Type,Fixed Asset Type,GET,/ref/fixedassettype,"Page,Limit,ID,Name",GET,Page Limit FixedAssetTypeID Name Request
+Fixed Asset Type,Fixed Asset Type,POST,/ref/fixedassettype,,POST,
+Fixed Asset Type,Fixed Asset Type,PUT,/ref/fixedassettype,,PUT,
+Inventory Write-Off,Inventory Write-Off List,GET,/inventoryWriteOffList,"Page,Limit,Status,Search",GET,Page Limit Status Search Request
+Inventory Write-Off,Inventory Write-Off,GET,/inventoryWriteOff,TaskID,GET,TaskID Request
+Inventory Write-Off,Inventory Write-Off,POST,/inventoryWriteOff,,POST,
+Inventory Write-Off,Inventory Write-Off,PUT,/inventoryWriteOff,,PUT,
+Inventory Write-Off,Inventory Write-Off,DELETE,/inventoryWriteOff,"ID,Void",Delete,ID* Void Request
+Journal,Journal,GET,/journal,"Page,Limit,TaskID,Status,Search",GET,Page Limit TaskID Status Search Request
+Journal,Journal,POST,/journal,,POST,
+Journal,Journal,PUT,/journal,,PUT,
+Journal,Journal,DELETE,/journal,"ID,Void",Delete,ID* Void Request
+Location,Location,GET,/ref/location,"ID,Page,Limit,Deprecated,Name",GET,Page Limit ID Deprecated Name Request
+Location,Location,POST,/ref/location,,POST,
+Location,Location,PUT,/ref/location,,PUT,
+Location,Location,DELETE,/ref/location,ID,DELETE,ID* Request
+Me,Me,GET,/me,,GET,
+Me,Me Address,GET,/me/addresses,"Page,Limit,ID,Type,DefaultForType,Country,StateProvince,CitySuburb",GET,Page Limit ID Type DefaultForType Country StateProvince CitySuburb Request
+Me,Me Address,POST,/me/addresses,,POST,
+Me,Me Address,PUT,/me/addresses,,PUT,
+Me,Me Address,DELETE,/me/addresses,ID,DELETE,ID* Request
+Me,Me Contact,GET,/me/contacts,"Page,Limit,ID,Name,Type,DefaultForType,Phone,Fax,Email",GET,Page Limit ID Name Type DefaultForType Phone Fax Email Request
+Me,Me Contact,POST,/me/contacts,,POST,
+Me,Me Contact,PUT,/me/contacts,,PUT,
+Me,Me Contact,DELETE,/me/contacts,ID,DELETE,ID* Request
+Money Task,Money Task List,GET,/moneyTaskList,"Page,Limit,Status,Search,TaskType",GET,Page Limit Status Search TaskType Request
+Money Task,Money Operation,GET,/moneyOperation,TaskID,GET,TaskID Request
+Money Task,Money Operation,POST,/moneyOperation,,POST,
+Money Task,Money Operation,PUT,/moneyOperation,,PUT,
+Money Task,Money Operation,DELETE,/moneyOperation,"ID,Void",Delete,ID* Void Request
+Money Task,Bank Transfer,GET,/bankTransfer,TaskID,GET,TaskID Request
+Money Task,Bank Transfer,POST,/bankTransfer,,POST,
+Money Task,Bank Transfer,PUT,/bankTransfer,,PUT,
+Money Task,Bank Transfer,DELETE,/bankTransfer,"ID,Void",Delete,ID* Void Request
+Payment Term,Payment Term,GET,/ref/paymentterm,"Page,Limit,ID,Name,Method,IsActive,IsDefault",GET,Page Limit ID Name Method IsActive IsDefault Request
+Payment Term,Payment Term,POST,/ref/paymentterm,,POST,
+Payment Term,Payment Term,PUT,/ref/paymentterm,,PUT,
+Payment Term,Payment Term,DELETE,/ref/paymentterm,ID,DELETE,ID* Request
+Price Tiers,Price Tiers,GET,/ref/priceTier,,GET,
+Product,Product,GET,/product,"ID,Page,Limit,Name,Sku,ModifiedSince,IncludeDeprecated,IncludeBOM,IncludeSuppliers,IncludeMovements,IncludeAttachments,IncludeReorderLevels,IncludeCustomPrices",GET,ID Page Limit Name Sku ModifiedSince IncludeDeprecated IncludeBOM IncludeSuppliers IncludeMovements IncludeAttachments IncludeReorderLevels IncludeCustomPrices Request
+Product,Product,POST,/product,,POST,
+Product,Product,PUT,/product,,PUT,
+Product,Product Attachments,GET,/product/attachments,ProductID,GET,ProductID Request
+Product,Product Attachments,POST,/product/attachments,,POST,
+Product,Product Attachments,DELETE,/product/attachments,ID,DELETE,ID Request
+Product,Product Availability,GET,/ref/productavailability,"Page,Limit,ID,Name,Sku,Location,Batch,Category",GET,Page Limit ID Name Sku Location Batch Category Request
+Product Categories,Product Category,GET,/ref/category,"Page,Limit,Name",GET,Page Limit Name Request
+Product Categories,Product Category,POST,/ref/category,,POST,
+Product Categories,Product Category,PUT,/ref/category,,PUT,
+Product Categories,Product Category,DELETE,/ref/category,ID,DELETE,ID* Request
+Product Family,Product Family,GET,/productFamily,"ID,Page,Limit,Name,Sku,ModifiedSince",GET,ID Page Limit Name Sku ModifiedSince Request
+Product Family,Product Family,POST,/productFamily,,POST,
+Product Family,Product Family,PUT,/productFamily,,PUT,
+Product Family,Product Family Attachments,GET,/productFamily/attachments,FamilyID,GET,FamilyID Request
+Product Family,Product Family Attachments,POST,/productFamily/attachments,,POST,
+Product Family,Product Family Attachments,DELETE,/productFamily/attachments,ID,DELETE,ID Request
+Product Markup Prices,Markup Prices,GET,/product/markupprices,ProductID,GET,ProductID* Request
+Product Markup Prices,Markup Prices,PUT,/product/markupprices,,PUT,
+Production,Factory Calendar,GET,/production/factoryCalendar,Year,GET,Year* Request
+Production,Factory Calendar,POST,/production/factoryCalendar,,POST,
+Production,Factory Calendar,PUT,/production/factoryCalendar,,PUT,
+Production,Product Production BOM,GET,/production/productionBOM,"ProductID,ReturnAttachmentsContent",GET,ProductID* ReturnAttachmentsContent Request
+Production,Product Production BOM,POST,/production/productionBOM,,POST,
+Production,Product Production BOM,PUT,/production/productionBOM,,PUT,
+Production,Product Production BOM,DELETE,/production/productionBOM,"ProductID,BOMID",DELETE,ProductID* BOMID* Request
+Production,Product Family Production BOM,GET,/production/productionBOM,"ProductFamilyID,ReturnAttachmentsContent",GET,ProductFamilyID* ReturnAttachmentsContent Request
+Production,Product Family Production BOM,POST,/production/productionBOM,,POST,
+Production,Product Family Production BOM,PUT,/production/productionBOM,,PUT,
+Production,Product Family Production BOM,DELETE,/production/productionBOM,"ProductFamilyID,BOMID",DELETE,ProductFamilyID* BOMID* Request
+Production,Production Order,GET,/production/order,"ProductionOrderID,returnAttachmentsContent",GET,ProductionOrderID* ReturnAttachmentsContent Request
+Production,Production Order,POST,/production/order,RecalculateDates,POST,RecalculateDates Request
+Production,Production Order,PUT,/production/order,"AllowRecalculateDates,AllowRecalculateCyclesAndQuantities",PUT,AllowRecalculateDates AllowRecalculateCyclesAndQuantities Request
+Production,Production Order,POST,/production/order/authorise,,Authorise,
+Production,Production Order,POST,/production/order/release,,Release,
+Production,Production Order,POST,/production/order/undo,,Undo,
+Production,Production Order,POST,/production/order/attachment,ProductionOrderID,Post Attachment,ProductionOrderID* Request
+Production,Production Order,PUT,/production/order/attachment,,Put Attachment,
+Production,Production Order,DELETE,/production/order/attachment,ProductionOrderAttachmentID,Delete Attachment,ProductionOrderAttachmentID* Request
+Production,Production Order,GET,/production/order/attachment,"ProductionOrderID,ReturnAttachmentsContent",Get Production Order Attachments,ProductionOrderID* ReturnAttachmentsContent Request
+Production,Production Order,POST,/production/order/void,,Void,
+Production,Production Order,GET,/production/order/referenceData,,Get Production Order Reference Data,
+Production,Production Order List,GET,/production/orderList,"Page,Limit,Status,Search,LocationID,RequiredByDateFrom,RequiredByDateTo,CompletionDateFrom,CompletionDateTo,SourceTaskID",GET,Page Limit Status Search LocationID RequiredByDateFrom RequiredByDateTo CompletionDateFrom CompletionDateTo SourceTaskID Request
+Production,Production Run,POST,/production/order/run,,POST,
+Production,Production Run,GET,/production/order/run,"ProductionOrderID,IncludeAttachmentContent",GET,ProductionOrderID* IncludeAttachmentContent Request
+Production,Production Run,PUT,/production/order/run,"ProductionOrderID,IncreaseOrderQuantity",PUT,ProductionOrderID* IncreaseOrderQuantity* Request
+Production,Production Run,PUT,/production/order/run/complete,,Complete Run,
+Production,Production Run,PUT,/production/order/run/undo,,Undo Run,
+Production,Production Run,PUT,/production/order/run/void,,Void Run,
+Production,Production Run,PUT,/production/order/run/manualJournal,ProductionOrderID,Update Manual Journals,ProductionOrderID* Request
+Production,Production Run,PUT,/production/order/run/operation/start,,Start Run Operation,
+Production,Production Run,PUT,/production/order/run/operation/suspend,,Suspend Run Operation,
+Production,Production Run,PUT,/production/order/run/operation/resume,,Resume Run Operation,
+Production,Production Run,PUT,/production/order/run/operation/complete,,Complete Run Operation,
+Production,Resource List,GET,/production/resourceList,"Page,Limit,Name,OnlyActive",GET,Page Limit Name OnlyActive Request
+Production,Resource,GET,/production/resource,"ResourceID,IncludeAttachments",GET,ResourceID* IncludeAttachments Request
+Production,Resource,POST,/production/resource,,POST,
+Production,Resource,PUT,/production/resource,,PUT,
+Production,Resource,DELETE,/production/resource,ResourceID,DELETE,ResourceID* Request
+Production,Suspend Reason,GET,/production/suspendReason,"Page,Limit,WorkcenterID",GET,Page Limit WorkcenterID Request
+Production,Suspend Reason,PUT,/production/suspendReason,,PUT,
+Production,Work Centers,GET,/production/workcenters,"Page,Limit,Name",GET,Page Limit Name Request
+Production,Work Centers,POST,/production/workcenters,,POST,
+Production,Work Centers,PUT,/production/workcenters,,PUT,
+Production,Work Centers,DELETE,/production/workcenters,WorkCenterId,DELETE,WorkCenterId* Request
+Purchase,Purchase List,GET,/purchaseList,"Page,Limit,Search,RequiredBy,UpdatedSince,OrderStatus,RestockReceivedStatus,InvoiceStatus,CreditNoteStatus,UnstockStatus,DropShipTaskID",GET,Page Limit Search RequiredBy UpdatedSince UpdatedUntil OrderStatus RestockReceivedStatus InvoiceStatus CreditNoteStatus UnstockStatus Status DropShipTaskID Request
+Purchase,Purchase Credit Note List,GET,/purchaseCreditNoteList,"Page,Limit,Search,UpdatedSince,CreditNoteStatus",GET,Page Limit Search UpdatedSince UpdatedUntil CreditNoteStatus Status Request
+Purchase,Purchase,GET,/purchase,"ID,CombineAdditionalCharges",GET,ID* CombineAdditionalCharges Request
+Purchase,Purchase,POST,/purchase,,POST,
+Purchase,Purchase,PUT,/purchase,,PUT,
+Purchase,Purchase,DELETE,/purchase,"ID,Void",DELETE,ID* Void Request
+Purchase,Purchase Order,GET,/purchase/order,"TaskID,CombineAdditionalCharges",GET,TaskID* CombineAdditionalCharges Request
+Purchase,Purchase Order,POST,/purchase/order,,POST,
+Purchase,Purchase Stock Received,GET,/purchase/stock,TaskID,GET,TaskID* Request
+Purchase,Purchase Stock Received,POST,/purchase/stock,,POST,
+Purchase,Purchase Invoice,GET,/purchase/invoice,"TaskID,CombineAdditionalCharges",GET,TaskID* CombineAdditionalCharges Request
+Purchase,Purchase Invoice,POST,/purchase/invoice,,POST,
+Purchase,Purchase Credit Note,GET,/purchase/creditnote,"TaskID,CombineAdditionalCharges",GET,TaskID* CombineAdditionalCharges Request
+Purchase,Purchase Credit Note,POST,/purchase/creditnote,,POST,
+Purchase,Purchase Payments,GET,/purchase/payment,TaskID,GET,TaskID* Request
+Purchase,Purchase Payments,POST,/purchase/payment,,POST,
+Purchase,Purchase Payments,PUT,/purchase/payment,,PUT,
+Purchase,Purchase Payments,DELETE,/purchase/payment,"ID,DeleteAllocation",DELETE,ID* DeleteAllocation Request
+Purchase,Purchase Manual Journals,GET,/purchase/manualJournal,TaskID,GET,TaskID* Request
+Purchase,Purchase Manual Journals,POST,/purchase/manualJournal,,POST,
+Purchase,Purchase Attachments,GET,/purchase/attachment,TaskID,GET,TaskID* Request
+Purchase,Purchase Attachments,POST,/purchase/attachment,,POST,
+Purchase,Purchase Attachments,DELETE,/purchase/attachment,ID,DELETE,ID Request
+Purchase,Advanced Purchase,GET,/advanced-purchase,"ID,CombineAdditionalCharges",GET,ID* CombineAdditionalCharges Request
+Purchase,Advanced Purchase,POST,/advanced-purchase,,POST,
+Purchase,Advanced Purchase,PUT,/advanced-purchase,,PUT,
+Purchase,Advanced Purchase,DELETE,/advanced-purchase,"ID,Void",DELETE,ID* Void Request
+Purchase,Advanced Purchase Stock Received,GET,/advanced-purchase/stock,PurchaseID,GET,PurchaseID* Request
+Purchase,Advanced Purchase Stock Received,POST,/advanced-purchase/stock,,POST,
+Purchase,Advanced Purchase Stock Received,PUT,/advanced-purchase/stock,,PUT,
+Purchase,Advanced Purchase Stock Received,DELETE,/advanced-purchase/stock,"TaskID,Void",DELETE,TaskID* Void Request
+Purchase,Advanced Purchase Put Away,GET,/advanced-purchase/put-away,PurchaseID,GET,PurchaseID* Request
+Purchase,Advanced Purchase Put Away,POST,/advanced-purchase/put-away,,POST,
+Purchase,Advanced Purchase Invoice,GET,/advanced-purchase/invoice,"PurchaseID,CombineAdditionalCharges",GET,PurchaseID* CombineAdditionalCharges Request
+Purchase,Advanced Purchase Invoice,POST,/advanced-purchase/invoice,,POST,
+Purchase,Advanced Purchase Invoice,DELETE,/advanced-purchase/invoice,"TaskID,Void",DELETE,TaskID* Void Request
+Purchase,Advanced Purchase Credit Note,GET,/advanced-purchase/creditnote,"PurchaseID,CombineAdditionalCharges",GET,PurchaseID* CombineAdditionalCharges Request
+Purchase,Advanced Purchase Credit Note,POST,/advanced-purchase/creditnote,,POST,
+Purchase,Advanced Purchase Credit Note,DELETE,/advanced-purchase/creditnote,TaskID,DELETE,TaskID* Request
+Purchase,Advanced Purchase Payments,GET,/advanced-purchase/payment,"PurchaseID,OrderNumber,InvoiceNumber,CreditNoteNumber",GET,PurchaseID OrderNumber InvoiceNumber CreditNoteNumber Request
+Purchase,Advanced Purchase Payments,POST,/advanced-purchase/payment,,POST,
+Purchase,Advanced Purchase Payments,PUT,/advanced-purchase/payment,,PUT,
+Purchase,Advanced Purchase Payments,DELETE,/purchase/payment,"ID,DeleteAllocation",DELETE,ID* DeleteAllocation Request
+Purchase,Advanced Purchase Manual Journals,GET,/advanced-purchase/manualJournal,PurchaseID,GET,PurchaseID* Request
+Purchase,Advanced Purchase Manual Journals,POST,/advanced-purchase/manualJournal,,POST,
+Reference Books,Custom Prices,POST,/custom-prices,,POST,
+Reference Books,Custom Prices,PUT,/custom-prices,,PUT,
+Reference Books,Custom Prices,DELETE,/custom-prices,"ProductID,CustomerID",DELETE,ProductID* CustomerID* Request
+Reference Books,Deals,GET,/reference/deals,"ID,Page,Limit,Search",GET,ID Page Limit Search Request
+Reference Books,Deals,POST,/reference/deals,,POST,
+Reference Books,Deals,PUT,/reference/deals,,PUT,
+Reference Books,Product Discounts,GET,/reference/discount,"ID,Page,Limit,Search",GET,ID Page Limit Search Request
+Reference Books,Product Discounts,POST,/reference/discount,,POST,
+Reference Books,Product Discounts,PUT,/reference/discount,,PUT,
+Reference Books,Product Suppliers,GET,/product-suppliers,ProductID,GET,ProductID* Request
+Reference Books,Product Suppliers,POST,/product-suppliers,,POST,
+Reference Books,Product Suppliers,PUT,/product-suppliers,,PUT,
+Reference Books,Product Suppliers,DELETE,/product-suppliers,"ProductID,SupplierID",DELETE,ProductID* SupplierID* Request
+Reference Books,Ship Zones,GET,/reference/shipZones,"ID,Page,Limit,Search",GET,ID Page Limit Search Request
+Reference Books,Ship Zones,POST,/reference/shipZones,,POST,
+Reference Books,Ship Zones,PUT,/reference/shipZones,,PUT,
+Reference Books,Ship Zones,DELETE,/reference/shipZones,,Delete,ShipZoneID* Request
+Reference Books,Ship Zones Enabled,GET,/reference/shipZonesEnabled,,Get,
+Reference Books,Ship Zones Enabled,PUT,/reference/shipZonesEnabled,,Update,
+Sale,Sale List,GET,/saleList,"Page,Limit,Search,CreatedSince,UpdatedSince,ShipBy,QuoteStatus,OrderStatus,CombinedPickStatus,CombinedPackStatus,CombinedShippingStatus,CombinedInvoiceStatus,CreditNoteStatus,ExternalID,Status,ReadyForShipping,OrderLocationID",GET,Page Limit Search CreatedSince UpdatedSince UpdatedUntil ShipBy QuoteStatus OrderStatus CombinedPickStatus CombinedPackStatus CombinedShippingStatus CombinedInvoiceStatus CreditNoteStatus ExternalID Status ReadyForShipping OrderLocationID Request
+Sale,Sale Credit Note List,GET,/saleCreditNoteList,"Page,Limit,Search,CreatedSince,UpdatedSince,CreditNoteStatus,Status",GET,Page Limit Search CreatedSince UpdatedSince UpdatedUntil CreditNoteStatus Status Request
+Sale,Sale,GET,/sale,"ID,CombineAdditionalCharges,HideInventoryMovements,IncludeTransactions,CountryFormat",GET,ID* CombineAdditionalCharges HideInventoryMovements IncludeTransactions CountryFormat Request
+Sale,Sale,POST,/sale,,POST,
+Sale,Sale,PUT,/sale,,PUT,
+Sale,Sale,DELETE,/sale,"ID,Void",Delete,ID* Void Request
+Sale,Sale Quote,GET,/sale/quote,"SaleID,CombineAdditionalCharges,IncludeProductInfo",GET,SaleID* CombineAdditionalCharges IncludeProductInfo Request
+Sale,Sale Quote,POST,/sale/quote,,POST,
+Sale,Sale Order,GET,/sale/order,"SaleID,CombineAdditionalCharges,IncludeProductInfo",GET,SaleID* CombineAdditionalCharges IncludeProductInfo Request
+Sale,Sale Order,POST,/sale/order,,POST,
+Sale,Sale Fulfilment,GET,/sale/fulfilment,"SaleID,IncludeProductInfo",GET,SaleID* IncludeProductInfo Request
+Sale,Sale Fulfilment,POST,/sale/fulfilment,,POST,
+Sale,Sale Fulfilment,DELETE,/sale/fulfilment,"TaskID,Void",DELETE,TaskID* Void Request
+Sale,Sale Fulfilment Pick,GET,/sale/fulfilment/pick,"TaskID,IncludeProductInfo",GET,TaskID* IncludeProductInfo Request
+Sale,Sale Fulfilment Pick,POST,/sale/fulfilment/pick,,POST,
+Sale,Sale Fulfilment Pick,PUT,/sale/fulfilment/pick,,PUT,
+Sale,Sale Fulfilment Pack,GET,/sale/fulfilment/pack,"TaskID,IncludeProductInfo",GET,TaskID* IncludeProductInfo Request
+Sale,Sale Fulfilment Pack,POST,/sale/fulfilment/pack,,POST,
+Sale,Sale Fulfilment Pack,PUT,/sale/fulfilment/pack,,PUT,
+Sale,Sale Fulfilment Ship,GET,/sale/fulfilment/ship,TaskID,GET,TaskID* Request
+Sale,Sale Fulfilment Ship,POST,/sale/fulfilment/ship,,POST,
+Sale,Sale Fulfilment Ship,PUT,/sale/fulfilment/ship,,PUT,
+Sale,Sale Invoice,GET,/sale/invoice,"SaleID,CombineAdditionalCharges,IncludeProductInfo",GET,SaleID* CombineAdditionalCharges IncludeProductInfo Request
+Sale,Sale Invoice,POST,/sale/invoice,,POST,
+Sale,Sale Invoice,PUT,/sale/invoice,,PUT,
+Sale,Sale Invoice,DELETE,/sale/invoice,"TaskID,Void",DELETE,TaskID* Void Request
+Sale,Sale Credit Note,GET,/sale/creditnote,"SaleID,CombineAdditionalCharges,IncludeProductInfo,IncludePaymentInfo",GET,SaleID* CombineAdditionalCharges IncludeProductInfo IncludePaymentInfo Request
+Sale,Sale Credit Note,POST,/sale/creditnote,,POST,
+Sale,Sale Credit Note,DELETE,/sale/creditnote,"TaskID,Void",DELETE,TaskID* Void Request
+Sale,Sale Payments,GET,/sale/payment,SaleID,GET,SaleID* Request
+Sale,Sale Payments,POST,/sale/payment,,POST,
+Sale,Sale Payments,PUT,/sale/payment,,PUT,
+Sale,Sale Payments,DELETE,/sale/payment,ID,DELETE,ID* Request
+Sale,Sale Manual Journals,GET,/sale/manualJournal,SaleID,GET,SaleID* Request
+Sale,Sale Manual Journals,POST,/sale/manualJournal,,POST,
+Sale,Sale Attachments,GET,/sale/attachment,SaleID,GET,SaleID* Request
+Sale,Sale Attachments,POST,/sale/attachment,,POST,
+Sale,Sale Attachments,DELETE,/sale/attachment,ID,DELETE,ID Request
+Stock,Stock Adjustment List,GET,/stockadjustmentList,"Page,Limit,Status",GET,Page Limit Status Request
+Stock,Stock Adjustment,GET,/stockadjustment,TaskID,GET,TaskID* Request
+Stock,Stock Adjustment,POST,/stockadjustment,,POST,
+Stock,Stock Adjustment,PUT,/stockadjustment,,PUT,
+Stock,Stock Adjustment,DELETE,/stockadjustment,"ID,Void",DELETE,ID* Void Request
+Stock,Stock Take List,GET,/stockTakeList,"Page,Limit,Status",GET,Page Limit Status Request
+Stock,Stock Take,GET,/stocktake,TaskID,GET,TaskID* Request
+Stock,Stock Take,POST,/stocktake,,POST,
+Stock,Stock Take,PUT,/stocktake,,PUT,
+Stock,Stock Take,DELETE,/stocktake,"ID,Void",DELETE,ID* Void Request
+Stock,Stock Transfer List,GET,/stockTransferList,"Page,Limit,Status,Search",GET,Page Limit Status Search Request
+Stock,Stock Transfer,GET,/stockTransfer,TaskID,GET,TaskID* Request
+Stock,Stock Transfer,POST,/stockTransfer,,POST,
+Stock,Stock Transfer,PUT,/stockTransfer,,PUT,
+Stock,Stock Transfer,DELETE,/stockTransfer,"ID,Void",DELETE,ID* Void Request
+Stock,Stock Transfer Order,GET,/stockTransfer/order,TaskID,GET,TaskID* Request
+Stock,Stock Transfer Order,POST,/stockTransfer/order,,POST,
+Supplier,Supplier,GET,/supplier,"Page,Limit,ID,Name,ModifiedSince,IncludeDeprecated",GET,Page Limit ID Name ModifiedSince IncludeDeprecated Request
+Supplier,Supplier,POST,/supplier,,POST,
+Supplier,Supplier,PUT,/supplier,,PUT,
+Supplier,Supplier Deposits,GET,/ref/supplier/deposits,"Page,Limit,SupplierID,ShowUsedDeposits",GET,Page Limit SupplierID ShowUsedDeposits Request
+Tax,Tax,GET,/ref/tax,"Page,Limit,ID,Name,IsActive,IsTaxForSale,IsTaxForPurchase,Account",GET,Page Limit ID Name IsActive IsTaxForSale IsTaxForPurchase Account Request
+Tax,Tax,POST,/ref/tax,,POST,
+Tax,Tax,PUT,/ref/tax,,PUT,
+Templates,Templates,GET,/ref/templates,"Page,Limit,Type,Name",GET,Page Limit Type Name Request
+Transactions,Transactions,GET,/transactions,"Page,Limit,FromDate,ToDate,Account",GET,Page Limit FromDate ToDate Account Request
+Unit of Measure,Unit of Measure,GET,/ref/unit,"Page,Limit,Name",GET,Page Limit Name Request
+Unit of Measure,Unit of Measure,POST,/ref/unit,,POST,
+Unit of Measure,Unit of Measure,PUT,/ref/unit,,PUT,
+Unit of Measure,Unit of Measure,DELETE,/ref/unit,ID,DELETE,ID* Request
+Webhooks,Webhooks,GET,/webhooks,,GET,
+Webhooks,Webhooks,POST,/webhooks,,POST,
+Webhooks,Webhooks,PUT,/webhooks,,PUT,
+Webhooks,Webhooks,DELETE,/webhooks,ID,Delete,ID* Request
+CRM,Lead,GET,/crm/lead,"Page,Limit,ID,Name,ModifiedSince",GET,Page Limit ID Name ModifiedSince Request
+CRM,Lead,POST,/crm/lead,,POST,
+CRM,Lead,PUT,/crm/lead,,PUT,
+CRM,Opportunity,GET,/crm/opportunity,"Page,Limit,ID,ModifiedSince",GET,Page Limit ID ModifiedSince Request
+CRM,Opportunity,POST,/crm/opportunity,,POST,
+CRM,Opportunity,PUT,/crm/opportunity,,PUT,
+CRM,Task,GET,/crm/task,"Page,Limit,ID,Name,StartDateFrom,StartDateTo,EndDateFrom,EndDateTo,CompleteDateFrom,CompleteDateTo,AssignedTo,Category",GET,Page Limit ID Name StartDateFrom StartDateTo EndDateFrom EndDateTo CompleteDateFrom CompleteDateTo AssignedTo Category Request
+CRM,Task,POST,/crm/task,,POST,
+CRM,Task,PUT,/crm/task,,PUT,
+CRM,Task Category,GET,/crm/task,"Page,Limit,ID,Name",GET,Page Limit ID Name Request
+CRM,Task Category,POST,/crm/taskcategory,,POST,
+CRM,Task Category,PUT,/crm/taskcategory,,PUT,
+CRM,Workflow,GET,/crm/task,"Page,Limit,ID,Name",GET,Page Limit ID Name Request
+CRM,Workflow,POST,/crm/workflow,,POST,
+CRM,Workflow,PUT,/crm/workflow,,PUT,
+CRM,Start a Workflow,POST,/crm/workflowstart,"ID,Name,StartDate,EnityType,EntityID",POST,ID Name StartDate* EnityType* EntityID* Request

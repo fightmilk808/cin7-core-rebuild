@@ -1,0 +1,262 @@
+route,section,menu_label,title,bundles,n_api,n_write
+/AMA,AI,Ask AI,Ask Me Anything ~,,0,0
+/DocumentExtraction,AI,Document data extraction,Document data extraction,DocumentExtraction2024,22,9
+/Deal,CRM,Deal,Deal,Deal2019,13,7
+/Lead,CRM,Lead,Lead,MultilingualSupport2019 LeadEdit2019,15,6
+/LeadList,CRM,Leads,Leads,LeadList2019,3,3
+/Opportunity,CRM,Opportunity,Opportunity,Opportunity2019,44,21
+/OpportunityList,CRM,Opportunities,Opportunities,OpportunityList2019,3,5
+/TaskList,CRM,Tasks,Tasks,TaskList2019,11,7
+/ContinueSetup,Dashboard,Setup guide,Continue setup,ContinueSetup,14,20
+/Home,Dashboard,Dashboard,Dashboard,Home2019,31,14
+/BankAccount,Financials,Bank account,Bank accounts,BankAccounts2019,2,1
+/BankRule,Financials,Bank rule,Bank rules,BankRule2019,14,4
+/BankStatement,Financials,Bank statement,Bank accounts,BankAccounts2019,2,1
+/Cin7Capital,Financials,Cin7 Capital,Cin7 Capital,Cin7Capital2019,0,2
+/Cin7Pay,Financials,Cin7 Pay,Cin7 Pay,Cin7Pay2019,12,19
+/Depreciation,Financials,Depreciations,Depreciations,Depreciations2019,4,1
+/ExpenseClaim,Financials,Expense claim,Expense claim,ExpenseClaim2019,10,7
+/ExpenseClaimList,Financials,Expense claims,Expense claims,ExpenseClaimList2019,3,1
+/ExpenseClaimReceipt,Financials,Receipt,Expense claim receipt,ExpenseClaimReceipt2019,13,9
+/ExpenseClaimReceiptList,Financials,Receipts,Expense claims - Receipts,ExpenseClaimReceiptList2019,4,2
+/FixedAsset,Financials,Fixed assets,Fixed assets,FixedAsset2019,8,6
+/Journal,Financials,Journal,Journal,Journal2019,8,6
+/JournalList,Financials,Journals,Journals,JournalList2019,1,0
+/MoneyTask/Receive,Financials,Receive money,Receive money,MoneyTaskReceive2019,16,7
+/MoneyTask/Spend,Financials,Spend money,Spend money,MoneyTaskSpend2019,17,7
+/MoneyTask/Transfer,Financials,Transfer money,Transfer money,MoneyTaskTransfer2019,9,4
+/MoneyTaskList,Financials,Money tasks,Money operations,MoneyTaskList2019,3,1
+/Airwallex,Integrations,,Airwallex,Airwallex2019,0,0
+/Amazon,Integrations,,Amazon,Amazon2019,40,21
+/AuthorizeNet,Integrations,,AuthorizeNet,AuthorizeNet2019,4,6
+/Avalara,Integrations,,Avalara,Avalara2019,12,7
+/Bigcommerce,Integrations,,BigCommerce,Bigcommerce2019,24,12
+/Capsule,Integrations,,Capsule,Capsule2019,9,5
+/DearPos,Integrations,,POS,Pos2019,57,34
+/EasyPost,Integrations,,EasyPost,EasyPost2019,1,1
+/Etsy,Integrations,,Etsy,Etsy2019,29,12
+/ExternalApi,Integrations,,Cin7 Core API setup,ExternalApi2019,7,3
+/FBA,Integrations,,Fulfillment by Amazon,FBA2019,17,12
+/Faire,Integrations,,Faire,Faire2019,26,14
+/GSuites,Integrations,,Google Workspaces,GSuites2019,3,3
+/HubSpot,Integrations,,HubSpot,HubSpot2019,24,15
+/Integrations,Integrations,Integration,Integrations,IntegrationList2019,1,0
+/LeafLink,Integrations,,LeafLink,LeafLink2019,24,12
+/Lightspeed,Integrations,,Lightspeed,Vend2019,31,17
+/Lokad,Integrations,,Lokad,Lokad2019,5,0
+/LoyaltyLion,Integrations,,LoyaltyLion,LoyaltyLion2019,4,2
+/Magento2,Integrations,,Magento 2.x,MagentoSd2019,27,12
+/MagentoSIM,Integrations,,Magento 1.x,Magento2019,27,12
+/Neto,Integrations,,Neto ~,,0,0
+/PayPal,Integrations,,PayPal,PayPal2019,7,8
+/PaymentGateway,Integrations,,Cin7 Core Payments,PaymentGateway2019 PaymentGatewayCOMMONREFUND2019,20,20
+/Pinch,Integrations,,Pinch,Pinch,4,6
+/Portal,Integrations,,Portal,Portal2019,48,41
+/Quickbooks,Integrations,,QuickBooks,Quickbooks2019,14,17
+/RmaPortal,Integrations,,RMA Portal,RmaPortal2019,12,15
+/ShipRush,Integrations,,ShipRush,ShipRush2019,2,1
+/ShipStation/ConfigurationNG,Integrations,,ShipStation,Shipstation2019,36,18
+/Shippit,Integrations,,Shippit,Shippit2019,4,1
+/Shiptheory,Integrations,,Shiptheory,Shiptheory2019,10,4
+/Shopify,Integrations,,Shopify,Shopify2019,32,12
+/Square/Main,Integrations,,Square,Square2019,25,12
+/StarShipIt,Integrations,,StarShipIT,StarShipIt2019,7,1
+/Synder,Integrations,,Synder ~,,0,0
+/Vend,Integrations,,Lightspeed,Vend2019,31,17
+/Walmart,Integrations,,Walmart,Walmart2019,24,10
+/WarehouseApp,Integrations,,Warehouse application configuration,WarehouseApp2019,3,4
+/WooCommerce,Integrations,,WooCommerce,WooCommerce2019,24,12
+/Xero,Integrations,,Xero,Xero2019,5,6
+/Zapier,Integrations,,Zapier ~,,0,0
+/eBayNG,Integrations,,eBay,eBay2019,36,13
+/GiftCards,Inventory,Gift cards,Gift cards,GiftCards2019,2,1
+/MRP,Inventory,MRP run,MRP run settings,ReportService MRPRunSettings,22,13
+/MRPList,Inventory,MRP,MRP list,MRPList,3,4
+/PriceList,Inventory,Print the products price list,Price list,PriceList2019,4,0
+/Product,Inventory,Product/Service/Asset,Products,MultilingualSupport2019 Customization2019 FixedAssetType2019 Product2019,77,50
+/ProductFamily,Inventory,Product family,Product family,ProductFamily2019,29,14
+/ProductFamilyList,Inventory,Product families,Product families,ProductFamilyList2019,2,1
+/Recall,Inventory,Batch/lot recall,Batch/lot recall,RecallReport2019,6,0
+/Stock,Inventory,Availability,Product availability,Stock2019,8,2
+/StockAdjustment,Inventory,Stock adjustment,Stock adjustment,StockAdjustment2019,14,7
+/StockAdjustmentList,Inventory,Stocktake/adjustments,Stock adjustments and stocktakes,StockAdjustmentList2019,1,0
+/StockTake,Inventory,Stocktake (redirects to /Stocktake/New),Stocktake/adjustments,Stocktake2019,21,10
+/StockTransfer,Inventory,Transfer,Stock transfer,StockTransfer2019,20,9
+/StockTransferList,Inventory,Transfers (alias),Stock transfers,StocktransferList2019,0,0
+/Stocktake/New,Inventory,Stocktake,Stocktake/adjustments,Stocktake2019,21,10
+/Stocktransfer,Inventory,Transfer (alias),Stock transfer,StockTransfer2019,20,9
+/StocktransferList,Inventory,Transfers,Stock transfers,StocktransferList2019,0,0
+/CapacityPlanner,Production,Capacity Planner,Capacity Planner,CapacityPlanner,6,2
+/Disassembly,Production,Disassembly,Disassembly,Disassembly2019,12,6
+/DisassemblyList,Production,Disassemblies,Disassemblies,DisassemblyList2019,1,0
+/FinishedGoods,Production,Assembly,Assemblies,Assembly2019,27,10
+/FinishedGoodsList,Production,Assemblies,Assemblies,FinishedGoodsList2019,2,0
+/IssueToProduction,Production,Inventory write-off,Inventory write-off,IssueToProduction2019,18,8
+/IssueToProductionList,Production,Inventory write-offs,Inventory write-off list,IssueToProductionList2019,1,0
+/JobCosting,Production,Job,Job details,JobCosting2019,17,7
+/JobCostingList,Production,Jobs,Job costings,JobCostingList2019,2,0
+/MRPScheduler,Production,MRP scheduler,MRP Scheduler,MRPScheduler,17,2
+/ProductionCalendar,Production,Factory calendar,Factory Calendar,ProductionCalendar,4,3
+/ProductionOrder,Production,Production order,Production order,Customization2019 ProductionOrder,40,20
+/ProductionOrders,Production,Production orders,Production orders list,ProductionOrdersList,13,9
+/ProductionResource,Production,Production resource,Production resource,ProductionResource,8,4
+/ProductionScheduler,Production,Scheduler,Scheduler,Scheduler,11,9
+/ProductionSetup,Production,Setup,Setup,ProductionSetup,8,5
+/DropShipPurchase,Purchase,Drop shipment purchase (redirect target),Drop shipment purchase,PurchaseDropShip2019,70,39
+/LatestProductPriceBySupplier,Purchase,Latest product price by supplier,Product Prices by Supplier,LatestProductPriceBySupplier2019,1,1
+/LeadSafetyValues,Purchase,Supplier lead/safety values,Reorder parameters,LeadSafetyValues2019,1,1
+/Payment,Purchase,Bulk payment (suppliers),Supplier bulk payment,Payment2019,3,3
+/Purchase,Purchase,Simple purchase,Purchase,SimplePurchase2019,75,36
+/PurchaseAdvanced,Purchase,Advanced purchase,Advanced purchase,AdvancedPurchase2019,77,38
+/PurchaseCreditNote,Purchase,Purchase credit note,Purchase credit note,PurchaseCreditNote2019,64,26
+/PurchaseList,Purchase,Purchases,Purchases,PurchaseList2019,17,2
+/PurchaseService,Purchase,Service purchase,Service purchase,PurchaseService2019,67,33
+/Reorder,Purchase,Reorder,Reorder level of stock,ReorderLevelOfStock2019,5,1
+/ReorderBackordered,Purchase,Reorder backordered,Reorder backordered stock,ReorderBackorderedStock2019,6,0
+/SuggestReorder,Purchase,Reorder suggestion (from the Inventory Velocity Report),Reorder suggestion,ReorderSuggestion2019,5,1
+/Supplier,Purchase,Supplier,Supplier,MultilingualSupport2019 Supplier2019,20,7
+/SupplierDeposits,Purchase,Supplier deposits,Supplier deposits,SupplierDeposits2019,3,0
+/SupplierList,Purchase,Suppliers,Suppliers,SupplierList2019,3,2
+/Report/AccountSummary,Reports,Account Summary Report,Account Summary Report,AccountSummaryReport2019,7,3
+/Report/AccountingDimensionsSummary,Reports,Accounting Dimensions Summary Report,Accounting Dimensions Summary Report,ReportService,0,0
+/Report/AuditReport,Reports,Audit Report,Audit Report,AuditReport2019,3,0
+/Report/BalanceSheet,Reports,Balance Sheet Report,Balance Sheet Report,BalanceSheetReport2019,6,3
+/Report/DepreciationSchedule,Reports,Depreciation Schedule Report,Depreciation Schedule Report,ReportService,0,0
+/Report/DisassemblyAnalysis,Reports,Disassembly Analysis Report,Disassembly Analysis Report,ReportService,0,0
+/Report/ExpenseClaim,Reports,Expense Claim Report,Expense Claim Report,ReportService,0,0
+/Report/FinancialPaymentDetails,Reports,Financial Payment Details Report,Financial Payment Details Report,ReportService,0,0
+/Report/FindByPurchaseOrder,Reports,Find Sale Backorder by Purchase Order Report,Find Sale Backorder by Purchase Order Report,ReportService,0,0
+/Report/FinishedGoodsAnalysis,Reports,Production Cost Analysis Report,Production Cost Analysis Report,ReportService,0,0
+/Report/FixedAssetOverview,Reports,Fixed Asset Overview,Fixed Asset Overview,FixedAssetOverviewReport2019,2,3
+/Report/GeneralLedger,Reports,General Ledger Report,General Ledger Report,GeneralLedgerReport2019,6,3
+/Report/InventoryAging,Reports,Inventory Aging Report,Inventory Aging Report,ReportService,0,0
+/Report/InventoryBOMComponentDetails,Reports,BOM Component Availability Report,BOM Component Availability Report,ReportService,0,0
+/Report/InventoryLowOnStock,Reports,Products Low on Stock Report,Products Low on Stock Report,ReportService,0,0
+/Report/InventoryMovementDetails,Reports,Inventory Movement Details Report,Inventory Movement Details Report,ReportService,0,0
+/Report/InventoryMovementSummary,Reports,Inventory Movement Summary Report,Inventory Movement Summary Report,ReportService,0,0
+/Report/InventoryPriceList,Reports,Products Price List Report,Products Price List Report,ReportService,0,0
+/Report/InventoryReordering,Reports,Products Reordering Report,Products Reordering Report,ReportService,0,0
+/Report/InventoryStockLevel,Reports,Products Stock Level Report,Products Stock Level Report,ReportService,0,0
+/Report/InventorySuppliers,Reports,Inventory Suppliers Report,Inventory Suppliers Report,ReportService,0,0
+/Report/InventoryVelocity,Reports,Inventory Velocity Report,Inventory Velocity Report,InventoryVelocityReport2019_Service ReportService,13,7
+/Report/InventoryWarehouseDetails,Reports,Warehouse Details Report,Warehouse Details Report,ReportService,0,0
+/Report/JobCostingMaterials,Reports,Job Costing Materials Report,Job Costing Materials Report,ReportService,0,0
+/Report/JobCostingProfitLoss,Reports,Job Costing Profit & Loss Report,Job Costing Profit & Loss Report,ReportService,0,0
+/Report/LotExpiry,Reports,Lot Expiry Report,Lot Expiry Report,ReportService,0,0
+/Report/OutOfStockComponentsForAutoAssembly,Reports,Out of Stock Components for Auto-Assembly Report,Out of Stock Components for Auto-Assembly Report,ReportService,0,0
+/Report/ProductionActualVsPlannedCycleTime,Reports,Production Actual vs Planned Cycle Time Report,Production Actual vs Planned Cycle Time Report,ReportService,0,0
+/Report/ProductionCoManCostAnalysis,Reports,Co-manufacturer Production Cost Analysis Report,Co-manufacturer Production Cost Analysis Report,ReportService,0,0
+/Report/ProductionComanMovementSummary,Reports,Co-manufacturing Components Movement Report,Co-manufacturing Components Movement Report,ReportService,0,0
+/Report/ProductionCostBreakdown,Reports,Production Cost Breakdown Report,Production Cost Breakdown Report,ReportService,0,0
+/Report/ProductionDowntime,Reports,Production Downtime Report,Production Downtime Report,ReportService,0,0
+/Report/ProductionFinishedProductsWastageRate,Reports,Production Finished Products Wastage Rate Report,Production Finished Products Wastage Rate Report,ReportService,0,0
+/Report/ProductionOverdue,Reports,Production Overdue Report,Production Overdue Report,ReportService,0,0
+/Report/ProductionProductsUsedInProductionBOM,Reports,Production BOM Components and Resources,Production BOM Components and Resources,ReportService,0,0
+/Report/ProductionResourceEfficiency,Reports,Production Resource Efficiency Report,Production Resource Efficiency Report,ReportService,0,0
+/Report/ProductionScheduleUpdate,Reports,Production Required by Date Exceptions Report,Production Required by Date Exceptions Report,ReportService,0,0
+/Report/ProductionShortage,Reports,Production Shortage Report,Production Shortage Report,ReportService,0,0
+/Report/Products,Reports,Finished Product Traceability,Finished Product Traceability,TraceabilityReport2019,1,0
+/Report/ProfitAndLoss,Reports,Profit & Loss Report,Profit & Loss Report,ProfitAndLossReport2019,6,3
+/Report/ProfitLossByProduct,Reports,Profit & Loss by Product Report,Profit & Loss by Product Report,ReportService,0,0
+/Report/PurchaseCostAnalysis,Reports,Purchase Cost Analysis Report,Purchase Cost Analysis Report,ReportService,0,0
+/Report/PurchaseDocuments,Reports,Purchase Invoices & Credit Notes Report,Purchase Invoices & Credit Notes Report,ReportService,0,0
+/Report/PurchaseGoodsReceivedNotInvoiced,Reports,Stock Received Not Invoiced,Stock Received Not Invoiced,ReportService,0,0
+/Report/PurchaseInvoiceDetails,Reports,Purchase Invoice Details Report,Purchase Invoice Details Report,ReportService,0,0
+/Report/PurchaseInvoiceSummary,Reports,Purchase Invoice Summary Report,Purchase Invoice Summary Report,ReportService,0,0
+/Report/PurchaseOrderDetails,Reports,Purchase Order Details Report,Purchase Order Details Report,ReportService,0,0
+/Report/PurchaseOrderPending,Reports,Pending Purchase Orders Report,Pending Purchase Orders Report,ReportService,0,0
+/Report/PurchaseOrderSummary,Reports,Purchase Order Summary Report,Purchase Order Summary Report,ReportService,0,0
+/Report/PurchaseOrderVsInvoice,Reports,Purchase Order vs Invoice Report,Purchase Order vs Invoice Report,ReportService,0,0
+/Report/PurchaseSupplierFinancialSummary,Reports,Supplier Financial Summary Report,Supplier Financial Summary Report,ReportService,0,0
+/Report/SaleBackorderDetails,Reports,Sale Backorder Details Report,Sale Backorder Details Report,ReportService,0,0
+/Report/SaleBackordersSummary,Reports,Sale Backorder Summary Report,Sale Backorder Summary Report,ReportService,0,0
+/Report/SaleCreditNotesByProduct,Reports,Sale Credit Notes by Product Report,Sale Credit Notes by Product Report,ReportService,0,0
+/Report/SaleCustomerOrderByProduct,Reports,Customer Orders by Product Report,Customer Orders by Product Report,ReportService,0,0
+/Report/SaleCustomerPaymentDetails,Reports,Customer Payment Details Report,Customer Payment Details Report,ReportService,0,0
+/Report/SaleCustomerPaymentSummary,Reports,Customer Payment Summary Report,Customer Payment Summary Report,ReportService,0,0
+/Report/SaleDocuments,Reports,Sale Invoices & Credit Notes Report,Sale Invoices & Credit Notes Report,ReportService,0,0
+/Report/SaleFulfillmentDetails,Reports,Fulfillment Details Report,Fulfillment Details Report,ReportService,0,0
+/Report/SaleOrderDetails,Reports,Sale Order Details,Sale Order Details,ReportService,0,0
+/Report/SaleOrderPending,Reports,Pending Sale Orders Report,Pending Sale Orders Report,ReportService,0,0
+/Report/SaleOutstandingQuotes,Reports,Sale Outstanding Quotes Report,Sale Outstanding Quotes Report,ReportService,0,0
+/Report/SaleOverview,Reports,Sale Overview Report,Sale Overview Report,ReportService,0,0
+/Report/SalePriceHistory,Reports,Sale Price History Report,Sale Price History Report,ReportService,0,0
+/Report/SaleProfitBySalesRepresentative,Reports,Profit by Sales Representatives Report,Profit by Sales Representatives Report,ReportService,0,0
+/Report/SaleProfitSummary,Reports,Sale Profit Summary Report,Sale Profit Summary Report,ReportService,0,0
+/Report/SalesByCustomer,Reports,Sales by Customer Report,Sales by Customer Report,ReportService,0,0
+/Report/SalesByProductDetails,Reports,Sales by Product Details Report,Sales by Product Details Report,ReportService,0,0
+/Report/SalesByProductSummary,Reports,Sales by Product Summary Report,Sales by Product Summary Report,ReportService,0,0
+/Report/SalesDemandForecast,Reports,Sales Demand Forecast Report,Sales Demand Forecast Report,ReportService,0,0
+/Report/SalesTaxSummary,Reports,Sales Tax Report,Sales Tax Report,SalesTaxSummaryReport2019,6,3
+/Report/StockReceivedVsInvoice,Reports,Stock Received vs Invoice Report,Stock Received vs Invoice Report,ReportService,0,0
+/Report/StockValueInventoryAging,Reports,Stock Value Inventory Aging Report,Stock Value Inventory Aging Report,ReportService,0,0
+/Report/TaxTransactions,Reports,Sales Tax Transactions Report,Sales Tax Transactions Report,ReportService,0,0
+/Report/TransactionPeriods,Reports,Financial Periods Report,Financial Periods Report,TransactionPeriods,3,0
+/Report/Transactions,Reports,Transactions Report,Transactions Report,ReportService,0,0
+/Report/TransactionsVsInventoryCards,Reports,Transactions vs Stock on Hand Difference Report,Transactions vs Stock on Hand Difference Report,ReportService,0,0
+/Report/TrialBalance,Reports,Trial Balance Report,Trial Balance Report,TrialBalanceReport2019,6,3
+/Report/VATReturn,Reports,VAT Return,VAT Return,VATReturnListReport2019,1,0
+/Report/VATReturnList,Reports,VAT Return,VAT Return,VATReturnListReport2019,1,0
+/Report/XeroSync,Reports,Xero Synchronization Report,Xero Synchronization Report,ReportService,0,0
+/Reports,Reports,Reports,Reports,Reports2019,3,4
+/ScheduledReportSettings,Reports,Scheduled reports,Scheduled report settings,ScheduledReportSettings2019,10,6
+/AwaitingSale,Sale,Awaiting sale,Awaiting approval sale,AwaitingSale2019,34,12
+/CreditNote,Sale,Sale credit note,Credit note,CreditNote2019,33,12
+/Customer,Sale,Customer,Customer,MultilingualSupport2019 CustomerEdit2019,31,12
+/CustomerList,Sale,Customers / Credits,Customers,CustomerList2019,9,4
+/CustomerPayment,Sale,Bulk payment (customers),Customer bulk payment,CustomerPayment2019,4,6
+/DiscountNew,Sale,Discount,Discount,DiscountNew2019,1,1
+/FulfillmentOrder,Sale,Fulfillment order,Fulfillment order,FulfilmentOrder2019,8,2
+/FulfillmentOrderList,Sale,Fulfillment orders,Fulfillment orders,FulfilmentOrderList2019,1,0
+/RMA,Sale,RMAs,RMA,RMA2019,39,19
+/RMAReturnOrder,Sale,Return orders,Return order,RMAReturnOrder2019,42,16
+/RecurringInvoices,Sale,Recurring sales,Recurring invoices,RecurringInvoices2019,1,1
+/Sale,Sale,Simple sale,Simple sale,Customization2019 SimpleSale2019,81,37
+/SaleList,Sale,Sales,Sales,SalesList2019,26,7
+/SaleMultiple,Sale,Advanced sale,Advanced sale,Customization2019 SaleMultiple2019,84,37
+/SaleService,Sale,Service sale,Service sale,ServiceSale2019,51,23
+/Warranties,Sale,Warranties,Warranties,Warranties2019,1,0
+/AutomatedWorkflow,Settings,Automated workflows,Workflow,AutomatedWorkflow2019,1,2
+/MySubscription,Settings,My subscription,My subscription,MySubscription2019,16,14
+/MySubscription/Marketplace,Settings,Marketplace,Subscription configuration,MySubscriptionUpdateSubscriptionn2023,20,9
+/NotificationSettings,Settings,Automation,Automation,NotificationSettings2019,1,2
+/NotificationSettings/MailingList,Settings,Mailing list,Mailing list,NotificationSettingsMailingList2019,6,3
+/NotificationSettings/Notifications,Settings,Notification settings,Notification settings,NotificationSettingsNotifications2019,8,3
+/PageAccess,Settings,Users and roles,Users & Roles,PageAccess2019,14,10
+/Settings,Settings,Reference books,Settings,Settings2019,2,2
+/TaskSettings,Settings,Task settings,Task settings,TaskSettings2019,11,5
+/Template,Settings,Document and email templates,Manage report templates,Template2019,3,4
+/TenantGeneralSettings,Settings,General settings,General Settings,GeneralSettings2019,14,3
+/TenantReminders,Settings,Reminders,Reminders,TenantReminders2019,1,1
+/UserProfile,Settings,User profile,User profile,UserProfile2019 PasskeyUserProfile2019,14,16
+/AccountMapping,Settings › Reference books,Account mapping,Account mapping,AccountMapping2019,2,1
+/AccountingDimensions,Settings › Reference books,Accounting dimensions,Accounting dimensions,AccountingDimensions2019,1,1
+/BankAccounts,Settings › Reference books,Bank accounts,Bank accounts,BankAccounts2019,2,1
+/ChartOfAccounts,Settings › Reference books,Chart of accounts,Chart of accounts,ChartOfAccounts2019,5,5
+/DealList,Settings › Reference books,Deals,Deals,DealList2019,1,0
+/DearToDearNetworking,Settings › Reference books,Cin7 Core to Cin7 Core networking,Cin7 Core to Cin7 Core Network,DearToDear2019,5,4
+/DefaultFieldValues/Customer,Settings › Reference books,Default field values: customer,Default field values,DefaultFieldValues2019,3,1
+/DefaultFieldValues/Product,Settings › Reference books,Default field values: product,Default field values,DefaultFieldValues2019,3,1
+/DefaultFieldValues/Supplier,Settings › Reference books,Default field values: supplier,Default field values,DefaultFieldValues2019,3,1
+/DiscountListNew,Settings › Reference books,Discounts,Discounts,DiscountListNew2019,2,1
+/ExpenseItems,Settings › Reference books,Expense items,Expense items,ExpenseItemList,4,1
+/FixedAssetType,Settings › Reference books,Fixed asset types,Fixed asset types,FixedAssetType2019 Product2019,75,48
+/LeadStatus,Settings › Reference books,Lead statuses,Lead statuses,LeadStatus2019,1,1
+/OpeningBalances,Settings › Reference books,Opening balances,Opening balances,OpeningBalances2019 FixedAssetType2019,23,10
+/OrderRouting,Settings › Reference books,Order routing,Order routing,OrderRouting2019,3,2
+/RMAReasonForReturn,Settings › Reference books,RMA reasons for return,Reason for return,RMAReasonForReturn2019,1,1
+/RMAReturnOrderSettings,Settings › Reference books,Return order settings,Return order settings,RMAReturnOrderSettings2019,3,3
+/RMAReturnPolicy,Settings › Reference books,RMA return policy,Return policy,RMAReturnPolicy2019,9,2
+/TenantAddress,Settings › Reference books,Company addresses,Company addresses,TenantAddress2019,2,1
+/TenantAttributeSet,Settings › Reference books,Attribute sets,Additional attributes,TenantAttributeSet2019,1,1
+/TenantBrand,Settings › Reference books,Brands,Product brands,TenantBrands2019,1,1
+/TenantCarrier,Settings › Reference books,Carriers,Carriers,TenantCarriers2019,1,1
+/TenantContact,Settings › Reference books,Company contacts,Company contacts,TenantContact2019,6,2
+/TenantInventoryCategory,Settings › Reference books,Product categories,Product categories,TenantInventoryCategory2019,1,1
+/TenantLocation,Settings › Reference books,Locations and bins,Locations and bins,TenantLocation2019,4,4
+/TenantLocationEdit,Settings › Reference books,Location (edit),Edit location,TenantLocationEdit,15,14
+/TenantPaymentTerm,Settings › Reference books,Payment terms,Payment terms,TenantPaymentTerm2019,1,1
+/TenantShipZone,Settings › Reference books,Shipping zones,Shipping zones,TenantShippingZones2019,8,3
+/TenantTaxationRule,Settings › Reference books,Taxation rules,Tax rules,TenantTaxationRule2019,4,2
+/TenantUnitOfMeasure,Settings › Reference books,Units of measure,Units of measure,TenantUnitOfMeasure2019,1,1
+/WarrantySetupList,Settings › Reference books,Warranty setup,Warranties,WarrantiySetupList2019,2,2
