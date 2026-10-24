@@ -8,7 +8,37 @@ Every component the page code builds, read from the shipped ExtJS bundles: grids
 |---|---|---|
 | `/LoyaltyLion` | LoyaltyLion | [`LoyaltyLion2019`](#loyaltylion2019) |
 
+## Layout
+
+Each screen's server-rendered HTML inside the shell, as an outline: headings, tabs, sections, labels, inputs (`#id`), buttons (`▾` = dropdown), menus, tables and `slot`s (empty `<div>`s the components below mount into). `(hidden)` parts are shown by the page code when needed. Read with GET from a signed-in session; no values are kept.
+
+### `/LoyaltyLion`: LoyaltyLion
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Integrations"
+block #pageBody
+  heading "Connect to LoyaltyLion"
+  button "Connect to LoyaltyLion"#connectButton primary
+  label "Token"
+  input text required
+  label "Secret"
+  input text required
+  label "API Key"
+  input text required
+  text "LoyaltyLion now requires API Key authentication. Please disconnect this integration and then connect with your API Key, "
+  heading "Setup"
+  button "Save" primary
+  label "Currency"
+  select: {{item.DisplayCurrency}}
+  button "Disconnect from LoyaltyLion"
+```
+
 ## Components by bundle
+
+What the page code builds and mounts into the layout's slots.
 
 ### `LoyaltyLion2019`
 

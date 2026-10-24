@@ -8,7 +8,78 @@ Every component the page code builds, read from the shipped ExtJS bundles: grids
 |---|---|---|
 | `/Pinch` | Pinch | [`Pinch`](#pinch) |
 
+## Layout
+
+Each screen's server-rendered HTML inside the shell, as an outline: headings, tabs, sections, labels, inputs (`#id`), buttons (`▾` = dropdown), menus, tables and `slot`s (empty `<div>`s the components below mount into). `(hidden)` parts are shown by the page code when needed. Read with GET from a signed-in session; no values are kept.
+
+### `/Pinch`: Pinch
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Integrations"
+button "Back to list"#backAction
+tabs#portal-main-tab: Notice #tab_notice | Overview #tab_overview | Setup #tab-portal-setup | Log #tab-portal-log | Help #tab-portal-help
+tab pane#tab_notice
+  heading "Notice"
+  link "Cin7 Pay"
+tab pane#tab_overview
+  heading "Overview"
+  text "Sales summary"
+  button "Refresh"#divRefreshSalesSummary
+  slot #overview-sales-summary
+  input text#divSearchOverviewGrid placeholder "Type text to search"
+  button "Search" primary
+  button #divRefreshOverview
+  button #overviewDashboardGrid_Options
+  slot #overviewDashboardGridContainer
+tab pane#tab-portal-setup
+  heading "Setup"
+  block #divCin7PaySetupNotice (hidden)
+    link "Cin7 Pay"
+  block #divConnectForm (hidden)
+    form
+      label "Pinch merchant ID" for #merchantID
+      input text#merchantID
+      label "Pinch secret key" for #secretKey
+      input text#secretKey
+      label "Pinch publishable key" for #publicKey
+      input text#publicKey
+      label ""
+      button "Connect to Pinch" primary
+  slot #setupValidation
+  block #divPinchAccountName (hidden)
+    label "Pinch account name"
+    slot #txtPinchAccountName
+  block #divDisconnect (hidden)
+    label ""
+  block #divAccountSettings (hidden)
+    label "Payment account"
+    slot #cmbTargetAccount
+    label "Time zone"
+    slot #txtTimeZone
+    link "Change"
+    label "Payment currency"
+    slot #cmbPaymentCurrency
+    label ""
+    block #btnSaveSetupChanges
+      button "Save settings" primary
+tab pane#tab-portal-log
+  heading "Log"
+  input text#divSearchLog placeholder "Type text to search"
+  button "Search" primary
+  button #divRefreshLog
+  button #Grid_logEntriesGrid_Options
+  slot #logsGridContainer
+tab pane#tab-portal-help
+  heading "Help"
+  link "this invoice template"
+```
+
 ## Components by bundle
+
+What the page code builds and mounts into the layout's slots.
 
 ### `Pinch`
 

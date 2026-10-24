@@ -22,7 +22,2548 @@ Every component the page code builds, read from the shipped ExtJS bundles: grids
 | `/Stocktransfer` | Stock transfer | [`StockTransfer2019`](#stocktransfer2019) |
 | `/StocktransferList` | Stock transfers | [`StocktransferList2019`](#stocktransferlist2019) |
 
+## Layout
+
+Each screen's server-rendered HTML inside the shell, as an outline: headings, tabs, sections, labels, inputs (`#id`), buttons (`▾` = dropdown), menus, tables and `slot`s (empty `<div>`s the components below mount into). `(hidden)` parts are shown by the page code when needed. Read with GET from a signed-in session; no values are kept.
+
+### `/GiftCards`: Gift cards
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+block #divImportCnt
+  button "Import"#divImport
+button "Export"#divExport ▾
+link "Selected cards"
+link "All expired"
+link "All active"
+block #divForfeightCnt
+  button "Forfeit"#breakerageAction ▾
+  link "Selected cards"
+  link "All expired"
+input text#divSearch placeholder "Type text to search"
+button "Search" primary
+input checkbox#divShowUsedCards
+label "Show used cards" for #divShowUsedCards
+button #divRefresh
+button #Grid_gridName_Options
+slot #GiftCards_Index_Container
+form#frmExport
+modal#GiftCards_Allocated_Details medium
+  heading #allocationHeader
+  button "×"
+  slot #divAllocatedDetailsGridContainer
+  button "Close"
+```
+
+### `/PriceList`: Price list
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+heading "Price list"
+button "Print" primary
+form#frm
+  select#fCategory
+  label "Category"
+  select#fBrand
+  label "Brand"
+  select#fFormat
+  label "Format"
+  select#fTag
+  label "Tag"
+  select#fTemplate
+  label "Template"
+```
+
+### `/Product`: Products
+
+Frame: `iUpload`.
+
+```text
+block #bc-product
+  link "Home"
+  link "Products"
+  text "Product details"#bc-product-name
+  button "Print"#divPrint ▾
+  slot #productDetailprintDropdownList
+  button "Save"#saveAction1 primary
+  button "Clone"#cloneAction
+  button "Back to list"#backAction
+block #bc-product-list
+  link "Home"
+text "DEMO PRODUCTION BOM PRODUCTS FOR REFERENCE Don't show me this again"
+link "All products"#vProducts
+link "Combined view"#vCombined
+block #divTabArea (hidden)
+  button "General"
+  button "Prices"
+  button "Stock"
+  button "Dimensions"
+  button "Alternative products"
+  button "Additional attributes"
+  button "Suppliers"
+  button "Custom prices"
+  button "Reorder levels"
+  button "Movements"
+  button "Service usage"
+  button "Bill of materials"
+  button "Production BOM"
+  button "Make-to-order BOM"
+  button "Discounts"
+  button "Images and attachments"
+  button "Additional units of measure"
+  button "Additional descriptions"
+  button "Channels"
+  button "Activity log"
+  button "Accounting dimensions"
+block #divProductList (hidden)
+  heading "Products"
+  block #divImport
+    button "Import" ▾
+    block #importDropdownList
+      link "Inventory list"
+      link "Stock on hand"
+      link "Fixed assets"
+      link "Discount matrix"
+      link "Assembly BOM"
+      link "Production BOM"
+      link "Units of measure"
+      link "Stock reorder locations"
+      link "Product prices by supplier"
+      link "Reorder parameters"
+      link "Images and attachments"
+      link "Markup prices"
+      link "Simple prices"
+      link "Custom prices"
+      link "Bulk SKU change"
+      link "Bulk costing method change"
+  block #divExport
+    button "Export" ▾
+    block #exportDropdownList
+      link "Inventory list"
+      link "Inventory list (without descriptions)"
+      link "Stock on hand"
+      link "Fixed assets"
+      link "Discount matrix"
+      link "Assembly BOM"
+      link "Production BOM"
+      link "Units of measure"
+      link "Stock reorder locations"
+      link "Product prices by supplier"
+      link "Reorder parameters"
+      link "Images and attachments"
+      link "Markup prices"
+      link "Simple prices"
+      link "Custom prices"
+      link "Bulk SKU change"
+      link "Bulk costing method change"
+  button "Print"#divPrint ▾
+  slot #printDropdownList
+  button "More actions"#divMore ▾
+  link "Delete deprecated products"
+  link "Merge selected products"
+  link "Replace BOM component"
+  block #divMissingExpenseAccountInBOMMessage (hidden)
+    text "For the products below please fix the following configuration issues: - BOM definition. Service items do not have an exp"
+  block #divProblematicProductCodesMessage (hidden)
+    text "The following products have numeric product codes (SKUs) starting with '0'. You will experience issues when exporting/im"
+  button #divNew primary
+  input text#divSearch placeholder "Type text to search"
+  button "Search" primary
+  input checkbox#divOnlyActive
+  label "Only active" for #divOnlyActive
+  button #divRefresh
+  button #Grid_gridName_Options
+  block #divSelectedItemCount
+    slot #lSelectedCounter
+  block #CombinedProduct_Index_Container_Wrapper
+    slot #CombinedProduct_Index_Container
+  block #Product_Index_Container_Wrapper
+    slot #Product_Index_Container
+block #divProductDetails (hidden)
+  block #divProductDetailsHeader
+    block #Product_Status
+    heading 
+    button 
+  block #divTaskHeader
+    slot #Product_Index_ValidationContainer
+    block #btnProductPreview
+    input text#Product_Index_ProductCode
+    label "SKU" for #Product_Index_ProductCode
+    input text#Product_Index_ProductName
+    label "Product name" for #Product_Index_ProductName
+    slot #Product_Index_Type
+    label "Type" for #Product_Index_Type
+    block #liFixedAssetType
+      slot #Product_Index_FixedAssetType
+      label "Fixed asset type" for #Product_Index_FixedAssetType
+    slot #Product_Index_Category
+    label "Category" for #Product_Index_Category
+    slot #Product_Index_Brand
+    label "Brand" for #Product_Index_Brand
+    block #liCostingMethod
+      select#Product_Index_CostingMethod
+      label "Costing method" for #Product_Index_CostingMethod
+    block #liDefaultUnitOfMeasure
+      slot #Product_Index_DefaultUnitOfMeasure
+      label "Unit of measure" for #Product_Index_DefaultUnitOfMeasure
+    slot #Product_Index_Status
+    label "Status" for #Product_Index_Status
+    block #liDefaultLocation
+      slot #Product_Index_DefaultLocation
+      label "Default location" for #Product_Index_DefaultLocation
+    block #liProductAttributeSet
+      slot #Product_Index_ProductAttributeSet
+      label "Additional attributes set" for #Product_Index_ProductAttributeSet
+    block #liBarcode
+      input text#Product_Index_Barcode
+      label "Barcode" for #Product_Index_Barcode
+    block #liMinimumBeforeReorder
+      input text#Product_Index_MinimumBeforeReorder
+      label "Minimum before reorder" for #Product_Index_MinimumBeforeReorder
+    block #liReorderQuantity
+      input text#Product_Index_ReorderQuantity
+      label "Reorder quantity" for #Product_Index_ReorderQuantity
+    block #liDropShipMode
+      slot #Product_Index_DropShipMode
+      label "Drop ship" for #Product_Index_DropShipMode
+    block #liBillOfMaterial
+      slot #Product_Index_BillOfMaterial
+      label "Bill of materials" for #Product_Index_BillOfMaterial
+    input text#Product_Index_Tags
+    label "Tags" for #Product_Index_Tags
+    block #liPickZones
+      input text#Product_Index_PickZones
+      label "Pick zones" for #Product_Index_PickZones
+    slot #Product_Index_NotSellable
+    label "I am selling this product" for #Product_Index_NotSellable
+    block #liInventoryAccount
+      slot #Product_Index_InventoryAccount
+      label "Inventory account" for #Product_Index_InventoryAccount
+    block #liRevenueAccount
+      slot #Product_Index_RevenueAccount
+      label "Revenue account" for #Product_Index_RevenueAccount
+    block #liExpenseAccount
+      slot #Product_Index_ExpenseAccount
+      label "Expense account" for #Product_Index_ExpenseAccount
+    block #liCOGSAccount
+      slot #Product_Index_COGSAccount
+      label "COGS account" for #Product_Index_COGSAccount
+    block #liPurchaseTaxRule
+      slot #Product_Index_PurchaseTaxRule
+      label "Purchase tax rule" for #Product_Index_PurchaseTaxRule
+    block #liSaleTaxRule
+      slot #Product_Index_SaleTaxRule
+      label "Sale tax rule" for #Product_Index_SaleTaxRule
+    block #liDiscount
+      slot #Product_Index_Discount
+      label "Product discount" for #Product_Index_Discount
+    block #liStockLocator
+      input text#Product_Index_StockLocator
+      label "Stock locator" for #Product_Index_StockLocator
+    block #liAlwaysShowQuantity
+      input text#Product_Index_AlwaysShowQuantity
+      label "Always show quantity" for #Product_Index_AlwaysShowQuantity
+    block #liWarrantySetup (hidden)
+      slot #Product_Index_WarrantySetup
+      label "Warranty" for #Product_Index_WarrantySetup
+    block #liHSCode
+      input text#Product_Index_HSCode
+      label "HS code" for #Product_Index_HSCode
+    block #liCountryOfOrigin
+      slot #Product_Index_CountryOfOrigin
+      label "Country of origin" for #Product_Index_CountryOfOrigin
+    textarea#divShortDescription
+    label "Short description" for #divShortDescription
+    button "Generate with AI" primary
+    block #liDescription
+      textarea#divDescription
+      label "Description" for #divDescription
+      button "Generate with AI" primary
+    block #liDescriptionHTML (hidden)
+      slot #productDescriptionEditor
+    block #liIntNote
+      textarea#divIntNote
+      label "Internal note" for #divIntNote
+    block #liIntNoteHTML (hidden)
+      slot #productIntNoteEditor
+  block #divPrice (hidden)
+    heading "Prices"
+    block #liAverageTextCost
+      label "Current average cost"
+      slot #Product_Index_AverageCostHtml
+    block #liAverageCost
+      input text#Product_Index_AverageCost
+      label "Average cost" for #Product_Index_AverageCost
+    slot #Markup_Container
+    block #markupTextArea (hidden)
+      text "All calculated prices are in [USD]. If you sell in different currencies the selling price will be recalculated using the"
+  block #divStock (hidden)
+    block #divList
+      heading "Stock"
+      text "If you would like to change the stock level of this product, please create a stock adjustment here: Stock adjustment"
+      button #divStockRefresh
+      button #StockGrid_gridName_Options
+      input text#divStockSearch placeholder "Type text to search"
+      button "Search" primary
+      input checkbox#divNonZero
+      label "Show only non-zero quantities" for #divNonZero
+      select#batchFilter
+      slot #Stock_Index_Container
+    block #divAllocatedDetails
+      heading "Allocated details"
+      button "Back to list"#hideAllocated
+      slot #AllocatedGrid_Container
+    block #divOnOrderDetails
+      heading "On order details"
+      button "Back to list"#hideOnOrder
+      slot #OnOrderGrid_Container
+    block #divInTransitDetails
+      heading "In transit details"
+      button "Back to list"#hideInTransit
+      slot #InTransitGrid_Container
+  block #divDimensions (hidden)
+    block #divDimensionsBlock
+      heading "Dimensions"
+      heading "Item size"
+      slot #Product_Index_DimensionUnitsFake
+      slot #Product_Index_DimensionUnits
+      label "Unit of measure" for #Product_Index_DimensionUnits
+      input text#Product_Index_Length
+      label "Length" for #Product_Index_Length
+      input text#Product_Index_Width
+      label "Width" for #Product_Index_Width
+      input text#Product_Index_Height
+      label "Height" for #Product_Index_Width
+      heading "Item Weight"
+      input text#Product_Index_Weight
+      label "Weight" for #Product_Index_Weight
+      slot #Product_Index_WeightUnitsFake
+      slot #Product_Index_WeightUnits
+    block #divImportDimensionsBlock
+      heading "Import dimensions"
+      heading "Carton size"
+      input text#Product_Index_CartonInnerQunaitty
+      label "Inner carton quantity" for #Product_Index_CartonInnerQunaitty
+      input text#Product_Index_CartonQuantity
+      label "Outer carton quantity" for #Product_Index_CartonQuantity
+      heading "Volume of outer carton"
+      input text#Product_Index_CartonLength
+      label "Length" for #Product_Index_CartonLength
+      input text#Product_Index_CartonWidth
+      label "Width" for #Product_Index_CartonWidth
+      input text#Product_Index_CartonHeight
+      label "Height" for #Product_Index_CartonHeight
+      input text#Product_Index_CartonVolume
+      label "" for #Product_Index_CartonVolume
+  block #divProductAlternative (hidden)
+    heading "Alternative products"
+    button #divNew_AlternativeProduct primary
+    slot #divAlternativProducts
+    button "Add more items"#Product_Index_AddAlternativeProductLink primary
+  block #Product_divAttributeSet (hidden)
+    heading "Additional attributes"
+    block #Product_liCustomField1
+      slot #Product_CustomField1
+      label "Attribute 1"
+    block #Product_liCustomField2
+      slot #Product_CustomField2
+      label "Attribute 2"
+    block #Product_liCustomField3
+      slot #Product_CustomField3
+      label "Attribute 3"
+    block #Product_liCustomField4
+      slot #Product_CustomField4
+      label "Attribute 4"
+    block #Product_liCustomField5
+      slot #Product_CustomField5
+      label "Attribute 5"
+    block #Product_liCustomField6
+      slot #Product_CustomField6
+      label "Attribute 6"
+    block #Product_liCustomField7
+      slot #Product_CustomField7
+      label "Attribute 7"
+    block #Product_liCustomField8
+      slot #Product_CustomField8
+      label "Attribute 8"
+    block #Product_liCustomField9
+      slot #Product_CustomField9
+      label "Attribute 9"
+    block #Product_liCustomField10
+      slot #Product_CustomField10
+      label "Attribute 10"
+  block #divAccountingDimensions (hidden)
+    heading "Accounting dimensions"
+    slot #divAccountingDimensionsList
+  block #divSuppliers (hidden)
+    heading "Suppliers"
+    button #divNew_Supplier primary
+    slot #divSupplierLines
+    button "Add more items"#Product_Index_AddSupplierLink primary
+    slot #divLeadSafetyLines
+  block #divCustomPrices (hidden)
+    heading "Custom prices"
+    button #divCustomPricesNew primary
+    input text#divCustomPricesSearch placeholder "Type text to search"
+    button "Search" primary
+    button #divCustomPricesRefresh
+    button "Auto-fill"#divCustomPricesAutoFill
+    button "Clear all"#divCustomPricesClearAll
+    slot #CustomPrices_Container
+    slot #customPriceLimit (hidden)
+  block #divLocations (hidden)
+    heading "Reorder levels"
+    button #divNew_Location primary
+    slot #divLocationLines
+    button "Add more items"#Product_Index_AddLocationLink primary (hidden)
+  block #divMovements (hidden)
+    heading "Movements"
+    slot #divMovementType
+    input text#divMovementsSearch placeholder "Type text to search"
+    button "Search" primary
+    slot #divMovementChanel
+    slot #divMovementAction
+    slot #divMovementLines
+    slot #divMovementQuantityLines
+    slot #divMovementQuantityChangesLines
+  block #divUsage (hidden)
+    heading "Service usage"
+    input text#divUsageSearch
+    slot #divUsageLines
+  block #divBillOfMaterial (hidden)
+    heading "Bill of materials"
+    block #BomDisabledReason
+      text "This product is an additional unit of measure of" (hidden)
+    slot #liAutoAssembly
+    label "Auto-assembly/kit" for #chkAutoAssembly
+    slot #liAutoDisassembly
+    label "Auto-disassembly" for #chkAutoDisassembly
+    slot #liQuantityToProduce
+    label "Quantity to produce" for #txtQuantityToProduce
+    slot #Product_Index_AssemblyInstructionURL
+    label "Assembly instruction URL" for #Product_Index_AssemblyInstructionURL
+    button #divNewBOM_Component primary
+    button "Export"#btnExportBOM
+    form
+    slot #liCostType
+    label "Cost is estimated using" for #cmbCostType
+    slot #divBOMComponents
+    button "Add more items"#Product_Index_AddBOMRecordLink primary (hidden)
+    text "Wastage % and wastage quantity are mutually exclusive."
+    button #divNewBOM_Service primary
+    slot #divBOMServices
+    button "Add more items"#Product_Index_AddBOMServicesRecordLink primary (hidden)
+    slot #Product_Index_BOMTotal
+  block #divProductionBom (hidden)
+    button "Production BOM"
+    button "Settings"
+    button "Versions"
+    block #divPBom (hidden)
+      heading "Production BOM"
+      slot #cmbPBomVersion
+      label "Version" for #cmbPBomVersion
+      slot #liOutputQuantity
+      label "Quantity to produce *" for #liOutputQuantity
+      block #ProductTracingBlock
+        slot #divProductTracing
+        label "Product tracing" for #chkProductTracing
+      block #IssueMethodBlock (hidden)
+        slot #cmb_ProductionIssueMethod
+        label "Component issue method *" for #cmbProductionIssueMethod
+      block #BackflushDefinedForBlock (hidden)
+        slot #cmb_BackflushDefinedFor
+        label "Apply backflush method to: *" for #cmbBackflushDefinedFor
+      text "The operation below must have a specified duration (cycle time), the number of units that can be produced during the cyc"
+      button "Operation"#divBom_AddOperation primary
+      block #copyBomBlock
+        slot #cmbCopyBom
+        button "Clone BOM"#btnCopyBom primary
+        button "Add BOM version"#btnAddBomVersion primary
+      block #divProductionBomData
+        block #noOperationsBlock
+      button "Add more operations"#divBom_AddOperation2 primary
+      block #finishedProductBlock
+        heading "Finished products output"
+        slot #cmbFinishedProductCost
+        label "Cost allocation type *" for #cmbFinishedProductCost
+        slot #divFinishedProductsData
+      block #wastageProductsCostBlock
+        heading "Cost of wastage"
+        slot #divWastageProductsData
+      slot #Product_Index_ProductionBOMTotal
+    block #divPSettings (hidden)
+      heading "Settings"
+      slot #Product_Index_ProductionInstructionURL
+      label "Production instruction URL" for #Product_Index_ProductionInstructionURL
+      slot #liManufacturingBufferTime
+      label "Buffer, %" for #liManufacturingBufferTime
+      slot #liIgnoreCumulativeLeadTime
+      label "Ignore cumulative lead time" for #chkIgnoreCumulativeLeadTime
+      block #ComponentProductionLeadTimeContainer
+        slot #liComponentProductionLeadTime
+        label "Production lead time" for #liComponentProductionLeadTime
+      block #ManufacturingDeliveryToBlock
+        slot #liManufacturingDeliveryTo
+        label "Delivery to" for #liManufacturingDeliveryTo
+      slot #liManufacturingMinQuantity
+      label "Min quantity to produce per production order" for #liManufacturingMinQuantity
+      slot #liManufacturingMaxQuantity
+      label "Max quantity to produce per production order" for #liManufacturingMaxQuantity
+      slot #liManufacturingDeviationPercent
+      label "Order quantity deviation %" for #liManufacturingDeviationPercent
+      slot #liManufacturingRunSize
+      label "Run size" for #liManufacturingRunSize
+    block #divPVersions (hidden)
+      heading "Versions"
+      slot #divPBom_Versions
+  form#productionBomFileUploader
+    input file name=file
+  block #divMakeToOrderBom (hidden)
+    button "Make-to-order BOM"
+    button "Make-to-order custom options view"
+    button "Make-to-order configuration"
+    block #divMTOBom (hidden)
+      heading "Make-to-order BOM"
+      slot #liMakeToOrderOutputQuantity
+      label "Quantity to produce *" for #txtMakeToOrderOutputQuantity
+      slot #Product_Index_MakeToOrderInstructionURL
+      label "Production instruction URL" for #txtMakeToOrderInstructionURL
+      slot #liMakeToOrderManufacturingBufferTime
+      label "Buffer, %" for #txtMakeToOrderManufacturingBufferTime
+      slot #liMakeToOrderIgnoreCumulativeLeadTime
+      label "Ignore cumulative lead time" for #chkMakeToOrderIgnoreCumulativeLeadTime
+      block #MakeToOrderComponentProductionLeadTimeContainer
+        slot #liMakeToOrderComponentProductionLeadTime
+        label "Production lead time" for #txtMakeToOrderComponentProductionLeadTime
+      block #MakeToOrderManufacturingDeliveryToBlock
+        slot #liMakeToOrderManufacturingDeliveryTo
+        label "Delivery to" for #liMakeToOrderManufacturingDeliveryTo
+      text "The operation below must have a specified duration (cycle time), the number of units that can be produced during the cyc"
+      button "Operation"#divMakeToOrderBom_AddOperation primary
+      slot #cmb_MakeToOrderIssueMethod
+      label "Issue method" for #cmbMakeToOrderIssueMethod
+      block #copyMakeToOrderBomBlock
+        slot #cmbMakeToOrderCopyBom
+        button "Clone BOM"#btnCopyMakeToOrderBom primary
+      block #divMakeToOrderBomData
+        block #noOperationsBlock
+      button "Add more operations"#divMakeToOrderBom_AddOperation2 primary
+      block #makeToOrderFinishedProductBlock
+        heading "Finished products output"
+        slot #cmbMakeToOrderFinishedProductCost
+        label "Cost allocation type *" for #cmbMakeToOrderFinishedProductCostId
+        slot #divMakeToOrderFinishedProductsData
+      block #makeToOrderWastageProductsCostBlock
+        heading "Cost of wastage"
+        slot #divMakeToOrderWastageProductsData
+      slot #Product_Index_MakeToOrderBOMTotal
+    block #divMTOProductView (hidden)
+      heading "Make-to-order product view"
+      button "Add menu item"#MTOProductView_AddMenuItem primary
+      button "Preview"#MTOProductView_Preview primary
+      block #menu-item-template
+        button 
+        button 
+      block #menu-subitem-template
+        button 
+        button 
+      block #menu-subsubitem-template
+        button 
+      block #submenu-footer-template
+        button "Add submenu item" primary
+      block #sketch-image-template
+        form
+          label "" + file
+      block #optional-required-control-template
+        label "Optional" + radio
+        label "Required" + radio
+      block #type-dropdown-template
+        button "Select type" ▾
+        menu: 
+      block #type-dropdown-option-template
+        link "Item type option"
+      block #default-control-template
+        input checkbox#default-control-template-input name=isDefault
+        label "Default" for #default-control-template-input
+      block #description-button-template
+        button "Description" primary
+      block #general-form-control-template
+        slot #divGeneralFormControl
+        label "Label" for #ctrlGeneralFormControl
+      block #conditions-button-template
+        button  primary
+      block #detailed-image-template
+        form
+          label "" + file
+      block #readonly-badge-template
+      block #general-form-text-template
+        input text
+        label ""
+      block #general-form-cmb-template
+        select
+        label ""
+      block #make-to-order-config
+        button "Add menu item"#MTOProductView_AddMenuItem2 primary (hidden)
+    modal#customizationDialog large
+      heading "Customization for product:"
+      button "×"
+      block #customizationContainer
+        button "➜"
+        button "Set to default"
+        button "➜"
+        button "Set to default"
+        input text#searchFiled placeholder "Type to search..."
+        button "Search"
+        button 
+        input number#quantity
+        button 
+        button "Reset to default"
+        slot #totalAmount
+        button "Confirm order" (hidden)
+        button 
+        button "➜"
+        button "Clear selected"
+        label "Custom element text" for #artText
+        input text#artText placeholder "Type custom element text"
+        text "For example your initials. Maximum 64 characters including punctuation."
+        label "Choose file" for #artFile + file #artFile
+        text "Choose the image that you want to apply. Size should be lesser than 16MB."
+        button "Confirm changes"
+      block #zoomPopup (hidden)
+      button "Save"#btnSaveCustomization primary
+      button "Close"
+    block #divMTOConfiguration (hidden)
+      button "Configuration"#MTOConfiguration_AddConfiguration primary
+      slot #MTOBOMConfigurations
+      block #configuration-panel-template
+        heading "Make-to-order configuration"
+        button "Delete"#MTOConfiguration_DeleteConfiguration
+        button 
+        heading "1. Connect BOM template"
+        slot #divMTOConfigTemplate
+        label "Template" for #cmbMTOConfigTemplate
+        slot #divMTOConfigMenuItem
+        label "Menu item" for #cmbMTOConfigMenuItem
+        heading "2. Assign production components"
+        slot #divMTOProductMapGrid
+        heading "3. Specify production quantity"
+        text "Not enough data to generate quantity grid."
+        heading "3. Specify production quantity"
+        text "No update for quantity matrix required."
+        heading "3. Specify production quantity"
+        slot #divMTOQuantityMenuItem
+        label "Which menu items define the component quantities?" for #cmbMTOQuantityMenuItem
+        slot #divMTOQuantityMenuItemList
+        button "Generate quantity variants" primary
+        input file (hidden)
+        button "Import"
+        button "Export"
+        text "Quantity table update is required!"
+      button "Configuration"#MTOConfiguration_AddConfiguration2 primary
+    block #divColumnFilterPopup (hidden)
+      input text#txtSearchOptions placeholder "Type text to search"
+      link "Select all"#linkSelectAllFilterOptions
+      link "Clear"#linkClearFilterOptions
+      slot #divFilterValues
+      button "Ok"#btnSaleFilterOptions primary
+      button "Cancel"#btnCloseFilterOptions
+  modal#divMTODetailsModal medium
+    heading "Item details"
+    button "×"
+    textarea#txtDetailsModalDescription placeholder "Write the description of your option here ..."
+    label "Description"
+    button "Save"#MTODetailsModal_Save primary
+    button "Close"
+  modal#divMTOConditionsConfig large
+    heading "Set up conditions"
+    button "×"
+    text "Current option will be"#divMTOConditionsConfigSubtitle
+    slot #divMakeToOrderConditionalVisibility
+    slot #divMakeToOrderJoinCondition
+    slot #divMakeToOrderConditionsGrid
+    block #MTOConditionsModal_GridToolbar
+      button "New condition" primary
+    button "Save"#MTOConditionsModal_Save primary
+    button "Close"
+  form#makeToOrderBomFileUploader
+    input file name=file
+  block #divDiscount (hidden)
+    heading "Discounts"
+    block #divNew_Discount
+    slot #divDiscountLines
+    button "Add more items"#Product_Index_AddDiscountMatrixLink primary (hidden)
+    text "Fields Customer and Customer tag are mutually exclusive."
+  block #divAttachments (hidden)
+    heading "Images and attachments"
+    select#cmbProductAttachmentsView: List view | Thumb view
+    block #divAttachmentUpload
+      block #divUploadContainer
+        block #preview-template (hidden)
+        slot #iUpload (hidden)
+        form#frmUpload
+          heading "Drop files here or click to upload."
+      block #divUploadImpossible
+    button "Attach from Google Drive" primary
+    block #divAttachmentsListView
+      slot #divAttachmentList
+    slot #divAttachmentsThumbView (hidden)
+    block #dlgPreviewZoomModal (hidden)
+  block #divAdditionalUnitsOfMeasure (hidden)
+    heading "Additional units of measure"
+    block #divNew_AdditionalUnitOfMeasure
+    link "Create a product"
+    link "Select an existing product"
+    slot #divAdditionalUnitOfMeasureLines
+  block #divAdditionalDescriptions (hidden)
+    heading "Additional descriptions"
+    slot #divAdditionalDescriptionsNotes
+    block #divAdditionalDescriptionsSelect (hidden)
+      slot #AdditionalDescriptionsSelect
+      label "Select an eCommerce shop"
+    slot #ECSIntegrationLogo
+    slot #ECSProductID
+    block #divProductVariationID (hidden)
+      slot #ECSProductVariationID
+    slot #ECSProductSKU
+    block #liAdditionalDescription
+      textarea#divAdditionalDescription
+      label "Description" for #divAdditionalDescription
+    block #liAdditionalDescriptionHTML (hidden)
+      slot #productAdditionalDescriptionEditor
+    block #divCopyAdditionalDescription
+    block #divDeleteMapping
+  block #divChannels (hidden)
+    heading "Channels"
+    slot #divChannelsTable
+  block #divActivityLogs (hidden)
+    heading "Activity log"
+    slot #ActivityLogs_Container
+  modal#divNewProduct_AdditionalUnitOfMeasureModal small
+    heading "Add a new product"
+    button "×"
+    slot #Product_NewProduct_AdditionalUnitOfMeasure_ValidationContainer
+    slot #divNewProduct_AdditionalUnitOfMeasureUnitOfMeasure
+    label "Unit of measure" for #divNewProduct_AdditionalUnitOfMeasureUnitOfMeasure
+    input text#divNewProduct_AdditionalUnitOfMeasureSKU
+    label "SKU" for #divNewProduct_AdditionalUnitOfMeasureSKU
+    input text#divNewProduct_AdditionalUnitOfMeasureName
+    label "Name" for #divNewProduct_AdditionalUnitOfMeasureName
+    button "Save" primary
+    button "Close"
+  modal#Product_Channels_Profile_SelectDialog small
+    heading "Please select a publishing profile"
+    button "×"
+    slot #Product_Channels_Profile_SelectDialog_ValidationContainer
+    label "Publishing profile"
+    slot #Product_Channels_PublishingProfiles
+    block #Product_Channels_Profile_SelectDialog_AllActions
+      button "OK"#Product_Channels_Profile_SelectDialog_PiblishProduct
+      button "Close"
+modal#dlgProductSuppliersDelevery large
+  heading "Add delivery time bucket for products' delivery"
+  button "×"
+  block #divSupplyIntervalsContainer
+  button "Delete"#btnProductSuppliersDeliveryDelete
+  button "Save"#btnProductSuppliersDeliverySave primary
+  button "Cancel"
+block #divSupplyIntervalTemplate (hidden)
+  label "Planning method"
+  select: Transfer at intervals | Transfer on fixed days
+  label "Interval"
+  input text
+  label "days"
+  label "Start date"
+  slot #dtSupplyIntervalDate
+  label "Fixed days"
+  input checkbox#chkFixedMonday
+  label "Monday" for #chkFixedMonday
+  input checkbox#chkFixedTuesday
+  label "Tuesday" for #chkFixedTuesday
+  input checkbox#chkFixedWednesday
+  label "Wednesday" for #chkFixedWednesday
+  input checkbox#chkFixedThursday
+  label "Thursday" for #chkFixedThursday
+  input checkbox#chkFixedFriday
+  label "Friday" for #chkFixedFriday
+  input checkbox#chkFixedSaturday
+  label "Saturday" for #chkFixedSaturday
+  input checkbox#chkFixedSunday
+  label "Sunday" for #chkFixedSunday
+block #divProductPictureDialog
+form#frmPrintList
+modal#Product_NewLocation_Content small
+  heading "Add a new location"
+  button "×"
+  slot #Product_NewLocation_ValidationContainer
+  input text#tdProduct_NewLocation_Description
+  label "Location" for #Product_NewLocation_Description
+  button "Save" primary
+  button "Close"
+modal#Product_NewCategory_Content small
+  heading "Add a new product category"
+  button "×"
+  slot #Product_NewCategory_ValidationContainer
+  input text#tdProduct_NewCategory_Category
+  label "Category" for #Product_NewCategory_Category
+  button "Save" primary
+  button "Close"
+modal#Product_NewBrand_Content small
+  heading "Add a new brand"
+  button "×"
+  slot #Product_NewBrand_ValidationContainer
+  input text#tdProduct_NewBrand_Brand
+  label "Brand" for #Product_NewBrand_Brand
+  button "Save" primary
+  button "Close"
+modal#Product_NewUnit_Content small
+  heading "Add a new unit of measure"
+  button "×"
+  slot #Product_NewUnit_ValidationContainer
+  input text#tdProduct_NewUnit_Unit
+  label "Unit" for #Product_NewUnit_Unit
+  button "Save" primary
+  button "Close"
+modal#Product_Delete_Content small
+  heading "Delete deprecated products"
+  button "×"
+  slot #Product_Delete_ValidationContainer
+  slot #Delete_ResultContainer (hidden)
+  block #Product_Delete_Actions
+    button "Delete"
+    button "Close"
+modal#Product_Merge_Content small
+  heading "Merge selected products"
+  button "×"
+  slot #Product_Merge_ValidationContainer
+  select#tdPrimaryMergeProduct
+  label "Primary product" for #cmbPrimaryMergeProduct
+  label "Merge products"
+  slot #MergeProductGridContainer
+  block #Product_Merge_Actions
+    button "Merge"#Product_Merge_Execute primary
+    button "Close"
+modal#Product_BulkComponentUpdateInBOMs_Content small
+  heading "Replace BOM component"
+  button "×"
+  block #Product_Update_BOM_Components
+    text "Replace one component with another in all affected BOMs. Not applicable to make-to-order BOMs."
+    slot #Product_Index_BulkComponentUpdateInBOMs_OldComponent
+    slot #Product_Index_BulkComponentUpdateInBOMs_NewComponent
+    slot #Product_BulkComponentUpdateInBOMs_CompenentSelection_ValidationContainer
+    slot #Product_Index_BulkComponentUpdate_SelectedComponents
+  block #Product_Update_BOM_List
+    slot #Product_Index_BulkComponentUpdate_SelectedComponents_With_BOM_Count
+    slot #Product_Index_BulkComponentUpdate_SuccessCount
+    slot #Product_Index_BulkComponentUpdate_FaildCount
+  block #Product_Update_BOM_Actions
+    button "Continue"#Product_Update_BOM_Start primary
+    button "Replace"#Product_Update_Bulk_BOM_Start primary
+    button "Close"
+modal#divNewFixedAssetTypeDialog
+  heading "Add a new fixed asset type"#divNewFixedAssetTypeDialogTitle
+  button "×"
+  input text#tdFixedAssetTypeName placeholder "Enter a name"
+  label "Name"
+  select#tdFixedAssetTypeDepreciationMethod
+  label "Depreciation method"
+  label "Averaging method"
+  select#tdFixedAssetTypeAveragingMethod
+  select#tdFixedAssetTypeAssetAccountCode
+  label "Asset account"
+  select#tdFixedAssetTypeAccumulatedDepreciationAccountCode
+  label "Accumulated depreciation account"
+  select#tdFixedAssetTypeDepreciationExpenseAccountCode
+  label "Depreciation expense account"
+  input radio#radFixedAssetTypeRate name=rbRate
+  label "Rate (%)" for #radFixedAssetTypeRate
+  input radio#radFixedAssetTypeEffectiveLife name=rbRate
+  label "Effective life (Yrs)" for #radFixedAssetTypeEffectiveLife
+  input text#tdFixedAssetTypeRate (hidden)
+  input text#tdFixedAssetTypeEffectiveLife (hidden)
+  button "Save" primary
+  button "Close"
+modal#Product_CostingMethodModal small
+  heading "Non-zero stock details for"
+  button "×"
+  input text#inpCostingMethodModal_Number
+  label "Batch/ serial #"
+  slot #divCostingMethodModal_ExpiryDate
+  label "Expiry date"
+  button "Save" primary
+  button "Close"
+modal#Product_ChatGptDialog large
+  heading "Generate product description"
+  slot #FeatureModuleDetailsBlock (hidden)
+  button "×"
+  textarea#Product_ChatGpt_Request
+  label "Prompt"
+  button "Generate with AI"#btnProduct_ChatGpt_GenerateDescription primary
+  block #Product_ChatGpt_OldDescriptionDiv
+    textarea#Product_ChatGpt_OldDesription
+    label "Old description"
+  block #Product_ChatGpt_NewDescriptionDiv
+    textarea#Product_ChatGpt_NewDesription
+    label "New description"
+    slot #Product_ChatGpt_NewDescriptionValidation (hidden)
+  button "Apply"#btnProduct_ChatGpt_Apply primary
+  button "Cancel"
+slot #CountrySpecificScript
+```
+
+### `/ProductFamily`: Product family
+
+Frame: `iUpload`.
+
+```text
+modal#ProductFamily_RemovalAlert small
+  heading "Delete family"
+  button "×"
+  slot #ProductFamily_RemovalAlert_Message
+  block #ProductFamily_RemovalAlert_Hint
+  block #ProductFamily_RemovalAlert_Buttons
+    button "Delete"#ProductFamily_RemovalAlert_ButtonDelete
+    button "Remove"#ProductFamily_RemovalAlert_ButtonRemove
+    button "Close"
+link "Home"
+link "Product families"
+button "Delete"#deleteAction
+button "Save"#saveAction primary
+button "Clone"#cloneAction (hidden)
+button "Generate BOM"#generateBom primary (hidden)
+button "Back to list"#backAction
+heading #formCaption
+button 
+slot #ProductFamily_Index_MainValidationContainer
+block #divGeneral
+  slot #tdSKU
+  label "Family SKU" for #txtSKU
+  slot #tdName
+  label "Family name" for #txtName
+  slot #tdCategory
+  label "Category" for #cmbCategory
+  slot #tdBrand
+  label "Brand" for #cmbBrand
+  slot #tdCostingMethod
+  label "Costing method" for #cmbCostingMethod
+  slot #tdDropShipMode
+  label "Drop ship" for #cmbDropShipMode
+  slot #tdDropShipSupplier
+  label "Drop ship supplier" for #cmbDropShipSupplier
+  block #liLastSupplier
+    slot #tdLastSupplier
+    label "Last supplier" for #cmbLastSupplier
+  slot #tdSupplierPrice
+  label "Supplier price" for #txtSupplierPrice
+  slot #tdOption1Name
+  label "Option 1 label" for #txtOption1Name
+  slot #tdOption2Name
+  label "Option 2 label" for #txtOption2Name
+  slot #tdOption3Name
+  label "Option 3 label" for #txtOption3Name
+  slot #tdUnitOfMeasure
+  label "Unit of measure" for #cmbUnitOfMeasure
+  slot #tdInventoryAccount
+  label "Inventory account" for #cmbInventoryAccount
+  slot #tdRevenueAccount
+  label "Revenue account" for #cmbRevenueAccount
+  slot #tdCOGSAccount
+  label "COGS account" for #cmbCOGSAccount
+  slot #tdPurchaseTaxRule
+  label "Purchase tax rule" for #cmbPurchaseTaxRule
+  slot #tdSaleTaxRule
+  label "Sale tax rule" for #cmbSaleTaxRule
+  slot #tdDefaultLocation
+  label "Default location" for #cmbDefaultLocation
+  slot #tdAttributeSet
+  label "Additional attributes set" for #cmbAttributeSet
+  slot #tdMinimumBeforeReorder
+  label "Minimum before reorder" for #txtMinimumBeforeReorder
+  slot #tdReorderQuantity
+  label "Reorder quantity" for #txtReorderQuantity
+  input text#tdTags
+  label "Tags" for #txtTags
+  block #liWarrantySetup (hidden)
+    slot #tdWarrantySetup
+    label "Warranty" for #tdWarrantySetup
+  block #liHSCode
+    input text#tdHSCode
+    label "HS code" for #tdHSCode
+  block #liCountryOfOrigin
+    slot #divCountryOfOrigin
+    label "Country of origin" for #divCountryOfOrigin
+  slot #tdPriceTier1
+  label "" for #txtPriceTier1
+  slot #tdPriceTier2
+  label "" for #txtPriceTier2
+  slot #tdPriceTier3
+  label "" for #txtPriceTier3
+  slot #tdPriceTier4
+  label "" for #txtPriceTier4
+  slot #tdPriceTier5
+  label "" for #txtPriceTier5
+  slot #tdPriceTier6
+  label "" for #txtPriceTier6
+  slot #tdPriceTier7
+  label "" for #txtPriceTier7
+  slot #tdPriceTier8
+  label "" for #txtPriceTier8
+  slot #tdPriceTier9
+  label "" for #txtPriceTier9
+  slot #tdPriceTier10
+  label "" for #txtPriceTier10
+  slot #tdDiscount
+  label "Product discount" for #cmbDiscount
+  slot #tdBOM
+  label "Bill of materials" for #cmbBOM
+  textarea#divShortDescription
+  label "Short description" for #divShortDescription
+  button "Generate with AI" primary
+  block #liDescription
+    textarea#divDescription
+    label "Description" for #divDescription
+    button "Generate with AI" primary
+  block #liDescriptionHTML (hidden)
+    slot #productFamilyDescriptionEditor
+block #divOptions (hidden)
+  button #divNewOption1 primary
+  slot #tdOption1Values
+  button #divNewOption2 primary
+  slot #tdOption2Values
+  button #divNewOption3 primary
+  slot #tdOption3Values
+block #divVariations (hidden)
+  button #divNewProduct primary
+  button "Generate"#divGenerate
+  slot #tdVariations
+  heading "Product dimensions and weight"
+  slot #tdVariationDims
+  block #divAttributeSet (hidden)
+    heading "Product additional attributes"
+    slot #tdAdditionalAttributes
+block #divProductionBOM (hidden)
+  heading "Production BOM"
+  slot #liOutputQuantity
+  label "Quantity to produce *" for #liOutputQuantity
+  slot #ProductFamily_Index_ProductionInstructionURL
+  label "Production instruction URL" for #ProductFamily_Index_ProductionInstructionURL
+  slot #liManufacturingBufferTime
+  label "Buffer, %" for #liManufacturingBufferTime
+  slot #liIgnoreCumulativeLeadTime
+  label "Ignore cumulative lead time" for #chkIgnoreCumulativeLeadTime
+  block #ComponentProductionLeadTimeContainer
+    slot #liComponentProductionLeadTime
+    label "Production lead time" for #liComponentProductionLeadTime
+  text "The operation below must have a specified duration (cycle time), the number of units that can be produced during the cyc"
+  button "Operation"#divBom_AddOperation primary
+  slot #cmb_ProductionIssueMethod
+  label "Issue method" for #cmb_ProductionIssueMethod
+  slot #cmbCopyBom
+  button "Clone BOM"#btnCopyBom primary
+  button "Generate BOM"#generateBom2 primary
+  block #divProductionBomData
+    block #noOperationsBlock
+  button "Add more operations"#divBom_AddOperation2 primary
+  block #finishedProductBlock
+    heading "Finished products output"
+    slot #cmbFinishedProductCost
+    label "Cost allocation type *" for #cmbFinishedProductCost
+    slot #divFinishedProductsData
+  block #wastageProductsCostBlock
+    heading "Cost of wastage"
+    slot #divWastageProductsData
+  slot #ProductFamily_Index_ProductionBOMTotalMin
+  slot #ProductFamily_Index_ProductionBOMTotalMax
+  modal#ProductFamily_VariationQuantity small
+    heading "Set up of quantity for variation"
+    button "×"
+    select#cmbProductFamily_VariationQuantity
+    label "Select quantity condition" for #cmbProductFamily_VariationQuantity
+    block #controlQuantityAll
+      input text#tdProductFamily_VariationQuantity placeholder "Enter the quantity"
+      label "Quantity" for #tdProductFamily_VariationQuantity
+    slot #listControlsQuantityOption1 (hidden)
+    slot #listControlsQuantityOption2 (hidden)
+    slot #listControlsQuantityOption3 (hidden)
+    button "Save" primary
+    button "Close"
+  form#productionBomFileUploader
+    input file name=file
+block #divMapVariations (hidden)
+  block #toggleableColumn
+    tabs: 
+  input file#fileImportVariations (hidden)
+  button "Import"#btnImportVariations
+  button "Export"#btnExportVariations
+  heading "Variations"
+  heading "Product family:"
+block #divAttachments (hidden)
+  block #divAttachmentUpload
+    block #divUploadContainer
+      block #preview-template (hidden)
+      slot #iUpload (hidden)
+      form#frmUpload
+        heading "Drop files here or click to upload."
+  block #divUploadImpossible
+  button "Attach from Google Drive" primary
+  slot #divAttachmentList
+block #divUsedIn (hidden)
+  slot #divUsedInProductsData
+block #divActivityLogs (hidden)
+  slot #ActivityLogs_Container
+modal#ProductFamily_Clone_Content small
+  heading "New product family"
+  button "×"
+  input text#tdProductFamily_CloneFamily_Sku
+  label "Family SKU" for #tdProductFamily_CloneFamily_Sku
+  input text#tdProductFamily_CloneFamily_Name
+  label "Family name" for #tdProductFamily_CloneFamily_Name
+  button "Clone" primary
+  button "Cancel"
+modal#ProductFamily_NewLocation_Content small
+  heading "Add a new location"
+  button "×"
+  input text#tdProductFamily_NewLocation_Description
+  label "Location" for #ProductFamily_NewLocation_Description
+  button "Save" primary
+  button "Close"
+modal#ProductFamily_NewCategory_Content small
+  heading "Add a new category"
+  button "×"
+  input text#tdProductFamily_NewCategory_Category
+  label "Category" for #ProductFamily_NewCategory_Category
+  button "Save" primary
+  button "Close"
+modal#ProductFamily_NewBrand_Content small
+  heading "Add a new brand"
+  button "×"
+  input text#tdProductFamily_NewBrand_Brand
+  label "Brand" for #ProductFamily_NewBrand_Brand
+  button "Save" primary
+  button "Close"
+modal#ProductFamily_NewUnit_Content small
+  heading "Add a new unit of measure"
+  button "×"
+  label "Unit" for #ProductFamily_NewUnit_Unit
+  input text#tdProductFamily_NewUnit_Unit
+  button "Save" primary
+  button "Close"
+modal#Product_ChatGptDialog large
+  heading "Generate product description"
+  slot #FeatureModuleDetailsBlock (hidden)
+  button "×"
+  textarea#Product_ChatGpt_Request
+  label "Prompt"
+  button "Generate with AI"#btnProduct_ChatGpt_GenerateDescription primary
+  block #Product_ChatGpt_OldDescriptionDiv
+    textarea#Product_ChatGpt_OldDesription
+    label "Old description"
+  block #Product_ChatGpt_NewDescriptionDiv
+    textarea#Product_ChatGpt_NewDesription
+    label "New description"
+    slot #Product_ChatGpt_NewDescriptionValidation (hidden)
+  button "Apply"#btnProduct_ChatGpt_Apply primary
+  button "Cancel"
+```
+
+### `/ProductFamilyList`: Product families
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+button "More"#divMore ▾
+link "Delete product families"
+button "Import"#divImport ▾
+link "Images and attachments"
+button "Export"#divExport ▾
+link "Images and attachments"
+button #divNew primary
+input text#divSearch placeholder "Type text to search"
+button "Search" primary
+button #divRefresh
+button #GridOptions
+slot #ProductFamilyList_Index_Container
+block #divProductPictureDialog
+form#frmExportImages
+modal#ProductFamilyList_Delete_Content small
+  heading "Delete families"
+  button "×"
+  slot #ProductFamilyList_Delete_ValidationContainer
+  block #ProductFamilyList_RemovalAlert_Hint
+  block #ProductFamilyList_Delete_Actions
+    button "Delete"#ProductFamilyList_Delete_Execute
+    button "Remove"#ProductFamilyList_RemovalAlert_ButtonRemove
+    button "Close"
+```
+
+### `/Recall`: Batch/lot recall
+
+Frame: `task-upload-frame`.
+
+```text
+block #BatchLotRecallReport
+  block #MainContent
+    link "Home"
+    heading "Batch/lot recall"
+    slot #tdProduct
+    label "Product / Batch / Lot / Serial number"
+    slot #divShowRelated
+    label "Show all related" for #chkShowRelated
+    button "Show" primary
+    button "CUSTOMERS"
+    button "STOCK ON HAND"
+    button "SUPPLIERS"
+    button "USED IN"
+    block #divCustomers (hidden)
+      button "Refresh"#divRefresh_Customers
+      button "Print"#printAction primary
+      button "Export"#divExport_Customers primary
+      button #Grid_Customer_Options
+      input text#divSearchCustomers placeholder "Type text to search"
+      button "Search" primary
+      slot #divCustomerLines
+    block #divOnHand (hidden)
+      button "Refresh"#divRefresh_OnHand
+      button "Export"#divExport_OnHand primary
+      button #Grid_OnHand_Options
+      input text#divSearchOnHand placeholder "Type text to search"
+      button "Search" primary
+      slot #divOnHandLines
+    block #divSuppliers (hidden)
+      button "Refresh"#divRefresh_Suppliers
+      button "Export"#divExport_Suppliers primary
+      button #Grid_Supplier_Options
+      input text#divSearchSuppliers placeholder "Type text to search"
+      button "Search" primary
+      slot #divSupplierLines
+    block #divUsedIn (hidden)
+      button "Refresh"#divRefresh_UsedIn
+      button "Export"#divExport_UsedIn primary
+      input text#divSearchUsedIn placeholder "Type text to search"
+      button "Search" primary
+      slot #divUsedInLines
+    form#frmExport
+    form#frmPrint
+```
+
+### `/Stock`: Product availability
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+block #divList
+  heading "Product availability"
+  block #divSuggestReorder (hidden)
+    button "Suggest reorder"
+  button "Print"#divPrint ▾
+  slot #printDropdownList
+  button "Export"#divExport
+  button #divRefresh
+  button #Grid_gridName_Options
+  input text#divSearch placeholder "Type text to search"
+  button "Search" primary
+  input checkbox#divOnlyActive
+  label "Only active" for #divOnlyActive
+  input checkbox#divNonZero
+  label "Show only non-zero" for #divNonZero
+  select#inventoroAvailabilityFilter
+  select#batchFilter
+  block #divSelectedItemCount
+    slot #lSelectedCounter
+  slot #Stock_Index_Container
+block #divAllocatedDetails
+  heading "Allocated details"
+  button "Back to list"#hideAllocated
+  slot #AllocatedGrid_Container
+block #divOnOrderDetails
+  heading "On order details"
+  button "Back to list"#hideOnOrder
+  slot #OnOrderGrid_Container
+block #divInTransitDetails
+  heading "In transit details"
+  button "Back to list"#hideInTransit
+  slot #InTransitGrid_Container
+form#frmExport
+form#frmPrintList
+modal#dlgAddNewStockOnHand large
+  heading "Add new stock on hand quantity"
+  button "×"
+  slot #divRemaining (hidden)
+  slot #divNoStock (hidden)
+  button "Save"#btnSaveAdjustment primary
+  button "Close"#btnCancelAdjustment
+```
+
+### `/StockAdjustment`: Stock adjustment
+
+Frame: `iUpload`.
+
+```text
+link "Home"
+link "Stock adjustments and stocktakes"
+button "Save"#saveAction primary
+button "Back to list"#backAction
+block #divMainContent
+  slot #tdStatus
+  heading 
+  button "Void"#voidAction
+  button "Complete"#completeAction primary
+  button "Export"#exportNewAction
+  button "Import"#importNewAction
+  button "Print" ▾
+  slot #divPrintContainer
+  button "Undo"#undoAction
+  block #divStockAdjustmentTask (hidden)
+    button 
+    button  primary
+    button "Workflow"
+    button 
+    button "Calendar"
+  button #taskHeaderCollapse
+  block #divTaskHeader
+    slot #tdEffectiveDate
+    label "Effective date"
+    slot #tdAccount
+    label "Expense account"
+    block #rowEffectiveDate
+      slot #tdCustomerReference
+      label "Reference"
+    slot #tdComment
+    label "Comment"
+    block #infoAlertContainer (hidden)
+      slot #infoAlert
+  button "Non-zero stock"
+  button "Zero stock"
+  button "Activity logs"
+  button "Attachments"
+  button "Financials"
+  block #divNonZero (hidden)
+    heading "Non-zero stock on hand product"
+    button #divNewExisting primary
+    button "Scan"#scanNonZeroAction
+    slot #divRemaining
+    button "Add more items"#divNewNonZeroLine primary (hidden)
+  block #divZero (hidden)
+    heading "Zero stock on hand product"
+    button #divNew primary
+    button "Scan"#scanAction
+    slot #liCostType
+    label "Cost is estimated using" for #cmbCostType
+    slot #divNoStock
+    button "Add more items"#divNewZeroLine primary (hidden)
+  block #divAttachments (hidden)
+    heading "Attachments"
+    block #divAttachmentUpload
+      block #divUploadContainer
+        block #preview-template (hidden)
+        slot #iUpload (hidden)
+        form#attachmentsUploadForm
+          heading "Drop files here or click to upload."
+      block #divUploadImpossible
+    button "Attach from Google Drive" primary
+    slot #divAttachmentList
+  block #divFinancial (hidden)
+    heading "Financials"
+    tabs: Edit accounting dimensions #financials-default (hidden) | Transactions #financials-transactions | Final accounting dimensions values #financials-real (hidden)
+    tab pane#financials-default
+      heading "Edit accounting dimensions"
+      text "Accounting dimension settings can overwrite reference data. All accounting dimensions can be edited. Accounting dimensio"
+      table#tableDefaultDimensions: Event type
+    tab pane#financials-transactions
+      heading "Transactions"
+      button "Refresh"#divRefreshTransactions
+      slot #divTDetails
+    tab pane#financials-real
+      heading "Final accounting dimensions values"
+      input text#txtRealDimensionsSearch placeholder "Type text to search"
+      button "Search"#btnRealDimensionsSearch primary
+      button "Refresh"#btnRealDimensionsRefresh
+      slot #divRealDimensions
+  block #divActivityLogs (hidden)
+    slot #ActivityLogs_Container
+  form#frmPrint
+  modal#divUploadNewLines medium
+    heading "Upload a new stock adjustment"
+    button "×"
+    heading "1. Download this stock adjustment"
+    text "Download CSV file"#downloadThisStockList
+    heading "2. Add new and modify existing lines in the file."
+    heading "3. Upload"
+    block #ImportLinesExceptionsContainer (hidden)
+      block #ImportLinesDownloadExceptions (hidden)
+        button "Download invalid lines"
+        button "Download full file with errors"
+      block #ImportLinesUploadValidLines (hidden)
+        button "Upload valid lines" primary
+      slot #ImportLinesExceptionsGrid
+    slot #ifrmExportInvalidLines (hidden)
+    form#frmExportInvalidLines
+    slot #ifrmUpload (hidden)
+    form#frmUpload
+      heading "Drop files here or click to upload."
+    slot #ifrmDownloadNewLines (hidden)
+    form#frmDownloadNewLines
+    button "Close"
+  slot #divFooterPlaceholder
+  modal#divScan small
+    heading "Scanning"
+    button "×"
+    tabs: Automatic #AutomaticMode_tab | Manual #ManualMode_tab | Inventory #InventoryMode_tab
+    block #divScanLocation
+      slot #tdScanLocation
+      label "Location to pick from" for #cmbScanLocation
+    block #scanDesc
+    block #scanBar
+      block #dScan
+        slot #spScan
+    slot #ScanValidationContainer (hidden)
+    block #liScanPackBoxAutomatic (hidden)
+      slot #tdScanPackBoxAutomatic
+      label "Box #" for #txtScanPackBoxInventory
+    input text#txtScanFocus
+    block #divScanInfo (hidden)
+      heading "Found product:"
+      slot #divScanProductSelection (hidden)
+      block #liScanPackBox (hidden)
+        label "Box #:"
+        slot #tdScanPackBox
+      label "SKU:"
+      block #tdScanProductCode
+      label "Name:"
+      block #tdScanName
+      label "Barcode:"
+      block #tdScanBarcode
+      block #liScanBatchSN (hidden)
+        label "Batch/serial number:"
+        slot #tdScanBatchSN
+      block #liScanExpiryDate (hidden)
+        label "Expiry date:"
+        slot #tdScanExpiryDate
+      block #liScanQuantity (hidden)
+        label "Quantity:"
+        slot #tdScanQuantity
+    block #ScanInventoryModeContainer (hidden)
+      slot #divInventoryModeBarcodes
+      label "Barcodes"
+      block #liScanPackBoxInventory (hidden)
+        slot #tdScanPackBoxInventory
+        label "Box #"
+    block #ScanInventoryModeControls (hidden)
+      button "Save"#liScanSaveInventory primary
+      button "Close"
+    block #ScanManualModeControls (hidden)
+      button "Save"#liScanSave primary (hidden)
+      button "Close"
+    block #divScanAutoActions
+      button "Close"
+  modal#StocktakeSortingDialog small
+    heading "Print"
+    button 
+    select#stocktakeSortingDropdown: Product name | SKU | Bin
+    label "Sort data by" for #stocktakeSortingDropdown
+    button "Print"#btnPrintAction primary
+    button "Close"
+```
+
+### `/StockAdjustmentList`: Stock adjustments and stocktakes
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+block #divList
+  heading "Stock adjustments and stocktakes"
+  button #divNew primary
+  slot #newDropdownList
+  input text#divSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divRefresh
+  button #Grid_gridName_Options
+  slot #StockAdjustmentContainer
+```
+
+### `/StockTake`: Stocktake/adjustments
+
+Redirects to `/StockTake/New`.
+
+Frame: `iUpload`.
+
+```text
+link "Home"
+link "Stock adjustments and stocktakes"
+button "Save"#saveAction primary
+button "Back to list"
+block #divMainContent
+  slot #tdStatus
+  heading 
+  button "Void"#voidAction
+  button "Start"#startAction primary
+  button "Scan barcode"#scanAction
+  button "Sync"#syncAction primary
+  button "Complete"#completeAction primary
+  button "Print" ▾
+  slot #divPrintContainer
+  button "Undo"#undoAction
+  block #divStocktakeTask (hidden)
+    button 
+    button  primary
+    button "Workflow"
+    button 
+    button "Calendar"
+  button #taskHeaderCollapse
+  block #divHeader
+    block #divTaskHeader
+      slot #tdEffectiveDate
+      label "Effective date"
+      slot #tdLocation
+      label "Location"
+      slot #tdIncludeQuantityOnHand
+      label "Include quantity on hand"
+      slot #tdAccount
+      label "Expense account"
+      slot #tdCustomerReference
+      label "Reference"
+      slot #tdComment
+      label "Comment"
+    heading "Additional filters"
+    block #divAdditionalFilters
+      slot #Stocktake_New_StockLocators
+      label "Stock locator"
+      slot #stockLocatorsPlaceholder
+      slot #Stocktake_New_Categories
+      label "Category"
+      slot #categoriesPlaceholder
+      slot #Stocktake_New_Brands
+      label "Brand"
+      slot #brandsPlaceholder
+      slot #Stocktake_New_Tags
+      label "Tag"
+      slot #tagsPlaceholder
+      slot #Stocktake_New_Bins
+      label "Bin"
+      slot #binsPlaceholder
+      slot #Stocktake_New_BinGroups
+      label "Bin group"
+      slot #binGroupsPlaceholder
+      slot #Stocktake_New_PickZones
+      label "Pick zone"
+      slot #pickZonesPlaceholder
+      block #foundFilteredItemsContainer
+        slot #foundFilteredItems
+  button "Non-zero stock"
+  button "Zero stock"
+  button "Activity logs"
+  button "Attachments"
+  button "Financials"
+  block #divNonZero (hidden)
+    heading "Non-zero stock on hand product"
+    block #divSTNote1
+      text "the sync screen"#stSyncLink
+    input text#divSearch placeholder "Type text to search"
+    button "Search" primary
+    slot #divRemaining
+    button "Export"#exportAction primary
+    button "Import"#importAction primary
+  block #divZero (hidden)
+    heading "Zero stock on hand product"
+    button #divNew primary
+    slot #divNoStock
+    button "Add more items"#Stocktake_New_AddNewLineLink primary
+    button "Export"#exportNewAction primary
+    button "Export all products"#exportNewActionAll primary
+    button "Import"#importNewAction primary
+  block #divActivityLogs (hidden)
+    heading "Activity log"
+    slot #ActivityLogs_Container
+  block #divFinancial (hidden)
+    heading "Financials"
+    tabs: Edit accounting dimensions #financials-default (hidden) | Transactions #financials-transactions | Final accounting dimensions values #financials-real (hidden)
+    tab pane#financials-default
+      heading "Edit accounting dimensions"
+      text "Accounting dimension settings can overwrite reference data. All accounting dimensions can be edited. Accounting dimensio"
+      table#tableDefaultDimensions: Event type
+    tab pane#financials-transactions
+      heading "Transactions"
+      button "Refresh"#divRefreshTransactions
+      slot #divTDetails
+    tab pane#financials-real
+      heading "Final accounting dimensions values"
+      input text#txtRealDimensionsSearch placeholder "Type text to search"
+      button "Search"#btnRealDimensionsSearch primary
+      button "Refresh"#btnRealDimensionsRefresh
+      slot #divRealDimensions
+  block #divAttachments (hidden)
+    heading "Attachments"
+    block #divAttachmentUpload
+      block #divUploadContainer
+        block #preview-template (hidden)
+        slot #iUpload (hidden)
+        form#attachmentsUploadForm
+          heading "Drop files here or click to upload."
+      block #divUploadImpossible
+    button "Attach from Google Drive" primary
+    slot #divAttachmentList
+slot #ifrmDownloadNewLines (hidden)
+form#frmDownloadNewLines
+form#frmPrint
+form#frmExport
+form#frmExportNewAllProducts
+modal#divUploadNewLines medium
+  heading "Upload a new stock adjustment"
+  button "×"
+  heading "1. Download current lines"
+  heading "2. Add new and modify existing products in the file."
+  heading "3. Upload"
+  block #ImportLinesExceptionsContainer (hidden)
+    slot #ImportLinesExceptionsGrid
+  slot #ifrmUploadNewLines (hidden)
+  form#frmUploadNewLines
+    heading "Drop files here or click to upload."
+  button "Close"
+modal#divImport medium
+  button 
+  heading "Import stocktake quantities"
+  block #divSTNote1
+  block #ImportExceptionsContainer (hidden)
+    slot #ImportExceptionsGrid
+  slot #ifrmImportUpload (hidden)
+  form#frmImportUpload
+    heading "Drop files here or click to upload."
+  button "Close"
+modal#StocktakeSortingDialog small
+  heading "Print"
+  button 
+  select#stocktakeSortingDropdown: Product name | SKU | Bin
+  label "Sort data by" for #stocktakeSortingDropdown
+  button "Print"#btnPrintAction primary
+  button "Close"
+modal#divScan small
+  heading "Scanning"
+  button 
+  tabs#ModeTabs: Automatic #AutomaticMode_tab | Manual #ManualMode_tab | Inventory #InventoryMode_tab
+  block #scanDesc
+  block #scanBar
+    block #dScan
+      slot #spScan
+  slot #Stocktake_New_ScanValidationContainer (hidden)
+  block #liScanPackBoxAutomatic (hidden)
+    slot #tdScanPackBoxAutomatic
+    label "Box #" for #txtScanPackBoxInventory
+  input text#txtScanFocus
+  block #divInfo (hidden)
+    heading "Found product:"#divInfoProductInfo
+    slot #divProductSelection (hidden)
+    label "SKU:"
+    block #tdProductCode
+    label "Name:"
+    block #tdName
+    label "Barcode:"
+    block #tdBarcode
+    block #liBatchSN (hidden)
+      label "Batch/serial number:"
+      slot #tdBatchSN
+    label "Bin:"
+    block #tdBin
+    block #liExpiryDate (hidden)
+      label "Expiry date:"
+      slot #tdExpiryDate
+    label "On hand:"
+    slot #tdOnHand
+    block #liQuantity (hidden)
+      label "Quantity:"
+      slot #tdQuantity
+  block #ScanInventoryModeContainer (hidden)
+    slot #divInventoryModeBarcodes
+    label "Barcodes"
+  block #ScanInventoryModeControls (hidden)
+    button "Save"#liSaveInventory primary
+    button "Close"
+  block #ScanManualModeControls (hidden)
+    button "Save"#liSave primary (hidden)
+    button "Close"
+  block #divScanAutoActions
+    button "Close"
+```
+
+### `/StockTransfer`: Stock transfer
+
+Frame: `iUpload`.
+
+```text
+link "Home"
+link "Stock transfers"
+button "Save"#saveAction primary
+button "Back to list"
+block #divMainContent
+  slot #StockTransfer_Index_Status
+  heading 
+  button "Void"#voidAction
+  button "Print" ▾
+  slot #divPrintContainer
+  button "Email" ▾
+  slot #divEmailContainer
+  button "Undo"#undoAction
+  block #divStocktransferTask (hidden)
+    button 
+    button  primary
+    button "Workflow"
+    button 
+    button "Calendar"
+  button #taskHeaderCollapse
+  block #divTaskHeader
+    slot #tdFrom
+    label "From"
+    slot #tdTo
+    label "To"
+    slot #tdCustomerReference
+    label "Reference"
+    slot #chkSkipOrder
+    label "Skip order" for #skipOrder
+    slot #chkUsePutAway
+    label "Put away" for #usePutAway
+    block #divNote
+      slot #tdRequiredBy
+      label "Shipment required by date"
+      slot #tdDepartureDate
+      label "Stock sent date"
+      slot #tdAccount
+      label "In-transit account"
+      slot #tdCompletionDate
+      label "Stock received date"
+    slot #tdComment
+    label "Comment"
+  button "Order"
+  button "Products"
+  button "Excise tax"
+  button "Put away"
+  button "Manual journals"
+  button "Activity logs"
+  button "Attachments"
+  button "Financials"
+  block #divOrder (hidden)
+    button #divNewOrder primary
+    button "Family"#divAddBulk_Order
+    button "Scan"#divButtonScanOrder
+    button "Export"#exportNewActionOrder
+    button "Import"#importNewActionOrder
+    button "Print labels"#printLabelsActionOrder
+    button "Skip"#divSkip_Order primary
+    button "Authorize"#divAuthorise_Order primary
+    slot #StockTransfer_Order_Content
+    button "Add more items"#StockTransfer_Order_AddLink primary
+  block #divProducts (hidden)
+    button #divNew primary
+    button "Fill from order"#divAuto_Pick
+    button "Scan"#divButtonScan
+    button "Export"#exportNewAction
+    button "Import"#importNewAction
+    button "Print labels"#printLabelsAction
+    button "Send stock"#sendStockAction primary
+    button "Complete"#completeAction primary
+    slot #StockTransfer_Index_Content
+    button "Add more items"#StockTransfer_AddLink primary
+  block #divExciseTax (hidden)
+    button "Authorize"#divAuthorise_ExciseTax primary
+    slot #tdStockTransfer_ExciseTax_ExciseReferenceNo
+    label "Reference #"
+    slot #tdStockTransfer_ExciseTax_TransferLicenseNo
+    label "Transfer license no."
+    slot #tdStockTransfer_ExciseTax_IsCustomsClearanceRequired
+    label "Customs clearance required"
+    slot #tdStockTransfer_ExciseTax_ExciseDate
+    label "Excise tax effective date"
+    slot #tdStockTransfer_ExciseTax_DateExciseTaxPaid
+    label "Date of excise tax paid"
+    slot #divExciseTaxLines
+    slot #StockTransfer_ExciseTax_BaseCurrency
+    text "{amount}"#StockTransfer_ExciseTax_ExciseTaxTotal
+  block #divPutAway (hidden)
+    button #divNewPutAway primary
+    button "Scan"#divButtonScanPutAway
+    button "Load consumption bins"#btnLoadBins (hidden)
+    button "Complete"#completePutAwayAction primary
+    button "Undo"#undoPutAwayAction
+    slot #StockTransfer_PutAway_Content
+    button "Add more items"#StockTransfer_AddLinkPutAway primary
+  block #divManualJournals (hidden)
+    button #divNew_ManualJournals primary
+    slot #tdCostDistributionType
+    label "Distribute journals using the product"
+    slot #divManualJournalsLines
+    button "Add more items"#Sale_AdditionalCOGS_AddLineLink primary
+    block #StockTransfer_ManualJournals_DistributedCostsHeader (hidden)
+      heading "Manual distribution cost"
+    block #StockTransfer_ManualJournals_DistributedCostBlock (hidden)
+      slot #divManualJournalsDistributedCostLines
+  block #divActivityLogs (hidden)
+    slot #ActivityLogs_Container
+  block #divAttachments (hidden)
+    heading "Attachments"
+    block #divAttachmentUpload
+      block #divUploadContainer
+        block #preview-template (hidden)
+        slot #iUpload (hidden)
+        form#attachmentsUploadForm
+          heading "Drop files here or click to upload."
+      block #divUploadImpossible
+    button "Attach from Google Drive" primary
+    slot #divAttachmentList
+  block #divFinancial (hidden)
+    heading "Financials"
+    tabs: Edit accounting dimensions #financials-default (hidden) | Transactions #financials-transactions | Final accounting dimensions values #financials-real (hidden)
+    tab pane#financials-default
+      heading "Edit accounting dimensions"
+      text "Accounting dimension settings can overwrite reference data. All accounting dimensions can be edited. Accounting dimensio"
+      table#tableDefaultDimensions
+    tab pane#financials-transactions
+      heading "Transactions"
+      button "Refresh"#divRefreshTransactions
+      slot #divTDetails
+    tab pane#financials-real
+      heading "Final accounting dimensions values"
+      input text#txtRealDimensionsSearch placeholder "Type text to search"
+      button "Search"#btnRealDimensionsSearch primary
+      button "Refresh"#btnRealDimensionsRefresh
+      slot #divRealDimensions
+form#frmPrint
+modal#divUploadNewLines medium
+  heading "Upload a new stock transfer"
+  button "×"
+  heading "1. Download current lines"
+  heading "2. Add new and modify existing products in the file."
+  heading "3. Upload"
+  slot #ImportLinesValidationContainer (hidden)
+  block #ImportLinesExceptionsContainer (hidden)
+    slot #ImportLinesExceptionsGrid
+  form#StockTransferDropContainer
+    heading "Drop files here or click to upload."
+  slot #ifrmDownloadNewLines (hidden)
+  form#frmDownloadNewLines
+  form#frmUploadNewLines
+  button "Close"
+modal#divUploadNewLinesOrder medium
+  heading "Upload a new stock order list"
+  button "×"
+  heading "1. Download current lines"
+  heading "2. Add new and modify existing products in the file."
+  heading "3. Upload"
+  slot #ImportOrderLinesValidationContainer (hidden)
+  block #ImportOrderLinesExceptionsContainer (hidden)
+    slot #ImportOrderLinesExceptionsGrid
+  form#StockTransferDropContainerOrder
+    heading "Drop files here or click to upload."
+  slot #ifrmDownloadNewLinesOrder (hidden)
+  form#frmDownloadNewLinesOrder
+  form#frmUploadNewLinesOrder
+  button "Close"
+modal#divScanDialog small
+  heading "Scanning"
+  button 
+  tabs: Automatic #AutomaticMode_tab | Manual #ManualMode_tab | Inventory #InventoryMode_tab
+  block #divScanLocation
+    slot #tdScanLocation
+    label "Location to pick from" for #cmbScanLocation
+  block #scanDesc
+  block #scanBar
+    block #dScan
+      slot #spScan
+  slot #ScanValidationContainer (hidden)
+  block #liScanPackBoxAutomatic (hidden)
+    slot #tdScanPackBoxAutomatic
+    label "Box #" for #txtScanPackBoxInventory
+  input text#txtScanFocus
+  block #divScanInfo (hidden)
+    heading "Found product:"
+    slot #divScanProductSelection (hidden)
+    block #liScanPackBox (hidden)
+      label "Box #:"
+      slot #tdScanPackBox
+    label "SKU:"
+    block #tdScanProductCode
+    label "Name:"
+    block #tdScanName
+    label "Barcode:"
+    block #tdScanBarcode
+    block #liScanBatchSN (hidden)
+      label "Batch/serial number:"
+      slot #tdScanBatchSN
+    block #liScanExpiryDate (hidden)
+      label "Expiry date:"
+      slot #tdScanExpiryDate
+    block #liScanQuantity (hidden)
+      label "Quantity:"
+      slot #tdScanQuantity
+  block #ScanInventoryModeContainer (hidden)
+    slot #divInventoryModeBarcodes
+    label "Barcodes"
+    block #liScanPackBoxInventory (hidden)
+      slot #tdScanPackBoxInventory
+      label "Box #"
+  block #ScanInventoryModeControls (hidden)
+    button "Save"#liScanSaveInventory primary
+    button "Close"
+  block #ScanManualModeControls (hidden)
+    button "Save"#liScanSave primary (hidden)
+    button "Close"
+  block #divScanAutoActions
+    button "Close"
+modal#secEmail medium
+  heading #emailDialogCaption
+  button "×"
+  button "Send"#btnSendEmail2 primary
+  button "Close"#emailBackAction2
+  heading "Email subject"
+  slot #EmailSendTemplate_AdditionalInfo (hidden)
+  input text#DEAREmailTo
+  label "To"
+  button #DEAREmailTo_btn
+  block #EmailSendTemplate_CC
+    input text#DEAREmailCC
+    label "CC"
+    button #DEAREmailCC_btn
+  input text#DEAREmailSubject placeholder "Type email subject..."
+  label "Subject"
+  block #EmailSendTemplate_NetworkingBlock (hidden)
+    slot #EmailSendTemplate_NetworkingCheck
+    label "Send via Cin7 Core network" for #chkEmail_sendViaNetwork
+  heading "Select files to attach"
+  block #EmailSendTemplate_AttachedFiles
+    heading #headerForOrderAttachments
+    slot #attachedFiles
+  block #EmailSendTemplate_AttachedFiles_Product
+    heading "Product"
+    slot #attachedFiles_Product
+  block #EmailSendTemplate_AttachedFiles_Supplier
+    heading "Supplier"
+    slot #attachedFiles_Supplier
+  block #EmailSendTemplate_AttachedFiles_Customer
+    heading "Customer"
+    slot #attachedFiles_Customer
+  heading "Email template"
+  slot #tdEmail_Body
+  block #emailReCaptcha (hidden)
+  button "Send"#btnSendEmail primary
+  button "Close"#emailBackAction
+modal#secRecipients medium
+  heading "Select a recipient"
+  button "×"
+  slot #gridRecipients
+  button "OK" primary
+  button "Close"
+slot #btnSendEmail2
+modal#dlgFamilyMatrix medium
+  heading "Add a product family"
+  button "×"
+  slot #FamilyMatrix_cmbFamily
+  label "Product family"
+  input checkbox#FamilyMatrix_cbOnlyAvailable
+  label "Show only available variations" for #FamilyMatrix_cbOnlyAvailable_InputId
+  slot #FamilyMatrix_divMessage (hidden)
+  block #FamilyMatrix_divOptions (hidden)
+    tabs: Matrix | List
+    tab pane#FamilyMatrix_divFamilyMatrixTab
+      block #FamilyMatrix_divBaseOptionContainer (hidden)
+        slot #FamilyMatrix_cmbBaseOption
+        label "Select base option:"
+        slot #FamilyMatrix_cmbBaseOptionValue
+        label "and its value:"
+      slot #FamilyMatrix_divMatrixContainer
+    tab pane#FamilyMatrix_divFamilyListTab
+      slot #FamilyMatrix_divListContainer
+  button "Add products"#FamilyMatrix_btnAdd primary
+  button "Close"#FamilyMatrix_btnClose
+modal#divCOGSAccDims small
+  heading "Accounting dimensions"
+  button "×"
+  button "Save"#btnSaveCOGSAccDims primary
+  button "Close"
+slot #CountrySpecificScript
+```
+
+### `/StockTransferList`: Stock transfers
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+heading "Stock transfers"
+block #bulkActionsNoteSuccess (hidden)
+block #bulkActionsNoteWarning (hidden)
+block #bulkActionsNoteError (hidden)
+button #divNew primary
+input text#divSearch placeholder "Type text to search"
+button "Search" primary
+slot #StockTransfer_FilterSummary
+button "Locations"#btnTransferFilters
+block #divStatusFilterContainer
+  select#divStatusFilter
+button #divRefresh
+button #Grid_gridName_Options
+block #divBulkActions
+  slot #lSelectedCounter
+  button "Undo"#btnUndo (hidden)
+  button "Void"#btnVoid (hidden)
+slot #StocktransferList_Index_Container
+modal#Stock_Transfer_Filters_Content small
+  heading "Location filters"
+  button "×"
+  label "From location"
+  slot #TransferFilters_FromLocation
+  label "From bin"
+  slot #TransferFilters_FromBin
+  label "To location"
+  slot #TransferFilters_ToLocation
+  label "To bin"
+  slot #TransferFilters_ToBin
+  button "Clear all" primary
+  button "Apply" primary
+  button "Cancel"
+```
+
+### `/Stocktake/New`: Stocktake/adjustments
+
+Frame: `iUpload`.
+
+```text
+link "Home"
+link "Stock adjustments and stocktakes"
+button "Save"#saveAction primary
+button "Back to list"
+block #divMainContent
+  slot #tdStatus
+  heading 
+  button "Void"#voidAction
+  button "Start"#startAction primary
+  button "Scan barcode"#scanAction
+  button "Sync"#syncAction primary
+  button "Complete"#completeAction primary
+  button "Print" ▾
+  slot #divPrintContainer
+  button "Undo"#undoAction
+  block #divStocktakeTask (hidden)
+    button 
+    button  primary
+    button "Workflow"
+    button 
+    button "Calendar"
+  button #taskHeaderCollapse
+  block #divHeader
+    block #divTaskHeader
+      slot #tdEffectiveDate
+      label "Effective date"
+      slot #tdLocation
+      label "Location"
+      slot #tdIncludeQuantityOnHand
+      label "Include quantity on hand"
+      slot #tdAccount
+      label "Expense account"
+      slot #tdCustomerReference
+      label "Reference"
+      slot #tdComment
+      label "Comment"
+    heading "Additional filters"
+    block #divAdditionalFilters
+      slot #Stocktake_New_StockLocators
+      label "Stock locator"
+      slot #stockLocatorsPlaceholder
+      slot #Stocktake_New_Categories
+      label "Category"
+      slot #categoriesPlaceholder
+      slot #Stocktake_New_Brands
+      label "Brand"
+      slot #brandsPlaceholder
+      slot #Stocktake_New_Tags
+      label "Tag"
+      slot #tagsPlaceholder
+      slot #Stocktake_New_Bins
+      label "Bin"
+      slot #binsPlaceholder
+      slot #Stocktake_New_BinGroups
+      label "Bin group"
+      slot #binGroupsPlaceholder
+      slot #Stocktake_New_PickZones
+      label "Pick zone"
+      slot #pickZonesPlaceholder
+      block #foundFilteredItemsContainer
+        slot #foundFilteredItems
+  button "Non-zero stock"
+  button "Zero stock"
+  button "Activity logs"
+  button "Attachments"
+  button "Financials"
+  block #divNonZero (hidden)
+    heading "Non-zero stock on hand product"
+    block #divSTNote1
+      text "the sync screen"#stSyncLink
+    input text#divSearch placeholder "Type text to search"
+    button "Search" primary
+    slot #divRemaining
+    button "Export"#exportAction primary
+    button "Import"#importAction primary
+  block #divZero (hidden)
+    heading "Zero stock on hand product"
+    button #divNew primary
+    slot #divNoStock
+    button "Add more items"#Stocktake_New_AddNewLineLink primary
+    button "Export"#exportNewAction primary
+    button "Export all products"#exportNewActionAll primary
+    button "Import"#importNewAction primary
+  block #divActivityLogs (hidden)
+    heading "Activity log"
+    slot #ActivityLogs_Container
+  block #divFinancial (hidden)
+    heading "Financials"
+    tabs: Edit accounting dimensions #financials-default (hidden) | Transactions #financials-transactions | Final accounting dimensions values #financials-real (hidden)
+    tab pane#financials-default
+      heading "Edit accounting dimensions"
+      text "Accounting dimension settings can overwrite reference data. All accounting dimensions can be edited. Accounting dimensio"
+      table#tableDefaultDimensions: Event type
+    tab pane#financials-transactions
+      heading "Transactions"
+      button "Refresh"#divRefreshTransactions
+      slot #divTDetails
+    tab pane#financials-real
+      heading "Final accounting dimensions values"
+      input text#txtRealDimensionsSearch placeholder "Type text to search"
+      button "Search"#btnRealDimensionsSearch primary
+      button "Refresh"#btnRealDimensionsRefresh
+      slot #divRealDimensions
+  block #divAttachments (hidden)
+    heading "Attachments"
+    block #divAttachmentUpload
+      block #divUploadContainer
+        block #preview-template (hidden)
+        slot #iUpload (hidden)
+        form#attachmentsUploadForm
+          heading "Drop files here or click to upload."
+      block #divUploadImpossible
+    button "Attach from Google Drive" primary
+    slot #divAttachmentList
+slot #ifrmDownloadNewLines (hidden)
+form#frmDownloadNewLines
+form#frmPrint
+form#frmExport
+form#frmExportNewAllProducts
+modal#divUploadNewLines medium
+  heading "Upload a new stock adjustment"
+  button "×"
+  heading "1. Download current lines"
+  heading "2. Add new and modify existing products in the file."
+  heading "3. Upload"
+  block #ImportLinesExceptionsContainer (hidden)
+    slot #ImportLinesExceptionsGrid
+  slot #ifrmUploadNewLines (hidden)
+  form#frmUploadNewLines
+    heading "Drop files here or click to upload."
+  button "Close"
+modal#divImport medium
+  button 
+  heading "Import stocktake quantities"
+  block #divSTNote1
+  block #ImportExceptionsContainer (hidden)
+    slot #ImportExceptionsGrid
+  slot #ifrmImportUpload (hidden)
+  form#frmImportUpload
+    heading "Drop files here or click to upload."
+  button "Close"
+modal#StocktakeSortingDialog small
+  heading "Print"
+  button 
+  select#stocktakeSortingDropdown: Product name | SKU | Bin
+  label "Sort data by" for #stocktakeSortingDropdown
+  button "Print"#btnPrintAction primary
+  button "Close"
+modal#divScan small
+  heading "Scanning"
+  button 
+  tabs#ModeTabs: Automatic #AutomaticMode_tab | Manual #ManualMode_tab | Inventory #InventoryMode_tab
+  block #scanDesc
+  block #scanBar
+    block #dScan
+      slot #spScan
+  slot #Stocktake_New_ScanValidationContainer (hidden)
+  block #liScanPackBoxAutomatic (hidden)
+    slot #tdScanPackBoxAutomatic
+    label "Box #" for #txtScanPackBoxInventory
+  input text#txtScanFocus
+  block #divInfo (hidden)
+    heading "Found product:"#divInfoProductInfo
+    slot #divProductSelection (hidden)
+    label "SKU:"
+    block #tdProductCode
+    label "Name:"
+    block #tdName
+    label "Barcode:"
+    block #tdBarcode
+    block #liBatchSN (hidden)
+      label "Batch/serial number:"
+      slot #tdBatchSN
+    label "Bin:"
+    block #tdBin
+    block #liExpiryDate (hidden)
+      label "Expiry date:"
+      slot #tdExpiryDate
+    label "On hand:"
+    slot #tdOnHand
+    block #liQuantity (hidden)
+      label "Quantity:"
+      slot #tdQuantity
+  block #ScanInventoryModeContainer (hidden)
+    slot #divInventoryModeBarcodes
+    label "Barcodes"
+  block #ScanInventoryModeControls (hidden)
+    button "Save"#liSaveInventory primary
+    button "Close"
+  block #ScanManualModeControls (hidden)
+    button "Save"#liSave primary (hidden)
+    button "Close"
+  block #divScanAutoActions
+    button "Close"
+```
+
+### `/Stocktransfer`: Stock transfer
+
+Frame: `iUpload`.
+
+```text
+link "Home"
+link "Stock transfers"
+button "Save"#saveAction primary
+button "Back to list"
+block #divMainContent
+  slot #StockTransfer_Index_Status
+  heading 
+  button "Void"#voidAction
+  button "Print" ▾
+  slot #divPrintContainer
+  button "Email" ▾
+  slot #divEmailContainer
+  button "Undo"#undoAction
+  block #divStocktransferTask (hidden)
+    button 
+    button  primary
+    button "Workflow"
+    button 
+    button "Calendar"
+  button #taskHeaderCollapse
+  block #divTaskHeader
+    slot #tdFrom
+    label "From"
+    slot #tdTo
+    label "To"
+    slot #tdCustomerReference
+    label "Reference"
+    slot #chkSkipOrder
+    label "Skip order" for #skipOrder
+    slot #chkUsePutAway
+    label "Put away" for #usePutAway
+    block #divNote
+      slot #tdRequiredBy
+      label "Shipment required by date"
+      slot #tdDepartureDate
+      label "Stock sent date"
+      slot #tdAccount
+      label "In-transit account"
+      slot #tdCompletionDate
+      label "Stock received date"
+    slot #tdComment
+    label "Comment"
+  button "Order"
+  button "Products"
+  button "Excise tax"
+  button "Put away"
+  button "Manual journals"
+  button "Activity logs"
+  button "Attachments"
+  button "Financials"
+  block #divOrder (hidden)
+    button #divNewOrder primary
+    button "Family"#divAddBulk_Order
+    button "Scan"#divButtonScanOrder
+    button "Export"#exportNewActionOrder
+    button "Import"#importNewActionOrder
+    button "Print labels"#printLabelsActionOrder
+    button "Skip"#divSkip_Order primary
+    button "Authorize"#divAuthorise_Order primary
+    slot #StockTransfer_Order_Content
+    button "Add more items"#StockTransfer_Order_AddLink primary
+  block #divProducts (hidden)
+    button #divNew primary
+    button "Fill from order"#divAuto_Pick
+    button "Scan"#divButtonScan
+    button "Export"#exportNewAction
+    button "Import"#importNewAction
+    button "Print labels"#printLabelsAction
+    button "Send stock"#sendStockAction primary
+    button "Complete"#completeAction primary
+    slot #StockTransfer_Index_Content
+    button "Add more items"#StockTransfer_AddLink primary
+  block #divExciseTax (hidden)
+    button "Authorize"#divAuthorise_ExciseTax primary
+    slot #tdStockTransfer_ExciseTax_ExciseReferenceNo
+    label "Reference #"
+    slot #tdStockTransfer_ExciseTax_TransferLicenseNo
+    label "Transfer license no."
+    slot #tdStockTransfer_ExciseTax_IsCustomsClearanceRequired
+    label "Customs clearance required"
+    slot #tdStockTransfer_ExciseTax_ExciseDate
+    label "Excise tax effective date"
+    slot #tdStockTransfer_ExciseTax_DateExciseTaxPaid
+    label "Date of excise tax paid"
+    slot #divExciseTaxLines
+    slot #StockTransfer_ExciseTax_BaseCurrency
+    text "{amount}"#StockTransfer_ExciseTax_ExciseTaxTotal
+  block #divPutAway (hidden)
+    button #divNewPutAway primary
+    button "Scan"#divButtonScanPutAway
+    button "Load consumption bins"#btnLoadBins (hidden)
+    button "Complete"#completePutAwayAction primary
+    button "Undo"#undoPutAwayAction
+    slot #StockTransfer_PutAway_Content
+    button "Add more items"#StockTransfer_AddLinkPutAway primary
+  block #divManualJournals (hidden)
+    button #divNew_ManualJournals primary
+    slot #tdCostDistributionType
+    label "Distribute journals using the product"
+    slot #divManualJournalsLines
+    button "Add more items"#Sale_AdditionalCOGS_AddLineLink primary
+    block #StockTransfer_ManualJournals_DistributedCostsHeader (hidden)
+      heading "Manual distribution cost"
+    block #StockTransfer_ManualJournals_DistributedCostBlock (hidden)
+      slot #divManualJournalsDistributedCostLines
+  block #divActivityLogs (hidden)
+    slot #ActivityLogs_Container
+  block #divAttachments (hidden)
+    heading "Attachments"
+    block #divAttachmentUpload
+      block #divUploadContainer
+        block #preview-template (hidden)
+        slot #iUpload (hidden)
+        form#attachmentsUploadForm
+          heading "Drop files here or click to upload."
+      block #divUploadImpossible
+    button "Attach from Google Drive" primary
+    slot #divAttachmentList
+  block #divFinancial (hidden)
+    heading "Financials"
+    tabs: Edit accounting dimensions #financials-default (hidden) | Transactions #financials-transactions | Final accounting dimensions values #financials-real (hidden)
+    tab pane#financials-default
+      heading "Edit accounting dimensions"
+      text "Accounting dimension settings can overwrite reference data. All accounting dimensions can be edited. Accounting dimensio"
+      table#tableDefaultDimensions
+    tab pane#financials-transactions
+      heading "Transactions"
+      button "Refresh"#divRefreshTransactions
+      slot #divTDetails
+    tab pane#financials-real
+      heading "Final accounting dimensions values"
+      input text#txtRealDimensionsSearch placeholder "Type text to search"
+      button "Search"#btnRealDimensionsSearch primary
+      button "Refresh"#btnRealDimensionsRefresh
+      slot #divRealDimensions
+form#frmPrint
+modal#divUploadNewLines medium
+  heading "Upload a new stock transfer"
+  button "×"
+  heading "1. Download current lines"
+  heading "2. Add new and modify existing products in the file."
+  heading "3. Upload"
+  slot #ImportLinesValidationContainer (hidden)
+  block #ImportLinesExceptionsContainer (hidden)
+    slot #ImportLinesExceptionsGrid
+  form#StockTransferDropContainer
+    heading "Drop files here or click to upload."
+  slot #ifrmDownloadNewLines (hidden)
+  form#frmDownloadNewLines
+  form#frmUploadNewLines
+  button "Close"
+modal#divUploadNewLinesOrder medium
+  heading "Upload a new stock order list"
+  button "×"
+  heading "1. Download current lines"
+  heading "2. Add new and modify existing products in the file."
+  heading "3. Upload"
+  slot #ImportOrderLinesValidationContainer (hidden)
+  block #ImportOrderLinesExceptionsContainer (hidden)
+    slot #ImportOrderLinesExceptionsGrid
+  form#StockTransferDropContainerOrder
+    heading "Drop files here or click to upload."
+  slot #ifrmDownloadNewLinesOrder (hidden)
+  form#frmDownloadNewLinesOrder
+  form#frmUploadNewLinesOrder
+  button "Close"
+modal#divScanDialog small
+  heading "Scanning"
+  button 
+  tabs: Automatic #AutomaticMode_tab | Manual #ManualMode_tab | Inventory #InventoryMode_tab
+  block #divScanLocation
+    slot #tdScanLocation
+    label "Location to pick from" for #cmbScanLocation
+  block #scanDesc
+  block #scanBar
+    block #dScan
+      slot #spScan
+  slot #ScanValidationContainer (hidden)
+  block #liScanPackBoxAutomatic (hidden)
+    slot #tdScanPackBoxAutomatic
+    label "Box #" for #txtScanPackBoxInventory
+  input text#txtScanFocus
+  block #divScanInfo (hidden)
+    heading "Found product:"
+    slot #divScanProductSelection (hidden)
+    block #liScanPackBox (hidden)
+      label "Box #:"
+      slot #tdScanPackBox
+    label "SKU:"
+    block #tdScanProductCode
+    label "Name:"
+    block #tdScanName
+    label "Barcode:"
+    block #tdScanBarcode
+    block #liScanBatchSN (hidden)
+      label "Batch/serial number:"
+      slot #tdScanBatchSN
+    block #liScanExpiryDate (hidden)
+      label "Expiry date:"
+      slot #tdScanExpiryDate
+    block #liScanQuantity (hidden)
+      label "Quantity:"
+      slot #tdScanQuantity
+  block #ScanInventoryModeContainer (hidden)
+    slot #divInventoryModeBarcodes
+    label "Barcodes"
+    block #liScanPackBoxInventory (hidden)
+      slot #tdScanPackBoxInventory
+      label "Box #"
+  block #ScanInventoryModeControls (hidden)
+    button "Save"#liScanSaveInventory primary
+    button "Close"
+  block #ScanManualModeControls (hidden)
+    button "Save"#liScanSave primary (hidden)
+    button "Close"
+  block #divScanAutoActions
+    button "Close"
+modal#secEmail medium
+  heading #emailDialogCaption
+  button "×"
+  button "Send"#btnSendEmail2 primary
+  button "Close"#emailBackAction2
+  heading "Email subject"
+  slot #EmailSendTemplate_AdditionalInfo (hidden)
+  input text#DEAREmailTo
+  label "To"
+  button #DEAREmailTo_btn
+  block #EmailSendTemplate_CC
+    input text#DEAREmailCC
+    label "CC"
+    button #DEAREmailCC_btn
+  input text#DEAREmailSubject placeholder "Type email subject..."
+  label "Subject"
+  block #EmailSendTemplate_NetworkingBlock (hidden)
+    slot #EmailSendTemplate_NetworkingCheck
+    label "Send via Cin7 Core network" for #chkEmail_sendViaNetwork
+  heading "Select files to attach"
+  block #EmailSendTemplate_AttachedFiles
+    heading #headerForOrderAttachments
+    slot #attachedFiles
+  block #EmailSendTemplate_AttachedFiles_Product
+    heading "Product"
+    slot #attachedFiles_Product
+  block #EmailSendTemplate_AttachedFiles_Supplier
+    heading "Supplier"
+    slot #attachedFiles_Supplier
+  block #EmailSendTemplate_AttachedFiles_Customer
+    heading "Customer"
+    slot #attachedFiles_Customer
+  heading "Email template"
+  slot #tdEmail_Body
+  block #emailReCaptcha (hidden)
+  button "Send"#btnSendEmail primary
+  button "Close"#emailBackAction
+modal#secRecipients medium
+  heading "Select a recipient"
+  button "×"
+  slot #gridRecipients
+  button "OK" primary
+  button "Close"
+slot #btnSendEmail2
+modal#dlgFamilyMatrix medium
+  heading "Add a product family"
+  button "×"
+  slot #FamilyMatrix_cmbFamily
+  label "Product family"
+  input checkbox#FamilyMatrix_cbOnlyAvailable
+  label "Show only available variations" for #FamilyMatrix_cbOnlyAvailable_InputId
+  slot #FamilyMatrix_divMessage (hidden)
+  block #FamilyMatrix_divOptions (hidden)
+    tabs: Matrix | List
+    tab pane#FamilyMatrix_divFamilyMatrixTab
+      block #FamilyMatrix_divBaseOptionContainer (hidden)
+        slot #FamilyMatrix_cmbBaseOption
+        label "Select base option:"
+        slot #FamilyMatrix_cmbBaseOptionValue
+        label "and its value:"
+      slot #FamilyMatrix_divMatrixContainer
+    tab pane#FamilyMatrix_divFamilyListTab
+      slot #FamilyMatrix_divListContainer
+  button "Add products"#FamilyMatrix_btnAdd primary
+  button "Close"#FamilyMatrix_btnClose
+modal#divCOGSAccDims small
+  heading "Accounting dimensions"
+  button "×"
+  button "Save"#btnSaveCOGSAccDims primary
+  button "Close"
+slot #CountrySpecificScript
+```
+
+### `/StocktransferList`: Stock transfers
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+heading "Stock transfers"
+block #bulkActionsNoteSuccess (hidden)
+block #bulkActionsNoteWarning (hidden)
+block #bulkActionsNoteError (hidden)
+button #divNew primary
+input text#divSearch placeholder "Type text to search"
+button "Search" primary
+slot #StockTransfer_FilterSummary
+button "Locations"#btnTransferFilters
+block #divStatusFilterContainer
+  select#divStatusFilter
+button #divRefresh
+button #Grid_gridName_Options
+block #divBulkActions
+  slot #lSelectedCounter
+  button "Undo"#btnUndo (hidden)
+  button "Void"#btnVoid (hidden)
+slot #StocktransferList_Index_Container
+modal#Stock_Transfer_Filters_Content small
+  heading "Location filters"
+  button "×"
+  label "From location"
+  slot #TransferFilters_FromLocation
+  label "From bin"
+  slot #TransferFilters_FromBin
+  label "To location"
+  slot #TransferFilters_ToLocation
+  label "To bin"
+  slot #TransferFilters_ToBin
+  button "Clear all" primary
+  button "Apply" primary
+  button "Cancel"
+```
+
 ## Components by bundle
+
+What the page code builds and mounts into the layout's slots.
 
 ### `FixedAssetType2019`
 

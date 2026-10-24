@@ -59,7 +59,7 @@ The integrations catalogue (`/Integrations`) and one subfolder per connector: it
 ## How to rebuild it
 
 1. **Schema.** Create one table per data model below (1), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Its page code builds no ExtJS components; the screen is server-rendered HTML.
+2. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
 
 ## Pages
 

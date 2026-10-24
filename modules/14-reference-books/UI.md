@@ -38,7 +38,1760 @@ Every component the page code builds, read from the shipped ExtJS bundles: grids
 | `/TenantUnitOfMeasure` | Units of measure | [`TenantUnitOfMeasure2019`](#tenantunitofmeasure2019) |
 | `/WarrantySetupList` | Warranties | [`WarrantiySetupList2019`](#warrantiysetuplist2019) |
 
+## Layout
+
+Each screen's server-rendered HTML inside the shell, as an outline: headings, tabs, sections, labels, inputs (`#id`), buttons (`▾` = dropdown), menus, tables and `slot`s (empty `<div>`s the components below mount into). `(hidden)` parts are shown by the page code when needed. Read with GET from a signed-in session; no values are kept.
+
+### `/AccountMapping`: Account mapping
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+block #ActivityLogDiv (hidden)
+  button "Close"
+  slot #ActivityLogs_Container
+button "Activity log" primary
+button "Save"#divSaveChanges primary
+form
+form#frmMapping
+  block #FirstField
+    label "Inventory control account"
+    select#InventoryControlAccount
+  block #liInventoryAccrual
+    label "Goods received not invoiced account"
+    select#InventoryAccrualAccount
+  label "Cost of goods sold account"
+  select#CostOfGoodsSoldAccount
+  label "Tax liability account"
+  select#TaxLiability
+  block #liAREExciseTaxAccount
+    label "Customer credit account"
+    select#SalePrepayment
+  label "In-transit account"
+  select#TransferInTransit
+  label "Current year profits account"
+  select#CurrentYearProfits
+  label "Unrealized currency gains account"
+  select#UnrealisedCurrencyGain
+  label "Inventory discrepancy account"
+  select#InventoryDiscrepancyAccount
+  block #liStockInTransit
+    label "Goods invoiced not received account"
+    select#StockInTransitAccount
+  label "Default revenue account"
+  select#DefaultRevenueAccount
+  label "Work in progress account"
+  select#WipAccount
+  label "Supplier deposits account"
+  select#PurchasePrepayment
+  block #divGiftCardLiability
+    label "Gift card liability account"
+    select#GiftCard
+  label "Realized currency gains account"
+  select#RealisedCurrencyGain
+  label "Payment clearing account"
+  select#PaymentClearing
+  block #QBSupplierDepositZeroTax_FormGroup (hidden)
+    label "Supplier deposit zero-rated tax rule"
+    select#QBSupplierDepositZeroTax
+modal#AccountMapping_CreateAccountForm medium
+  heading "Add account to Xero"
+  button "×"
+  label "Account type" for #tdAccountType
+  select#tdAccountType: Current Asset | Fixed asset | Non-current Asset | Prepayment | Equity | Depreciation | Direct Cost | Expense | Overhead | Current Liability | Liability | Non-current Liability | Other Income | Revenue | Sale
+  label "Account code" for #tdAccountCode
+  input text#tdAccountCode placeholder "A unique code/number for this account (limited to "
+  label "Name" for #tdAccountName
+  input text#tdAccountName placeholder "A short title for this account (limited to 150 cha"
+  label "Description (optional)" for #tdAccountDescription
+  input text#tdAccountDescription placeholder "A description of how this account should be used."
+  label "Show in expense claims" for #tdShowInExpenseClaims
+  input checkbox#tdShowInExpenseClaims
+  label "Enable payments to this account" for #tdEnablePayments
+  input checkbox#tdEnablePayments
+  button "Add" primary
+  button "Close"
+slot #CountrySpecificScript
+```
+
+### `/AccountingDimensions`: Accounting dimensions
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#divSaveChanges primary
+button "Activity log"#activityLogsButton primary
+slot #AccountingDimensions_Index_Container
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+```
+
+### `/BankAccounts`: Bank accounts
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+block #divMainContent
+  block #empty-list-message (hidden)
+    text "There are no bank accounts created for your organization yet."
+  slot #bankAccountList
+modal#divBankAccountDetails small
+  heading "Edit bank account details"#divChartOfAccountsBankContentDialogTitle
+  button "×"
+  input text#tdBankAccounts_Bank_AccountName placeholder "Enter account name"
+  label "Account name" for #tdBankAccounts_Bank_AccountName
+  input text#tdBankAccounts_Bank_Currency read-only
+  label "Account currency" for #tdBankAccounts_Bank_Currency
+  input text#tdBankAccounts_Bank_AccountCode read-only
+  label "Account code" for #tdBankAccounts_Bank_AccountCode
+  input text#tdBankAccounts_Bank_Bank placeholder "Enter a bank name"
+  label "Bank name" for #tdBankAccounts_Bank_Bank
+  input text#tdBankAccounts_Bank_AccountNumber placeholder "Enter account number"
+  label "Account number" for #tdBankAccounts_Bank_AccountNumber
+  input text#tdBankAccounts_Bank_InitialBalance placeholder "Enter initial account balance"
+  label "Initial account balance" for #tdBankAccounts_Bank_InitialBalance
+  slot #tdBankAccounts_Bank_Status
+  label "Status" for #tdBankAccounts_Bank_Status
+  button "Save"#divSaveChanges primary
+  button "Close"
+```
+
+### `/ChartOfAccounts`: Chart of accounts
+
+Frame: `ifrmUploadChartOfAccount`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Close"#cancelImport (hidden)
+block #divAccountsList
+  link "configure account mapping"
+  button "Activity log" primary
+  form#frmFillByDefault
+  form#frmDeleteArchived
+  form#frmLoadFromXero
+  form#frmExport
+  block #leftSideBtnBar
+    button "Account"#divNewAccount primary
+    button "Bank account"#divNewBankAccount primary
+    button "Refresh"#divRefresh
+    button "Load from Xero"#divLoadfromXero primary
+    button "Load from QuickBooks"#divLoadfromQuickbooks primary
+    button "Use default"#divFillByDefault
+    button "More actions"#divMore ▾
+    link "Delete unused archived accounts"#DeleteMenuItem
+    link "Import"#ImportMenuItem
+    link "Export"
+  block #rightSideBtnBar
+    input checkbox#divShowArchived
+    label "Show archived" for #divShowArchived
+    select#divFilter
+  slot #ChartOfAccounts_Index_Container
+  block #ActivityLogDiv (hidden)
+    button "Close"
+    button "Refresh"
+    slot #ActivityLogs_Container
+block #divImportAccounts (hidden)
+  text "Download our chart of accounts template file"
+  button "Download CSV template" primary
+  text "Copy your chart of accounts into the template"
+  button "Fields specification"#Imports_Spec_Requirement_Button ▾
+  text "Do not change the column headings in the template file. These need to be unchanged for the import to work in the next st"
+  text "The file should contain the full chart of accounts, all accounts not included in the file will be deactivated or deleted"
+  block #Imports_Spec_Requirement (hidden)
+    text "Accounts are identified first by code and then by name. You can change code only"
+    table: Field name | What is it?
+    text "Optional fields"
+    text "You can fill in an optional field if you have them"
+    button "Optional fields"#Imports_Spec_Optional_Button ▾
+    block #Imports_Spec_Optional (hidden)
+      table: Optional field | What is it?
+  text "Import the updated template file"
+  block #fileImportGridContainer (hidden)
+    block #importResult_Success (hidden)
+    block #importResult_Error (hidden)
+      slot #importResult_ErrorMessage
+  block #divExceptions (hidden)
+    slot #ImportExceptionsContainer
+  block #divImportResult (hidden)
+    slot #divPerformedActionsGrid
+  slot #ifrmUploadChartOfAccount (hidden)
+  form#ChartOfAccountDropContainer
+    heading "Drop files here or click to upload."
+modal#divChartOfAccountsBankContentDialog small
+  heading #divChartOfAccountsBankContentDialogTitle
+  button "×"
+  tabs: General #bank-account-general-settings | Accounting dimensions #bank-accounting-dimensions-setup
+  tab pane#bank-account-general-settings
+    select#tdParentBankAccount
+    label "Parent account" for #tdParentBankAccount
+    input text#tdChartOfAccounts_Bank_AccountName placeholder "Enter account name"
+    label "Account name" for #tdChartOfAccounts_Bank_AccountName
+    select#tdChartOfAccounts_Bank_Currency
+    label "Account currency" for #tdChartOfAccounts_Bank_Currency
+    input text#tdChartOfAccounts_Bank_AccountCode placeholder "Enter account code"
+    label "Account code" for #tdChartOfAccounts_Bank_AccountCode
+    input text#tdChartOfAccounts_Bank_Bank placeholder "Enter a bank name"
+    label "Bank name" for #tdChartOfAccounts_Bank_Bank
+    input text#tdChartOfAccounts_Bank_AccountNumber placeholder "Enter account number"
+    label "Account number" for #tdChartOfAccounts_Bank_AccountNumber
+    input text#tdChartOfAccounts_Bank_InitialBalance placeholder "Enter initial account balance"
+    label "Initial account balance" for #tdChartOfAccounts_Bank_InitialBalance
+    label "Status" for #tdChartOfAccounts_Bank_Status
+    select#tdChartOfAccounts_Bank_Status
+  tab pane#bank-accounting-dimensions-setup
+    table#tableGridBankAccountDimensions: Dimension | Enable
+  button "Save" primary
+  button "Close"
+modal#divChartOfAccountsIndexContentDialog small
+  heading #divChartOfAccountsIndexContentDialogTitle
+  button "×"
+  tabs: General #account-general-settings | Accounting dimensions #accounting-dimensions-setup
+  tab pane#account-general-settings
+    select#tdParentAccount
+    label "Parent account" for #tdParentAccount
+    select#tdChartOfAccounts_Index_AccountType
+    label "Account type" for #tdChartOfAccounts_Index_AccountType
+    select#tdSystemAccount
+    label "System account" for #tdSystemAccount
+    input text#tdChartOfAccounts_Index_Code placeholder "Enter a code"
+    label "Code" for #tdChartOfAccounts_Index_Code
+    input text#tdChartOfAccounts_Index_Name placeholder "Enter a name"
+    label "Name" for #tdChartOfAccounts_Index_Name
+    textarea#tdChartOfAccounts_Index_Description placeholder "Enter a description"
+    label "Description" for #tdChartOfAccounts_Index_Description
+    select#tdChartOfAccounts_Index_Status
+    label "Status" for #tdChartOfAccounts_Index_Status
+    input checkbox#tdChartOfAccounts_Index_ForPayments
+    label "Accept payments" for #tdChartOfAccounts_Index_ForPayments
+  tab pane#accounting-dimensions-setup
+    table#tableGridAccountDimensions: Dimension | Enable
+  button "Save" primary
+  button "Close"
+```
+
+### `/DealList`: Deals
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button #divNew primary
+input text#divSearchField name=divSearch placeholder "Type text to search"
+button "Search"#divSearch primary
+button "Import"#divImport
+button "Export"#divExport
+button #divRefresh primary
+slot #DealList_Index_Container
+form#frmExport
+```
+
+### `/DearToDearNetworking`: Cin7 Core to Cin7 Core Network
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#saveAction primary
+block #divMainContent
+  slot #DearToDear_Index_NetworkingKey
+  button "Send an invite"#DearToDear_Index_SendInvite primary
+  button "Regenerate"#DearToDear_Index_RegenerateNetworkingKey primary
+  heading "Network connections"
+  button #divNew primary
+  slot #DearToDear_Index_Container
+block #secEmail (hidden)
+  block #secEmail_Content
+    slot #emailDialogCaption
+    button "Send"#btnSendEmail primary
+    button "Back"#emailBackAction
+    slot #EmailSendTemplate_AdditionalInfo (hidden)
+    label "To" for #DEAREmailTo
+    label "Subject" for #DEAREmailSubject
+    input text#DEAREmailTo
+    button #DEAREmailTo_btn primary
+    input text#DEAREmailSubject
+    slot #tdEmail_Body
+    block #emailReCaptcha (hidden)
+modal#secRecipients medium
+  heading "Select a recipient"
+  button "×"
+  slot #gridRecipients
+  button "Add" primary
+  button "Close"
+slot #btnSendEmail2
+```
+
+### `/DefaultFieldValues/Customer`: Default field values
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+button "Save"#saveAction1 primary
+button "Activity log" primary
+label "Currency"
+slot #Customer_Index_Currency
+block #liFixedAssetType
+  label "Sale account"
+  slot #Customer_Index_SaleAccount
+block #liFixedAssetType
+  label "Tax rule"
+  slot #Customer_Index_TaxRule
+label "Payment term"
+slot #Customer_Index_PaymentTerm
+block #liCostingMethod
+  label "Account receivable"
+  slot #Customer_Index_AccountReceivable
+label "Sale price tier"
+slot #Customer_Index_SalePriceTier
+block #liDropShipMode
+  label "Sales representative"
+  slot #Customer_Index_DefaultSalesRepresentative
+block #liDiscount
+  label "Default carrier"
+  slot #Customer_Index_DefaultCarrier
+block #liLocation
+  label "Default location"
+  slot #Customer_Index_DefaultLocation
+label "Attributes set"
+slot #Customer_Index_AttributeSet
+```
+
+### `/DefaultFieldValues/Product`: Default field values
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+button "Save"#saveAction1 primary
+button "Activity log" primary
+label "Type"
+slot #Product_Index_Type
+block #liFixedAssetType
+  label "Fixed asset type"
+  slot #Product_Index_FixedAssetType
+label "Category"
+slot #Product_Index_Category
+label "Brand"
+slot #Product_Index_Brand
+block #liCostingMethod
+  label "Costing method"
+  slot #Product_Index_CostingMethod
+block #liDefaultUnitOfMeasure
+  label "Unit of measure"
+  slot #Product_Index_DefaultUnitOfMeasure
+block #liDropShipMode
+  label "Drop ship"
+  slot #Product_Index_DropShipMode
+block #liDiscount
+  label "Product discount"
+  slot #Product_Index_Discount
+block #liLocation
+  label "Default location"
+  slot #Product_Index_DefaultLocation
+label "Additional attributes set"
+slot #Product_Index_ProductAttributeSet
+label "I am selling this product"
+slot #Product_Index_NotSellable
+```
+
+### `/DefaultFieldValues/Supplier`: Default field values
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+button "Save"#saveAction1 primary
+button "Activity log" primary
+label "Currency"
+slot #Supplier_Index_Currency
+label "Default carrier"
+slot #Supplier_Index_DefaultCarrier
+label "Tax rule"
+slot #Supplier_Index_TaxRule
+label "Payment term"
+slot #Supplier_Index_PaymentTerm
+block #liCostingMethod
+  label "Account payable"
+  slot #Supplier_Index_AccountPayable
+block #liCostingMethod
+  label "Attributes set"
+  slot #Supplier_Index_AttributeSet
+```
+
+### `/DiscountListNew`: Discounts
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button #divNew primary
+button #divRefresh primary
+input text#divSearchField name=divSearch placeholder "Type text to search"
+button "Search"#divSearch primary
+slot #DiscountList_Index_Container
+```
+
+### `/ExpenseItems`: Expense items
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#ExpenseItems_SaveAction primary
+button "Activity log" primary
+button #divNew primary
+slot #ExpenseItem_Index_Container
+button "Add more items"#ExpenseItem_CreateNew primary
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+modal#divCOGSAccDims small
+  heading "Accounting dimensions"
+  button "×"
+  button "Save"#btnSaveCOGSAccDims primary
+  button "Close"
+```
+
+### `/FixedAssetType`: Fixed asset types
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Activity log" primary
+button #divNew primary
+slot #FixedAssetType_Index_Container
+button "Add more items"#FixedAssetType_Index_NewLink primary
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+modal#divNewFixedAssetTypeDialog
+  heading "Add a new fixed asset type"#divNewFixedAssetTypeDialogTitle
+  button "×"
+  input text#tdFixedAssetTypeName placeholder "Enter a name"
+  label "Name"
+  select#tdFixedAssetTypeDepreciationMethod
+  label "Depreciation method"
+  label "Averaging method"
+  select#tdFixedAssetTypeAveragingMethod
+  select#tdFixedAssetTypeAssetAccountCode
+  label "Asset account"
+  select#tdFixedAssetTypeAccumulatedDepreciationAccountCode
+  label "Accumulated depreciation account"
+  select#tdFixedAssetTypeDepreciationExpenseAccountCode
+  label "Depreciation expense account"
+  input radio#radFixedAssetTypeRate name=rbRate
+  label "Rate (%)" for #radFixedAssetTypeRate
+  input radio#radFixedAssetTypeEffectiveLife name=rbRate
+  label "Effective life (Yrs)" for #radFixedAssetTypeEffectiveLife
+  input text#tdFixedAssetTypeRate (hidden)
+  input text#tdFixedAssetTypeEffectiveLife (hidden)
+  button "Save" primary
+  button "Close"
+```
+
+### `/LeadStatus`: Lead statuses
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#divSaveChanges primary
+button #divNew primary
+slot #LeadStatus_Index_Container
+button "Add more items"#LeadStatus_Index_NewLink primary
+modal#divLeadStatusDetails small
+  heading "Payment term details"
+  button "×"
+  slot #LeadStatus_Errors (hidden)
+  input text#LeadStatus_Description
+  label "Name" for #LeadStatus_Description
+  select#LeadStatus_Method: Number of days | Day of next month | Last day of next month | Days since the end of the month
+  label "Method" for #LeadStatus_Method
+  input text#LeadStatus_Days
+  label "Days" for #LeadStatus_Days
+  input checkbox#LeadStatus_IsDefault
+  label "Is default" for #LeadStatus_IsDefault
+  input checkbox#LeadStatus_IsActive
+  label "Is active" for #LeadStatus_IsActive
+  button "Save" primary
+  button "Close"
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+form#frmExportPaymentTerm
+```
+
+### `/OpeningBalances`: Opening balances
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Back to list"
+block #MultiCurrencyEditor_MainContent
+  button "Save"#divSaveChanges2 primary
+  select#OpeningBalances_Index_OpeningBalancesMonth
+  select#OpeningBalances_Index_OpeningBalancesYear
+  tab pane#portlet_tab1
+    slot #transactionDate
+    slot #OpeningBalances_Index_BalancesContainer
+  tab pane#portlet_tab2
+    slot #accPayDate
+    button "Invoice"#btnAddPurchase primary
+    button "Import from CSV"#btnImportOutstandingPurchases
+    slot #OpeningBalances_Purchase_Container
+    slot #OpeningBalances_Purchase_Totals
+    button "Add more items"#OpeningBalances_Purchases_AddLink primary
+  tab pane#portlet_tab3
+    slot #accRecDate
+    button "Invoice"#btnAddSale primary
+    button "Import from CSV"#btnImportOutstandingSales
+    slot #OpeningBalances_Sale_Container
+    slot #OpeningBalances_Sale_Totals
+    button "Add more items"#OpeningBalances_Sales_AddLink primary
+  tab pane#portlet_tab4
+    slot #sohDate
+    button "Refresh"#divRefreshSOH
+    button "Import inventory list from CSV"#divimportInventoryList
+    button "Import stock on hand from CSV"#divimportSOH
+    slot #OpeningBalances_SOH_Container
+    slot #OpeningBalances_SOH_Totals
+  tab pane#portlet_tab5
+    slot #fixedAssetDate
+    button "Fixed asset"#divAddNewFixedAsset primary
+    button "Refresh"#divAddNewFixedAsset
+    button "Import from CSV"#divimportInventory
+    slot #OpeningBalances_FixedAsset_Container
+    slot #OpeningBalances_FixedAsset_Totals
+  tab pane#portlet_tab6
+    input text#divActivityLogsSearch placeholder "Type text to search"
+    button "Search" primary
+    button #divActivityLogsRefresh
+    slot #ActivityLogs_Container
+block #SOHEditor_Content
+  button "Save"#btnSaveSOHEditorTop primary
+  button "Cancel"#btnCancelSOHEditorTop primary
+  slot #divSOHDetailLines
+  block #SOHEditor_Actions
+    button "Save"#btnSaveSOHEditor primary
+    button "Cancel"#btnCancelSOHEditor primary
+block #FixedAssetEditor_Content
+  block #FixedAssetEditor_Content_Title
+  button "Save"#btnSaveFixedAssetEditorTop primary
+  button "Cancel"#btnCancelFixedAssetEditorTop primary
+  block #divFixedAssetEditor_Content_EditNote
+  block #divFixedAssetEditor_Content_AddNote
+  block #divFixedAssetAddNewLine
+    button "Fixed asset"#btnFixedAssetAddNewLine primary
+  slot #divFixedAssetDetailLines
+  block #FixedAssetEditor_Actions
+    button "Save"#btnSaveFixedAssetEditor primary
+    button "Cancel"#btnCancelFixedAssetEditor primary
+block #FixedAssetDetailsEditor_Content (hidden)
+  block #FixedAssetDetailsEditor_Index_Content_Title
+  button "Save" primary
+  button "Cancel" primary
+  label "Product" for #txtProductName
+  slot #tdProductName
+  input text#tdSerialNumber placeholder "Enter a serial number"
+  label "Serial number" for #tdSerialNumber
+  label "Location" for #txtLocationName
+  slot #tdLocationName
+  slot #DepreciationStartDate
+  label "Depreciation start date" for #txtDepreciationStartDate
+  label "Depreciation method" for #tdDepreciationMethod
+  select#tdDepreciationMethod
+  label "Averaging method" for #tdAveragingMethod
+  select#tdAveragingMethod
+  input radio#rbRateProcent name=rbRate
+  label "Rate (%)" for #rbRateProcent
+  input text#tdRate
+  input radio#rbRateLife name=rbRate
+  label "Effective life (Yrs)" for #rbRateLife
+  input text#tdEffectiveLife
+  label "Asset account"
+  slot #tdFAcmbAssetAccountCode
+  label "Accumulated depreciation account"
+  slot #tdFAAccumulatedDepreciationAccountCode
+  label "Depreciation expense account"
+  slot #tdFADepreciationExpenseAccountCode
+  slot #PurchaseDate
+  label "Purchase date" for #txtPurchaseDate
+  input text#tdPurchaseCost placeholder "Enter purchase cost"
+  label "Purchase cost" for #tdPurchaseCost
+  input text#tdSalvageValue placeholder "Enter salvage value"
+  label "Salvage value" for #tdSalvageValue
+  input text#tdStartAccumulatedDepreciationAmount placeholder "Enter accumulated depreciation"
+  label "Accumulated depreciation" for #tdStartAccumulatedDepreciationAmount
+  block #FixedAssetEditor_Actions
+    button "Save" primary
+    button "Cancel" primary
+block #MultiCurrencyEditor_Content
+  slot #currentAccount
+  button "Save"#btnSaveMultiCurrencyTop primary
+  button "Cancel"#btnCancelMultiCurrencyTop primary
+  slot #exchangeRateDate
+  block #divAddMultiCurrency
+    button "Currency"#divNewMultiCurrencyLine primary
+  slot #divMultiCurrencyLines
+  block #OpeningBalances_MultiCurrency_AddLink
+    button "Add more items" primary
+  block #MultiCurrencyEditor_Actions
+    button "Save"#btnSaveMultiCurrency primary
+    button "Cancel"#btnCancelMultiCurrency primary
+modal#divNewSupplierDialog small
+  heading "Add a supplier"
+  button "×"
+  block #tdOpeningBalances_NewSupplier_Name_Container
+    input text#tdOpeningBalances_NewSupplier_Name placeholder "Enter a supplier name"
+    label "Name" for #tdOpeningBalances_NewSupplier_Name
+  label "Payment term" for #tdOpeningBalances_NewSupplier_PaymentTerm
+  select#tdOpeningBalances_NewSupplier_PaymentTerm
+  label "Tax rule" for #tdOpeningBalances_NewSupplier_TaxRule
+  select#tdOpeningBalances_NewSupplier_TaxRule
+  input text#tdOpeningBalances_NewSupplier_Discount placeholder "Enter a supplier discount"
+  label "Discount" for #tdOpeningBalances_NewSupplier_Discount
+  label "Currency" for #tdOpeningBalances_NewSupplier_Currency
+  slot #tdOpeningBalances_NewSupplier_Currency
+  label "Account payable" for #tdOpeningBalances_NewSupplier_AccountCode
+  select#tdOpeningBalances_NewSupplier_AccountCode
+  label "Default carrier" for #tdOpeningBalances_NewSupplier_DefaultCarrier
+  select#tdOpeningBalances_NewSupplier_DefaultCarrier
+  input text#tdOpeningBalances_NewSupplier_TaxNumber name=tdOpeningBalances_NewSupplier_Discount placeholder "Enter a tax number"
+  label "Tax number" for #tdOpeningBalances_NewSupplier_TaxNumber
+  textarea#tdOpeningBalances_NewSupplier_Comments placeholder "Enter comments"
+  label "Comments" for #tdOpeningBalances_NewSupplier_Comments
+  button "Save" primary
+  button "Close"
+modal#divNewCustomerDialog
+  heading "Add a customer"
+  button "×"
+  block #tdOpeningBalances_NewCustomer_Name_Container
+    input text#tdOpeningBalances_NewCustomer_Name placeholder "Enter a customer name"
+    label "Name" for #tdOpeningBalances_NewCustomer_Name
+  label "Payment term" for #tdOpeningBalances_NewCustomer_PaymentTerm
+  select#tdOpeningBalances_NewCustomer_PaymentTerm
+  label "Sale account" for #tdOpeningBalances_NewCustomer_SaleAccount
+  select#tdOpeningBalances_NewCustomer_SaleAccount
+  label "Sales representative" for #tdOpeningBalances_NewCustomer_DefaultSalesRepresentative
+  select#tdOpeningBalances_NewCustomer_DefaultSalesRepresentative
+  label "Default location" for #tdOpeningBalances_NewCustomer_DefaultLocation
+  select#tdOpeningBalances_NewCustomer_DefaultLocation
+  input text#tdOpeningBalances_NewCustomer_Discount placeholder "Enter a customer discount"
+  label "Discount" for #tdOpeningBalances_NewCustomer_Discount
+  label "Currency" for #tdOpeningBalances_NewCustomer_Currency
+  slot #tdOpeningBalances_NewCustomer_Currency
+  label "Account receivable" for #tdOpeningBalances_NewCustomer_AccountPayable
+  select#tdOpeningBalances_NewCustomer_AccountPayable
+  label "Tax rule" for #tdOpeningBalances_NewCustomer_TaxRule
+  select#tdOpeningBalances_NewCustomer_TaxRule
+  label "Default carrier" for #tdOpeningBalances_NewCustomer_DefaultCarrier
+  select#tdOpeningBalances_NewCustomer_DefaultCarrier
+  input text#tdOpeningBalances_NewCustomer_TaxNumber placeholder "Enter a tax number"
+  label "Tax number" for #tdOpeningBalances_NewCustomer_TaxNumber
+  label "Sale price tier" for #tdOpeningBalances_NewCustomer_SalePriceTier
+  select#tdOpeningBalances_NewCustomer_SalePriceTier
+  textarea#tdOpeningBalances_NewCustomer_Comments placeholder "Enter comments"
+  label "Comments" for #tdOpeningBalances_NewCustomer_Comments
+  button "Save" primary
+  button "Close"
+modal#divNewProductDialog small
+  heading "Add a product"
+  button "×"
+  input text#tdPurchase_NewProduct_ProductCode
+  label "SKU" for #tdPurchase_NewProduct_ProductCode
+  input text#tdPurchase_NewProduct_Name
+  label "Name" for #tdPurchase_NewProduct_Name
+  label "Type" for #tdPurchase_NewProduct_Type
+  select#tdPurchase_NewProduct_Type
+  block #FixedAssetTypeRow
+    label "Fixed asset type" for #tdPurchase_NewProduct_FixedAssetType
+    select#tdPurchase_NewProduct_FixedAssetType
+    button #addBtn_NewProduct_FixedAssetType
+  label "Category" for #tdPurchase_NewProduct_Category
+  select#tdPurchase_NewProduct_Category
+  label "Unit of measure" for #tdPurchase_NewProduct_UnitOfMeasure
+  select#tdPurchase_NewProduct_UnitOfMeasure
+  label "Costing method" for #tdPurchase_NewProduct_CostingMethod
+  select#tdPurchase_NewProduct_CostingMethod
+  label "Purchase tax rule" for #tdPurchase_NewProduct_PurchaseTaxRule
+  select#tdPurchase_NewProduct_PurchaseTaxRule
+  label "Sale tax rule" for #tdPurchase_NewProduct_SaleTaxRule
+  select#tdPurchase_NewProduct_SaleTaxRule
+  label "Additional attributes set" for #tdPurchase_NewProduct_ProductAttributeSet
+  select#tdPurchase_NewProduct_ProductAttributeSet
+  input text#tdPurchase_NewProduct_MinimumBeforeReorder
+  label "Minimum before reorder" for #tdPurchase_NewProduct_MinimumBeforeReorder
+  block #ReorderQuantityRow
+    input text#tdPurchase_NewProduct_ReorderQuantity
+    label "Reorder quantity" for #tdPurchase_NewProduct_ReorderQuantity
+  input text#tdPurchase_NewProduct_Barcode
+  label "Barcode" for #tdPurchase_NewProduct_Barcode
+  block #StockLocatorRow
+    input text#tdPurchase_NewProduct_StockLocator
+    label "Stock locator" for #tdPurchase_NewProduct_Barcode
+  block #Purchase_NewProduct_RowCustomField1
+    input text#tdPurchase_NewProduct_CustomField1
+    label "Attribute 1"
+  block #Purchase_NewProduct_RowCustomField2
+    input text#tdPurchase_NewProduct_CustomField2
+    label "Attribute 2"
+  block #Purchase_NewProduct_RowCustomField3
+    input text#tdPurchase_NewProduct_CustomField3
+    label "Attribute 3"
+  block #Purchase_NewProduct_RowCustomField4
+    input text#tdPurchase_NewProduct_CustomField4
+    label "Attribute 4"
+  block #Purchase_NewProduct_RowCustomField5
+    input text#tdPurchase_NewProduct_CustomField5
+    label "Attribute 5"
+  block #Purchase_NewProduct_RowCustomField6
+    input text#tdPurchase_NewProduct_CustomField6
+    label "Attribute 6"
+  block #Purchase_NewProduct_RowCustomField7
+    input text#tdPurchase_NewProduct_CustomField7
+    label "Attribute 7"
+  block #Purchase_NewProduct_RowCustomField8
+    input text#tdPurchase_NewProduct_CustomField8
+    label "Attribute 8"
+  block #Purchase_NewProduct_RowCustomField9
+    input text#tdPurchase_NewProduct_CustomField9
+    label "Attribute 9"
+  block #Purchase_NewProduct_RowCustomField10
+    input text#tdPurchase_NewProduct_CustomField10
+    label "Attribute 10"
+  button "Save" primary
+  button "Close"
+modal#divNewFixedAssetTypeDialog
+  heading "Add a new fixed asset type"#divNewFixedAssetTypeDialogTitle
+  button "×"
+  input text#tdFixedAssetTypeName placeholder "Enter a name"
+  label "Name"
+  select#tdFixedAssetTypeDepreciationMethod
+  label "Depreciation method"
+  label "Averaging method"
+  select#tdFixedAssetTypeAveragingMethod
+  select#tdFixedAssetTypeAssetAccountCode
+  label "Asset account"
+  select#tdFixedAssetTypeAccumulatedDepreciationAccountCode
+  label "Accumulated depreciation account"
+  select#tdFixedAssetTypeDepreciationExpenseAccountCode
+  label "Depreciation expense account"
+  input radio#radFixedAssetTypeRate name=rbRate
+  label "Rate (%)" for #radFixedAssetTypeRate
+  input radio#radFixedAssetTypeEffectiveLife name=rbRate
+  label "Effective life (Yrs)" for #radFixedAssetTypeEffectiveLife
+  input text#tdFixedAssetTypeRate (hidden)
+  input text#tdFixedAssetTypeEffectiveLife (hidden)
+  button "Save" primary
+  button "Close"
+modal#OpeningBalances_VoidFixedAsset_Content
+  heading "Opening fixed asset will be deleted"
+  button "Void" primary
+  button "Close"
+modal#OpeningBalances_VoidSOH_Content
+  heading "Opening stock on hand will be voided"
+  button "Void" primary
+  button "Close"
+```
+
+### `/OrderRouting`: Order routing
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#divSaveChanges2 primary
+button "Activity log" primary
+button "Help"
+label "Order routing" for #tdWarrantySetup_IsAutoGeneratedNumber
+input checkbox#OrderRouting_Index_Enable (hidden)
+input radio#OrderRouting_Index_Enable_On name=OrderRouting_Index_Enable
+label "On" for #OrderRouting_Index_Enable_On
+input radio#OrderRouting_Index_Enable_Off name=OrderRouting_Index_Enable
+label "Off" for #OrderRouting_Index_Enable_Off
+block #keepRoutingBlock (hidden)
+  label "Keep routing, regardless of the stock status" for #tdWarrantySetup_IsAutoGeneratedNumber
+  input checkbox#OrderRouting_Index_KeepRouting (hidden)
+  input radio#OrderRouting_Index_KeepRouting_On name=OrderRouting_Index_KeepRouting
+  label "On" for #OrderRouting_Index_KeepRouting_On
+  input radio#OrderRouting_Index_KeepRouting_Off name=OrderRouting_Index_KeepRouting
+  label "Off" for #OrderRouting_Index_KeepRouting_Off
+block #OrderRouting_SettingsTable (hidden)
+  button "Location"#divNew primary
+  button "Import"#divImport
+  button "Export"#divExport
+  slot #OrderRouting_Index_Container
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+modal#divOrderRoutingDetails small
+  heading "Order routing details"
+  button "×"
+  slot #OrderRoutingDetails_Errors
+  select#OrderRoutingDetails_Country
+  label "Country" for #OrderRoutingDetails_Country
+  input text#OrderRoutingDetails_StateProvince
+  label "State/province" for #OrderRoutingDetails_StateProvince
+  input text#OrderRoutingDetails_CitySububrb
+  label "City/ suburb" for #OrderRoutingDetails_CitySububrb
+  input text#OrderRoutingDetails_ZIP
+  label "Zip / postcode" for #OrderRoutingDetails_ZIP
+  select#OrderRoutingDetails_Location
+  label "Location" for #OrderRoutingDetails_Location
+  button "Save"#divSaveDetails primary
+  button "Close"#btnCloseModal
+form#frmExportOrderRouting
+```
+
+### `/RMAReasonForReturn`: Reason for return
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Tutorial"
+text "Add reasons for returning an item."
+button "Save"#divSaveChanges primary
+button #divNew primary
+input text#divSearchField placeholder "Type text to search"
+button "Search" primary
+slot #RMAReasonForReturn_Index_Container
+button "Add more items"#RMAReasonForReturn_Index_NewLink primary
+```
+
+### `/RMAReturnOrderSettings`: Return order settings
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Tutorial"
+heading "Return order settings"
+button "Save"#divSaveChanges primary
+label "When RMA is created in Cin7 Core, receive the returned products to" for #ReceiptsLocationID
+slot #ReturnPolicyReceiptsLocation
+label "Non-warranty expense account" for #NoWarrantyExpenseAccount
+slot #NoWarrantyExpenseAccount
+text "Expenses (replacement, inspection, repair, shipment etc.) incurred for items not covered by warranty will be charged to "
+label "Warranty expense account" for #WarrantyExpenseAccount
+slot #WarrantyExpenseAccount
+text "Expenses (replacement, inspection, repair, shipment etc.) incurred for items covered by warranty will be charged to this"
+label "Scrap/write-off default expense account" for #ScrapWriteOffDefaultExpenseAccount
+slot #ScrapWriteOffDefaultExpenseAccount
+text "Returned products that are scrapped/written-off will be charged to this expense account."
+label "Credit note creation and authorization setting" for #CreateCreditNoteType
+select#CreateCreditNoteType: After each product line is received | After all products are received
+text "Credit notes can either be created for each receiving order (RO) line the uses authorizes, or alternatively a single cre"
+text "Changes will be applied to new RMA orders only."
+```
+
+### `/RMAReturnPolicy`: Return policy
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#saveBtn primary (hidden)
+button "Tutorial"
+button "Back to list"#btnBackToList (hidden)
+block #updatePolicy (hidden)
+  text "Add return policy to associate it further with the product. Set up attributes for new return policy Edit attributes for "
+  heading #formCaption
+  label "Active" for #tdRMAReturnPolicy_Index_IsActive
+  input checkbox#tdRMAReturnPolicy_Index_IsActive
+  label "Name" for #tdRMAReturnPolicy_Index_Name
+  input text#tdRMAReturnPolicy_Index_Name placeholder "Enter a name for the return policy"
+  text "Available for the following countries"
+  label "Countries" for #tdRMAReturnPolicy_Index_Countries
+  slot #tdRMAReturnPolicy_Index_Countries
+  slot #countriesPlaceholder (hidden)
+  text "Available for the following products"
+  label "Product families" for #tdRMAReturnPolicy_Index_Families
+  slot #tdRMAReturnPolicy_Index_Families
+  slot #familiesPlaceholder (hidden)
+  label "Tags" for #tdRMAReturnPolicy_Index_Tags
+  slot #tdRMAReturnPolicy_Index_Tags
+  slot #tagsPlaceholder (hidden)
+  label "Categories" for #tdRMAReturnPolicy_Index_Categories
+  slot #tdRMAReturnPolicy_Index_Categories
+  slot #categoriesPlaceholder (hidden)
+  label "Brands" for #tdRMAReturnPolicy_Index_Brands
+  slot #tdRMAReturnPolicy_Index_Brands
+  slot #brandsPlaceholder (hidden)
+  heading "RMA processing milestones"
+  slot #RMAMilestones_Index_Container
+  button "Add more items"#RMAMilestones_Index_NewLink primary
+  heading "Attributes"
+  label "Return is possible" for #tdRMAReturnPolicy_Index_IsReturnPossible
+  input checkbox#tdRMAReturnPolicy_Index_IsReturnPossible
+  label "Return calculation start date"
+  select#tdRMAReturnPolicy_Index_ReturnCalculationStartDate
+  label "Return is available within X calendar days of the sale"
+  input text#tdRMAReturnPolicy_Index_ReturnDays placeholder "Lifetime"
+  label "Refund is possible" for #tdRMAReturnPolicy_Index_IsRefundPossible
+  input checkbox#tdRMAReturnPolicy_Index_IsRefundPossible
+  label "Refund payment options"
+  input radio#tdRMAReturnPolicy_Index_RefundPaymentOptions_Credit name=tdRMAReturnPolicy_Index_RefundPaymentOptions
+  label "Credit" for #tdRMAReturnPolicy_Index_RefundPaymentOptions_Credit
+  input radio#tdRMAReturnPolicy_Index_RefundPaymentOptions_Original name=tdRMAReturnPolicy_Index_RefundPaymentOptions
+  label "Based on original method of payment" for #tdRMAReturnPolicy_Index_RefundPaymentOptions_Original
+  label "Refund calculation start date"
+  select#tdRMAReturnPolicy_Index_RefundCalculationStartDate
+  label "Refund is available within X calendar days of the sale"
+  input text#tdRMAReturnPolicy_Index_RefundDays placeholder "Lifetime"
+  label "Replacement is possible" for #tdRMAReturnPolicy_Index_IsReplacementPossible
+  input checkbox#tdRMAReturnPolicy_Index_IsReplacementPossible
+  label "Cross ship is possible" for #tdRMAReturnPolicy_Index_IsPossibleCrossSale
+  input checkbox#tdRMAReturnPolicy_Index_IsPossibleCrossSale
+  label "Replacement calculation start date"
+  select#tdRMAReturnPolicy_Index_ReplacementCalculationStartDate
+  label "Replacement is available within X calendar days"
+  input text#tdRMAReturnPolicy_Index_ReplacementDays placeholder "Lifetime"
+  label "Restocking fees"
+  input radio#rbtnRMAReturnPolicy_Index_RestockingFees_Percent name=tdRMAReturnPolicy_Index_RestockingFeesType
+  label "percent" for #rbtnRMAReturnPolicy_Index_RestockingFees_Percent
+  input text#tdRMAReturnPolicy_Index_RestockingFeesPercent
+  input radio#rbtnRMAReturnPolicy_Index_RestockingFees_Amount name=tdRMAReturnPolicy_Index_RestockingFeesType
+  label "amount" for #rbtnRMAReturnPolicy_Index_RestockingFees_Amount
+  input text#tdRMAReturnPolicy_Index_RestockingFeesFixedAmount
+  slot #tdRMAReturnPolicy_Index_ReturnPolicyText
+block #mainGrid
+  button #divNew primary
+  input text#divSearchField placeholder "Type text to search"
+  button "Search" primary
+  button #divExport
+  slot #RMAReturnPolicy_Index_Container
+modal#divNewCostTypeDialog small
+  heading "Add a new cost type"
+  button "×"
+  input text#tdCostTypeName placeholder "Enter a name"
+  label "Name" for #tdCostTypeName
+  button "Save" primary
+  button "Close"
+```
+
+### `/TenantAddress`: Company addresses
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#divSaveChanges2 primary
+button "Activity log" primary
+button #divNew primary
+button "Export"#divExport
+slot #TenantAddress_Index_Container
+button "Add more items"#TenantAddress_Index_NewLink primary
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+modal#divAddressDetails small
+  heading "Company address details"
+  button "×"
+  slot #AddressDetails_Errors
+  input text#AddressDetails_Line1
+  label "Line 1" for #AddressDetails_Line1
+  input text#AddressDetails_Line2
+  label "Line 2" for #AddressDetails_Line2
+  input text#AddressDetails_CitySuburb
+  label "City / suburb" for #AddressDetails_CitySuburb
+  input text#AddressDetails_StateProvince
+  label "State / province" for #AddressDetails_StateProvince
+  input text#AddressDetails_ZipPostCode
+  label "ZIP / postcode" for #AddressDetails_ZipPostCode
+  select#AddressDetails_Country
+  label "Country" for #AddressDetails_Country
+  select#AddressDetails_Type: Billing | Business | Shipping
+  label "Type" for #AddressDetails_Type
+  input checkbox#AddressDetails_Default
+  label "Default" for #AddressDetails_Default
+  button "Save"#divSaveDetails primary
+  button "Close"#btnCloseModal
+form#frmExportAddresses
+```
+
+### `/TenantAttributeSet`: Additional attributes
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Activity log" primary
+button #divNew primary
+button "Export"#divExport
+slot #TenantAttributeSet_Index_Container
+modal#divAttributeDetails large
+  input text#TenantAttributes_Index_AttributeSetName placeholder "Enter an attribute set name"
+  button "×"
+  button 
+  heading "Attribute name"
+  heading "Attribute type"
+  heading "Values"
+  input text#TenantAttributes_Index_Attribute1Name placeholder "Attribute 1 name"
+  select#TenantAttributes_Index_Attribute1Type: Not used | List | Checkbox | Text | Numeric | Date
+  input text#TenantAttributes_Index_Attribute1Values
+  input text#TenantAttributes_Index_Attribute2Name placeholder "Attribute 2 name"
+  select#TenantAttributes_Index_Attribute2Type: Not used | List | Checkbox | Text | Numeric | Date
+  input text#TenantAttributes_Index_Attribute2Values
+  input text#TenantAttributes_Index_Attribute3Name placeholder "Attribute 3 name"
+  select#TenantAttributes_Index_Attribute3Type: Not used | List | Checkbox | Text | Numeric | Date
+  input text#TenantAttributes_Index_Attribute3Values
+  input text#TenantAttributes_Index_Attribute4Name placeholder "Attribute 4 name"
+  select#TenantAttributes_Index_Attribute4Type: Not used | List | Checkbox | Text | Numeric | Date
+  input text#TenantAttributes_Index_Attribute4Values
+  input text#TenantAttributes_Index_Attribute5Name placeholder "Attribute 5 name"
+  select#TenantAttributes_Index_Attribute5Type: Not used | List | Checkbox | Text | Numeric | Date
+  input text#TenantAttributes_Index_Attribute5Values
+  input text#TenantAttributes_Index_Attribute6Name placeholder "Attribute 6 name"
+  select#TenantAttributes_Index_Attribute6Type: Not used | List | Checkbox | Text | Numeric | Date
+  input text#TenantAttributes_Index_Attribute6Values
+  input text#TenantAttributes_Index_Attribute7Name placeholder "Attribute 7 name"
+  select#TenantAttributes_Index_Attribute7Type: Not used | List | Checkbox | Text | Numeric | Date
+  input text#TenantAttributes_Index_Attribute7Values
+  input text#TenantAttributes_Index_Attribute8Name placeholder "Attribute 8 name"
+  select#TenantAttributes_Index_Attribute8Type: Not used | List | Checkbox | Text | Numeric | Date
+  input text#TenantAttributes_Index_Attribute8Values
+  input text#TenantAttributes_Index_Attribute9Name placeholder "Attribute 9 name"
+  select#TenantAttributes_Index_Attribute9Type: Not used | List | Checkbox | Text | Numeric | Date
+  input text#TenantAttributes_Index_Attribute9Values
+  input text#TenantAttributes_Index_Attribute10Name placeholder "Attribute 10 name"
+  select#TenantAttributes_Index_Attribute10Type: Not used | List | Checkbox | Text | Numeric | Date
+  input text#TenantAttributes_Index_Attribute10Values
+  button "Save"#divSaveChanges primary
+  button "Close"
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+form#frmExportAttributeSets
+```
+
+### `/TenantBrand`: Product brands
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#divSaveChanges primary
+button "Activity log" primary
+button #divNew primary
+button "Export"#divExport
+slot #TenantBrand_Index_Container
+button "Add more items"#TenantBrand_Index_NewLink primary
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+modal#divBrandDetails small
+  heading "Brand details"
+  button "×"
+  slot #BrandDetails_Errors
+  input text#BrandDetails_Brand
+  label "Brand" for #BrandDetails_Brand
+  button "Save"#divSaveDetails primary
+  button "Close"#btnCloseModal
+form#frmExportBrands
+```
+
+### `/TenantCarrier`: Carriers
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#divSaveChanges primary
+button "Activity log" primary
+button #divNew primary
+button "Export"#divExport
+slot #TenantCarrier_Index_Container
+button "Add more items"#TenantCarrier_Index_NewLink primary
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+modal#divCarrierDetails small
+  heading "Carrier details"
+  button "×"
+  slot #CarrierDetails_Errors
+  input text#CarrierDetails_Description
+  label "Carrier name" for #CarrierDetails_Description
+  input text#CarrierDetails_TrackingURL
+  label "Tracking URL" for #CarrierDetails_TrackingURL
+  button "Save"#divSaveDetails primary
+  button "Close"#btnCloseModal
+form#frmExportCarriers
+```
+
+### `/TenantContact`: Company contacts
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#divSaveChanges2 primary
+button "Activity log" primary
+button #divNew primary
+button "Export"#divExport
+button "Reassign"#btnReassignCompanyContactOpenDialog
+input text#divSearchField name=divSearch placeholder "Type text to search"
+button "Search" primary
+slot #TenantContact_Index_Container
+button "Add more items"#TenantContact_Index_NewLink primary
+modal#divContactDetails small
+  heading "Company contact details"
+  button "×"
+  slot #ContactDetails_Errors
+  input text#ContactDetails_Name
+  label "Name" for #ContactDetails_Name
+  input text#ContactDetails_Phone
+  label "Phone" for #ContactDetails_Phone
+  input text#ContactDetails_Fax
+  label "Fax" for #ContactDetails_Fax
+  input text#ContactDetails_Email
+  label "Email" for #ContactDetails_Email
+  input text#ContactDetails_Website
+  label "Website" for #ContactDetails_Website
+  select#ContactDetails_Type: Billing | Business | Sale | Shipping | Employee
+  label "Type" for #AddressDetails_Type
+  input checkbox#ContactDetails_Default
+  label "Default" for #ContactDetails_Default
+  select#selMailingList multiple
+  label "Mailing list" for #AddressDetails_Country
+  button "Save"#divSaveDetails primary
+  button "Close"#btnCloseModal
+modal#divReassignCompanyContact small
+  heading "Reassign company contact"
+  button "×"
+  slot #divReassignFromContact
+  label "Reassign from"
+  slot #divReassignToContact
+  label "Reassign to"
+  button "Reassign"#btnReassignCompanyContact primary
+  button "Close"#btnCloseReassignModal
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+modal#divCOGSAccDims small
+  heading "Accounting dimensions"
+  button "×"
+  button "Save"#btnSaveCOGSAccDims primary
+  button "Close"
+form#frmExportContacts
+```
+
+### `/TenantInventoryCategory`: Product categories
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#divSaveChanges primary
+button "Activity log" primary
+button #divNew primary
+button "Export"#divExport
+slot #TenantInventoryCategory_Index_Container
+button "Add more items"#TenantInventoryCategory_Index_NewLink primary
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+modal#divInventoryCategoryDetails small
+  heading "Inventory category details"
+  button "×"
+  slot #InventoryCategoryDetails_Errors
+  input text#InventoryCategoryDetails_InventoryCategory
+  label "Category" for #InventoryCategoryDetails_InventoryCategory
+  button "Save"#divSaveDetails primary
+  button "Close"#btnCloseModal
+form#frmExportInventoryCategory
+```
+
+### `/TenantLocation`: Locations and bins
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#divSaveChanges2 primary
+heading "Locations and bins"
+button "Activity log" primary
+button "Locations"#tabLocations
+button "Logistics paths"#tabLogisticsPath
+tab pane#portlet_tab1
+  button #divNew primary
+  block #divImport
+    button "Import" ▾
+    block #importDropdownList
+      link "Inventory supply rules"
+      link "Inventory put away rules"
+  block #divExport
+    button "Export" ▾
+    block #exportDropdownList
+      link "Locations with bins"#divExportwBins
+      link "Supply rules"#btnExportSupplyRules
+      link "Put away rules"#btnExportPutAwayRules
+  slot #TenantLocation_Index_Container
+  button "Add more items"#TenantLocation_Index_AddLink primary
+tab pane#portlet_tab5
+  text "Logistics paths are applied to production orders and to orders related to them. For more complicated routing please set "
+  button #divNewPath primary
+  slot #TenantLocation_Index_LogisticsPaths
+  button "Add more items"#TenantLocation_Index_AddLPLink primary
+form#frmExportLocationsWithBins
+form#frmExportRules
+form#frmExportPutAwayRules
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+slot #CountrySpecificScript
+```
+
+### `/TenantLocationEdit`: Edit location
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+link "Locations"
+select#cmbLocationList: New location
+button "Save" primary
+button "Back to list"#btnBack
+tabs#ulNavigation: General #general | Transfer planning #supplyintervals | Bins #bins | Pick zones #pickzones | Supply rules #supplyrules | Delivery calendar #deliveryCalendar
+heading 
+text "Default"#spnLocationStatus
+button #taskHeaderCollapse
+block #divTaskHeader
+  input text#txtTenantLocationName
+  label "Name"
+  select#cmbLocationType: Warehouse/retail | Fixed assets | Shop floor | Co-manufacturing
+  label "Type"
+  heading "Status"
+  block #divRbtnsActive
+    input radio#rbtnTenantLocationActive name=locationStatus
+    label "Active" for #rbtnTenantLocationActive
+    input radio#rbtnTenantLocationDeprecated name=locationStatus
+    label "Deprecated" for #rbtnTenantLocationDeprecated
+  heading "Options"
+  input checkbox#chkTenantLocationType
+  label "Set as default" for #chkTenantLocationType
+  input checkbox#chkTenantLocationReorder
+  label "Allow to reorder stock level" for #chkTenantLocationReorder
+  slot #divTenantLocationIsDesignatedZone (hidden)
+  input checkbox#chkTenantLocationUseDirectedPick
+  label "Use directed pick" for #chkTenantLocationUseDirectedPick
+  block #directed-pick-note (hidden)
+    text "The sale order pick using bin group will take priority over the "recommend & enforce" setting."
+  input checkbox#chkTenantLocationUseDirectedPutAway
+  label "Use directed receive/put away" for #chkTenantLocationUseDirectedPutAway
+  slot #divBinSuggestionPriority
+  label "Bin suggestion priority" for #cmbBinSuggestionPriority
+  heading "Address"
+  input text#txtTenantLocationAddressLine1
+  label "Line 1"
+  input text#txtTenantLocationAddressLine2
+  label "Line 2"
+  input text#txtTenantLocationAddressCitySuburb
+  label "City / suburb"
+  input text#txtTenantLocationAddressStateProvince
+  label "State / province"
+  input text#txtTenantLocationAddressZipPostCode
+  label "ZIP / postcode"
+  slot #cmbTenantLocationAddressCountry
+  label "Country"
+  slot #divLocationEmirate (hidden)
+  heading "Description"
+  textarea#txtTenantLocationAddressDescription placeholder "Type description"
+tab pane#general
+tab pane#supplyintervals
+  block #divSupplyIntervalsContainer
+    button #btnAddInterval primary
+    text "These settings are used to plan transfer order supply suggestions. When carrying out a Materials Requirements Planning ("
+    block #divSupplyIntervalTemplate (hidden)
+      label "Planning method"
+      select: Transfer at intervals | Transfer on fixed days
+      label "Demand location"
+      select#cmbDemandLocation
+      slot #divSelectedDemandLocation (hidden)
+      label "Interval"
+      input text
+      label "days"
+      label "Start date"
+      slot #dtSupplyIntervalDate
+      label "Fixed days"
+      input checkbox#chkFixedMonday
+      label "Monday" for #chkFixedMonday
+      input checkbox#chkFixedTuesday
+      label "Tuesday" for #chkFixedTuesday
+      input checkbox#chkFixedWednesday
+      label "Wednesday" for #chkFixedWednesday
+      input checkbox#chkFixedThursday
+      label "Thursday" for #chkFixedThursday
+      input checkbox#chkFixedFriday
+      label "Friday" for #chkFixedFriday
+      input checkbox#chkFixedSaturday
+      label "Saturday" for #chkFixedSaturday
+      input checkbox#chkFixedSunday
+      label "Sunday" for #chkFixedSunday
+tab pane#bins
+  block #divBinsToolbar
+    tabs#binsTabs: Bins #binsContent | Directed put away rules #putAwayRulesContent | Bin groups #binGroupContent
+  tab pane#binsContent
+    button  primary
+    input text#txtBinsSearchField placeholder "Type text to search"
+    button "Search"#btnBinsSearch primary
+    button "+ Bin group"#addBinGroupBtn primary (hidden)
+    button "Export"#btnExportBin
+    button "Import"#btnImportBin
+    block #divBinsAlert
+      text "Location is not saved. Please click save before adding bins to the selected location."
+    slot #divGridBins
+    button "Add more items" primary
+    form#frmExportBins
+  tab pane#putAwayRulesContent
+    block #divPutAwayRulesContainer
+      button  primary
+      slot #divGridPutAwayRules
+      button "Add more rules" primary
+    block #divPutAwayRuleEditContainer (hidden)
+      heading "New put away rule"
+      input text#txtPutAwayRuleName placeholder "Put Away Rule name"
+      label "Name"
+      label "Active" for #chkPutAwayRuleIsActive
+      input checkbox#chkPutAwayRuleIsActive
+      label "Bin"
+      select#cmbPutAwayRuleBin
+      slot #divPutAwayRuleBinValues (hidden)
+      input text#txtPutAwayRuleMinCapacity
+      label "Min capacity"
+      input text#txtPutAwayRuleMaxCapacity
+      label "Max capacity"
+      input checkbox#chkPutAwayRuleAllowSplit
+      label "Allow batch split at receive/put away" for #chkPutAwayRuleAllowSplit
+      block #divErrorMessage (hidden)
+      input text#txtPutAwayRuleMinLength
+      label "Min length"
+      input text#txtPutAwayRuleMaxLength
+      label "Max length"
+      input text#txtPutAwayRuleMinWidth
+      label "Min width"
+      input text#txtPutAwayRuleMaxWidth
+      label "Max width"
+      input text#txtPutAwayRuleMinHeight
+      label "Min height"
+      input text#txtPutAwayRuleMaxHeight
+      label "Max height"
+      input text#txtPutAwayRuleMinWeight
+      label "Min weight"
+      input text#txtPutAwayRuleMaxWeight
+      label "Max weight"
+      slot #spanUOFWeightUnit
+      input radio#rbtnProductAll2 name=productarea
+      label "All products" for #rbtnProductAll2
+      input radio#rbtnProductSelect2 name=productarea
+      label "Select products" for #rbtnProductSelect2
+      block #divPutAwayProductArea (hidden)
+        heading "Apply rules to these products:"
+        select#cmbFamiliesputaway
+        slot #divSelectedFamiliesValuesputaway (hidden)
+        select#cmbTagsputaway
+        slot #divSelectedTagsValuesputaway (hidden)
+        select#cmbCategoriesputaway
+        slot #divSelectedCategoriesValuesputaway (hidden)
+        select#cmbBrandsputaway
+        slot #divSelectedBrandsValuesputaway (hidden)
+        heading "OR"
+        select#cmbProductsputaway
+        slot #divSelectedProductsValuesputaway (hidden)
+  tab pane#binGroupContent
+    block #divBinGroupsContainer
+      button  primary
+      slot #divGridBinGroups
+      button "Add more groups" primary
+    block #divBinGroupEditContainer (hidden)
+      heading "New bin group"
+      input text#txtBinGroupName placeholder "Name"
+      label "Name"
+      label "Bins"
+      select#cmbBinGroupBin
+      slot #divBinGroupBinValues (hidden)
+tab pane#pickzones
+  button  primary
+  slot #divGridPickZones
+  button "Add more items" primary
+tab pane#supplyrules
+  block #divSupplyRulesContainer
+    button  primary
+    slot #divGridRules
+    button "Add more rules" primary
+  block #divSupplyRuleEditContainer (hidden)
+    heading "New supply rule"
+    input text#txtSupplyRuleName placeholder "Supply Rule name"
+    label "Name"
+    label "Active" for #chkSupplyRuleIsActive
+    input checkbox#chkSupplyRuleIsActive
+    input radio#rbtnProductAll name=productarea
+    label "All products" for #rbtnProductAll
+    input radio#rbtnProductSelect name=productarea
+    label "Select products" for #rbtnProductSelect
+    block #divSupplyRuleProductArea (hidden)
+      heading "Apply rules to these products:"
+      select#cmbFamiliessupply
+      slot #divSelectedFamiliesValuessupply (hidden)
+      select#cmbTagssupply
+      slot #divSelectedTagsValuessupply (hidden)
+      select#cmbCategoriessupply
+      slot #divSelectedCategoriesValuessupply (hidden)
+      select#cmbBrandssupply
+      slot #divSelectedBrandsValuessupply (hidden)
+      heading "OR"
+      select#cmbProductssupply
+      slot #divSelectedProductsValuessupply (hidden)
+    block #divSupplyRuleActions
+      heading 
+      slot #divSupplyRuleList
+      button "Add more items" primary
+      slot #divSupplyRuleOtherwise
+      block #divSupplyRuleActionTemplate (hidden)
+        select: Purchase | Transfer | Produce
+        label "from"
+        select
+        label "take"
+        select: All available | Until minimum before reorder | Until stock level
+        label "to fulfill"
+        select: Total demand quantity only | Partial demand quantity
+        label "if >"
+        input text
+        label "% production capacity is available"
+        select: With the lowest price | With the lowest lead time | Latest supplier
+tab pane#deliveryCalendar
+  block #deliveryCalendarSettings
+    button "Delivery scheduling"#openDeliveryCalendarButton primary
+    input number#txtDeliveryNumberPerDay
+    label "No. Of deliveries per day"
+    input number#txtDeliveryTimeInterval
+    label "Delivery time interval, mins"
+modal#DearPos_YearCalendar
+  heading "Delivery scheduling calendar settings"
+  button "×"
+  button 
+  slot #currentYearSpan
+  button 
+  button "Calendar settings"#editCalendarSettings
+  slot #calendarContainer
+  button #addHolidayBtn
+  slot #divHolidaysGrid
+  button #addSpecialBtn
+  slot #divSpecialsGrid
+  block #DearPos_Calendar_Actions
+    button "Save" primary
+    button "Cancel"
+modal#calendarSettingsModal medium
+  heading "Calendar settings"
+  button "×"
+  slot #weekStartCmb
+  label "Working week starts on:" for #weekStartCmb
+  slot #weekEndsCmb
+  label "Select weekend days:" for #weekEndsCmb
+  slot #divDaysGrid
+  button "Apply changes"#applyCalendarSettingsBtn primary
+slot #CountrySpecificScript
+```
+
+### `/TenantPaymentTerm`: Payment terms
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#divSaveChanges primary
+button "Activity log" primary
+button #divNew primary
+button "Export"#divExport
+slot #TenantPaymentTerm_Index_Container
+button "Add more items"#TenantPaymentTerm_Index_NewLink primary
+modal#divTenantPaymentTermDetails small
+  heading "Payment term details"
+  button "×"
+  slot #TenantPaymentTerm_Errors (hidden)
+  input text#TenantPaymentTerm_Description
+  label "Name" for #TenantPaymentTerm_Description
+  select#TenantPaymentTerm_Method: Number of days | Day of next month | Last day of next month | Days since the end of the month
+  label "Method" for #TenantPaymentTerm_Method
+  input text#TenantPaymentTerm_Days
+  label "Days" for #TenantPaymentTerm_Days
+  input checkbox#TenantPaymentTerm_IsDefault
+  label "Is default" for #TenantPaymentTerm_IsDefault
+  input checkbox#TenantPaymentTerm_IsActive
+  label "Is active" for #TenantPaymentTerm_IsActive
+  button "Save" primary
+  button "Close"
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+form#frmExportPaymentTerm
+```
+
+### `/TenantShipZone`: Shipping zones
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+block #ShipZoneList
+  text "Use shipping zones to choose the locations that you ship to. Define your shipping rates for each zone that could be auto"
+  block #descriptionNote
+    heading 
+  button "Shipping zone"#divNew primary
+  button "Rest of world zone"#divNewRest primary
+  button "Exception zone"#divNewNegative primary
+  button "Import"#divImport
+  button "Export"#divExport
+  label "Enabled" for #TenantShippingZone_Index_Switch
+  input checkbox#TenantShippingZone_Index_Switch
+  slot #TenantShippingZone_Index_Container
+block #divZoneDetails (hidden)
+  block #ShipZone_Details_Content
+    button "Activity log"#ActivityLogsLink2 primary
+    button "Delete"#ShipZone_DeleteAction2
+    button "Save"#ShipZone_SaveAction2 primary
+    button "Cancel"#ShipZone_CancelAction2
+    input text#txtShipZoneName name=tdOpeningBalances_NewCustomer_Discount placeholder "Zone name..."
+    block #cmbTaxRuleBlock
+      select#cmbTaxRule
+    block #DefaultShipCostBlock
+      input text#ShippingZone_Details_CostFixed
+      label "Default shipping cost" for #ShippingZone_Details_CostFixed
+      slot #defCurrency
+    block #ShipZoneContents
+      heading "Applies to"
+      button #divAddCountry primary
+      slot #divZoneCountries
+      button "Add more items"#addMoreZoneContries primary
+      block #RatesBlock
+        text "Note: If price-/weight-based rates are set up, they have a higher priority than the shipping zones rate."
+        heading "Price-based rates"
+        button #divAddPriceRates primary
+        label "Tax included" for #PricesInclTax
+        input checkbox#PricesInclTax
+        slot #divPriceGrid
+        heading "Weight-based rates"
+        button #divAddWeightRate primary
+        slot #divWeightGrid
+      button "Save"#ShipZone_SaveAction primary
+      button "Cancel"#ShipZone_CancelAction
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+modal#ShipZone_EditCountry_Content
+  button 
+  heading "Add/edit shipping place"
+  label "Country"
+  select#ShipZone_EditCountry_CountryList
+  label "Whole country" + checkbox #ShipZone_EditCountry_CountryAllRegions
+  slot #ShipZone_EditCountry_StateList
+  button "Save"
+  button "Close"
+form#frmExportShippingZones
+```
+
+### `/TenantTaxationRule`: Tax rules
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Load from QuickBooks"#divLoad primary
+block #divTaxList
+  button "Activity log" primary
+  button #gridOptions
+  button #divNew primary
+  button "Export"#divExport
+  input checkbox#divShowOnlyActive
+  label "Only active" for #divShowOnlyActive
+  slot #TenantTaxationRule_Index_Container
+block #divTaxDetails
+  slot #formCaption
+  slot #Tax_Status
+  button "Save"#saveAction primary
+  button "Close"#backAction
+  label "Tax rule name"
+  input text#tdDescription placeholder "Enter a tax rule name"
+  label "Inclusive/exclusive"
+  select#tdInclusive
+  label "Status"
+  select#tdStatus
+  label "Tax type"
+  select#tdTax1
+  label "Liability account"
+  slot #tdAccountCode
+  button #divNewComponent primary
+  button #ComponentsGridOptions
+  slot #cntComponents
+  button "Add more items"#TenantTaxationRule_Index_AddComponentLink primary
+modal#divComponentDetails small
+  heading "Component details"
+  button "×"
+  slot #ComponentDetails_Errors (hidden)
+  input text#ComponentDetails_Name placeholder "Type name..."
+  label "Tax component name" for #ComponentDetails_Name
+  input text#ComponentDetails_Rate
+  label "Rate"
+  input checkbox#ComponentDetails_Compound
+  label "Compound (apply to taxed subtotal)" for #ComponentDetails_Compound
+  slot #ComponentDetails_LiabilityAccount
+  label "Liability account" for #ComponentDetails_LiabilityAccount
+  button "Save"#divSaveDetails primary
+  button "Close"#btnCloseModal
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+form#frmExportTaxationRules
+```
+
+### `/TenantUnitOfMeasure`: Units of measure
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button "Save"#divSaveChanges primary
+button "Activity log" primary
+button #divNew primary
+button "Export"#divExport
+slot #TenantUnitOfMeasure_Index_Container
+button "Add more items"#TenantUnitOfMeasure_Index_NewLink primary
+block #ActivityLogDiv (hidden)
+  button "Close"
+  input text#divActivityLogsSearch placeholder "Type text to search"
+  button "Search" primary
+  button #divActivityLogsRefresh
+  slot #ActivityLogs_Container
+modal#divUnitOfMeasureDetails small
+  heading "Unit of measure details"
+  button "×"
+  slot #UnitOfMeasureDetails_Errors
+  input text#UnitOfMeasureDetails_UnitOfMeasure
+  label "Name" for #UnitOfMeasureDetails_UnitOfMeasure
+  button "Save"#divSaveDetails primary
+  button "Close"#btnCloseModal
+form#frmExportUnitOfMeasure
+```
+
+### `/WarrantySetupList`: Warranties
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Reference Books"
+button #divNew primary
+button #divRefresh primary
+slot #divFilter
+input text#divSearchText name=divSearch placeholder "Type text to search"
+button "Search"#divSearch primary
+slot #WarrantySetupList_Error_Container (hidden)
+slot #WarrantySetupList_Index_Container
+```
+
 ## Components by bundle
+
+What the page code builds and mounts into the layout's slots.
 
 ### `AccountingDimensions2019`
 

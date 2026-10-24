@@ -8,7 +8,290 @@ Every component the page code builds, read from the shipped ExtJS bundles: grids
 |---|---|---|
 | `/Etsy` | Etsy | [`Etsy2019`](#etsy2019) |
 
+## Layout
+
+Each screen's server-rendered HTML inside the shell, as an outline: headings, tabs, sections, labels, inputs (`#id`), buttons (`▾` = dropdown), menus, tables and `slot`s (empty `<div>`s the components below mount into). `(hidden)` parts are shown by the page code when needed. Read with GET from a signed-in session; no values are kept.
+
+### `/Etsy`: Etsy
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Integrations"
+block #divTopBlock
+  tabs#portal-main-tab: Overview #tab_overview |  #tab-add-new | Help #tab-portal-help
+block #divAllBlocks
+  tab pane#tab_overview
+    tabs#overview-list: 
+    block #overview-content
+      text "Etsy"
+      text "Read the full information sheet about Etsy and Cin7 Core integration."
+      button "Read information sheet" primary
+      button "Help" primary
+      tab pane#overview-content-tab
+        heading #overview-portal-name
+        block #overview-base-portal-settings
+          text "Base settings"
+          slot #overview-portal-settings
+          slot #overview-portal-link
+        block #overview-content
+          block #overview-portal-logo
+          block #OverviewSalesSummary
+            text "Sales summary"
+            button "Refresh"#divRefreshSalesSummary
+            slot #overview-sales-summary
+        tabs#overview-tabs: Sales #overview-tab-sales | Customers #overview-tab-customers
+        tab pane#overview-tab-sales
+          input text#divSearchOverviewSales placeholder "Type text to search"
+          button "Search" primary
+          button #OverviewSalesGrid_Options
+          slot #overviewSalesGridContainer
+        tab pane#overview-tab-customers
+          input text#divSearchOverviewCustomers placeholder "Type text to search"
+          button "Search" primary
+          button #OverviewCustomersGrid_Options
+          slot #overviewCustomersGridContainer
+  tab pane#tab-portal-settings
+    tabs: Setup #tab-portal-setup | Action required #tab-portal-auth | Catalog #tab-portal-catalog | Publishing #tab-portal-publish | Pending orders #tab-portal-pendingOrders | Log #tab-portal-log | Operations log #tab-portal-operationsLog
+    text "Etsy"
+    text "Read the full information sheet about Etsy and Cin7 Core integration."
+    button "Read information sheet" primary
+    button "Help" primary
+    tab pane#tab-portal-setup
+      heading "Setup"
+      button "Save"#btnSaveSetupChanges primary
+      slot #setupValidation
+      label "Capture order when it is"
+      slot #Etsy_Index_Topic
+      label "Consolidate sales"
+      slot #Etsy_Index_ConsolidationType
+      block #trDailyConsolidationWarning (hidden)
+      block #liEtsy_Index_ConsolidationTime (hidden)
+        label "Consolidation time"
+        slot #Etsy_Index_ConsolidationTime
+      label "Customer"
+      slot #Etsy_Index_Customer
+      label "Store language"
+      slot #Etsy_Index_Language
+      label "Price tier"
+      slot #Etsy_Editor_PrimaryPriceTier
+      label "Link Etsy sales to Cin7 Core location"
+      slot #Etsy_Editor_Location
+      label "Pick, pack, and ship processing mode"
+      slot #Etsy_Editor_AutoFulfilmentMode
+      block #chkIgnoreRestockForNotFulfilledContainer
+        label "Ignore restock for non fulfilled sales"
+        input checkbox#divIgnoreRestockForNotFulfilled
+      label "Invoice status"
+      slot #Etsy_Editor_InvoiceStatus
+      label "Optional revenue account"
+      slot #Etsy_Editor_RevenueAccount
+      label "Sales representative name"
+      slot #Etsy_Editor_CustomSalesRepresentative
+      label "Match product manually"
+      input checkbox#Etsy_Index_Mathcing
+      block #Etsy_Index_AllowCreateDearProducts
+        label "Create a new product if not found by SKU"
+        input checkbox#Etsy_Index_AllowCreate
+      label "Use Etsy as master source for Cin7 Core products"
+      input checkbox#Etsy_Index_UseAsMaster
+      label "Update stock levels in Etsy"
+      input checkbox#Etsy_Index_SyncStockLevel
+      label "Allow Cin7 Core to activate/deactivate Etsy listings."
+      input checkbox#Etsy_Index_AllowActivate
+      label "Export shipping information to Etsy"
+      input checkbox#Etsy_Index_ExportShipInfo
+      label "Process auto-assembly"
+      slot #Etsy_Index_CreateAssembly
+      text "Link Etsy and Cin7 Core tax rules"
+      slot #divTaxMapping
+      text "Link Etsy payment methods to payment accounts"
+      button "Load from Etsy"#divLoadPaymentProcessorMapping primary
+      text "You can select accounts to use for payments received via listed payment methods if account has type "BANK" or has indica"
+      slot #divPaymentProcessorMapping
+      text "Disconnect from your Etsy store"
+      slot #CreationDate
+      button "Disconnect from Etsy store"
+      form#frmDisconnect
+    tab pane#tab-portal-auth
+      heading "Connection with Etsy requires authorization"
+      text "To allow Cin7 Core to access your Etsy store please"
+      button "Reconnect to Etsy"
+      form#frmRefreshToken
+    tab pane#tab-portal-catalog
+      heading "Catalog"
+      button "Load products"#divDownloadProducts primary
+      button "Update quantities in Etsy"#divUploadQuantities primary
+      input checkbox#Etsy_Catalog_ViewMode
+      label "Show variations separately" for #Etsy_Catalog_ViewMode
+      input checkbox#Etsy_Catalog_ListFilter
+      label "Show only active listings" for #Etsy_Catalog_ListFilter
+      input text#divSearchCatalog placeholder "Type text to search"
+      button "Search" primary
+      button "Refresh"#divRefreshCatalog
+      slot #catalogGridContainer
+    tab pane#tab-portal-publish
+      tabs: Not listed #tab_1_1 | Selected to be listed #tab_1_2 | Failed #tab_1_3 | Publishing profiles #tab_1_4
+      tab pane#tab_1_1
+        input text#Etsy_Publish_Search placeholder "Type text to search"
+        button "Search" primary
+        button "Select all"#btnPublishNotListedSelectAllFromPage primary
+        button "Refresh"
+        slot #dearCatalogGridContainer
+      tab pane#tab_1_2
+        button "Remove from the list"#btnPublishSelectedClear
+        button "Bulk apply to..."#Etsy_Index_Publish_SelectedBulkMenuBtn primary ▾
+        button "Publish"#btnPublishSelectedPublish primary
+        button "Refresh"
+        slot #dearSelectedCatalogGridContainer
+      tab pane#tab_1_3
+        input text#Etsy_Publish_SearchFailed placeholder "Type text to search"
+        button "Search" primary
+        button "Refresh"
+        slot #failedPublishGridContainer
+      tab pane#tab_1_4
+        button "Create"#btnPublishingLProfileOpen primary
+        button "Refresh"
+        slot #EtsyListingProfilesContainer
+    tab pane#tab-portal-pendingOrders
+      heading "Pending orders"
+      button "Load orders"#divDownloadOrders primary
+      button "Process"#divProcessOrders primary
+      input text#divSearchPendingOrders placeholder "Type text to search"
+      button "Search" primary
+      button "Refresh"#divRefreshPendingOrders
+      slot #divPendingOrdersGrid
+    tab pane#tab-portal-log
+      heading "Logs"
+      input text#divSearchLog placeholder "Type text to search"
+      button "Search" primary
+      button "Refresh"#divRefreshLog
+      button #LogGrid_Options
+      slot #divExportLogPeriod
+      slot #divExportLogFrom
+      slot #divExportLogTo
+      button "Export"#divExportLog
+      slot #logGridContainer
+    tab pane#tab-portal-operationsLog
+      heading "Operations log"
+      input text#divSearchOperationsLog placeholder "Type text to search"
+      button "Search" primary
+      button "Refresh"#divRefreshOperationsLog
+      button #OperationsLogGrid_Options
+      slot #operationsLogGridContainer
+  tab pane#tab-add-new
+    heading "Link your Etsy shop with Cin7 Core"
+    button "Connect to Etsy"#btnConnectToShop primary
+    form#frmAuthorise
+      label "Your shop name at Etsy"
+      slot #Etsy_Index_ShopName
+  tab pane#tab-portal-help
+    heading "Help"
+    button "Read information sheet" primary
+modal#Etsy_Index_CatalogFamily large
+  heading "Link Etsy products to Cin7 Core family products"
+  button "×"
+  slot #Etsy_Product_FamilyImagePlaceholder
+  heading #Etsy_Catalog_FamilyProductName
+  table
+  tab pane
+    heading "Select Cin7 Core family product to link with..."
+    slot #Etsy_CatalogManagment_LinkToFamily
+    slot #linkedFamilyPreview
+    slot #Etsy_Catalog_FamilyMappingGrid
+  block #Etsy_Catalog_FamilyAllActions
+    button "Save"#Etsy_Catalog_FamilyUpdate primary
+    button "Close"#Etsy_Index_CatalogFamily_Cancel
+block #Etsy_PListingDialog_Content (hidden)
+  heading "Publishing profile for Etsy"
+  button "Next"#Etsy_PublishProfile_Next primary
+  button "Save"#Etsy_PublishProfile_Save primary
+  button "Close"#Etsy_PublishProfile_Cancel
+  label "Please type the name of the profile."
+  input text#Etsy_LProfile_Name placeholder "Type a profile name here..."
+  block #Etsy_LProfile_Step1
+    label "Category"
+    slot #Etsy_PListingDialog_Category
+    label "Shipping template"
+    slot #Etsy_LProfile_ShipTemplate
+    label "Readiness State" for #Etsy_LProfile_ReadinessState_Input
+    slot #Etsy_LProfile_ReadinessState
+    label "Who made"
+    slot #Etsy_LProfile_Who
+    label "When made"
+    slot #Etsy_LProfile_When
+    label "Is not taxable"
+    input checkbox#Etsy_LProfile_NonTaxable
+    label "The product is a supply"
+    input checkbox#Etsy_LProfile_IsSupply
+modal#Etsy_Index_Catalog large
+  heading "Link Etsy product to Cin7 Core product"
+  button "×"
+  slot #Etsy_Product_ImagePlaceholder
+  heading #Etsy_Catalog_ProductName
+  table
+  slot #tabUnlinked
+  slot #tabLinked
+  slot #tabBuild
+  input radio#rbtnUnlinked name=radioActionToDo
+  label "Do not link Etsy product to any Cin7 Core product" for #rbtnUnlinked
+  input radio#rbtnLink name=radioActionToDo
+  label "Link Etsy product to the existing Cin7 Core product" for #rbtnLink
+  input radio#rbtnCreate name=radioActionToDo
+  label "Create a new Cin7 Core product using Etsy product details" for #rbtnCreate
+  tab pane#tabCatalogInfo
+    heading "Etsy product is not linked."
+  tab pane#tabCatalogLink
+    heading "Select Cin7 Core product to link with..."
+    slot #Etsy_CatalogManagment_LinkToProduct
+    slot #linkedProductPreview
+    block #Catalog_SyncStockLevelBlock
+      input checkbox#Etsy_Catalog_SyncStockLevel
+      label "Sync stock level" for #Etsy_Catalog_SyncStockLevel
+    block #Catalog_IgnoreProductUpdationBlock
+      input checkbox#Etsy_Catalog_IgnoreProductUpdation
+      label "Do not update the linked Cin7 Core product" for #Etsy_Catalog_IgnoreProductUpdation
+  tab pane#tabCatalogBuild
+    heading "Create a new Cin7 Core product from Etsy listing and link..."
+    button "Build and link"#btnBuildProduct primary
+    slot #foundProductPreview
+  block #Etsy_Catalog_AllActions
+    button "Save"#Etsy_Catalog_Update primary
+    button "Close"
+modal#Etsy_DownloadProducts_Content medium
+  heading "Load products from Etsy"
+  button "×"
+  slot #Etsy_DownloadProducts_ValidationContainer
+  label "Enable image download" for #Etsy_Download_Image
+  input checkbox#Etsy_Download_Image
+  text "Enabling this option would increase the time taken to download products."
+  block #Etsy_DownloadProducts_Actions
+    button "Start" primary
+    button "Close"
+modal#Etsy_UpdateQuantity_Content medium
+  heading "Update quantities in Etsy"
+  button "×"
+  slot #Etsy_UpdateQuantity_ValidationContainer
+  block #Etsy_UpdateQuantity_Actions
+    button "Start" primary
+    button "Close"
+modal#Etsy_DownloadOrders_Content medium
+  heading "Load orders from Etsy"
+  button "×"
+  slot #Etsy_DownloadOrders_ValidationContainer
+  text "All orders created on or after the selected date will be loaded to Cin7 Core."
+  label "Orders created since"
+  slot #Etsy_FromOrders
+  block #Etsy_DownloadOrders_Actions
+    button "Start" primary
+    button "Close"
+form#frmProcess
+```
+
 ## Components by bundle
+
+What the page code builds and mounts into the layout's slots.
 
 ### `Etsy2019`
 

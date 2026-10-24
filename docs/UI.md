@@ -14,8 +14,11 @@ How Cin7 Core looks and is put together on screen, read from the shipped CSS (`c
 So rebuilding a screen takes both halves: the HTML layout (header, tabs, sections, buttons) and the components listed in
 the module's `UI.md`, which name the slot they mount in (`renders into`).
 
-> The server-rendered HTML half (tab names, section headings, button rows and modal layouts) needs a signed-in session to
-> read, and isn't captured here yet. The `renders into` ids show where each component sits in it.
+Both halves are in each module's `UI.md`: **Layout** is the server-rendered HTML of every screen as an outline (headings,
+tabs, sections, labels, inputs, buttons, menus, tables, dialogs and the `slot`s components mount into), and **Components
+by bundle** is what the page code builds. The shell's own layout (top bar, add-new menu, left menu, appearance settings,
+profile menu, footer) is in [`modules/01-shell/UI.md`](../modules/01-shell/UI.md). Layouts were read with GET from a
+signed-in session on 2026-10-24 (260 of 261 routes; `/AMA` streams and was skipped) and keep no field values.
 
 ## Stack
 
@@ -101,8 +104,8 @@ Two icon fonts, `icons_2019` and `add_icons_2019` (`/content/design2019/fonts/ic
 
 ## The shell
 
-Every page shares the shell from `Main2019` ([`modules/01-shell`](../modules/01-shell/README.md)). The parts below come
-from the shell code and its endpoints; their exact HTML arrangement is part of the uncaptured server-rendered half.
+Every page shares the shell from `Main2019` ([`modules/01-shell`](../modules/01-shell/README.md)); its full HTML outline
+is in [`modules/01-shell/UI.md`](../modules/01-shell/UI.md). In short:
 
 - **Top bar:** logo, the main menu (one dropdown per module), global search, favourites and quick links, notifications
   (count badge, SignalR), chat, help widget, and the user menu (profile, organisation switch, language, sign out).

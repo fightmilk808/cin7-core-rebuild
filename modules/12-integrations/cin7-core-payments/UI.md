@@ -8,7 +8,64 @@ Every component the page code builds, read from the shipped ExtJS bundles: grids
 |---|---|---|
 | `/PaymentGateway` | Cin7 Core Payments | [`PaymentGateway2019`](#paymentgateway2019), [`PaymentGatewayCOMMONREFUND2019`](#paymentgatewaycommonrefund2019) |
 
+## Layout
+
+Each screen's server-rendered HTML inside the shell, as an outline: headings, tabs, sections, labels, inputs (`#id`), buttons (`▾` = dropdown), menus, tables and `slot`s (empty `<div>`s the components below mount into). `(hidden)` parts are shown by the page code when needed. Read with GET from a signed-in session; no values are kept.
+
+### `/PaymentGateway`: Cin7 Core Payments
+
+Frame: `task-upload-frame`.
+
+```text
+block #payment-gateway
+  link "Home"
+  link "Integrations"
+  heading "Sorry"
+  heading "Cin7 Core Payments is not supported in your country."
+modal#PaymentGatewayRefundDialog medium
+  slot #paymentGateway_transactionID_element
+  heading "Cin7 Core Payments"
+  button "x"
+  label "Refund amount" for #PaymentGatewayCommon_Refund_Amount
+  slot #PaymentGatewayCommon_Refund_Amount
+  label "Refund reason" for #PaymentGatewayCommon_Refund_Reason
+  slot #PaymentGatewayCommon_Refund_Reason
+  slot #paymentGateway_refundMaxAmount
+  text "Refunds take 5-10 days to appear on a customer's statement."
+  block #paymentGateway_refundProcessingresult
+    slot #paymentGateway_refundProcessingresult_message
+  button "Refund" primary
+  button "Close"
+modal#PaymentGatewayPaymentsToRefundGridDialog medium
+  slot #paymentGateway_saleTaskID_element
+  heading "Cin7 Core Payments"
+  button "x"
+  slot #dashboardPaymentsToRefundGrid
+  button "Close"
+modal#Cin7PayRefundDialog medium
+  slot #cin7Pay_transactionID_element
+  heading "Cin7 Pay Payments"
+  button "x"
+  label "Refund amount" for #Cin7PayCommon_Refund_Amount
+  slot #Cin7PayCommon_Refund_Amount
+  label "Refund reason" for #Cin7PayCommon_Refund_Reason
+  slot #Cin7PayCommon_Refund_Reason
+  slot #cin7Pay_refundMaxAmount
+  text "Refunds take 5-10 days to appear on a customer's statement."
+  block #cin7Pay_refundProcessingresult
+    slot #cin7Pay_refundProcessingresult_message
+  button "Refund" primary
+  button "Close"
+modal#Cin7PayPaymentsToRefundGridDialog medium
+  heading "Cin7 Pay Payments"
+  button "x"
+  slot #dashboardCin7PayPaymentsToRefundGrid
+  button "Close"
+```
+
 ## Components by bundle
+
+What the page code builds and mounts into the layout's slots.
 
 ### `PaymentGateway2019`
 

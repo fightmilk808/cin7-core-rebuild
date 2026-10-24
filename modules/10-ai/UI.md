@@ -9,7 +9,105 @@ Every component the page code builds, read from the shipped ExtJS bundles: grids
 | `/AMA` | Ask Me Anything ~ |  |
 | `/DocumentExtraction` | Document data extraction | [`DocumentExtraction2024`](#documentextraction2024) |
 
+## Layout
+
+Each screen's server-rendered HTML inside the shell, as an outline: headings, tabs, sections, labels, inputs (`#id`), buttons (`▾` = dropdown), menus, tables and `slot`s (empty `<div>`s the components below mount into). `(hidden)` parts are shown by the page code when needed. Read with GET from a signed-in session; no values are kept.
+
+### `/DocumentExtraction`: Document data extraction
+
+Frame: `ifrmIdrUploader`.
+
+```text
+link "Home"
+link "Import"
+block #divIdr
+  link "Upload"
+  link "Mapping"
+  link "Logs"
+  tab pane#divDocumentImport
+    slot #FeatureModuleDetailsBlock (hidden)
+    slot #divLimitAlert (hidden)
+    text "Use document data extraction to import PDF files, parse and extract data automatically using AI, and map the extracted d"
+    block #divIdrPreviewTemplate (hidden)
+    slot #ifrmIdrUploader (hidden)
+    form#frmIdrUpload
+      heading "Drop files here or click to upload."
+    button "Attach from Google Drive" primary
+    text "Upload your document.Core extracts document fields and values. Core uses AI to map extracted fields to Core fields.Check"
+    button "Refresh"#btnDocExtRefresh
+    button #btnCustomizeDocExtGrid
+    slot #gridDocExt
+  tab pane#divDocumentExtraction
+    heading "Import as sale - Mapping..."
+    button "Ready for approval"#btnDocExtApprove primary
+    button "Save"#btnDocExtSave primary
+    button "Back to list"#btnDocExtBack
+    input text#txtDocExtFileName read-only
+    label "Import file name"
+    slot #divMappingFields
+    heading "File preview -"
+    slot #ifrmFilePreview
+  tab pane#divIdeLogs
+    input text#divSearchLog placeholder "Type text to search"
+    button "Search"#btnSearch primary
+    button "Refresh"#divRefreshLog
+    button #Grid_gridName_Options
+    slot #logsGridContainer
+```
+
+Dialogs on this page:
+
+<details><summary><code>Sale_NewCustomer_Content</code></summary>
+
+```text
+modal#Sale_NewCustomer_Content medium
+  heading "New customer"
+  button "×"
+  input text#tdSale_NewCustomer_Name placeholder "Enter a customer name"
+  label "Name"
+  slot #tdSale_NewCustomer_Parent
+  label "Parent"
+  select#tdSale_NewCustomer_PaymentTerm
+  label "Payment term"
+  select#tdSale_NewCustomer_SaleAccount
+  label "Sale account"
+  select#tdSale_NewCustomer_DefaultSalesRepresentative
+  label "Sales representative"
+  select#tdSale_NewCustomer_DefaultLocation
+  label "Default location"
+  input text#tdSale_NewCustomer_Discount placeholder "Enter a customer discount"
+  label "Discount"
+  slot #tdSale_NewCustomer_IsLegalEntity
+  label "Legal entity" for #chkSale_NewCustomer_IsLegalEntity
+  input text#tdSale_NewCustomer_CustomerName placeholder "Enter a display name"
+  label "Display name"
+  slot #tdSale_NewCustomer_BillParent
+  label "Bill parent" for #chkSale_NewCustomer_BillParent
+  slot #tdSale_NewCustomer_Currency
+  label "Currency"
+  select#tdSale_NewCustomer_AccountPayable
+  label "Account receivable"
+  block #divCustomerTaxRule
+    select#tdSale_NewCustomer_TaxRule
+    label "Tax rule"
+  select#tdSale_NewCustomer_DefaultCarrier
+  label "Default carrier"
+  block #divCustomerTaxNumber
+    input text#tdSale_NewCustomer_TaxNumber placeholder "Enter a tax number"
+    label "Tax number"
+  select#tdSale_NewCustomer_SalePriceTier
+  label "Sale price tier"
+  textarea#tdSale_NewCustomer_Comments placeholder "Enter comments"
+  label "Comments"
+  button "Save" primary
+  button "Close"
+```
+
+</details>
+
 ## Components by bundle
+
+What the page code builds and mounts into the layout's slots.
 
 ### `DocumentExtraction2024`
 

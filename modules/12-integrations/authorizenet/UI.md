@@ -8,7 +8,71 @@ Every component the page code builds, read from the shipped ExtJS bundles: grids
 |---|---|---|
 | `/AuthorizeNet` | AuthorizeNet | [`AuthorizeNet2019`](#authorizenet2019) |
 
+## Layout
+
+Each screen's server-rendered HTML inside the shell, as an outline: headings, tabs, sections, labels, inputs (`#id`), buttons (`▾` = dropdown), menus, tables and `slot`s (empty `<div>`s the components below mount into). `(hidden)` parts are shown by the page code when needed. Read with GET from a signed-in session; no values are kept.
+
+### `/AuthorizeNet`: AuthorizeNet
+
+Frame: `task-upload-frame`.
+
+```text
+link "Home"
+link "Integrations"
+button "Back to list"#backAction
+tabs#portal-main-tab: Overview #tab_overview | Setup #tab-portal-setup | Log #tab-portal-log | Help #tab-portal-help
+tab pane#tab_overview
+  heading "Overview"
+  text "Sales summary"
+  button "Refresh"#divRefreshSalesSummary
+  slot #overview-sales-summary
+  input text#divSearchOverviewGrid placeholder "Type text to search"
+  button "Search" primary
+  button #divRefreshOverview
+  button #overviewDashboardGrid_Options
+  slot #overviewDashboardGridContainer
+tab pane#tab-portal-setup
+  heading "Setup"
+  slot #setupValidation
+  block #divAuthorizeNetAccountName (hidden)
+    label "Authorize.net account name"
+    slot #txtAuthorizeNetAccountName
+  block #divConnect (hidden)
+    label ""
+    block #connectDiv
+  block #divDisconnect (hidden)
+    label ""
+  block #divConnectForm (hidden)
+    form
+      label "Authorization code"
+      input text#code
+      button "Submit connection" primary
+  block #divAccountSettings (hidden)
+    label "Payment account"
+    slot #cmbTargetAccount
+    label "Time zone"
+    slot #txtTimeZone
+    link "Change"
+    label "Ask for billing information"
+    input checkbox#chkBillingRequiredInLive
+    label ""
+    block #btnSaveSetupChanges
+      button "Save settings" primary
+tab pane#tab-portal-log
+  heading "Log"
+  input text#divSearchLog placeholder "Type text to search"
+  button "Search" primary
+  button #divRefreshLog
+  button #Grid_logEntriesGrid_Options
+  slot #logsGridContainer
+tab pane#tab-portal-help
+  heading "Help"
+  link "this invoice template"
+```
+
 ## Components by bundle
+
+What the page code builds and mounts into the layout's slots.
 
 ### `AuthorizeNet2019`
 

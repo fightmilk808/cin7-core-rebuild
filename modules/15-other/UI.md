@@ -4,6 +4,8 @@ Every component the page code builds, read from the shipped ExtJS bundles: grids
 
 ## Components by bundle
 
+What the page code builds and mounts into the layout's slots.
+
 ### `ActivityLogs`
 
 1 grids · 0 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components

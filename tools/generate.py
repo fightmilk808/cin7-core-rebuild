@@ -119,6 +119,11 @@ EFFECT_ICON = {"read": "🟢 read", "read+write": "🟠 read + write", "write": 
 SHARED_MODEL_LIMIT = 4  # a model used by this many modules or more goes to 00-shared
 SHELL_BUNDLES = {"Main2019", "Main2019_rep"}
 
+# Server-rendered page layouts (data/layout.json), filled in main().
+LAYOUT = {"pages": {}, "modals": {}, "shell": ""}
+SHELL_MODALS = set()  # dialogs present on most pages: documented once under 01-shell
+SHELL_MODAL_SHARE = 0.3
+
 
 def slugify(text):
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
@@ -412,15 +417,59 @@ def write_ui(d, title, pages, bundles, ui):
         for p in sorted(pages, key=lambda p: p["route"]):
             out.append(f"| `{p['route']}` | {cell(p['title'])} | " + ", ".join(f"[`{b}`](#{b.lower()})" for b in p["bundles"].split()) + " |")
         out.append("")
+    lay = layout_section(d, pages)
     n = 0
     body = []
     for b in sorted(bundles):
         if b in ui:
             n += ui_section(b, ui[b], body)
-    if not n:
+    if not n and not lay:
         return False
-    (d / "UI.md").write_text("\n".join(out + ["## Components by bundle", ""] + body) + "\n")
+    parts = out + lay
+    if n:
+        parts += ["## Components by bundle", "",
+                  "What the page code builds and mounts into the layout's slots.", ""] + body
+    (d / "UI.md").write_text("\n".join(parts) + "\n")
     return True
+
+
+def outline_block(text):
+    return ["```text", text.rstrip(), "```", ""]
+
+
+def layout_section(d, pages):
+    """The server-rendered HTML of each screen, as an outline, plus its own dialogs."""
+    out = []
+    if d.name == "01-shell" and LAYOUT["shell"]:
+        out += ["## Layout: the shell on every page", "",
+                "Top bar, navbar, left menu, floating action button and footer, from the page HTML.", ""]
+        out += outline_block(LAYOUT["shell"])
+        out += ["## Dialogs on most pages", ""]
+        for m in sorted(SHELL_MODALS):
+            if LAYOUT["modals"].get(m):
+                out += [f"### `{m}`", ""] + outline_block(LAYOUT["modals"][m])
+    shown = [p for p in sorted(pages, key=lambda p: p["route"]) if p["route"] in LAYOUT["pages"]]
+    if not shown:
+        return out
+    out += ["## Layout", "",
+            "Each screen's server-rendered HTML inside the shell, as an outline: headings, tabs, sections, labels, "
+            "inputs (`#id`), buttons (`▾` = dropdown), menus, tables and `slot`s (empty `<div>`s the components "
+            "below mount into). `(hidden)` parts are shown by the page code when needed. Read with GET from a "
+            "signed-in session; no values are kept.", ""]
+    for p in shown:
+        L = LAYOUT["pages"][p["route"]]
+        out += [f"### `{p['route']}`: {L.get('title') or p['title']}", ""]
+        if L.get("final") and L["final"].split("?")[0] != p["route"]:
+            out += [f"Redirects to `{L['final'].split('?')[0]}`.", ""]
+        if L.get("iframe"):
+            out += [f"Frame: `{L['iframe']}`.", ""]
+        out += outline_block(L.get("outline") or "(empty)")
+        own = [m for m in L.get("modals", []) if m not in SHELL_MODALS and LAYOUT["modals"].get(m)]
+        if own:
+            out += ["Dialogs on this page:", ""]
+            for m in own:
+                out += [f"<details><summary><code>{m}</code></summary>", ""] + outline_block(LAYOUT["modals"][m]) + ["</details>", ""]
+    return out
 
 
 # ---------------------------------------------------------------- module pages
@@ -567,6 +616,13 @@ def load():
 
 def main():
     endpoints, pages, public, models, ui, reports = load()
+    if (DATA / "layout.json").exists():
+        LAYOUT.update(json.load(open(DATA / "layout.json")))
+        counts = defaultdict(int)
+        for L in LAYOUT["pages"].values():
+            for m in set(L.get("modals", [])):
+                counts[m] += 1
+        SHELL_MODALS.update(m for m, c in counts.items() if c >= SHELL_MODAL_SHARE * max(1, len(LAYOUT["pages"])))
     section_slug = {sec: slug for slug, sec, _, _ in MODULES if sec is not None}
 
     # Units: each module, plus one per integration ("12-integrations/<slug>").
