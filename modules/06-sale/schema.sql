@@ -12,9 +12,9 @@ create table "AccountCurrency" (
 
 create table "AdditionalCharge" (
   "ID" text,
-  "GroupedAdditionalChargeID" text,
+  "GroupedAdditionalChargeID" text,  -- -> GroupedAdditionalCharge
   "IsIncludedToAdditionalCharge" boolean,
-  "JobMilestoneID" text,
+  "JobMilestoneID" text,  -- -> JobMilestone
   "Amount" numeric,
   "Comment" text,
   "Description" text,
@@ -22,8 +22,8 @@ create table "AdditionalCharge" (
   "LineOrder" numeric,
   "Price" numeric,
   "Quantity" numeric,
-  "RmaProductID" text,
-  "TaskID" text,
+  "RmaProductID" text,  -- -> RmaProduct
+  "TaskID" text,  -- -> Task (any document)
   "Tax" numeric,
   "TaxPercent" numeric,
   "TaxRule" text,
@@ -49,8 +49,8 @@ create table "AvalaraSaleTaxCode" (
 
 create table "AwaitingApprovalSale" (
   "ID" text,
-  "SourcePurchaseID" text,
-  "CustomerID" text,
+  "SourcePurchaseID" text,  -- -> Purchase
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "Contact" text,
   "Phone" text,
@@ -70,7 +70,7 @@ create table "AwaitingApprovalSale" (
   "ShippingAddressLine1" text,
   "ShippingAddressLine2" text,
   "ShipmentRequiredByDate" timestamptz,
-  "OrderLocationID" text,
+  "OrderLocationID" text,  -- -> Location
   "SaleOrderLocation" text,
   "SaleOrderDate" timestamptz,
   "SaleTaskMemoInternal" text,
@@ -85,7 +85,7 @@ create table "AwaitingApprovalSale" (
   "Frequency" text,
   "NextInvoiceDate" timestamptz,
   "TermDueNextMonth" integer,
-  "ShipAddressID" text,
+  "ShipAddressID" text,  -- -> Address
   "CreditLimit" numeric,
   "ValidationText" text,
   "ValidationState" text,
@@ -102,9 +102,9 @@ create table "AwaitingApprovalSale" (
   "CarrierServiceCode" text,
   "DeliveryInstruction" text,
   "CarrierServiceDisplayName" text,
-  "CreatedTaskID" text,
+  "CreatedTaskID" text,  -- -> CreatedTask
   "SaleOrderStatus" text,
-  "TargetTaskID" text,
+  "TargetTaskID" text,  -- -> Task (any document)
   "TaskType" integer,
   "InvoiceStatus" text,
   "InvoiceDate" timestamptz,
@@ -120,25 +120,25 @@ create table "ChooseProducts" (
   "BatchSerialNo" text,
   "Country" text,
   "CustomerComments" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "ExpiryDate" timestamptz,
   "FulfilmentLink" text,
-  "FulfilmentTaskID" text,
+  "FulfilmentTaskID" text,  -- -> Fulfilment
   "MaxQuantityToReturn" numeric,
   "SaleQuantity" numeric,
   "PackingCondition" text,
   "Price" numeric,
   "ProductCode" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductName" text,
   "ProductType" text,
   "QuantityToReturn" numeric,
-  "RMAReturnPolicyID" text,
+  "RMAReturnPolicyID" text,  -- -> RMAReturnPolicy
   "RMAReturnPolicyName" text,
-  "ReasonForReturnID" text,
+  "ReasonForReturnID" text,  -- -> ReasonForReturn
   "ReturnType" text,
-  "SaleTaskID" text,
+  "SaleTaskID" text,  -- -> Sale
   "Tax" numeric,
   "Total" numeric,
   "TotalCost" numeric,
@@ -153,7 +153,7 @@ create table "ChooseProducts" (
   "IsRefundPossible" boolean,
   "IsReplacementPossible" boolean,
   "IsInvoiced" boolean,
-  "DropShipReplacementID" text,
+  "DropShipReplacementID" text,  -- -> DropShipReplacement
   "InvoiceNumbers" text,
   "IsPaid" boolean,
   "IsCrossShipPossible" boolean,
@@ -163,7 +163,7 @@ create table "ChooseProducts" (
 
 create table "CreditNoteLineSelect" (
   "FakeKey" integer,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "RemainingQuantity" numeric,
   "Price" numeric,
@@ -179,8 +179,8 @@ create table "CreditNoteLineSelect" (
 );
 
 create table "CustomFilterCondition" (
-  "CustomFilterID" text,
-  "CustomFilterConditionID" text,
+  "CustomFilterID" text,  -- -> CustomFilter
+  "CustomFilterConditionID" text,  -- -> CustomFilterCondition
   "DisplayName" text,
   "ParameterName" text,
   "Condition" text,
@@ -191,15 +191,15 @@ create table "CustomFilterCondition" (
   "ConditionNumber" integer,
   "ParameterType" text,
   "ValueType" text,
-  "AttributeSetId" text
+  "AttributeSetId" text  -- -> AttributeSet
 );
 
 create table "CustomPriceLine" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductName" text,
   "ProductCode" text,
   "CustomPrice" numeric,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "LatestPrice" numeric,
   "LatestDate" timestamptz,
   "ValidationState" text,
@@ -207,7 +207,7 @@ create table "CustomPriceLine" (
 );
 
 create table "Customer" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
   "Currency" text,
   "PaymentTerm" text,
@@ -225,8 +225,8 @@ create table "Customer" (
 );
 
 create table "CustomerAddress" (
-  "CustomerID" text,
-  "AddressID" text,
+  "CustomerID" text,  -- -> Customer
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "Type" text,
@@ -245,8 +245,8 @@ create table "CustomerAddress" (
 );
 
 create table "CustomerContact" (
-  "CustomerID" text,
-  "ContactID" text,
+  "CustomerID" text,  -- -> Customer
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "IsDefault" boolean,
   "Phone" text,
@@ -254,8 +254,8 @@ create table "CustomerContact" (
 );
 
 create table "CustomerDefaultTemplate" (
-  "DefaultTemplateID" text,
-  "TemplateID" text,
+  "DefaultTemplateID" text,  -- -> Template
+  "TemplateID" text,  -- -> Template
   "Type" text
 );
 
@@ -287,7 +287,7 @@ create table "FamilyMatrix_Option" (
 );
 
 create table "FamilyMatrix_ProductAvailability" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "UnitOfMeasure" text,
@@ -313,7 +313,7 @@ create table "FamilyMatrix_ProductAvailability" (
   "Account" text,
   "TaxRule" text,
   "TaxPercent" numeric,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "Type" text,
   "Option1" text,
   "Option2" text,
@@ -330,7 +330,7 @@ create table "FamilyOption" (
 );
 
 create table "FamilyProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "UnitOfMeasure" text,
@@ -339,7 +339,7 @@ create table "FamilyProduct" (
   "RevenueAccount" text,
   "DropShipMode" text,
   "TaxRule" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "NonInventory" boolean
 );
 
@@ -354,11 +354,11 @@ create table "FulfillmentListItem" (
 );
 
 create table "GiftCardGlobalSettings" (
-  "GiftCardProductID" text,
+  "GiftCardProductID" text,  -- -> GiftCardProduct
   "IsGiftCardEnabled" boolean,
   "DefaultGiftCardExpirationPeriod" text,
   "CanGiftCardExpire" boolean,
-  "GiftCardSaleTaxID" text,
+  "GiftCardSaleTaxID" text,  -- -> GiftCardSaleTax
   "GiftProductName" text,
   "GiftProductCode" text,
   "GiftCardRevenueAccount" text,
@@ -368,16 +368,16 @@ create table "GiftCardGlobalSettings" (
 
 create table "GroupedAdditionalCharge" (
   "ID" text,
-  "CostTypeID" text,
+  "CostTypeID" text,  -- -> CostType
   "CostTypeName" text,
   "IsIncudedInInvoice" boolean,
   "OriginalIsIncudedInInvoice" boolean,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Total" numeric
 );
 
 create table "InvoiceForCreditNote" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Invoice" text,
   "Date" timestamptz
 );
@@ -388,7 +388,7 @@ create table "InvoiceForFulfillment" (
 );
 
 create table "JobCosting" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "Comments" text,
   "Contact" text,
@@ -397,7 +397,7 @@ create table "JobCosting" (
   "CustomerCurrency" text,
   "Phone" text,
   "PaymentTerm" text,
-  "TaxRuleID" text,
+  "TaxRuleID" text,  -- -> TaxRule
   "DefaultSalesRepresentative" text,
   "Discount" numeric,
   "SalePriceTier" integer,
@@ -428,11 +428,11 @@ create table "JobTasks" (
   "CustomField9" text,
   "CustomField10" text,
   "CustomerCurrency" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "EstimatedValue" numeric,
   "Frequency" numeric,
-  "JobID" text,
+  "JobID" text,  -- -> Job
   "JobNumber" text,
   "JobResolution" text,
   "Name" text,
@@ -441,13 +441,13 @@ create table "JobTasks" (
   "ProjectManager" text,
   "StartDate" timestamptz,
   "Status" text,
-  "TaxRuleID" text
+  "TaxRuleID" text  -- -> TaxRule
 );
 
 create table "LineInfo" (
   "RMAStatus" text,
-  "RmaProductID" text,
-  "RmaTaskID" text,
+  "RmaProductID" text,  -- -> RmaProduct
+  "RmaTaskID" text,  -- -> RMA
   "ValidationState" text,
   "ValidationText" text
 );
@@ -468,7 +468,7 @@ create table "LookupCarrierModel" (
 create table "McfChannelMapping" (
   "Id" text,
   "ChannelName" text,
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "FulfillmentBoxSetting" text,
   "LogisticsProviderSetting" text
 );
@@ -478,7 +478,7 @@ create table "MilestonesToJob" (
   "DateEstimated" timestamptz,
   "Description" text,
   "ID" text,
-  "JobID" text,
+  "JobID" text,  -- -> Job
   "LinksCount" numeric,
   "MilestoneResolution" text,
   "Name" text,
@@ -491,15 +491,15 @@ create table "MilestonesToJob" (
 create table "MilestonesToJob2" (
   "Amount" numeric,
   "Date" timestamptz,
-  "MilestoneID" text,
+  "MilestoneID" text,  -- -> Milestone
   "MilestoneName" text,
   "Number" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TaskType" text
 );
 
 create table "NewvTenantContact" (
-  "ContactID" text,
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "Phone" text,
   "Fax" text,
@@ -517,17 +517,17 @@ create table "PeriodModel" (
 
 create table "PickLocations" (
   "FakeKey" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "UnitOfMeasure" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Location" text,
   "CostingMethod" text,
   "BatchSN" text,
   "ExpiryDate" timestamptz,
   "Available" numeric,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "IsFirst" boolean,
   "NonInventory" boolean
 );
@@ -537,16 +537,16 @@ create table "PortalInvites" (
   "PortalName" text,
   "RecipientName" text,
   "RecipientEmail" text,
-  "PortalId" text,
+  "PortalId" text,  -- -> Portal
   "Status" text,
   "StatusDisplay" text,
-  "InvitationID" text,
+  "InvitationID" text,  -- -> Invitation
   "InvitationLink" text
 );
 
 create table "ProductToInvoice" (
   "FakeID" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Quantity" numeric,
@@ -555,53 +555,53 @@ create table "ProductToInvoice" (
   "AccountCode" text,
   "UnitOfMeasure" text,
   "TaxRule" text,
-  "ImageID" text,
-  "ConfigurationID" text,
+  "ImageID" text,  -- -> Blob (stored file)
+  "ConfigurationID" text,  -- -> IntegrationConfig
   "NonInventory" boolean
 );
 
 create table "RMADropShipReplacement" (
   "ID" text,
-  "ResolutionID" text,
+  "ResolutionID" text,  -- -> Resolution
   "BatchSerialNo" text,
   "Quantity" numeric,
   "ExpiryDate" timestamptz
 );
 
 create table "RMAPrinting" (
-  "TemplateID" text,
-  "EmailTemplateID" text,
+  "TemplateID" text,  -- -> Template
+  "EmailTemplateID" text,  -- -> EmailTemplate
   "Type" text,
   "Name" text
 );
 
 create table "RMAProductAttachments" (
   "ID" text,
-  "RMAProductID" text,
+  "RMAProductID" text,  -- -> RMAProduct
   "FileName" text,
-  "BlobID" text,
-  "TaskID" text
+  "BlobID" text,  -- -> Blob (stored file)
+  "TaskID" text  -- -> Task (any document)
 );
 
 create table "RMAResolution" (
-  "RmaTaskID" text,
-  "RmaProductID" text,
+  "RmaTaskID" text,  -- -> RMA
+  "RmaProductID" text,  -- -> RmaProduct
   "ID" text,
   "ResolutionType" text,
-  "JobID" text,
-  "JobMilestoneID" text,
-  "RmaReturnOrderTaskID" text,
+  "JobID" text,  -- -> Job
+  "JobMilestoneID" text,  -- -> JobMilestone
+  "RmaReturnOrderTaskID" text,  -- -> RmaReturnOrderTask
   "Resolution" text,
   "ReturnOrderResolution" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text,
   "Quantity" numeric,
   "InTransitAccountName" text,
   "EffectiveDate" timestamptz,
-  "StockTranferTaskID" text,
+  "StockTranferTaskID" text,  -- -> StockTranferTask
   "StockTranferNumber" text,
   "Comments" text,
-  "BinID" text,
+  "BinID" text,  -- -> Bin
   "BinName" text,
   "BatchSerialNo" text,
   "ExpenseAccount" text,
@@ -610,7 +610,7 @@ create table "RMAResolution" (
   "AdditionalCharges" numeric,
   "Total" numeric,
   "Status" text,
-  "RestockToProductID" text,
+  "RestockToProductID" text,  -- -> RestockToProduct
   "RestockToProductCode" text,
   "RestockToProductName" text
 );
@@ -620,10 +620,10 @@ create table "RMAReturnOrdersRelatedOrders" (
   "ID" text,
   "InvoiceNumber" text,
   "Number" text,
-  "RelatedTaskID" text,
+  "RelatedTaskID" text,  -- -> RelatedTask
   "RelatedTaskType" text,
-  "RmaProductID" text,
-  "RmaTaskID" text,
+  "RmaProductID" text,  -- -> RmaProduct
+  "RmaTaskID" text,  -- -> RMA
   "Status" text
 );
 
@@ -651,13 +651,13 @@ create table "RMAReturnPolicy" (
 
 create table "ROProduct" (
   "Account" text,
-  "BinID" text,
+  "BinID" text,  -- -> Bin
   "Code" text,
   "Cost" numeric,
   "CostingMethod" text,
   "Name" text,
   "NonInventory" boolean,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "SupplierInventoryCode" text,
   "TaxRule" text,
   "Type" text,
@@ -675,7 +675,7 @@ create table "RecurringFrequency" (
 );
 
 create table "RecurringInvoice" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "IsServiceOnly" boolean,
   "InvoiceNumber" text,
   "Customer" text,
@@ -693,32 +693,32 @@ create table "RelatedTask" (
   "ID" text,
   "InvoiceNumber" text,
   "Number" text,
-  "RelatedTaskID" text,
+  "RelatedTaskID" text,  -- -> RelatedTask
   "RelatedTaskType" text,
-  "RmaProductID" text,
-  "RmaTaskID" text,
+  "RmaProductID" text,  -- -> RmaProduct
+  "RmaTaskID" text,  -- -> RMA
   "Status" text
 );
 
 create table "Resolution" (
-  "RmaTaskID" text,
-  "RmaProductID" text,
+  "RmaTaskID" text,  -- -> RMA
+  "RmaProductID" text,  -- -> RmaProduct
   "ID" text,
   "ResolutionType" text,
-  "JobID" text,
-  "JobMilestoneID" text,
-  "RmaReturnOrderTaskID" text,
+  "JobID" text,  -- -> Job
+  "JobMilestoneID" text,  -- -> JobMilestone
+  "RmaReturnOrderTaskID" text,  -- -> RmaReturnOrderTask
   "Resolution" text,
   "ReturnOrderResolution" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text,
   "Quantity" numeric,
   "InTransitAccountName" text,
   "EffectiveDate" timestamptz,
-  "StockTranferTaskID" text,
+  "StockTranferTaskID" text,  -- -> StockTranferTask
   "StockTranferNumber" text,
   "Comments" text,
-  "BinID" text,
+  "BinID" text,  -- -> Bin
   "BinName" text,
   "BatchSerialNo" text,
   "ExpenseAccount" text,
@@ -727,21 +727,21 @@ create table "Resolution" (
   "AdditionalCharges" numeric,
   "Total" numeric,
   "Status" text,
-  "RestockToProductID" text,
+  "RestockToProductID" text,  -- -> RestockToProduct
   "ReturnToCustomerHasBeenSent" boolean,
   "ReturnToCustomerSentDate" timestamptz
 );
 
 create table "ReturnOrders" (
-  "ReturnOrderTaskID" text,
+  "ReturnOrderTaskID" text,  -- -> ReturnOrderTask
   "ReturnOrderNumber" text,
-  "TaskID" text
+  "TaskID" text  -- -> Task (any document)
 );
 
 create table "SSCarrier" (
   "ParentFakeID" text,
   "FakeID" text,
-  "FFID" text,
+  "FFID" text,  -- -> FulfilmentOrder
   "Name" text,
   "Description" text
 );
@@ -753,7 +753,7 @@ create table "SSPackageType" (
 
 create table "SSRecord" (
   "FakeID" text,
-  "FFID" text,
+  "FFID" text,  -- -> FulfilmentOrder
   "Carrier" text,
   "ShippingService" text,
   "CarrierText" text,
@@ -763,7 +763,7 @@ create table "SSRecord" (
 
 create table "SSService" (
   "ID" text,
-  "FFID" text,
+  "FFID" text,  -- -> FulfilmentOrder
   "ParentFakeID" text,
   "Carrier" text,
   "Name" text,
@@ -776,7 +776,7 @@ create table "SSService" (
 );
 
 create table "SaleCustomFilterConditionConditionParameter" (
-  "AutomatedWorkflowConditionParameterID" text,
+  "AutomatedWorkflowConditionParameterID" text,  -- -> AutomatedWorkflowConditionParameter
   "DisplayName" text,
   "ParameterName" text,
   "EntityType" text,
@@ -784,7 +784,7 @@ create table "SaleCustomFilterConditionConditionParameter" (
   "IsActive" boolean,
   "ValueType" text,
   "AvailableValues" text,
-  "AttributeSetId" text,
+  "AttributeSetId" text,  -- -> AttributeSet
   "GroupNumber" integer,
   "IsFirstGroupMember" boolean
 );
@@ -808,7 +808,7 @@ create table "SaleOrderLineUploadError" (
 );
 
 create table "SalePickerModel" (
-  "UserID" text,
+  "UserID" text,  -- -> User
   "Email" text
 );
 
@@ -868,7 +868,7 @@ create table "SaleReferenceData" (
   "FillInvoiceDateOnOrderAuthorisation" text,
   "FillInvoiceDateOption" text,
   "HeadersVisible" boolean,
-  "CurrentAttributeSetId" text,
+  "CurrentAttributeSetId" text,  -- -> AttributeSet
   "CouponCode" text,
   "CouponDealName" text,
   "AppliedCouponNumber" integer,
@@ -876,13 +876,13 @@ create table "SaleReferenceData" (
   "CountrySpecificData" text,
   "OrderRoutingEnabled" boolean,
   "IsSaleTaxManagementServiceEnabled" boolean,
-  "SaleTaxManagementRuleID" text,
+  "SaleTaxManagementRuleID" text,  -- -> SaleTaxManagementRule
   "SaleTaxManagementServiceName" text
 );
 
 create table "SaleTask" (
-  "TaskID" text,
-  "CustomerID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "Contact" text,
   "Phone" text,
@@ -942,9 +942,9 @@ create table "SaleTask" (
   "Frequency" text,
   "TermDueNextMonth" integer,
   "NextInvoiceDate" timestamptz,
-  "ShipAddressID" text,
+  "ShipAddressID" text,  -- -> Address
   "CreditLimit" numeric,
-  "JobID" text,
+  "JobID" text,  -- -> Job
   "ValidationText" text,
   "ValidationState" text,
   "CustomField1" text,
@@ -958,7 +958,7 @@ create table "SaleTask" (
   "CustomField9" text,
   "CustomField10" text,
   "FulfillmentNumber" integer,
-  "ExternalID" text,
+  "ExternalID" text,  -- -> External
   "CountrySpecificKey" text
 );
 
@@ -986,18 +986,18 @@ create table "ShipBox" (
 );
 
 create table "vBin" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
 create table "vChildCustomer" (
-  "ChildCustomerID" text,
+  "ChildCustomerID" text,  -- -> ChildCustomer
   "ChildCustomerName" text
 );
 
 create table "vChildCustomerList" (
   "Expand" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
   "SaleAccount" text,
   "DisplayName" text,
@@ -1005,8 +1005,8 @@ create table "vChildCustomerList" (
 );
 
 create table "vCreditAllocated" (
-  "AllocationID" text,
-  "TaskID" text,
+  "AllocationID" text,  -- -> Allocation
+  "TaskID" text,  -- -> Task (any document)
   "DocNumber" text,
   "Currency" text,
   "Date" timestamptz,
@@ -1014,15 +1014,15 @@ create table "vCreditAllocated" (
 );
 
 create table "vCustomPrice" (
-  "ProductID" text,
-  "CustomerID" text,
+  "ProductID" text,  -- -> Product
+  "CustomerID" text,  -- -> Customer
   "Price" numeric,
   "IsDeleted" boolean
 );
 
 create table "vCustomerAddress" (
-  "CustomerID" text,
-  "AddressID" text,
+  "CustomerID" text,  -- -> Customer
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "CitySuburb" text,
@@ -1034,8 +1034,8 @@ create table "vCustomerAddress" (
 );
 
 create table "vCustomerContact" (
-  "CustomerID" text,
-  "ContactID" text,
+  "CustomerID" text,  -- -> Customer
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "JobTitle" text,
   "Phone" text,
@@ -1048,15 +1048,15 @@ create table "vCustomerContact" (
 );
 
 create table "vCustomerDefaultTemplate" (
-  "DefaultTemplateID" text,
-  "TemplateID" text,
-  "CustomerID" text,
+  "DefaultTemplateID" text,  -- -> Template
+  "TemplateID" text,  -- -> Template
+  "CustomerID" text,  -- -> Customer
   "Type" text
 );
 
 create table "vCustomerFile" (
-  "FileID" text,
-  "CustomerID" text,
+  "FileID" text,  -- -> Blob (stored file)
+  "CustomerID" text,  -- -> Customer
   "FileName" text,
   "ContentType" text,
   "UserName" text,
@@ -1067,7 +1067,7 @@ create table "vCustomerFile" (
 
 create table "vCustomerList" (
   "Expand" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
   "Contact" text,
   "Phone" text,
@@ -1093,19 +1093,19 @@ create table "vCustomerList" (
   "Selected" boolean,
   "IsOnCreditHold" boolean,
   "Edit" text,
-  "AttributeSetID" text,
+  "AttributeSetID" text,  -- -> AttributeSet
   "DisplayName" text,
   "IsLegalEntity" boolean
 );
 
 create table "vCustomerParent" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text
 );
 
 create table "vCustomerPaymentsDue" (
-  "TaskID" text,
-  "CustomerID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "CustomerID" text,  -- -> Customer
   "InvoiceNumber" text,
   "InvoiceDate" timestamptz,
   "DueDate" timestamptz,
@@ -1120,10 +1120,10 @@ create table "vCustomerPaymentsDue" (
 
 create table "vCustomerPurchases" (
   "ID" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Price" numeric,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "InvoiceDate" timestamptz,
   "CustomerCurrency" text,
   "InvoiceNumber" text,
@@ -1131,13 +1131,13 @@ create table "vCustomerPurchases" (
   "ProductCode" text,
   "IsServiceOnly" boolean,
   "CustomerName" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "IsMasterCustomerParent" boolean,
   "IsMasterCustomerChild" boolean
 );
 
 create table "vCustomerSaleTasks" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "SaleOrderNumber" text,
   "Status" text,
   "SaleOrderDate" timestamptz,
@@ -1149,23 +1149,23 @@ create table "vCustomerSaleTasks" (
   "IsServiceOnly" boolean,
   "Controller" text,
   "CustomerName" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "IsMasterCustomerParent" boolean,
   "IsMasterCustomerChild" boolean
 );
 
 create table "vDearToDearNetworkingTaskLinks" (
   "ID" text,
-  "SourceTaskID" text,
+  "SourceTaskID" text,  -- -> Task (any document)
   "SourceType" integer,
-  "TargetTaskID" text,
+  "TargetTaskID" text,  -- -> Task (any document)
   "TargetType" integer
 );
 
 create table "vDiscountLine" (
   "FakeID" integer,
   "ID" text,
-  "DiscountID" text,
+  "DiscountID" text,  -- -> Discount
   "MinValue" numeric,
   "MaxValue" numeric,
   "Type" text,
@@ -1184,11 +1184,11 @@ create table "vExpenseAccounts" (
 
 create table "vFulfillmentOrder" (
   "ID" text,
-  "FFOrderId" text,
-  "ExternalOrderID" text,
-  "ConfigID" text,
+  "FFOrderId" text,  -- -> FulfilmentOrder
+  "ExternalOrderID" text,  -- -> ExternalOrder
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
-  "SaleTaskID" text,
+  "SaleTaskID" text,  -- -> Sale
   "Currency" text,
   "SaleOrderNumber" text,
   "Memo" text,
@@ -1205,15 +1205,15 @@ create table "vFulfillmentOrder" (
   "AddressLine2" text,
   "ShippingMethod" text,
   "CanBeCancelled" boolean,
-  "ShipmentLineID" text
+  "ShipmentLineID" text  -- -> mentLine
 );
 
 create table "vFulfillmentOrderForList" (
   "ID" text,
   "Location" text,
-  "FFOrderId" text,
+  "FFOrderId" text,  -- -> FulfilmentOrder
   "Date" timestamptz,
-  "SaleTaskID" text,
+  "SaleTaskID" text,  -- -> Sale
   "SaleOrderNumber" text,
   "Memo" text,
   "Status" text,
@@ -1224,7 +1224,7 @@ create table "vFulfillmentOrderForList" (
 create table "vFulfillmentOrderItem" (
   "ID" text,
   "IdInOrder" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "SKU" text,
   "FFSKU" text,
   "Quantity" text,
@@ -1269,28 +1269,28 @@ create table "vFulfillmentOrderTrackingInfo" (
 );
 
 create table "vLocation" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
 create table "vLocationAndBin" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text
 );
 
 create table "vRMA" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Contact" text,
   "CreatedDate" timestamptz,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "Email" text,
   "ExpiredDate" timestamptz,
   "Number" text,
   "Phone" text,
-  "ReceiptsLocationID" text,
+  "ReceiptsLocationID" text,  -- -> Location
   "ReceiptsLocationName" text,
-  "ShipAddressID" text,
+  "ShipAddressID" text,  -- -> Address
   "ShipToAddress1" text,
   "ShipToAddress2" text,
   "ShipToCity" text,
@@ -1313,13 +1313,13 @@ create table "vRMA" (
   "SaleOrderNumber" text,
   "SaleOrderCustomerReference" text,
   "FreeNotes" text,
-  "RmaPortalID" text
+  "RmaPortalID" text  -- -> RmaPortal
 );
 
 create table "vRMAAttachments" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "ID" text,
-  "BlobID" text,
+  "BlobID" text,  -- -> Blob (stored file)
   "ContentType" text,
   "FileName" text,
   "Date" timestamptz,
@@ -1329,7 +1329,7 @@ create table "vRMAAttachments" (
 
 create table "vRMAExpenseAccount" (
   "DisplayName" text,
-  "RuleID" text
+  "RuleID" text  -- -> Rule (context-specific)
 );
 
 create table "vRMAInTransitAccount" (
@@ -1338,16 +1338,16 @@ create table "vRMAInTransitAccount" (
 );
 
 create table "vRMAList" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Number" text,
   "SaleOrderNumber" text,
   "SaleOrderCustomerReference" text,
   "CustomerName" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Contact" text,
   "Phone" text,
   "Email" text,
-  "ReceiptsLocationID" text,
+  "ReceiptsLocationID" text,  -- -> Location
   "ReceiptsLocationName" text,
   "ShipToOther" boolean,
   "ShipToCompany" text,
@@ -1367,20 +1367,20 @@ create table "vRMAList" (
 
 create table "vRMAProductAttachments" (
   "ID" text,
-  "RmaProductID" text,
+  "RmaProductID" text,  -- -> RmaProduct
   "FileName" text,
-  "BlobID" text,
-  "TaskID" text
+  "BlobID" text,  -- -> Blob (stored file)
+  "TaskID" text  -- -> Task (any document)
 );
 
 create table "vRMAProducts" (
   "Selected" boolean,
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "ProductType" text,
-  "ParentSaleTaskID" text,
-  "FulfilmentTaskID" text,
-  "ProductID" text,
+  "ParentSaleTaskID" text,  -- -> Sale
+  "FulfilmentTaskID" text,  -- -> Fulfilment
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "ProductName" text,
   "ExpiryDate" timestamptz,
@@ -1391,13 +1391,13 @@ create table "vRMAProducts" (
   "WarrantyExpiredDate" timestamptz,
   "WarrantyRegistrationNumber" text,
   "ReturnPolicyName" text,
-  "ReturnPolicyID" text,
+  "ReturnPolicyID" text,  -- -> ReturnPolicy
   "IsCrossShipping" boolean,
   "IsDropShipping" boolean,
   "ShippingTrackingNumber" text,
   "CustomerComments" text,
   "BatchSerialNo" text,
-  "ReasonForReturnID" text,
+  "ReasonForReturnID" text,  -- -> ReasonForReturn
   "ReasonForReturnName" text,
   "ReturnType" text,
   "PackingCondition" text,
@@ -1405,11 +1405,11 @@ create table "vRMAProducts" (
   "Price" numeric,
   "Total" numeric,
   "ReceiptAction" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Status" text,
   "RejectionReason" text,
   "DropShipMode" text,
-  "DropShipSupplierID" text,
+  "DropShipSupplierID" text,  -- -> DropShipSupplier
   "DropShipSupplierName" text,
   "SelectedDropShipAddressShipToCity" text,
   "SelectedDropShipAddressShipToCountry" text,
@@ -1417,7 +1417,7 @@ create table "vRMAProducts" (
   "SelectedDropShipAddressShipToLine2" text,
   "SelectedDropShipAddressShipToPostcode" text,
   "SelectedDropShipAddressShipToState" text,
-  "SelectedDropShipSupplierID" text,
+  "SelectedDropShipSupplierID" text,  -- -> SelectedDropShipSupplier
   "ReturnExpirationDate" timestamptz,
   "RefundExpirationDate" timestamptz,
   "ReplacementExpirationDate" timestamptz,
@@ -1425,7 +1425,7 @@ create table "vRMAProducts" (
   "IsRefundPossible" boolean,
   "IsReplacementPossible" boolean,
   "IsInvoiced" boolean,
-  "DropShipReplacementID" text,
+  "DropShipReplacementID" text,  -- -> DropShipReplacement
   "IsPaid" boolean,
   "IsCrossShipPossible" boolean,
   "CostingMethod" text,
@@ -1433,16 +1433,16 @@ create table "vRMAProducts" (
 );
 
 create table "vRMAProductsList" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "RMANumber" text,
   "SaleOrderNumber" text,
   "SaleOrderCustomerReference" text,
   "CustomerName" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Contact" text,
   "Phone" text,
   "Email" text,
-  "ReceiptsLocationID" text,
+  "ReceiptsLocationID" text,  -- -> Location
   "ReceiptsLocationName" text,
   "ShipToOther" boolean,
   "ShipToCompany" text,
@@ -1460,40 +1460,40 @@ create table "vRMAProductsList" (
   "RMAStatus" text,
   "ROStatus" text,
   "RONumber" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductSKU" text,
   "ProductName" text,
   "BatchSerialNo" text,
   "RMAProductStatus" text,
   "IsReceived" boolean,
   "ReceiptAction" text,
-  "JobID" text,
+  "JobID" text,  -- -> Job
   "JobNumber" text,
   "ROResolution" text,
   "RMAResolution" text,
   "RMAResolutionStatus" text,
-  "SaleTaskID" text,
-  "RMATaskID" text,
-  "ROTaskID" text
+  "SaleTaskID" text,  -- -> Sale
+  "RMATaskID" text,  -- -> RMATask
+  "ROTaskID" text  -- -> ROTask
 );
 
 create table "vRMAReturnOrder" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Contact" text,
   "CreatedDate" timestamptz,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "Email" text,
   "Number" text,
   "Phone" text,
-  "ReceiptsLocationID" text,
+  "ReceiptsLocationID" text,  -- -> Location
   "ReceiptsLocationName" text,
   "RmaDate" timestamptz,
-  "RmaID" text,
+  "RmaID" text,  -- -> Rma
   "RmaNumber" text,
   "ScrapWriteOffDefaultExpenseAccountName" text,
   "ScrapWriteOffDefaultExpenseAccount" text,
-  "ShipAddressID" text,
+  "ShipAddressID" text,  -- -> Address
   "ShipToAddress1" text,
   "ShipToAddress2" text,
   "ShipToCity" text,
@@ -1507,7 +1507,6 @@ create table "vRMAReturnOrder" (
   "ShippingAddressLine2" text,
   "ShippingNotes" text,
   "Status" text,
-  "ScrapWriteOffDefaultExpenseAccount" text,
   "ValidationState" text,
   "ValidationText" text,
   "CreateCreditNoteType" text,
@@ -1517,9 +1516,9 @@ create table "vRMAReturnOrder" (
 );
 
 create table "vRMAReturnOrderAttachments" (
-  "RMAReturnOrderTaskID" text,
+  "RMAReturnOrderTaskID" text,  -- -> RMAReturnOrderTask
   "ID" text,
-  "BlobID" text,
+  "BlobID" text,  -- -> Blob (stored file)
   "ContentType" text,
   "FileName" text,
   "Date" timestamptz,
@@ -1528,16 +1527,16 @@ create table "vRMAReturnOrderAttachments" (
 );
 
 create table "vRMAReturnOrderGeneral" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Number" text,
   "RmaNumber" text,
   "RmaDate" timestamptz,
   "CustomerName" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Contact" text,
   "Phone" text,
   "Email" text,
-  "ReceiptsLocationID" text,
+  "ReceiptsLocationID" text,  -- -> Location
   "ReceiptsLocationName" text,
   "ShipToOther" boolean,
   "ShipToCompany" text,
@@ -1559,38 +1558,38 @@ create table "vRMAReturnOrderGeneral" (
 
 create table "vRMAReturnOrderProductAttachment" (
   "ID" text,
-  "RmaReturnOrderProductID" text,
+  "RmaReturnOrderProductID" text,  -- -> RmaReturnOrderProduct
   "FileName" text,
-  "BlobID" text,
-  "TaskID" text
+  "BlobID" text,  -- -> Blob (stored file)
+  "TaskID" text  -- -> Task (any document)
 );
 
 create table "vRMAReturnOrderProducts" (
   "BatchSerialNo" text,
-  "BinID" text,
+  "BinID" text,  -- -> Bin
   "BinName" text,
   "CostingMethod" text,
   "CustomerComments" text,
-  "FulfilmentTaskID" text,
+  "FulfilmentTaskID" text,  -- -> Fulfilment
   "ID" text,
-  "TaskID" text,
-  "ParentSaleTaskID" text,
-  "ProductID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "ParentSaleTaskID" text,  -- -> Sale
+  "ProductID" text,  -- -> Product
   "ProductName" text,
   "ProductCode" text,
   "QuantityToReturn" numeric,
-  "ReasonForReturnID" text,
+  "ReasonForReturnID" text,  -- -> ReasonForReturn
   "ReasonForReturnName" text,
   "ReceiptAction" text,
   "ReceivedQuantity" numeric,
   "ExpiryDate" timestamptz,
-  "RmaProductID" text,
+  "RmaProductID" text,  -- -> RmaProduct
   "Status" text,
   "ValidationState" text,
   "ValidationText" text,
   "WarrantyExpiredDate" timestamptz,
   "WarrantyRegistrationNumber" text,
-  "ReturnPolicyID" text,
+  "ReturnPolicyID" text,  -- -> ReturnPolicy
   "ReturnExpirationDate" timestamptz,
   "RefundExpirationDate" timestamptz,
   "ReplacementExpirationDate" timestamptz,
@@ -1611,12 +1610,12 @@ create table "vRMASaleOrderInvoiceNumbers" (
 );
 
 create table "vRMASuppliers" (
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "Name" text
 );
 
 create table "vRMASuppliersAddresses" (
-  "AddressID" text,
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "ShipToCity" text,
@@ -1625,17 +1624,17 @@ create table "vRMASuppliersAddresses" (
   "ShipToLine2" text,
   "ShipToPostcode" text,
   "ShipToState" text,
-  "SupplierID" text
+  "SupplierID" text  -- -> Supplier
 );
 
 create table "vRMATaxRule" (
   "Description" text,
-  "RuleID" text
+  "RuleID" text  -- -> Rule (context-specific)
 );
 
 create table "vSaleAdditionalCOGS" (
   "FakeID" integer,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "ID" text,
   "Reference" text,
   "Amount" numeric,
@@ -1647,10 +1646,10 @@ create table "vSaleAdditionalCOGS" (
 );
 
 create table "vSaleAllocations" (
-  "SaleCreditID" text,
-  "AllocationID" text,
-  "SalePaymentID" text,
-  "TaskID" text,
+  "SaleCreditID" text,  -- -> SaleCreditNote
+  "AllocationID" text,  -- -> Allocation
+  "SalePaymentID" text,  -- -> SalePayment
+  "TaskID" text,  -- -> Task (any document)
   "Flag" boolean
 );
 
@@ -1670,8 +1669,8 @@ create table "vSaleConsolidatedTranscations" (
 
 create table "vSaleCreditNoteCostLines" (
   "FakeID" integer,
-  "TaskID" text,
-  "InvoiceCostID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "InvoiceCostID" text,  -- -> InvoiceCost
   "Description" text,
   "Quantity" numeric,
   "Amount" numeric,
@@ -1690,9 +1689,9 @@ create table "vSaleCreditNoteCostLines" (
 
 create table "vSaleCreditNoteLines" (
   "FakeID" integer,
-  "TaskID" text,
-  "InvoiceLineID" text,
-  "ProductID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "InvoiceLineID" text,  -- -> Line (parent document's line)
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Price" numeric,
   "Discount" numeric,
@@ -1713,8 +1712,8 @@ create table "vSaleCreditNoteLines" (
 
 create table "vSaleCreditNotePaymentLines" (
   "FakeID" integer,
-  "TaskID" text,
-  "PaymentID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "PaymentID" text,  -- -> Payment
   "Reference" text,
   "Amount" numeric,
   "DatePaid" timestamptz,
@@ -1729,8 +1728,8 @@ create table "vSaleCreditNotePaymentLines" (
 );
 
 create table "vSaleCreditWithDetails" (
-  "SaleCreditID" text,
-  "CustomerID" text,
+  "SaleCreditID" text,  -- -> SaleCreditNote
+  "CustomerID" text,  -- -> Customer
   "Currency" text,
   "Amount" numeric,
   "RemainingAmount" numeric,
@@ -1743,15 +1742,15 @@ create table "vSaleCreditWithDetails" (
 );
 
 create table "vSaleCredits" (
-  "SaleCreditID" text,
-  "CustomerID" text,
+  "SaleCreditID" text,  -- -> SaleCreditNote
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "Currency" text,
   "Amount" numeric,
   "RemainingAmount" numeric,
   "Account" text,
-  "SourceLineID" text,
-  "CreditSourceTaskID" text,
+  "SourceLineID" text,  -- -> Line (parent document's line)
+  "CreditSourceTaskID" text,  -- -> Task (any document)
   "OrigTaskType" text,
   "Type" text,
   "Date" timestamptz
@@ -1759,35 +1758,35 @@ create table "vSaleCredits" (
 
 create table "vSaleExciseLines" (
   "FakeID" integer,
-  "TaskID" text,
-  "LineID" text,
-  "ProductID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "LineID" text,  -- -> Line (parent document's line)
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "ExciseTax" numeric,
   "Total" numeric,
   "LineOrder" integer,
   "Name" text,
   "ProductCode" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "ValidationText" text,
   "ValidationState" text
 );
 
 create table "vSaleGiftCards" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "GiftCardCode" text,
   "InitialBalance" numeric,
   "CurrentBalance" numeric,
   "Date" timestamptz,
   "ExpirationDate" timestamptz,
-  "RefundID" text
+  "RefundID" text  -- -> Refund
 );
 
 create table "vSaleInvoiceAdditionalCharges" (
   "FakeID" integer,
-  "TaskID" text,
-  "InvoiceCostID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "InvoiceCostID" text,  -- -> InvoiceCost
   "Description" text,
   "Quantity" numeric,
   "Amount" numeric,
@@ -1806,9 +1805,9 @@ create table "vSaleInvoiceAdditionalCharges" (
 
 create table "vSaleInvoiceLines" (
   "FakeID" integer,
-  "TaskID" text,
-  "InvoiceLineID" text,
-  "ProductID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "InvoiceLineID" text,  -- -> Line (parent document's line)
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Price" numeric,
   "Discount" numeric,
@@ -1824,7 +1823,7 @@ create table "vSaleInvoiceLines" (
   "TaxRule" text,
   "TaxPercent" numeric,
   "Comment" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "SourceProductCode" text,
   "SourceProductName" text,
   "ValidationText" text,
@@ -1838,7 +1837,7 @@ create table "vSaleInvoiceLines" (
 );
 
 create table "vSaleMult_Customer" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
   "Currency" text,
   "PaymentTerm" text,
@@ -1856,8 +1855,8 @@ create table "vSaleMult_Customer" (
 );
 
 create table "vSaleMult_CustomerAddress" (
-  "CustomerID" text,
-  "AddressID" text,
+  "CustomerID" text,  -- -> Customer
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "Type" text,
@@ -1873,8 +1872,8 @@ create table "vSaleMult_CustomerAddress" (
 );
 
 create table "vSaleMult_CustomerContact" (
-  "CustomerID" text,
-  "ContactID" text,
+  "CustomerID" text,  -- -> Customer
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "IsDefault" boolean,
   "Phone" text,
@@ -1882,7 +1881,7 @@ create table "vSaleMult_CustomerContact" (
 );
 
 create table "vSaleMult_TenantAddress" (
-  "AddressID" text,
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "Type" text,
@@ -1891,8 +1890,8 @@ create table "vSaleMult_TenantAddress" (
 
 create table "vSaleOrderAdditionalCharges" (
   "FakeID" integer,
-  "TaskID" text,
-  "OrderCostID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "OrderCostID" text,  -- -> Cost
   "Description" text,
   "Quantity" numeric,
   "Amount" numeric,
@@ -1909,9 +1908,9 @@ create table "vSaleOrderAdditionalCharges" (
 );
 
 create table "vSaleOrderAttachement" (
-  "TaskID" text,
-  "AttachementID" text,
-  "BlobGUID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "AttachementID" text,  -- -> Attachment
+  "BlobGUID" text,  -- -> Blob (stored file)
   "ContentType" text,
   "FileName" text,
   "Date" timestamptz,
@@ -1923,9 +1922,9 @@ create table "vSaleOrderAttachement" (
 
 create table "vSaleOrderLines" (
   "FakeID" integer,
-  "TaskID" text,
-  "OrderLineID" text,
-  "ProductID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "OrderLineID" text,  -- -> Line (parent document's line)
+  "ProductID" text,  -- -> Product
   "SourceProductCode" text,
   "SourceProductName" text,
   "Quantity" numeric,
@@ -1943,7 +1942,7 @@ create table "vSaleOrderLines" (
   "TaxRule" text,
   "TaxPercent" numeric,
   "Comment" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "ValidationText" text,
   "ValidationState" text,
   "DropShip" boolean,
@@ -1956,9 +1955,9 @@ create table "vSaleOrderLines" (
 
 create table "vSalePackingSlips" (
   "FakeID" integer,
-  "TaskID" text,
-  "SlipID" text,
-  "ProductID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "SlipID" text,  -- -> Slip
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "BoxNumber" text,
   "Name" text,
@@ -1967,11 +1966,11 @@ create table "vSalePackingSlips" (
   "CostingMethod" text,
   "BatchSN" text,
   "ExpiryDate" timestamptz,
-  "LocationID" text,
-  "ImageID" text,
+  "LocationID" text,  -- -> Location
+  "ImageID" text,  -- -> Blob (stored file)
   "NonInventory" boolean,
   "WarrantySetupName" text,
-  "WarrantySetupID" text,
+  "WarrantySetupID" text,  -- -> WarrantySetup
   "WarrantySetupCalculationStartDate" text,
   "WarrantySetupAutoGenerate" boolean,
   "WarrantyRegistrationNumber" text,
@@ -1981,8 +1980,8 @@ create table "vSalePackingSlips" (
 
 create table "vSalePaymentLines" (
   "FakeID" integer,
-  "TaskID" text,
-  "PaymentID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "PaymentID" text,  -- -> Payment
   "Reference" text,
   "Amount" numeric,
   "DatePaid" timestamptz,
@@ -1997,35 +1996,35 @@ create table "vSalePaymentLines" (
 
 create table "vSalePickings" (
   "FakeID" integer,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "ID" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "UnitOfMeasure" text,
   "Quantity" numeric,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Type" text,
   "CostingMethod" text,
   "BatchSN" text,
   "ExpiryDate" timestamptz,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "NonInventory" boolean,
   "WarrantySetupName" text,
-  "WarrantySetupID" text,
+  "WarrantySetupID" text,  -- -> WarrantySetup
   "WarrantySetupCalculationStartDate" text,
   "WarrantySetupAutoGenerate" boolean,
   "WarrantyRegistrationNumber" text,
   "ValidationText" text,
   "ValidationState" text,
   "RestockDate" timestamptz,
-  "RestockLocationID" text
+  "RestockLocationID" text  -- -> RestockLocation
 );
 
 create table "vSaleQuoteAdditionalCharges" (
   "FakeID" integer,
-  "TaskID" text,
-  "QuoteCostID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "QuoteCostID" text,  -- -> QuoteCost
   "Description" text,
   "Quantity" numeric,
   "Amount" numeric,
@@ -2043,9 +2042,9 @@ create table "vSaleQuoteAdditionalCharges" (
 
 create table "vSaleQuoteLines" (
   "FakeID" integer,
-  "TaskID" text,
-  "QuoteLineID" text,
-  "ProductID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "QuoteLineID" text,  -- -> Line (parent document's line)
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Price" numeric,
   "Discount" numeric,
@@ -2065,8 +2064,8 @@ create table "vSaleQuoteLines" (
 
 create table "vSaleShipments" (
   "FakeID" integer,
-  "TaskID" text,
-  "ShipmentID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "ShipmentID" text,  -- -> ment
   "ShipmentDate" timestamptz,
   "Carrier" text,
   "ExternalService" text,
@@ -2082,17 +2081,17 @@ create table "vSaleShipments" (
 );
 
 create table "vSaleTaskLineConfigs" (
-  "LineConfigurationID" text,
-  "TaskID" text,
-  "ConfigurationID" text,
-  "QuoteLineID" text,
-  "OrderLineID" text,
-  "InvoiceLineID" text
+  "LineConfigurationID" text,  -- -> LineConfiguration
+  "TaskID" text,  -- -> Task (any document)
+  "ConfigurationID" text,  -- -> IntegrationConfig
+  "QuoteLineID" text,  -- -> Line (parent document's line)
+  "OrderLineID" text,  -- -> Line (parent document's line)
+  "InvoiceLineID" text  -- -> Line (parent document's line)
 );
 
 create table "vSaleTaskListAccounting" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Type" text,
   "Customer" text,
   "Contact" text,
@@ -2133,7 +2132,7 @@ create table "vSaleTaskListAccounting" (
 );
 
 create table "vSaleTaskListFulfilment" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "OrderNo" text,
   "OrderDate" timestamptz,
   "Customer" text,
@@ -2177,7 +2176,7 @@ create table "vSaleTaskListFulfilment" (
 );
 
 create table "vSaleTaskListGeneral" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Customer" text,
   "Contact" text,
   "Phone" text,
@@ -2225,35 +2224,35 @@ create table "vSaleTaskListGeneral" (
 );
 
 create table "vSaleTaskOrderTags" (
-  "TaskId" text,
+  "TaskId" text,  -- -> Task (any document)
   "AmazonPrime" boolean,
   "AmazonBusiness" boolean
 );
 
 create table "vSaleTaskProductConfigurationOptions" (
-  "ConfigurationOptionID" text,
-  "ConfigurationID" text,
-  "TaskID" text,
-  "MenuConfigurationID" text,
+  "ConfigurationOptionID" text,  -- -> ConfigurationOption
+  "ConfigurationID" text,  -- -> IntegrationConfig
+  "TaskID" text,  -- -> Task (any document)
+  "MenuConfigurationID" text,  -- -> MenuConfiguration
   "Description" text,
   "Name" text,
   "ParentName" text,
-  "ConfigurationOptionArtID" text,
+  "ConfigurationOptionArtID" text,  -- -> ConfigurationOptionArt
   "Type" text,
-  "MappedProductID" text,
+  "MappedProductID" text,  -- -> MappedProduct
   "MappedProductName" text
 );
 
 create table "vSaleTaskProductConfigurations" (
-  "ConfigurationID" text,
-  "TaskID" text,
-  "ProductID" text,
+  "ConfigurationID" text,  -- -> IntegrationConfig
+  "TaskID" text,  -- -> Task (any document)
+  "ProductID" text,  -- -> Product
   "Description" text
 );
 
 create table "vSaleTaskWmsOperator" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "UserName" text,
   "StartedPickDate" timestamptz
 );
@@ -2271,13 +2270,12 @@ create table "vSaleWarranty" (
 );
 
 create table "vSale_CustomerAddress" (
-  "CustomerID" text,
-  "AddressID" text,
+  "CustomerID" text,  -- -> Customer
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "Type" text,
   "DefaultForType" boolean,
-  "Type" text,
   "AddressLine1" text,
   "AddressLine2" text,
   "AddressCitySuburb" text,
@@ -2287,8 +2285,8 @@ create table "vSale_CustomerAddress" (
 );
 
 create table "vSale_CustomerContact" (
-  "CustomerID" text,
-  "ContactID" text,
+  "CustomerID" text,  -- -> Customer
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "IsDefault" boolean,
   "Phone" text,
@@ -2296,7 +2294,7 @@ create table "vSale_CustomerContact" (
 );
 
 create table "vSale_TenantAddress" (
-  "AddressID" text,
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "Type" text,
@@ -2304,12 +2302,12 @@ create table "vSale_TenantAddress" (
 );
 
 create table "vShippingLabelAttachment" (
-  "BlobGUID" text,
+  "BlobGUID" text,  -- -> Blob (stored file)
   "TrackNumber" text
 );
 
 create table "vShippingManifestAttachment" (
-  "BlobGUID" text,
+  "BlobGUID" text,  -- -> Blob (stored file)
   "TrackNumber" text
 );
 
@@ -2326,7 +2324,7 @@ create table "vShippingRateOrLabelProvider" (
 );
 
 create table "vTenantCarrierWithShippingOptions" (
-  "CarrierID" text,
+  "CarrierID" text,  -- -> Carrier
   "Code" text,
   "Description" text,
   "ExternalService" text,
@@ -2334,7 +2332,7 @@ create table "vTenantCarrierWithShippingOptions" (
 );
 
 create table "vTenantPaymentTermNew" (
-  "TermID" text,
+  "TermID" text,  -- -> PaymentTerm
   "Name" text,
   "Days" integer,
   "Method" integer,

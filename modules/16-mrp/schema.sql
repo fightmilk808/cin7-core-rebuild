@@ -1,19 +1,19 @@
 -- MRP: one table per Cin7 Core data model, generated from data/models.json
 
 create table "vBrand" (
-  "BrandID" text,
+  "BrandID" text,  -- -> Brand
   "Name" text
 );
 
 create table "vCategory" (
-  "CategoryID" text,
+  "CategoryID" text,  -- -> ProductCategory
   "Name" text
 );
 
 create table "vCustomerID" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
-  "MRPSettingsID" text
+  "MRPSettingsID" text  -- -> MRPSettings
 );
 
 create table "vError" (
@@ -32,20 +32,20 @@ create table "vForecastError" (
 );
 
 create table "vLocationID" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Name" text,
-  "MRPSettingsID" text
+  "MRPSettingsID" text  -- -> MRPSettings
 );
 
 create table "vLog" (
-  "LogID" text,
+  "LogID" text,  -- -> Log
   "Action" text,
   "Message" text,
   "AdditionalInfo" text,
   "LogDate" timestamptz,
   "Error" text,
   "LogType" text,
-  "SyncID" text,
+  "SyncID" text,  -- -> Sync
   "AffectedEntitiesCount" integer,
   "ValidationText" text,
   "ValidationState" text
@@ -72,7 +72,7 @@ create table "vMRPSettings" (
   "IsIncludeDraft" boolean,
   "IsBomExplosion" boolean,
   "IsIncludeForecast" boolean,
-  "ForecastID" text,
+  "ForecastID" text,  -- -> Forecast
   "DemandSales" text,
   "IsDemandProductionDraft" boolean,
   "IsDemandProductionPlanned" boolean,
@@ -90,13 +90,13 @@ create table "vMRPSettings" (
 );
 
 create table "vSuggestionProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "ProductName" text,
   "Quantity" numeric,
   "UnitOfMeasure" text,
   "ProductBOM" text,
-  "MrpSupplySuggestionID" text,
+  "MrpSupplySuggestionID" text,  -- -> MrpSupplySuggestion
   "IsSplitted" boolean
 );
 
@@ -107,7 +107,7 @@ create table "vSupplyItem" (
 
 create table "vSupplyResult" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TaskNumber" text,
   "TaskType" text,
   "CreatedAt" timestamptz,
@@ -121,11 +121,11 @@ create table "vSupplyResult" (
 
 create table "vSupplySuggestion" (
   "ID" text,
-  "MRPID" text,
+  "MRPID" text,  -- -> MRP
   "SupplyTask" text,
-  "DemandLocationID" text,
+  "DemandLocationID" text,  -- -> DemandLocation
   "DemandLocationName" text,
-  "SupplyID" text,
+  "SupplyID" text,  -- -> Supply
   "SupplyName" text,
   "RequiredByDate" timestamptz,
   "DocumentDate" timestamptz,

@@ -367,6 +367,8 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 ## Public API (`/ExternalApi/v2`)
 
+Fields, parameters and body shapes: [Me](../20-public-api/groups/me.md) · [Templates](../20-public-api/groups/templates.md) · [Webhooks](../20-public-api/groups/webhooks.md).
+
 | Group | Method | Path | Query / params |
 |---|---|---|---|
 | Me | GET | `/me` |  |

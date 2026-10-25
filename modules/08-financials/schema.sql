@@ -26,7 +26,7 @@ create table "Cin7PayWrapper" (
 );
 
 create table "DepreciationTask" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Status" text,
   "StartDate" timestamptz,
   "EndDate" timestamptz,
@@ -36,9 +36,9 @@ create table "DepreciationTask" (
 );
 
 create table "DepreciationTaskLine" (
-  "TaskID" text,
-  "LineID" text,
-  "InventoryCardID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "LineID" text,  -- -> Line (parent document's line)
+  "InventoryCardID" text,  -- -> InventoryCard
   "FixedAssetName" text,
   "SerialNumber" text,
   "AccumulatedDepreciationAccountName" text,
@@ -47,7 +47,7 @@ create table "DepreciationTaskLine" (
 );
 
 create table "ECommerceShop" (
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "ShopName" text
 );
 
@@ -65,9 +65,9 @@ create table "ExpenseClaimReceiptReferenceData" (
 );
 
 create table "ExpenseClaimReceiptTask" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "ReceiptNumber" text,
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "SupplierName" text,
   "Currency" text,
   "Date" timestamptz,
@@ -110,7 +110,7 @@ create table "ExpenseClaimReferenceData" (
 );
 
 create table "ExpenseClaimTask" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "DateSubmitted" timestamptz,
   "EffectiveDate" timestamptz,
   "PaymentDueDate" timestamptz,
@@ -121,7 +121,6 @@ create table "ExpenseClaimTask" (
   "Status" text,
   "IsAuthorised" boolean,
   "Employee" text,
-  "IsAuthorised" boolean,
   "ValidationText" text,
   "ValidationState" text
 );
@@ -153,7 +152,7 @@ create table "MoneyTaskWrapper" (
 );
 
 create table "MoneyTask_SearchProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Type" text,
@@ -205,7 +204,7 @@ create table "vAccountTypesAndClasses" (
 );
 
 create table "vAccountingDimensionAttribute" (
-  "AttributeID" text,
+  "AttributeID" text,  -- -> Attribute
   "Name" text,
   "Type" text,
   "ListValues" text,
@@ -220,7 +219,7 @@ create table "vBankAccount" (
 );
 
 create table "vBankAccountToShow" (
-  "AccountID" text,
+  "AccountID" text,  -- -> Account
   "Bank" text,
   "AccountName" text,
   "AccountCode" text,
@@ -235,19 +234,19 @@ create table "vBankAccountToShow" (
 );
 
 create table "vBankRule" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text,
   "RuleName" text,
   "ConditionCase" text,
-  "RunOnAccountID" text,
-  "CustomerSupplierID" text,
+  "RunOnAccountID" text,  -- -> RunOnAccount
+  "CustomerSupplierID" text,  -- -> CustomerSupplier
   "Active" boolean,
   "Priority" integer,
   "ReferenceField" text
 );
 
 create table "vBankRuleAccountMapping" (
-  "AccountID" text,
+  "AccountID" text,  -- -> Account
   "Selected" boolean,
   "AccountName" text,
   "Currency" text,
@@ -288,7 +287,7 @@ create table "vBankRuleFilter" (
 );
 
 create table "vBankRuleLine" (
-  "LineID" text,
+  "LineID" text,  -- -> Line (parent document's line)
   "Name" text,
   "AccountCode" text,
   "TaxRule" text,
@@ -296,7 +295,7 @@ create table "vBankRuleLine" (
 );
 
 create table "vBankRuleListItem" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Priority" integer,
   "Active" boolean,
   "RuleType" text,
@@ -313,7 +312,7 @@ create table "vBankRulePriority" (
 );
 
 create table "vBankRuleTenantTaxationRule" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text,
   "EffectivePercentExclusive" numeric,
   "EffectivePercentInclusive" numeric,
@@ -323,13 +322,13 @@ create table "vBankRuleTenantTaxationRule" (
 
 create table "vCardOnFileCustomers" (
   "Name" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Status" text
 );
 
 create table "vCin7PayCardOnFileCardInfo" (
-  "CustomerID" text,
-  "PaymentMethodId" text,
+  "CustomerID" text,  -- -> Customer
+  "PaymentMethodId" text,  -- -> PaymentMethod
   "Last4" text,
   "ExpMonth" text,
   "ExpYear" text,
@@ -339,15 +338,15 @@ create table "vCin7PayCardOnFileCardInfo" (
 );
 
 create table "vCin7PayCustomer" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
-  "StripeCustomerID" text,
+  "StripeCustomerID" text,  -- -> StripeCustomer
   "IsMigrated" boolean,
   "MaxRows" integer
 );
 
 create table "vCondition" (
-  "ConditionID" text,
+  "ConditionID" text,  -- -> Condition
   "Field" text,
   "Condition" text,
   "Expected" text,
@@ -366,8 +365,8 @@ create table "vConditionType" (
 );
 
 create table "vCustomerPaymentsDue" (
-  "TaskID" text,
-  "CustomerID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "CustomerID" text,  -- -> Customer
   "InvoiceNumber" text,
   "InvoiceDate" timestamptz,
   "DueDate" timestamptz,
@@ -389,10 +388,10 @@ create table "vDepreciation" (
 
 create table "vExpenseClaimLines" (
   "FakeID" integer,
-  "TaskID" text,
-  "LineID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "LineID" text,  -- -> Line (parent document's line)
   "LineOrder" integer,
-  "ExpenseClaimReceiptTaskId" text,
+  "ExpenseClaimReceiptTaskId" text,  -- -> ExpenseClaimReceiptTask
   "ReceiptNumber" text,
   "Status" text,
   "SupplierName" text,
@@ -409,8 +408,8 @@ create table "vExpenseClaimLines" (
 
 create table "vExpenseClaimPaymentLine" (
   "FakeID" integer,
-  "TaskID" text,
-  "LineID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "LineID" text,  -- -> Line (parent document's line)
   "LineOrder" integer,
   "Reference" text,
   "DatePaid" timestamptz,
@@ -421,9 +420,9 @@ create table "vExpenseClaimPaymentLine" (
 );
 
 create table "vExpenseClaimReceiptAttachement" (
-  "TaskID" text,
-  "AttachementID" text,
-  "BlobGUID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "AttachementID" text,  -- -> Attachment
+  "BlobGUID" text,  -- -> Blob (stored file)
   "ContentType" text,
   "FileName" text,
   "Date" timestamptz,
@@ -433,8 +432,8 @@ create table "vExpenseClaimReceiptAttachement" (
 
 create table "vExpenseClaimReceiptLines" (
   "FakeID" integer,
-  "TaskID" text,
-  "LineID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "LineID" text,  -- -> Line (parent document's line)
   "Quantity" numeric,
   "Price" numeric,
   "LineOrder" integer,
@@ -449,7 +448,7 @@ create table "vExpenseClaimReceiptLines" (
 );
 
 create table "vExpenseClaimReceipt_Supplier" (
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "Name" text,
   "Currency" text,
   "PaymentTerm" text,
@@ -460,7 +459,7 @@ create table "vExpenseClaimReceipt_Supplier" (
 
 create table "vExpenseClaimTaskList" (
   "Selected" boolean,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Status" text,
   "DateSubmitted" timestamptz,
   "EffectiveDate" timestamptz,
@@ -474,21 +473,21 @@ create table "vExpenseClaimTaskList" (
 );
 
 create table "vExpenseItem" (
-  "ExpenseItemID" text,
+  "ExpenseItemID" text,  -- -> ExpenseItem
   "Description" text,
   "AccountCode" text
 );
 
 create table "vFixedAsset" (
   "Selected" boolean,
-  "InventoryCardID" text,
-  "CategoryID" text,
+  "InventoryCardID" text,  -- -> InventoryCard
+  "CategoryID" text,  -- -> ProductCategory
   "CategoryName" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductName" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text,
-  "BinID" text,
+  "BinID" text,  -- -> Bin
   "BinName" text,
   "SerialNumber" text,
   "OnHand" numeric,
@@ -496,7 +495,7 @@ create table "vFixedAsset" (
   "AccumulatedDepreciation" numeric,
   "RegistrationDate" timestamptz,
   "RegisteredBy" text,
-  "DefaultFixedAssetTypeID" text,
+  "DefaultFixedAssetTypeID" text,  -- -> FixedAssetType
   "PurchaseDate" timestamptz,
   "DisposalDate" timestamptz,
   "PurchaseCost" numeric,
@@ -520,9 +519,9 @@ create table "vFixedAsset" (
 );
 
 create table "vFixedAssetAttachement" (
-  "InventoryCardID" text,
-  "AttachementID" text,
-  "BlobGUID" text,
+  "InventoryCardID" text,  -- -> InventoryCard
+  "AttachementID" text,  -- -> Attachment
+  "BlobGUID" text,  -- -> Blob (stored file)
   "ContentType" text,
   "FileName" text,
   "Date" timestamptz,
@@ -533,22 +532,22 @@ create table "vFixedAssetAttachement" (
 );
 
 create table "vJournalAccountingDimension" (
-  "JournalLineID" text,
+  "JournalLineID" text,  -- -> JournalLine
   "Type" text,
   "AttributeName" text,
   "AttributeValue" text,
-  "CustomerID" text,
-  "CompanyContactID" text,
-  "ProductID" text,
-  "SupplierID" text,
-  "ProductionResourceID" text,
-  "ExpenseClaimID" text
+  "CustomerID" text,  -- -> Customer
+  "CompanyContactID" text,  -- -> CompanyContact
+  "ProductID" text,  -- -> Product
+  "SupplierID" text,  -- -> Supplier
+  "ProductionResourceID" text,  -- -> ProductionResource
+  "ExpenseClaimID" text  -- -> ExpenseClaim
 );
 
 create table "vJournalAttachement" (
-  "TaskID" text,
-  "AttachementID" text,
-  "BlobGUID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "AttachementID" text,  -- -> Attachment
+  "BlobGUID" text,  -- -> Blob (stored file)
   "ContentType" text,
   "FileName" text,
   "Date" timestamptz,
@@ -560,7 +559,7 @@ create table "vJournalAttachement" (
 create table "vJournalLine" (
   "FakeID" integer,
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Reference" text,
   "Amount" numeric,
   "BaseAmount" numeric,
@@ -573,7 +572,7 @@ create table "vJournalLine" (
 );
 
 create table "vJournalList" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "JournalNumber" text,
   "CreatedDate" timestamptz,
   "EffectiveDate" timestamptz,
@@ -582,7 +581,7 @@ create table "vJournalList" (
 );
 
 create table "vJournalTask" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "JournalNumber" text,
   "Status" text,
   "CreatedDate" timestamptz,
@@ -599,11 +598,11 @@ create table "vJournalTask" (
 );
 
 create table "vMoneyTask" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TaskType" text,
   "BankAccountCode" text,
-  "CustomerID" text,
-  "SupplierID" text,
+  "CustomerID" text,  -- -> Customer
+  "SupplierID" text,  -- -> Supplier
   "SupplierCustomerName" text,
   "TaxInclusive" boolean,
   "Date" timestamptz,
@@ -627,13 +626,13 @@ create table "vMoneyTask" (
   "CustomField8" text,
   "CustomField9" text,
   "CustomField10" text,
-  "AttributeSetID" text
+  "AttributeSetID" text  -- -> AttributeSet
 );
 
 create table "vMoneyTaskAttachement" (
-  "TaskID" text,
-  "AttachementID" text,
-  "BlobGUID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "AttachementID" text,  -- -> Attachment
+  "BlobGUID" text,  -- -> Blob (stored file)
   "ContentType" text,
   "FileName" text,
   "Date" timestamptz,
@@ -644,7 +643,7 @@ create table "vMoneyTaskAttachement" (
 );
 
 create table "vMoneyTaskLine" (
-  "LineID" text,
+  "LineID" text,  -- -> Line (parent document's line)
   "Name" text,
   "AccountCode" text,
   "TaxRule" text,
@@ -658,7 +657,7 @@ create table "vPaymentMethod" (
 
 create table "vReceiptTaskList" (
   "Selected" boolean,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "ReceiptNumber" text,
   "SupplierName" text,
   "Employee" text,
@@ -694,7 +693,7 @@ create table "vSystemAccountInfo" (
 );
 
 create table "vTenantCarrierWithShippingOptions" (
-  "CarrierID" text,
+  "CarrierID" text,  -- -> Carrier
   "Code" text,
   "Description" text,
   "ExternalService" text,
@@ -708,13 +707,13 @@ create table "vTextField" (
 
 create table "vUnlinkedCoreCustomer" (
   "Name" text,
-  "CustomerID" text
+  "CustomerID" text  -- -> Customer
 );
 
 create table "vUnlinkedStripeCustomer" (
   "Name" text,
-  "StripeCustomerID" text,
-  "CustomerID" text,
+  "StripeCustomerID" text,  -- -> StripeCustomer
+  "CustomerID" text,  -- -> Customer
   "Email" text,
   "CustomerName" text,
   "PreviousBatchReference" text,

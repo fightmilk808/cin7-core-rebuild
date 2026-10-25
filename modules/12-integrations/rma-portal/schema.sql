@@ -1,13 +1,13 @@
 -- RMA Portal: one table per Cin7 Core data model, generated from data/models.json
 
 create table "vAddress" (
-  "AddressID" text,
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text
 );
 
 create table "vAppearance" (
-  "WebPortalID" text,
+  "WebPortalID" text,  -- -> Portal
   "Name" text,
   "ButtonsBackgroundColor" text,
   "ButtonsColor" text,
@@ -30,7 +30,7 @@ create table "vAppearance" (
 
 create table "vContact" (
   "ID" text,
-  "ECSConfigID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
   "ECSName" text,
   "IsOrganization" boolean,
   "ContactType" text,
@@ -39,7 +39,7 @@ create table "vContact" (
 );
 
 create table "vPortalEmailTemplate" (
-  "WebPortalID" text,
+  "WebPortalID" text,  -- -> Portal
   "Name" text,
   "Content" text,
   "Description" text,
@@ -47,8 +47,8 @@ create table "vPortalEmailTemplate" (
 );
 
 create table "vPortalPage" (
-  "WebPortalPageID" text,
-  "WebPortalID" text,
+  "WebPortalPageID" text,  -- -> WebPortalPage
+  "WebPortalID" text,  -- -> Portal
   "Name" text,
   "LineOrder" text,
   "Content" text,
@@ -57,7 +57,7 @@ create table "vPortalPage" (
 );
 
 create table "vWebPortal" (
-  "WebPortalID" text,
+  "WebPortalID" text,  -- -> Portal
   "Name" text,
   "Type" text,
   "Domain" text,
@@ -76,18 +76,18 @@ create table "vWebPortal" (
   "InstagramURL" text,
   "YouTubeURL" text,
   "LinkedInURL" text,
-  "TenantContactID" text,
-  "TenantAddressID" text,
-  "LocationID" text,
+  "TenantContactID" text,  -- -> TenantContact
+  "TenantAddressID" text,  -- -> TenantAddress
+  "LocationID" text,  -- -> Location
   "ShowImagesInShoppingCart" boolean,
   "SalesRepresentative" text,
-  "GoogleAnalyticsTrackerID" text,
-  "GoogleAnalytics4TrackerID" text,
+  "GoogleAnalyticsTrackerID" text,  -- -> GoogleAnalyticsTracker
+  "GoogleAnalytics4TrackerID" text,  -- -> GoogleAnalytics4Tracker
   "UseHubSpotTracking" boolean,
   "ShowAllCustomerOrders" boolean,
   "CreateSaleAs" text,
-  "InvoiceTemplateID" text,
-  "PriceListTemplateID" text,
+  "InvoiceTemplateID" text,  -- -> InvoiceTemplate
+  "PriceListTemplateID" text,  -- -> PriceListTemplate
   "HeaderBackgroundColor" text,
   "NavigationTextColor" text,
   "NavigationTextHoverColor" text,
@@ -153,7 +153,7 @@ create table "vWebPortal" (
   "AllowCreateOrderWhenCreditHold" boolean,
   "FamilyProductsView" integer,
   "EnabledProductReturn" boolean,
-  "ReturnDeliveryLocationID" text,
+  "ReturnDeliveryLocationID" text,  -- -> ReturnDeliveryLocation
   "ShowLeftMenuBrands" boolean,
   "ShowLeftMenuCategories" boolean,
   "ShowLeftMenuTags" boolean,

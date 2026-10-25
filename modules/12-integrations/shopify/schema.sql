@@ -11,7 +11,7 @@ create table "ConsolidationTypeModel" (
 );
 
 create table "ECommerceShop" (
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "ShopName" text
 );
 
@@ -41,7 +41,7 @@ create table "vAccount" (
 );
 
 create table "vLocation" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
@@ -59,7 +59,7 @@ create table "vSaleAttribute" (
 );
 
 create table "vShopifyCatalogBulkListing" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Status" text,
@@ -84,7 +84,7 @@ create table "vShopifyCatalogBulkListing" (
 );
 
 create table "vShopifyCatalogList" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Status" text,
@@ -109,15 +109,15 @@ create table "vShopifyCatalogList" (
 );
 
 create table "vShopifyConfiguration" (
-  "ConfigID" text,
-  "TenantID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
+  "TenantID" text,  -- -> Tenant
   "ShopName" text,
   "AccessToken" text,
   "LastCheck" timestamptz,
   "IsActive" boolean,
   "ConsolidationType" text,
   "ConsolidationTimeText" text,
-  "ConsolidateToCustomerID" text,
+  "ConsolidateToCustomerID" text,  -- -> Customer
   "CustomerName" text,
   "Topic" text,
   "ShippingTaxed" boolean,
@@ -135,7 +135,7 @@ create table "vShopifyConfiguration" (
   "RevenueAccount" text,
   "CustomSalesRepresentative" text,
   "PriceTier" integer,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text,
   "NotAllScopesAdded" boolean,
   "EnableOrderRouting" boolean,
@@ -171,25 +171,25 @@ create table "vShopifyConfiguration" (
 
 create table "vShopifyLocation" (
   "ID" text,
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "ShopifyLocationName" text,
-  "ShopifyLocationID" integer,
+  "ShopifyLocationID" integer,  -- -> ShopifyLocation
   "IsFulfillmentLocation" boolean,
   "IsActive" boolean,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text,
   "IsSelected" boolean
 );
 
 create table "vShopifyLog" (
-  "LogID" text,
-  "ConfigID" text,
+  "LogID" text,  -- -> Log
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
   "DownloadDate" timestamptz,
   "ProcessDate" timestamptz,
   "OrderNumber" text,
-  "SaleTaskID" text,
-  "InventoryTaskID" text,
+  "SaleTaskID" text,  -- -> Sale
+  "InventoryTaskID" text,  -- -> InventoryTask
   "Status" text,
   "Type" text,
   "FulfillmentNumber" numeric,
@@ -200,7 +200,7 @@ create table "vShopifyLog" (
 
 create table "vShopifyOperationLog" (
   "ID" text,
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
   "Description" text,
   "Category" text,
@@ -212,7 +212,7 @@ create table "vShopifyOperationLog" (
 
 create table "vShopifyPaymentProcessorMapping" (
   "ID" text,
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "PaymentProcessor" text,
   "AccountCode" text,
   "SortOrder" integer,
@@ -220,7 +220,7 @@ create table "vShopifyPaymentProcessorMapping" (
 );
 
 create table "vShopifyPendingOrders" (
-  "OrderLineID" text,
+  "OrderLineID" text,  -- -> Line (parent document's line)
   "OrderNumber" text,
   "InvoiceDate" timestamptz,
   "Name" text,
@@ -234,7 +234,7 @@ create table "vShopifyPendingOrders" (
 
 create table "vShopifyTaxMapping" (
   "ID" text,
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "Country" text,
   "Province" text,
   "Name" text,
@@ -244,7 +244,7 @@ create table "vShopifyTaxMapping" (
 );
 
 create table "vTax" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text
 );
 

@@ -2,14 +2,14 @@
 
 create table "payPalPaymentLogEntry" (
   "Id" text,
-  "SaleTaskId" text,
+  "SaleTaskId" text,  -- -> Sale
   "Amount" numeric,
   "AccountCode" text,
   "AccountName" text,
   "Currency" text,
   "SaleInvoiceNumber" text,
   "StatusText" text,
-  "PayPalPaymentId" text,
+  "PayPalPaymentId" text,  -- -> PayPalPayment
   "IsTestMode" boolean,
   "InitTime" timestamptz,
   "LastUpdateTime" timestamptz

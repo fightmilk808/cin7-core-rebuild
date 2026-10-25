@@ -16,8 +16,8 @@ create table "CalegoryModel" (
 );
 
 create table "CustomerDefaultTemplate" (
-  "DefaultTemplateID" text,
-  "TemplateID" text,
+  "DefaultTemplateID" text,  -- -> Template
+  "TemplateID" text,  -- -> Template
   "Type" text
 );
 
@@ -31,7 +31,7 @@ create table "FamilyOption" (
 );
 
 create table "FamilyProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "UnitOfMeasure" text,
@@ -40,16 +40,16 @@ create table "FamilyProduct" (
   "RevenueAccount" text,
   "DropShipMode" text,
   "TaxRule" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "NonInventory" boolean
 );
 
 create table "GiftCardGlobalSettings" (
-  "GiftCardProductID" text,
+  "GiftCardProductID" text,  -- -> GiftCardProduct
   "IsGiftCardEnabled" boolean,
   "DefaultGiftCardExpirationPeriod" text,
   "CanGiftCardExpire" boolean,
-  "GiftCardSaleTaxID" text,
+  "GiftCardSaleTaxID" text,  -- -> GiftCardSaleTax
   "GiftProductName" text,
   "GiftProductCode" text,
   "GiftCardRevenueAccount" text,
@@ -58,7 +58,7 @@ create table "GiftCardGlobalSettings" (
 );
 
 create table "JobCosting" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "Comments" text,
   "Contact" text,
@@ -67,7 +67,7 @@ create table "JobCosting" (
   "CustomerCurrency" text,
   "Phone" text,
   "PaymentTerm" text,
-  "TaxRuleID" text,
+  "TaxRuleID" text,  -- -> TaxRule
   "DefaultSalesRepresentative" text,
   "Discount" numeric,
   "SalePriceTier" integer,
@@ -82,7 +82,7 @@ create table "LeadStatus" (
 );
 
 create table "LeadStatusList" (
-  "StatusID" text,
+  "StatusID" text,  -- -> Status
   "Name" text,
   "IsKanban" boolean,
   "Position" integer,
@@ -103,7 +103,7 @@ create table "LookupCarrierModel" (
 );
 
 create table "NewvTenantContact" (
-  "ContactID" text,
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "Phone" text,
   "Fax" text,
@@ -115,9 +115,9 @@ create table "NewvTenantContact" (
 );
 
 create table "Opportunity" (
-  "OpportunityID" text,
-  "CustomerID" text,
-  "LeadID" text,
+  "OpportunityID" text,  -- -> Opportunity
+  "CustomerID" text,  -- -> Customer
+  "LeadID" text,  -- -> Lead
   "CustomerName" text,
   "Contact" text,
   "Phone" text,
@@ -136,7 +136,7 @@ create table "Opportunity" (
   "PriceTier" integer,
   "ShippingAddressLine1" text,
   "ShippingAddressLine2" text,
-  "OpportunityLocationID" text,
+  "OpportunityLocationID" text,  -- -> OpportunityLocation
   "OpportunityLocation" text,
   "OpportunityNumber" text,
   "OpportunityDate" timestamptz,
@@ -149,7 +149,7 @@ create table "Opportunity" (
   "CustomerCurrency" text,
   "Carrier" text,
   "TermDueNextMonth" integer,
-  "ShipAddressID" text,
+  "ShipAddressID" text,  -- -> Address
   "ValidationText" text,
   "ValidationState" text,
   "ShipToOther" boolean,
@@ -197,7 +197,7 @@ create table "OpportunityReferenceData" (
   "ConvertToSalePermission" text,
   "CSVImportPermission" text,
   "TasksViewPermission" text,
-  "CurrentAttributeSetId" text,
+  "CurrentAttributeSetId" text,  -- -> AttributeSet
   "EnableOpportunityApproval" boolean,
   "TaxCalculationMethod" text,
   "DiscountCalculationMethod" text,
@@ -213,22 +213,22 @@ create table "OpportunityWrapper" (
   "HasAvalaraIntegration" boolean,
   "AvalaraTaxExemptionCode" text,
   "Warnings" text,
-  "ConvertedSaleTaskID" text
+  "ConvertedSaleTaskID" text  -- -> ConvertedSaleTask
 );
 
 create table "PickLocations" (
   "FakeKey" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "UnitOfMeasure" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Location" text,
   "CostingMethod" text,
   "BatchSN" text,
   "ExpiryDate" timestamptz,
   "Available" numeric,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "IsFirst" boolean,
   "NonInventory" boolean
 );
@@ -268,7 +268,7 @@ create table "TaskCalendarSettingsModel" (
 create table "TaskReferenceData" (
   "ID" integer,
   "UserName" text,
-  "UserID" text,
+  "UserID" text,  -- -> User
   "TaskApprovalPermission" boolean,
   "TaskViewPermission" boolean,
   "ChangeAssigneePermission" boolean,
@@ -277,7 +277,7 @@ create table "TaskReferenceData" (
 
 create table "vCouponReport" (
   "ID" text,
-  "SaleTaskID" text,
+  "SaleTaskID" text,  -- -> Sale
   "SaleOrderDate" timestamptz,
   "SaleOrderDateString" text,
   "OrderNumber" text,
@@ -289,8 +289,8 @@ create table "vCouponReport" (
 );
 
 create table "vCustomerAddress" (
-  "CustomerID" text,
-  "AddressID" text,
+  "CustomerID" text,  -- -> Customer
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "CitySuburb" text,
@@ -302,8 +302,8 @@ create table "vCustomerAddress" (
 );
 
 create table "vCustomerContact" (
-  "CustomerID" text,
-  "ContactID" text,
+  "CustomerID" text,  -- -> Customer
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "JobTitle" text,
   "Phone" text,
@@ -331,23 +331,23 @@ create table "vDeal" (
 
 create table "vDealCustomer" (
   "ID" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
-  "DealID" text
+  "DealID" text  -- -> Deal
 );
 
 create table "vDealCustomerTag" (
   "ID" text,
   "TagName" text,
-  "DealID" text
+  "DealID" text  -- -> Deal
 );
 
 create table "vDealDiscount" (
   "ID" text,
-  "DiscountID" text,
+  "DiscountID" text,  -- -> Discount
   "DiscountName" text,
   "DiscountType" text,
-  "DealID" text,
+  "DealID" text,  -- -> Deal
   "ValidationText" text,
   "ValidationState" text,
   "Sequence" integer,
@@ -363,25 +363,25 @@ create table "vDealDiscount" (
 
 create table "vDealDiscountBrand" (
   "ID" text,
-  "BrandID" text,
+  "BrandID" text,  -- -> Brand
   "BrandName" text,
-  "DealDiscountID" text,
+  "DealDiscountID" text,  -- -> DealDiscount
   "Type" text
 );
 
 create table "vDealDiscountCategory" (
   "ID" text,
-  "CategoryID" text,
+  "CategoryID" text,  -- -> ProductCategory
   "CategoryName" text,
-  "DealDiscountID" text,
+  "DealDiscountID" text,  -- -> DealDiscount
   "Type" text
 );
 
 create table "vDealDiscountProduct" (
   "ID" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductName" text,
-  "DealDiscountID" text,
+  "DealDiscountID" text,  -- -> DealDiscount
   "Type" text,
   "IsFamily" boolean
 );
@@ -389,7 +389,7 @@ create table "vDealDiscountProduct" (
 create table "vDealDiscountTag" (
   "ID" text,
   "TagName" text,
-  "DealDiscountID" text,
+  "DealDiscountID" text,  -- -> DealDiscount
   "Type" text
 );
 
@@ -403,11 +403,11 @@ create table "vExpenseAccounts" (
 
 create table "vFulfillmentOrder" (
   "ID" text,
-  "FFOrderId" text,
-  "ExternalOrderID" text,
-  "ConfigID" text,
+  "FFOrderId" text,  -- -> FulfilmentOrder
+  "ExternalOrderID" text,  -- -> ExternalOrder
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
-  "SaleTaskID" text,
+  "SaleTaskID" text,  -- -> Sale
   "Currency" text,
   "SaleOrderNumber" text,
   "Memo" text,
@@ -424,11 +424,11 @@ create table "vFulfillmentOrder" (
   "AddressLine2" text,
   "ShippingMethod" text,
   "CanBeCancelled" boolean,
-  "ShipmentLineID" text
+  "ShipmentLineID" text  -- -> mentLine
 );
 
 create table "vLead" (
-  "LeadID" text,
+  "LeadID" text,  -- -> Lead
   "LeadStatus" text,
   "Name" text,
   "Currency" text,
@@ -438,7 +438,7 @@ create table "vLead" (
   "CloseDate" timestamptz,
   "Comments" text,
   "PriceTier" numeric,
-  "TermID" text,
+  "TermID" text,  -- -> PaymentTerm
   "TaxSchema" text,
   "ValidationText" text,
   "ValidationState" text
@@ -447,8 +447,8 @@ create table "vLead" (
 create table "vLeadAddress" (
   "Edit" text,
   "FakeID" integer,
-  "LeadID" text,
-  "AddressID" text,
+  "LeadID" text,  -- -> Lead
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "CitySuburb" text,
@@ -465,8 +465,8 @@ create table "vLeadAddress" (
 create table "vLeadContact" (
   "Edit" text,
   "FakeID" integer,
-  "LeadID" text,
-  "ContactID" text,
+  "LeadID" text,  -- -> Lead
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "Phone" text,
   "Fax" text,
@@ -482,8 +482,8 @@ create table "vLeadContact" (
 );
 
 create table "vLeadFile" (
-  "FileID" text,
-  "LeadID" text,
+  "FileID" text,  -- -> Blob (stored file)
+  "LeadID" text,  -- -> Lead
   "FileName" text,
   "ContentType" text,
   "UserName" text,
@@ -494,8 +494,8 @@ create table "vLeadFile" (
 
 create table "vLeadList" (
   "Expand" text,
-  "LeadID" text,
-  "CustomerID" text,
+  "LeadID" text,  -- -> Lead
+  "CustomerID" text,  -- -> Customer
   "LeadStatus" text,
   "Name" text,
   "Contact" text,
@@ -513,7 +513,7 @@ create table "vLeadList" (
   "CreatedDate" timestamptz,
   "Comments" text,
   "PriceTier" integer,
-  "TermID" text,
+  "TermID" text,  -- -> PaymentTerm
   "TaxSchema" text,
   "TaskCount" integer,
   "Edit" text
@@ -521,8 +521,8 @@ create table "vLeadList" (
 
 create table "vOpportunityAdditionalCharges" (
   "FakeID" integer,
-  "OpportunityID" text,
-  "ChargeID" text,
+  "OpportunityID" text,  -- -> Opportunity
+  "ChargeID" text,  -- -> Charge
   "Description" text,
   "Quantity" numeric,
   "Amount" numeric,
@@ -539,17 +539,17 @@ create table "vOpportunityAdditionalCharges" (
 );
 
 create table "vOpportunityAllocations" (
-  "SaleCreditID" text,
-  "AllocationID" text,
-  "SalePaymentID" text,
-  "TaskID" text,
+  "SaleCreditID" text,  -- -> SaleCreditNote
+  "AllocationID" text,  -- -> Allocation
+  "SalePaymentID" text,  -- -> SalePayment
+  "TaskID" text,  -- -> Task (any document)
   "Flag" boolean
 );
 
 create table "vOpportunityAttachement" (
-  "OpportunityID" text,
-  "AttachementID" text,
-  "BlobGUID" text,
+  "OpportunityID" text,  -- -> Opportunity
+  "AttachementID" text,  -- -> Attachment
+  "BlobGUID" text,  -- -> Blob (stored file)
   "ContentType" text,
   "FileName" text,
   "Date" timestamptz,
@@ -558,8 +558,8 @@ create table "vOpportunityAttachement" (
 );
 
 create table "vOpportunityCreditWithDetails" (
-  "SaleCreditID" text,
-  "CustomerID" text,
+  "SaleCreditID" text,  -- -> SaleCreditNote
+  "CustomerID" text,  -- -> Customer
   "Currency" text,
   "Amount" numeric,
   "RemainingAmount" numeric,
@@ -572,15 +572,15 @@ create table "vOpportunityCreditWithDetails" (
 );
 
 create table "vOpportunityCredits" (
-  "SaleCreditID" text,
-  "CustomerID" text,
+  "SaleCreditID" text,  -- -> SaleCreditNote
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "Currency" text,
   "Amount" numeric,
   "RemainingAmount" numeric,
   "Account" text,
-  "SourceLineID" text,
-  "CreditSourceTaskID" text,
+  "SourceLineID" text,  -- -> Line (parent document's line)
+  "CreditSourceTaskID" text,  -- -> Task (any document)
   "OrigTaskType" text,
   "Type" text,
   "Date" timestamptz
@@ -588,9 +588,9 @@ create table "vOpportunityCredits" (
 
 create table "vOpportunityLines" (
   "FakeID" integer,
-  "OpportunityID" text,
-  "OpportunityLineID" text,
-  "ProductID" text,
+  "OpportunityID" text,  -- -> Opportunity
+  "OpportunityLineID" text,  -- -> OpportunityLine
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Price" numeric,
   "Discount" numeric,
@@ -607,13 +607,13 @@ create table "vOpportunityLines" (
   "TaxRule" text,
   "TaxPercent" numeric,
   "Comment" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "ValidationText" text,
   "ValidationState" text
 );
 
 create table "vOpportunity_Customer" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "isLead" boolean,
   "Name" text,
   "Currency" text,
@@ -631,13 +631,12 @@ create table "vOpportunity_Customer" (
 );
 
 create table "vOpportunity_CustomerAddress" (
-  "CustomerID" text,
-  "AddressID" text,
+  "CustomerID" text,  -- -> Customer
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "Type" text,
   "DefaultForType" boolean,
-  "Type" text,
   "AddressLine1" text,
   "AddressLine2" text,
   "AddressCitySuburb" text,
@@ -648,8 +647,8 @@ create table "vOpportunity_CustomerAddress" (
 );
 
 create table "vOpportunity_CustomerContact" (
-  "CustomerID" text,
-  "ContactID" text,
+  "CustomerID" text,  -- -> Customer
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "IsDefault" boolean,
   "Phone" text,
@@ -657,7 +656,7 @@ create table "vOpportunity_CustomerContact" (
 );
 
 create table "vOpportunity_TenantAddress" (
-  "AddressID" text,
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "Type" text,
@@ -666,17 +665,17 @@ create table "vOpportunity_TenantAddress" (
 
 create table "vSaleGiftCards" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "GiftCardCode" text,
   "InitialBalance" numeric,
   "CurrentBalance" numeric,
   "Date" timestamptz,
   "ExpirationDate" timestamptz,
-  "RefundID" text
+  "RefundID" text  -- -> Refund
 );
 
 create table "vShippingLabelAttachment" (
-  "BlobGUID" text,
+  "BlobGUID" text,  -- -> Blob (stored file)
   "TrackNumber" text
 );
 
@@ -689,12 +688,12 @@ create table "vShippingRateOrLabelProvider" (
 
 create table "vTaskList" (
   "Expand" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "DueName" text,
-  "TaskCategoryID" text,
+  "TaskCategoryID" text,  -- -> TaskCategory
   "TaskCategoryName" text,
-  "WorkflowID" text,
-  "UserID" text,
+  "WorkflowID" text,  -- -> Workflow
+  "UserID" text,  -- -> User
   "AssignedToName" text,
   "Name" text,
   "Details" text,
@@ -702,10 +701,10 @@ create table "vTaskList" (
   "EndDate" timestamptz,
   "CompletedDate" timestamptz,
   "Sequence" text,
-  "WorkflowProcessID" text,
+  "WorkflowProcessID" text,  -- -> WorkflowProcess
   "IsAllDay" boolean,
   "EntityType" text,
-  "EntityID" text,
+  "EntityID" text,  -- -> Entity (polymorphic)
   "TaskStatus" text,
   "LinkTo" text,
   "Importance" boolean,
@@ -719,16 +718,16 @@ create table "vTaskList" (
 );
 
 create table "vTaskObserver" (
-  "ObserverID" text,
-  "TaskID" text,
-  "UserID" text,
+  "ObserverID" text,  -- -> Observer
+  "TaskID" text,  -- -> Task (any document)
+  "UserID" text,  -- -> User
   "Name" text,
   "IsMain" boolean,
   "CreatedDate" timestamptz
 );
 
 create table "vTenantCarrierWithShippingOptions" (
-  "CarrierID" text,
+  "CarrierID" text,  -- -> Carrier
   "Code" text,
   "Description" text,
   "ExternalService" text,
@@ -736,14 +735,14 @@ create table "vTenantCarrierWithShippingOptions" (
 );
 
 create table "vTenantHoliday" (
-  "HolidayID" text,
+  "HolidayID" text,  -- -> Holiday
   "Date" timestamptz,
   "Description" text,
   "Skip" boolean
 );
 
 create table "vTenantPaymentTermNew" (
-  "TermID" text,
+  "TermID" text,  -- -> PaymentTerm
   "Name" text,
   "Days" integer,
   "Method" integer,
@@ -753,7 +752,7 @@ create table "vTenantPaymentTermNew" (
 );
 
 create table "vTenantTaskSettings" (
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "IsActive" boolean,
   "ApprovalEnabled" boolean,
   "FirstDayOfWeek" integer,
@@ -761,8 +760,8 @@ create table "vTenantTaskSettings" (
 );
 
 create table "vTenantUser" (
-  "TenantID" text,
-  "UserId" text,
+  "TenantID" text,  -- -> Tenant
+  "UserId" text,  -- -> User
   "Email" text,
   "IsOwner" boolean,
   "IsCurrentUser" boolean,

@@ -6,17 +6,17 @@ create table "ConsolidationStore" (
 );
 
 create table "CtlgProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Available" numeric,
   "OnHand" numeric,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "IsStockProduct" boolean
 );
 
 create table "ECommerceShop" (
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "ShopName" text
 );
 
@@ -70,23 +70,23 @@ create table "vCustomIntegration" (
 );
 
 create table "vECSOrderLog" (
-  "LogID" text,
-  "ConfigID" text,
+  "LogID" text,  -- -> Log
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
   "DownloadDate" timestamptz,
   "ProcessDate" timestamptz,
   "OrderNumber" text,
-  "SaleTaskID" text,
+  "SaleTaskID" text,  -- -> Sale
   "Status" text,
   "Type" text,
   "SaleOrderNumber" text,
-  "RefundID" text,
-  "OrderID" text,
+  "RefundID" text,  -- -> Refund
+  "OrderID" text,  -- -> Order (context-specific)
   "IsNewSale" boolean
 );
 
 create table "vECSPendingOrdersNew" (
-  "OrderLineID" text,
+  "OrderLineID" text,  -- -> Line (parent document's line)
   "OrderNumber" text,
   "DateCreated" timestamptz,
   "Name" text,
@@ -99,16 +99,16 @@ create table "vECSPendingOrdersNew" (
 );
 
 create table "vEcsCatalogItemNew" (
-  "SIMID" text,
-  "ProductID" text,
-  "FamilyID" text,
+  "SIMID" text,  -- -> SIM
+  "ProductID" text,  -- -> Product
+  "FamilyID" text,  -- -> ProductFamily
   "EntityType" text,
   "LinkedSKU" text,
   "LinkedName" text,
   "SKU" text,
   "Name" text,
   "Status" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "SyncStockLevel" boolean,
   "Price" numeric,
   "Category" text,
@@ -122,14 +122,14 @@ create table "vEcsCatalogItemNew" (
 
 create table "vEcsConfiguration" (
   "ID" text,
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "ShopName" text,
   "AccessToken" text,
   "RefreshToken" text,
   "PrimaryPriceTier" integer,
   "ConsolidationType" text,
   "ConsolidationTimeText" text,
-  "ConsolidateToCustomerID" text,
+  "ConsolidateToCustomerID" text,  -- -> Customer
   "IsActive" boolean,
   "PickWhenOrderStatus" text,
   "ShippingTaxed" boolean,
@@ -152,7 +152,7 @@ create table "vEcsConfiguration" (
   "ManualMapping" boolean,
   "AutoCreateNewProductAllowed" boolean,
   "MatchProductByName" boolean,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "EnableOrderRouting" boolean,
   "CreateAssembly" text,
   "IgnoreRestockForNotFulfilled" boolean,
@@ -163,16 +163,16 @@ create table "vEcsConfiguration" (
 
 create table "vEcsLocationMapping" (
   "ID" text,
-  "ECSConfigID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
   "ECSLocationName" text,
-  "ECSLocationID" text,
-  "LocationID" text,
+  "ECSLocationID" text,  -- -> ECSLocation
+  "LocationID" text,  -- -> Location
   "LocationName" text
 );
 
 create table "vEcsOperationLog" (
   "ID" text,
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
   "Description" text,
   "Category" text,
@@ -185,11 +185,11 @@ create table "vEcsOperationLog" (
 );
 
 create table "vEcsOverviewCustomersList" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
   "OrderCount" integer,
   "PaidTotalAmount" numeric,
-  "ConfigID" text
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vEcsOverviewSalesList" (
@@ -202,15 +202,15 @@ create table "vEcsOverviewSalesList" (
   "OrderStatus" text,
   "FulFilmentStatus" text,
   "PaymentStatus" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TT" integer,
-  "ConfigID" text
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vEcsPaymentProcessorMapping" (
   "ID" text,
-  "ConfigID" text,
-  "PaymentProcessorID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
+  "PaymentProcessorID" text,  -- -> PaymentProcessor
   "PaymentProcessorName" text,
   "LedgerAccount" text,
   "AccountName" text,
@@ -219,9 +219,9 @@ create table "vEcsPaymentProcessorMapping" (
 
 create table "vEcsTaxMapping" (
   "ID" text,
-  "ECSConfigID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
   "ECSTaxType" text,
-  "ECSTaxID" text,
+  "ECSTaxID" text,  -- -> ECSTax
   "Description" text,
   "Value" text,
   "TaxRuleName" text,
@@ -250,12 +250,12 @@ create table "vExportFilterItemGroupped" (
 );
 
 create table "vLocation" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
 create table "vMailingList" (
-  "MailingListID" text,
+  "MailingListID" text,  -- -> MailingList
   "Name" text,
   "Emails" text,
   "ValidationText" text,
@@ -274,9 +274,9 @@ create table "vSSExportLog" (
   "OrderNumber" text,
   "FulfillmentNumber" text,
   "InvoiceNumber" text,
-  "OrderID" text,
-  "FulfillmenID" text,
-  "InvoiceID" text,
+  "OrderID" text,  -- -> Order (context-specific)
+  "FulfillmenID" text,  -- -> Fulfillmen
+  "InvoiceID" text,  -- -> Invoice
   "CustomerName" text,
   "ShipByDate" timestamptz,
   "Status" text,
@@ -290,7 +290,7 @@ create table "vSSStoreList" (
 );
 
 create table "vSSTenantAddress" (
-  "AddressID" text,
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "CitySuburb" text,
@@ -307,10 +307,10 @@ create table "vScheduledExport" (
 
 create table "vShipIntegrationLocationMapping" (
   "ID" text,
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "WarehouseName" text,
-  "WarehouseId" text,
-  "LocationID" text,
+  "WarehouseId" text,  -- -> Warehouse
+  "LocationID" text,  -- -> Location
   "LocationName" text,
   "IsActive" boolean
 );
@@ -321,19 +321,19 @@ create table "vShipServConf" (
 );
 
 create table "vShipstationNotMatchingAddresses" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "InvoiceNumber" text,
   "ShippingAddressLine1" text,
   "ShippingAddressLine2" text,
   "CustomerName" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "InvoiceDate" timestamptz,
   "ShipmentRequiredByDate" timestamptz,
   "Reason" text
 );
 
 create table "vTax" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text
 );
 

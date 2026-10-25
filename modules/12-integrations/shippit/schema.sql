@@ -36,6 +36,6 @@ create table "vShipServConf" (
 );
 
 create table "vTax" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text
 );

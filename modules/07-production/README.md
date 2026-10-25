@@ -574,6 +574,8 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 ## Public API (`/ExternalApi/v2`)
 
+Fields, parameters and body shapes: [Disassembly](../20-public-api/groups/disassembly.md) · [Finished Goods](../20-public-api/groups/finished-goods.md) · [Inventory Write-Off](../20-public-api/groups/inventory-write-off.md) · [Production](../20-public-api/groups/production.md).
+
 | Group | Method | Path | Query / params |
 |---|---|---|---|
 | Disassembly | DELETE | `/disassembly` | ID,Void |

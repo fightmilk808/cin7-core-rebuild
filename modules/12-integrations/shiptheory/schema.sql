@@ -17,7 +17,7 @@ create table "ExceptionsList" (
 );
 
 create table "vBulkListingProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Status" text,
@@ -74,7 +74,7 @@ create table "vExportFilterItemGroupped" (
 );
 
 create table "vMailingList" (
-  "MailingListID" text,
+  "MailingListID" text,  -- -> MailingList
   "Name" text,
   "Emails" text,
   "ValidationText" text,
@@ -86,9 +86,9 @@ create table "vSSExportLog" (
   "OrderNumber" text,
   "FulfillmentNumber" text,
   "InvoiceNumber" text,
-  "OrderID" text,
-  "FulfillmenID" text,
-  "InvoiceID" text,
+  "OrderID" text,  -- -> Order (context-specific)
+  "FulfillmenID" text,  -- -> Fulfillmen
+  "InvoiceID" text,  -- -> Invoice
   "CustomerName" text,
   "ShipByDate" timestamptz,
   "Status" text,

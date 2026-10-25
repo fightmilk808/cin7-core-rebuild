@@ -1,7 +1,7 @@
 -- POS: one table per Cin7 Core data model, generated from data/models.json
 
 create table "AspnetRole" (
-  "RoleId" text,
+  "RoleId" text,  -- -> Role
   "RoleName" text
 );
 
@@ -20,12 +20,12 @@ create table "ConsolidationStore" (
 );
 
 create table "ECommerceShop" (
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "ShopName" text
 );
 
 create table "EcsProductDetails" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "SyncStockLevel" boolean,
   "UseBufferInventory" boolean,
   "BufferInventory" integer,
@@ -34,7 +34,7 @@ create table "EcsProductDetails" (
 );
 
 create table "OutletSelector" (
-  "PosOutletID" text,
+  "PosOutletID" text,  -- -> PosOutlet
   "OutletName" text
 );
 
@@ -59,19 +59,19 @@ create table "vAccount" (
 );
 
 create table "vAspnetUserRoles" (
-  "UserId" text,
+  "UserId" text,  -- -> User
   "UserName" text,
   "Name" text
 );
 
 create table "vBanknoteDenomination" (
-  "BanknoteID" text,
+  "BanknoteID" text,  -- -> Banknote
   "Code" text,
   "Nominal" numeric
 );
 
 create table "vCCLP" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
   "LoyaltyPoints" numeric,
   "StoreCredits" numeric,
@@ -79,32 +79,31 @@ create table "vCCLP" (
 );
 
 create table "vECSOrderLog" (
-  "LogID" text,
-  "ConfigID" text,
+  "LogID" text,  -- -> Log
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
   "DownloadDate" timestamptz,
   "ProcessDate" timestamptz,
   "OrderNumber" text,
-  "SaleTaskID" text,
+  "SaleTaskID" text,  -- -> Sale
   "Status" text,
   "Type" text,
   "SaleOrderNumber" text,
-  "RefundID" text,
-  "OrderID" text,
+  "RefundID" text,  -- -> Refund
+  "OrderID" text,  -- -> Order (context-specific)
   "IsNewSale" boolean
 );
 
 create table "vECSPaymentsToExport" (
-  "TaskID" text,
-  "OrderID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "OrderID" text,  -- -> Order (context-specific)
   "OrderNumber" text,
-  "TaskID" text,
   "InvoiceNumber" text,
   "Error" text
 );
 
 create table "vECSPendingOrdersNew" (
-  "OrderLineID" text,
+  "OrderLineID" text,  -- -> Line (parent document's line)
   "OrderNumber" text,
   "DateCreated" timestamptz,
   "Name" text,
@@ -117,12 +116,12 @@ create table "vECSPendingOrdersNew" (
 );
 
 create table "vECSPurchases" (
-  "LogID" text,
-  "ConfigID" text,
-  "ECSPurchaseID" text,
+  "LogID" text,  -- -> Log
+  "ConfigID" text,  -- -> IntegrationConfig
+  "ECSPurchaseID" text,  -- -> ECSPurchase
   "ECSPurchaseNumber" text,
   "ECSStatus" text,
-  "DearPurchaseID" text,
+  "DearPurchaseID" text,  -- -> DearPurchase
   "CreatedDate" timestamptz,
   "ReceivedDate" timestamptz,
   "Location" text,
@@ -131,12 +130,12 @@ create table "vECSPurchases" (
 );
 
 create table "vECSStockAdjustments" (
-  "LogID" text,
-  "ConfigID" text,
-  "ECSStockAdjustmentID" text,
+  "LogID" text,  -- -> Log
+  "ConfigID" text,  -- -> IntegrationConfig
+  "ECSStockAdjustmentID" text,  -- -> ECSStockAdjustment
   "ECSStockAdjustmentNumber" text,
   "ECSStatus" text,
-  "DearStockAdjustmentID" text,
+  "DearStockAdjustmentID" text,  -- -> DearStockAdjustment
   "CreatedDate" timestamptz,
   "CompletedDate" timestamptz,
   "DearStatus" text,
@@ -144,12 +143,12 @@ create table "vECSStockAdjustments" (
 );
 
 create table "vECSStockTransfers" (
-  "LogID" text,
-  "ConfigID" text,
-  "ECSStockTransferID" text,
+  "LogID" text,  -- -> Log
+  "ConfigID" text,  -- -> IntegrationConfig
+  "ECSStockTransferID" text,  -- -> ECSStockTransfer
   "ECSStockTransferNumber" text,
   "ECSStatus" text,
-  "DearStockTransferID" text,
+  "DearStockTransferID" text,  -- -> DearStockTransfer
   "FromLocation" text,
   "ToLocation" text,
   "CreatedDate" timestamptz,
@@ -159,7 +158,7 @@ create table "vECSStockTransfers" (
 );
 
 create table "vEcsBulkListing" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Status" text,
@@ -175,14 +174,14 @@ create table "vEcsBulkListing" (
 
 create table "vEcsConfiguration" (
   "ID" text,
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "ShopName" text,
   "AccessToken" text,
   "RefreshToken" text,
   "PrimaryPriceTier" integer,
   "ConsolidationType" text,
   "ConsolidationTimeText" text,
-  "ConsolidateToCustomerID" text,
+  "ConsolidateToCustomerID" text,  -- -> Customer
   "IsActive" boolean,
   "PickWhenOrderStatus" text,
   "ShippingTaxed" boolean,
@@ -205,7 +204,7 @@ create table "vEcsConfiguration" (
   "ManualMapping" boolean,
   "AutoCreateNewProductAllowed" boolean,
   "MatchProductByName" boolean,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "EnableOrderRouting" boolean,
   "CreateAssembly" text,
   "IgnoreRestockForNotFulfilled" boolean,
@@ -215,11 +214,11 @@ create table "vEcsConfiguration" (
 );
 
 create table "vEcsOverviewCustomersList" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
   "OrderCount" integer,
   "PaidTotalAmount" numeric,
-  "ConfigID" text
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vEcsOverviewSalesList" (
@@ -232,13 +231,13 @@ create table "vEcsOverviewSalesList" (
   "OrderStatus" text,
   "FulFilmentStatus" text,
   "PaymentStatus" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TT" integer,
-  "ConfigID" text
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vLocation" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
@@ -253,34 +252,33 @@ create table "vPaymentMethod" (
 );
 
 create table "vPaymentMethodSurcharge" (
-  "SurchargeID" text,
-  "PaymentMethodID" text,
-  "ConfigID" text
+  "SurchargeID" text,  -- -> Surcharge
+  "PaymentMethodID" text,  -- -> PaymentMethod
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vPosOutlets" (
-  "PosOutletID" text,
-  "LocationID" text,
+  "PosOutletID" text,  -- -> PosOutlet
+  "LocationID" text,  -- -> Location
   "OutletName" text,
   "TimeZone" text,
   "DefaultTaxRule" text,
   "LocationName" text,
   "DefaultTaxRuleName" text,
   "CountRegistry" integer,
-  "EcsPaymentProcessorID" text,
+  "EcsPaymentProcessorID" text,  -- -> EcsPaymentProcessor
   "LedgerAccount" text,
-  "ReceiptID" text,
+  "ReceiptID" text,  -- -> Receipt
   "PrintNotes" boolean,
   "PrintDiscounts" boolean,
   "Active" boolean,
-  "SquareIntegrationID" text,
+  "SquareIntegrationID" text,  -- -> SquareIntegration
   "PaymentSenseURL" text,
   "PaymentSenseAPIKey" text,
   "SurchargeTaxRule" text,
-  "PaymentSenseAPIKey" text,
-  "TyroMerchantID" text,
-  "TriPOSAccountID" text,
-  "TriPOSAcceptorID" text,
+  "TyroMerchantID" text,  -- -> TyroMerchant
+  "TriPOSAccountID" text,  -- -> TriPOSAccount
+  "TriPOSAcceptorID" text,  -- -> TriPOSAcceptor
   "TriPOSAccountToken" text,
   "CustomizedCustomerDisplayUI" boolean,
   "CustomerDisplayLogo" text,
@@ -288,25 +286,25 @@ create table "vPosOutlets" (
 );
 
 create table "vPosProductEx" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Name" text,
   "SKU" text,
   "Category" text,
   "OutletSKU" text,
-  "ConfigID" text,
-  "PosOutletID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
+  "PosOutletID" text,  -- -> PosOutlet
   "ValidationText" text,
   "ValidationState" text
 );
 
 create table "vPosQuickKey" (
-  "QuickKeyID" text,
+  "QuickKeyID" text,  -- -> QuickKey
   "Name" text,
   "ContentQuery" text
 );
 
 create table "vProductionCalendar" (
-  "CalendarID" text,
+  "CalendarID" text,  -- -> Calendar
   "Year" integer,
   "WeekStart" integer,
   "ValidationState" text,
@@ -314,8 +312,8 @@ create table "vProductionCalendar" (
 );
 
 create table "vProductionCalendarDay" (
-  "DayID" text,
-  "CalendarID" text,
+  "DayID" text,  -- -> Day
+  "CalendarID" text,  -- -> Calendar
   "DayOfWeek" integer,
   "IsWeekend" boolean,
   "StartTime" integer,
@@ -332,8 +330,8 @@ create table "vProductionCalendarDay" (
 );
 
 create table "vProductionCalendarSpecialDay" (
-  "DayID" text,
-  "CalendarID" text,
+  "DayID" text,  -- -> Day
+  "CalendarID" text,  -- -> Calendar
   "Date" timestamptz,
   "IsWeekend" boolean,
   "IsHoliday" boolean,
@@ -351,19 +349,19 @@ create table "vProductionCalendarSpecialDay" (
 );
 
 create table "vReceiptTemplate" (
-  "TemplateID" text,
+  "TemplateID" text,  -- -> Template
   "Name" text
 );
 
 create table "vRegistries" (
-  "ConfigID" text,
-  "RegistryID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
+  "RegistryID" text,  -- -> Registry
   "RegistryCode" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text,
-  "EcsPaymentProcessorID" text,
+  "EcsPaymentProcessorID" text,  -- -> EcsPaymentProcessor
   "LedgerAccount" text,
-  "ReceiptID" text,
+  "ReceiptID" text,  -- -> Receipt
   "TillDiscrepancyMapping" text,
   "CashFloatMapping" text,
   "PettyCashMapping" text,
@@ -371,11 +369,11 @@ create table "vRegistries" (
   "RegistryPrefix" text,
   "RegistrySuffix" text,
   "Active" boolean,
-  "QuickKeyID" text,
+  "QuickKeyID" text,  -- -> QuickKey
   "UseTyro" boolean,
-  "TyroTerminalID" text,
+  "TyroTerminalID" text,  -- -> TyroTerminal
   "UseTriPOS" boolean,
-  "TriPOSLaneID" text,
+  "TriPOSLaneID" text,  -- -> TriPOSLane
   "CatalogTilesSize" text,
   "CatalogTilesVisibility" text,
   "ShowProductAvailability" boolean,
@@ -385,7 +383,7 @@ create table "vRegistries" (
 );
 
 create table "vReportTemplate" (
-  "TemplateID" text,
+  "TemplateID" text,  -- -> Template
   "Name" text
 );
 
@@ -403,7 +401,7 @@ create table "vSurcharge" (
 );
 
 create table "vTax" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text
 );
 
@@ -418,8 +416,8 @@ create table "vTimezone" (
 );
 
 create table "vUserImage" (
-  "UserId" text,
-  "ImageID" text,
+  "UserId" text,  -- -> User
+  "ImageID" text,  -- -> Blob (stored file)
   "ContentType" text,
   "FileName" text,
   "Uri" text,

@@ -2604,3 +2604,830 @@ What the page code builds and mounts into the layout's slots.
       - **button** “Add a footnote” · on click `handler()`
 - **button** “{menuItemCaption}” · on click `handler()`
 
+### `report-service/AccountingDimensionsSummaryReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/ActualVsPlannedTimeReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/FinancialPaymentDetailsReport2019`
+
+0 grids · 5 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `FinancialPaymentDetails_Index_Account` | `chartOfAccountsStore` | shows `DisplayName` · value `Code` |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/FindByPurchaseOrderReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 5 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+- **button** “Excel”
+
+### `report-service/FinishedGoodsAnalysisReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 5 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| combo |  | `tdCurrency` | `currencyStore` | shows `DisplayCurrency` · value `Currency` |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+- **button** “Excel”
+
+### `report-service/InventoryAgingReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/InventoryBOMComponentDetailsReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `cmbInventoryBOMComponentDetails_ShowFilter` | `ShowFilterStore` | shows `Name` · value `Value` · placeholder `Choose...` · pick-only |
+| number field |  | `inpInventoryBOMComponentDetails_AvailableQtyLessT…` | `` |  |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/InventoryLowOnStockReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/InventoryMovementDetailsReport2019`
+
+0 grids · 5 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Mode` | `ModeStore` | shows `DisplayMode` · value `Mode` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/InventoryPriceListReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/InventoryReorderingReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 5 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+- **button** “Excel”
+
+### `report-service/InventoryStockLevelReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/InventorySuppliersReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/InventoryVelocityReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `cmbIntervalDays` | `daysStore` | shows `name` · value `days` · pick-only |
+| combo |  | `tdRecommendedAction` | `recommendedActionStore` | shows `name` · value `id` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/InventoryWarehouseDetailsReport2019`
+
+0 grids · 8 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdCurrency` | `currencyStore` | shows `DisplayCurrency` · value `Currency` |
+| text field |  | `tdReporting_Index_AsOfDate` | `` | read-only |
+| combo |  | `tdReporting_Index_ModeDropDown` | `ModeStore` | shows `name` · value `value` · pick-only |
+| checkbox |  | `chkReportFilter` | `` |  |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/LotExpiryReport2019`
+
+0 grids · 5 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| date field |  | `tdReporting_Index_LotExpireBefore` | `` | format `UserDateFormat` |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/OutOfStockComponentsForAutoAssemblyReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/ProductionReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/PurchaseCostAnalysisReport2019`
+
+0 grids · 7 standalone fields · 0 windows · 8 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| combo |  | `tdJourCosts` | `AllJournalCostsStore` | shows `DisplayMode` · value `Mode` · pick-only |
+| combo |  | `tdCurrency` | `currencyStore` | shows `DisplayCurrency` · value `Currency` |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+- **button** “Excel (without totals)” · on click `handler()`
+- **button** “Excel (with totals)” · on click `handler()`
+- **button** “PDF” · on click `handler()`
+- **button** “RTF” · on click `handler()`
+
+### `report-service/PurchaseOrderVsInvoiceReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| combo |  | `tdCurrency` | `currencyStore` | shows `Currency` · value `Currency` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/Report2019`
+
+0 grids · 8 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdCurrency` | `currencyStore` | shows `DisplayCurrency` · value `Currency` |
+| text field |  | `tdReporting_Index_AsOfDate` | `` | read-only |
+| combo |  | `tdReporting_Index_ModeDropDown` | `ModeStore` | shows `name` · value `value` · pick-only |
+| checkbox |  | `chkReportFilter` | `` |  |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/ReportService`
+
+0 grids · 0 standalone fields · 0 windows · 1 menus, buttons and other parts · 0 custom components
+
+#### Menus, buttons and other parts
+
+- **button** “Save to Google Drive” · itemId `gdriveItem`
+
+### `report-service/SaleBackorderDetailsReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/SaleBackordersSummaryReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/SaleCreditNotesByProductReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| combo |  | `tdCOGS` | `IncludeAllCOGSStore` | shows `DisplayMode` · value `Mode` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/SaleCustomerOrderByProductReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 8 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| combo |  | `tdCOGS` | `IncludeAllCOGSStore` | shows `DisplayMode` · value `Mode` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+- **button** “Excel (without totals)” · on click `handler()`
+- **button** “Excel (with totals)” · on click `handler()`
+- **button** “PDF” · on click `handler()`
+- **button** “RTF” · on click `handler()`
+
+### `report-service/SaleOutstandingQuotesReport`
+
+0 grids · 6 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdCurrency` | `currencyStore` | shows `DisplayCurrency` · value `Currency` |
+| combo |  | `SaleOutstandingQuotes_QSenum` | `QSenumStore` | shows `Name` · value `Value` · placeholder `Choose...` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/SalePriceHistoryReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 5 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| combo |  | `tdCurrency` | `currencyStore` | shows `DisplayCurrency` · value `Currency` |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+- **button** “Excel”
+
+### `report-service/SaleProfitBySalesRepresentativeReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| combo |  | `tdCOGS` | `IncludeAllCOGSStore` | shows `DisplayMode` · value `Mode` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/SaleProfitSummaryReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| combo |  | `tdCOGS` | `IncludeAllCOGSStore` | shows `DisplayMode` · value `Mode` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/SalesByCustomerReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/SalesByProductDetailsReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| combo |  | `tdCOGS` | `IncludeAllCOGSStore` | shows `DisplayMode` · value `Mode` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/SalesByProductSummaryReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| combo |  | `tdCOGS` | `IncludeAllCOGSStore` | shows `DisplayMode` · value `Mode` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/SalesDemandForecastReport`
+
+1 grids · 13 standalone fields · 0 windows · 5 menus, buttons and other parts · 0 custom components
+
+#### Grids
+
+- **grid** · renders into `divGridForecastErrors` · store `errorsStore`
+  - columns:
+
+    | Header | Field | Type | Width | Renderer / editor | Flags |
+    |---|---|---|---|---|---|
+    | Product | `ProductDescription` |  | flex 1 |  |  |
+    | Error description | `Message` |  | flex 1 |  |  |
+
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `cmbLocation` | `locationListStore` | shows `Name` · value `ID` · placeholder `Choose...` |
+| combo |  | `cmbForecastMethod` | `forecastMethodListStore` | shows `Name` · value `ID` · placeholder `Choose...` |
+| combo |  | `cmbPlanningPeriod` | `periodStore` | shows `Name` · value `ID` · placeholder `Choose...` |
+| combo |  | `cmbInterval` | `intervalListStore` | shows `Name` · value `ID` · placeholder `Choose...` |
+| combo |  | `tdTemplateName` | `templateStore` | shows `Name` · value `ID` |
+| number field |  | `tdGrowth` | `` |  |
+| number field |  | `tdHistoricalDataPeriod` | `` |  |
+| date field |  | `cmbPlanFrom` | `` | placeholder `Choose...` · format `UserDateFormat` |
+| date field |  | `cmbPlanTo` | `` | placeholder `Choose...` · format `UserDateFormat` |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+- **button** “CSV (MRP formatted)”
+
+### `report-service/StockValueInventoryAgingReport2019`
+
+0 grids · 5 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `divInterval` | `IntervalStore` | shows `name` · value `value` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/TaxTransactionsReport2019`
+
+0 grids · 8 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdCurrency` | `currencyStore` | shows `DisplayCurrency` · value `Currency` |
+| text field |  | `tdReporting_Index_AsOfDate` | `` | read-only |
+| combo |  | `tdReporting_Index_ModeDropDown` | `ModeStore` | shows `name` · value `value` · pick-only |
+| checkbox |  | `chkReportFilter` | `` |  |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/TransactionsVsInventoryCardsReport2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
+### `report-service/XeroSyncReport2019`
+
+0 grids · 6 standalone fields · 0 windows · 5 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+| combo |  | `tdReporting_Index_Status` | `Status` | shows `Name` · value `Value` · placeholder `Choose...` · pick-only |
+| combo |  | `tdReporting_Index_Type` | `Type` | shows `Name` · value `Value` · placeholder `Choose...` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+- **button** “Excel”
+

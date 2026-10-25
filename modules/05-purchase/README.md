@@ -521,6 +521,8 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 ## Public API (`/ExternalApi/v2`)
 
+Fields, parameters and body shapes: [Purchase](../20-public-api/groups/purchase.md) · [Supplier](../20-public-api/groups/supplier.md).
+
 | Group | Method | Path | Query / params |
 |---|---|---|---|
 | Purchase | DELETE | `/advanced-purchase` | ID,Void |

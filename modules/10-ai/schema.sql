@@ -6,11 +6,11 @@ create table "AvalaraSaleTaxCode" (
 );
 
 create table "GiftCardGlobalSettings" (
-  "GiftCardProductID" text,
+  "GiftCardProductID" text,  -- -> GiftCardProduct
   "IsGiftCardEnabled" boolean,
   "DefaultGiftCardExpirationPeriod" text,
   "CanGiftCardExpire" boolean,
-  "GiftCardSaleTaxID" text,
+  "GiftCardSaleTaxID" text,  -- -> GiftCardSaleTax
   "GiftProductName" text,
   "GiftProductCode" text,
   "GiftCardRevenueAccount" text,
@@ -27,7 +27,7 @@ create table "spTaskImportLogEntry" (
 );
 
 create table "vCustomerParent" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text
 );
 
@@ -36,21 +36,21 @@ create table "vExtractedDocument" (
   "Status" text,
   "StatusDescription" text,
   "DateCreated" timestamptz,
-  "EntityID" text
+  "EntityID" text  -- -> Entity (polymorphic)
 );
 
 create table "vSaleGiftCards" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "GiftCardCode" text,
   "InitialBalance" numeric,
   "CurrentBalance" numeric,
   "Date" timestamptz,
   "ExpirationDate" timestamptz,
-  "RefundID" text
+  "RefundID" text  -- -> Refund
 );
 
 create table "vShippingManifestAttachment" (
-  "BlobGUID" text,
+  "BlobGUID" text,  -- -> Blob (stored file)
   "TrackNumber" text
 );

@@ -8,7 +8,7 @@ create table "vCin7PayTransaction" (
 );
 
 create table "vDearPaymentGatewayNotificationsLogs" (
-  "NotificationExecutionLogID" text,
+  "NotificationExecutionLogID" text,  -- -> NotificationExecutionLog
   "ExecutionDate" timestamptz,
   "Recipients" text,
   "Subject" text,
@@ -19,8 +19,8 @@ create table "vDearPaymentGatewayNotificationsLogs" (
 );
 
 create table "vDispute" (
-  "DisputeID" text,
-  "DearPaymentGatewayTransactionID" text,
+  "DisputeID" text,  -- -> Dispute
+  "DearPaymentGatewayTransactionID" text,  -- -> DearPaymentGatewayTransaction
   "CustomerName" text,
   "Email" text,
   "Currency" text,
@@ -40,8 +40,8 @@ create table "vDispute" (
 );
 
 create table "vDisputeItem" (
-  "DisputeID" text,
-  "DisputeItemID" text,
+  "DisputeID" text,  -- -> Dispute
+  "DisputeItemID" text,  -- -> DisputeItem
   "DisputeItemDate" timestamptz,
   "Actor" text,
   "Details" text,
@@ -49,7 +49,7 @@ create table "vDisputeItem" (
 );
 
 create table "vEmailNotification" (
-  "EmailNotificationSettingsID" text,
+  "EmailNotificationSettingsID" text,  -- -> EmailNotificationSettings
   "IsActive" boolean,
   "Code" text,
   "EmailTemplate" text,
@@ -59,27 +59,27 @@ create table "vEmailNotification" (
 );
 
 create table "vInternalNotification" (
-  "NotificationSettingsID" text,
+  "NotificationSettingsID" text,  -- -> NotificationSettings
   "IsActive" boolean,
   "Code" text,
   "Error" text
 );
 
 create table "vPayout" (
-  "PayoutID" text,
+  "PayoutID" text,  -- -> Payout
   "PayoutPlanedDate" timestamptz,
   "PayoutDate" timestamptz,
   "State" text,
   "PayoutAmount" numeric,
-  "MoneyTaskID" text,
-  "PurchaseTaskID" text,
+  "MoneyTaskID" text,  -- -> MoneyTask
+  "PurchaseTaskID" text,  -- -> Purchase
   "Note" text,
   "Error" text
 );
 
 create table "vPayoutItem" (
-  "PayoutItemID" text,
-  "PayoutID" text,
+  "PayoutItemID" text,  -- -> PayoutItem
+  "PayoutID" text,  -- -> Payout
   "TransactionDate" timestamptz,
   "DocumentName" text,
   "CustomerName" text,

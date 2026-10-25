@@ -1,20 +1,20 @@
 -- HubSpot: one table per Cin7 Core data model, generated from data/models.json
 
 create table "CurrencyAndPortalIdWrapper" (
-  "PortalId" text
+  "PortalId" text  -- -> Portal
 );
 
 create table "HubSpotStage" (
-  "HubSpotStageID" text,
+  "HubSpotStageID" text,  -- -> HubSpotStage
   "HubSpotStageName" text
 );
 
 create table "StatusMappingModel" (
   "ID" text,
-  "HubSpotID" text,
-  "HubSpotPipeLineID" text,
+  "HubSpotID" text,  -- -> HubSpot
+  "HubSpotPipeLineID" text,  -- -> HubSpotPipeLine
   "HubSpotPipeLineName" text,
-  "HubSpotStageID" text,
+  "HubSpotStageID" text,  -- -> HubSpotStage
   "HubSpotStageName" text,
   "DearStatus" text,
   "SortOrder" text
@@ -43,11 +43,11 @@ create table "vCurrency" (
 );
 
 create table "vEcsOverviewCustomersList" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
   "OrderCount" integer,
   "PaidTotalAmount" numeric,
-  "ConfigID" text
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vEcsOverviewSalesList" (
@@ -60,13 +60,13 @@ create table "vEcsOverviewSalesList" (
   "OrderStatus" text,
   "FulFilmentStatus" text,
   "PaymentStatus" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TT" integer,
-  "ConfigID" text
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vExportSale" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "OrderNo" text,
   "OrderDate" timestamptz,
   "Status" text,
@@ -76,7 +76,7 @@ create table "vExportSale" (
 );
 
 create table "vHubSpot" (
-  "HubSpotID" text,
+  "HubSpotID" text,  -- -> HubSpot
   "IsActive" boolean,
   "PriceTier" text,
   "PriceTierCurrency" text,
@@ -86,7 +86,7 @@ create table "vHubSpot" (
   "AutoSync_StartTime" text,
   "AutoSync_Frequency" text,
   "AutoSync_ErrorAlertType" text,
-  "AutoSync_MailListID" text,
+  "AutoSync_MailListID" text,  -- -> AutoSync_MailList
   "ProductSyncType" text,
   "ProductExport_DescriptionType" text,
   "ProductExport_TermValue" integer,
@@ -123,16 +123,16 @@ create table "vHubSpotContact" (
 
 create table "vHubspotFieldsMapping" (
   "ID" text,
-  "ECSConfigID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
   "DearFieldModel" text,
   "DearFieldName" text,
   "ECSFieldName" text
 );
 
 create table "vImportSale" (
-  "DealID" text,
+  "DealID" text,  -- -> Deal
   "DealCurrency" text,
-  "HubSpotDealId" text,
+  "HubSpotDealId" text,  -- -> HubSpotDeal
   "HubSpotDealName" text,
   "HubSpotDealDate" timestamptz,
   "HubSpotTotal" numeric,
@@ -143,21 +143,21 @@ create table "vImportSale" (
 );
 
 create table "vLog" (
-  "LogID" text,
+  "LogID" text,  -- -> Log
   "Action" text,
   "Message" text,
   "AdditionalInfo" text,
   "LogDate" timestamptz,
   "Error" text,
   "LogType" text,
-  "SyncID" text,
+  "SyncID" text,  -- -> Sync
   "AffectedEntitiesCount" integer,
   "ValidationText" text,
   "ValidationState" text
 );
 
 create table "vMailingList" (
-  "MailingListID" text,
+  "MailingListID" text,  -- -> MailingList
   "Name" text,
   "Emails" text,
   "ValidationText" text,
@@ -166,15 +166,15 @@ create table "vMailingList" (
 
 create table "vProductCatalogModel" (
   "ID" text,
-  "HubSpotCatalogID" text,
-  "ProductID" text,
+  "HubSpotCatalogID" text,  -- -> HubSpotCatalog
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Type" text,
   "CategoryName" text,
   "Status" text,
   "HubSpotName" text,
-  "HubSpotObjectID" text,
+  "HubSpotObjectID" text,  -- -> HubSpotObject
   "HubSpotPrice" text,
   "PriceTier1" numeric,
   "PriceTier2" numeric,
@@ -191,7 +191,7 @@ create table "vProductCatalogModel" (
 );
 
 create table "vProductToExportModel" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Type" text,
@@ -211,6 +211,6 @@ create table "vProductToExportModel" (
 );
 
 create table "vTaxRules" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text
 );

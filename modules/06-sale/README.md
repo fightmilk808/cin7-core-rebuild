@@ -765,6 +765,8 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 ## Public API (`/ExternalApi/v2`)
 
+Fields, parameters and body shapes: [Customer](../20-public-api/groups/customer.md) · [Sale](../20-public-api/groups/sale.md).
+
 | Group | Method | Path | Query / params |
 |---|---|---|---|
 | Customer | GET | `/customer` | Page,Limit,ID,Name,ModifiedSince,IncludeDeprecated,IncludeProductPrices,ContactFilter |

@@ -360,6 +360,8 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 ## Public API (`/ExternalApi/v2`)
 
+Fields, parameters and body shapes: [CRM](../20-public-api/groups/crm.md).
+
 | Group | Method | Path | Query / params |
 |---|---|---|---|
 | CRM | GET | `/crm/lead` | Page,Limit,ID,Name,ModifiedSince |

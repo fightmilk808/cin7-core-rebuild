@@ -12,56 +12,56 @@ create table "ContinueSetupViewModel" (
   "ConnectRequired" boolean,
   "InitialSyncRequired" boolean,
   "ShopifyConnected" boolean,
-  "ShopifyConfigID" text,
+  "ShopifyConfigID" text,  -- -> ShopifyConfig
   "ShopifyShopName" text,
   "ShopifyProductsNumber" integer,
   "ShopifyOrdersNumber" integer,
   "ShopifyPriceTier" integer,
   "WooCommerceConnected" boolean,
-  "WooCommerceConfigID" text,
+  "WooCommerceConfigID" text,  -- -> WooCommerceConfig
   "WooCommerceShopName" text,
   "WooCommerceProductsNumber" integer,
   "WooCommerceOrdersNumber" integer,
   "WooCommercePriceTier" integer,
   "VendConnected" boolean,
-  "VendConfigID" text,
+  "VendConfigID" text,  -- -> VendConfig
   "VendShopName" text,
   "VendProductsNumber" integer,
   "VendOrdersNumber" integer,
   "VendPriceTier" integer,
   "MagentoConnected" boolean,
-  "MagentoConfigID" text,
+  "MagentoConfigID" text,  -- -> MagentoConfig
   "MagentoShopName" text,
   "MagentoProductsNumber" integer,
   "MagentoOrdersNumber" integer,
   "MagentoPriceTier" integer,
   "Magento2Connected" boolean,
-  "Magento2ConfigID" text,
+  "Magento2ConfigID" text,  -- -> Magento2Config
   "Magento2ShopName" text,
   "Magento2ProductsNumber" integer,
   "Magento2OrdersNumber" integer,
   "Magento2PriceTier" integer,
   "Magento2SalePriceTier" integer,
   "EbayConnected" boolean,
-  "EbayConfigID" text,
+  "EbayConfigID" text,  -- -> EbayConfig
   "EbayShopName" text,
   "EbayProductsNumber" integer,
   "EbayOrdersNumber" integer,
   "EbayPriceTier" integer,
   "ShipStationConnected" boolean,
-  "ShipStationConfigID" text,
+  "ShipStationConfigID" text,  -- -> StationConfig
   "ShipStationShopName" text,
   "ShipStationProductsNumber" integer,
   "ShipStationOrdersNumber" integer,
   "ShipStationPriceTier" integer,
   "AmazonConnected" boolean,
-  "AmazonConfigID" text,
+  "AmazonConfigID" text,  -- -> AmazonConfig
   "AmazonShopName" text,
   "AmazonProductsNumber" integer,
   "AmazonOrdersNumber" integer,
   "AmazonPriceTier" integer,
   "BigcommerceConnected" boolean,
-  "BigcommerceConfigID" text,
+  "BigcommerceConfigID" text,  -- -> BigcommerceConfig
   "BigcommerceShopName" text,
   "BigcommerceProductsNumber" integer,
   "BigcommerceOrdersNumber" integer,
@@ -70,7 +70,7 @@ create table "ContinueSetupViewModel" (
 
 create table "CustomerOverviewByProduct" (
   "CustomerName" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Sales" integer,
   "Amount" numeric,
   "Tax" numeric
@@ -78,7 +78,7 @@ create table "CustomerOverviewByProduct" (
 
 create table "CustomerOverviewNoBuys" (
   "CustomerName" text,
-  "CustomerID" text
+  "CustomerID" text  -- -> Customer
 );
 
 create table "CustomerOverviewSalesRep" (
@@ -90,7 +90,7 @@ create table "CustomerOverviewSalesRep" (
 
 create table "CustomerOverviewTopCustomer" (
   "CustomerName" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Sales" integer,
   "Amount" numeric,
   "Tax" numeric
@@ -126,7 +126,7 @@ create table "ProductOverviewRegion" (
 
 create table "ProductOverviewSellings" (
   "ProductImage" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductName" text,
   "Total" numeric,
   "Tax" numeric,
@@ -134,7 +134,7 @@ create table "ProductOverviewSellings" (
 );
 
 create table "Purchase" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "OrderNo" text,
   "OrderDate" timestamptz,
   "Supplier" text,
@@ -143,7 +143,7 @@ create table "Purchase" (
   "Ordered" numeric,
   "Due" numeric,
   "SupplierCurrency" text,
-  "DropShipTaskID" text,
+  "DropShipTaskID" text,  -- -> Purchase
   "TaskTypeSign" integer,
   "TaskTypeName" text,
   "ShipmentRequiredByDate" timestamptz
@@ -151,14 +151,14 @@ create table "Purchase" (
 
 create table "Reorder" (
   "ProductCode" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Name" text,
   "Supplier" text,
   "Available" numeric
 );
 
 create table "Sale" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "OrderNo" text,
   "OrderDate" timestamptz,
   "Customer" text,
@@ -175,7 +175,7 @@ create table "TaskCount" (
 );
 
 create table "vProductList" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "DefaultUnitOfMeasure" text,
@@ -185,7 +185,7 @@ create table "vProductList" (
   "LatestSupplier" text,
   "Status" text,
   "Selected" boolean,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "CustomField1" text,
   "CustomField2" text,
   "CustomField3" text,

@@ -158,12 +158,116 @@ def controller_of(url):
     return parts[0] if parts else url
 
 
+# Reference columns -> the entity they point at. Prefixes are roles (DefaultLocationID is a Location).
+REF_ALIASES = {
+    "Attachement": "Attachment", "SaleTask": "Sale", "PurchaseTask": "Purchase", "DropShipTask": "Purchase",
+    "RmaTask": "RMA", "FulfilmentTask": "Fulfilment", "MoneyTask": "MoneyTask", "Bom": "ProductionBOM",
+    "BOMConfiguration": "ProductionBOM", "Family": "ProductFamily", "Term": "PaymentTerm", "Run": "ProductionRun",
+    "WorkCenter": "WorkCentre", "Resource": "ProductionResource", "Card": "InventoryCard", "CardDetails": "InventoryCard",
+    "Set": "AttributeSet", "CurrentAttributeSet": "AttributeSet", "FinishedGoods": "Assembly", "SaleCredit": "SaleCreditNote",
+    "Rule": "Rule (context-specific)", "Item": "Item (context-specific)", "Entity": "Entity (polymorphic)",
+    "Config": "IntegrationConfig", "ECSConfig": "IntegrationConfig", "EcsConfig": "IntegrationConfig",
+    "Configuration": "IntegrationConfig", "Blob": "Blob (stored file)", "BlobGUID": "Blob (stored file)", "File": "Blob (stored file)",
+    "Image": "Blob (stored file)", "Line": "Line (parent document's line)", "OrderLine": "Line (parent document's line)",
+    "InvoiceLine": "Line (parent document's line)", "QuoteLine": "Line (parent document's line)",
+    "SourceLine": "Line (parent document's line)", "Order": "Order (context-specific)", "FFOrder": "FulfilmentOrder",
+    "FF": "FulfilmentOrder", "Fake": None, "Tenant": "Tenant", "SupplierCustomer": "Customer",
+    "ConsolidateToCustomer": "Customer", "Task": "Task (any document)", "SourceTask": "Task (any document)",
+    "TargetTask": "Task (any document)", "CreditSourceTask": "Task (any document)", "LinkedProductionOrder": "ProductionOrder",
+    "TransferOrder": "StockTransfer", "ShipAddress": "Address", "WebPortal": "Portal", "Portal": "Portal",
+    "TaxRule": "TaxRule", "Category": "ProductCategory", "TaskCategory": "TaskCategory",
+}
+ROLE_PREFIXES = ("Default", "Receipts", "Order", "Ship", "Current", "Source", "Target", "Linked", "Parent", "Base", "Main")
+
+
+def ref_entity(col):
+    """`DefaultLocationID` -> `Location`; None when the column is not a reference."""
+    m = re.match(r"^(.+?)(ID|Id|GUID)$", col)
+    if not m or col in ("ID", "Id", "GUID"):
+        return None
+    base = m.group(1) if m.group(2) != "GUID" else col
+    if base in REF_ALIASES:
+        return REF_ALIASES[base]
+    for p in ROLE_PREFIXES:
+        if base.startswith(p) and len(base) > len(p) + 2:
+            rest = base[len(p):]
+            return REF_ALIASES.get(rest, rest)
+    return base
+
+
 def ddl(name, fields):
     cols = []
+    seen = set()
     for f in fields:
         col, _, typ = f.partition(":")
-        cols.append(f'  "{col}" {SQL_TYPES.get(typ.lower(), "text")}')
-    return f'create table "{name}" (\n' + ",\n".join(cols) + "\n);"
+        if not col or col.lower() in seen:
+            continue
+        seen.add(col.lower())
+        ref = ref_entity(col)
+        cols.append(f'  "{col}" {SQL_TYPES.get(typ.lower(), "text")}' + (f"  -- -> {ref}" if ref else ""))
+    body = ""
+    for i, c in enumerate(cols):
+        code, sep, comment = c.partition("  -- ")
+        body += code + ("," if i < len(cols) - 1 else "") + (f"  -- {comment}" if sep else "") + "\n"
+    return f'create table "{name}" (\n' + body + ");"
+
+
+def write_relationships(models):
+    """docs/RELATIONSHIPS.md: which entity each reference column points at, across all models."""
+    refs = defaultdict(lambda: {"cols": defaultdict(int), "models": set()})
+    for name, m in models.items():
+        for f in m.get("fields", []):
+            col = f.split(":")[0]
+            ent = ref_entity(col)
+            if ent:
+                refs[ent]["cols"][col] += 1
+                refs[ent]["models"].add(name)
+    homes = {}
+    lower = {n.lower(): n for n in models}
+    for ent in refs:
+        key = re.sub(r"[^A-Za-z]", "", ent.split(" (")[0]).lower()
+        homes[ent] = [lower[k] for k in (f"v{key}", key, f"v{key}s", f"{key}model") if k in lower]
+    core = ["Product", "ProductFamily", "Customer", "Supplier", "Location", "Bin", "Sale", "Purchase", "Task (any document)",
+            "ProductionOrder", "ProductionRun", "ProductionBOM", "Operation", "ProductionResource", "WorkCentre",
+            "ProductCategory", "Brand", "TaxRule", "PaymentTerm", "Carrier", "Contact", "Address", "User", "Attachment"]
+    L = ["# Relationships", "",
+         "How Cin7 Core's records point at each other, read from the 1,024 data models' field names. Every id is a GUID. "
+         "A column named `<Entity>ID` (or `<Role><Entity>ID`, like `DefaultLocationID`) references that entity. "
+         "Each `schema.sql` marks these columns with `-- -> <Entity>`.", "",
+         "## Conventions", "",
+         "- **`TaskID` is the document id.** Sales, purchases, assemblies, disassemblies, transfers, stock adjustments, "
+         "production orders, jobs, money tasks and CRM records are all *tasks*; their lines, payments, attachments and "
+         "logs carry `TaskID` (or a typed alias such as `SaleTaskID`, `PurchaseTaskID`, `DropShipTaskID`).",
+         "- **`TenantID` scopes everything** to one account.",
+         "- **`ConfigID` / `ECSConfigID` point at an integration's configuration** (one per connected store or channel).",
+         "- **`FakeID` is a client-side row id** used by grids before a save; it is not a reference.",
+         "- **Lines reference their parent and the product:** `TaskID` + `ProductID` (+ `LocationID`, `BinID` for stock).",
+         "- **Roles share an entity:** `LocationID`, `DefaultLocationID`, `ReceiptsLocationID`, `OrderLocationID` all point at a location.",
+         "",
+         "## Core entities", "",
+         "```mermaid", "erDiagram",
+         "  Customer ||--o{ Sale : places", "  Supplier ||--o{ Purchase : supplies",
+         "  Sale ||--o{ SaleLine : has", "  Purchase ||--o{ PurchaseLine : has",
+         "  Product ||--o{ SaleLine : sold", "  Product ||--o{ PurchaseLine : bought",
+         "  ProductFamily ||--o{ Product : groups", "  ProductCategory ||--o{ Product : classifies", "  Brand ||--o{ Product : brands",
+         "  Location ||--o{ Bin : contains", "  Location ||--o{ StockLevel : holds", "  Product ||--o{ StockLevel : stocked",
+         "  Product ||--o{ ProductionBOM : made_by", "  ProductionBOM ||--o{ Operation : steps",
+         "  Operation ||--o{ BOMComponent : consumes", "  Operation }o--|| WorkCentre : at",
+         "  Operation ||--o{ ResourceUse : uses", "  ProductionResource ||--o{ ResourceUse : used",
+         "  ProductionOrder ||--o{ ProductionRun : runs", "  ProductionOrder }o--|| ProductionBOM : follows",
+         "  Sale ||--o{ ProductionOrder : triggers", "  Customer ||--o{ Contact : has", "  Customer ||--o{ Address : has",
+         "  Supplier ||--o{ Contact : has", "  Supplier ||--o{ Address : has",
+         "  TaxRule ||--o{ Sale : taxes", "  PaymentTerm ||--o{ Sale : terms", "  Carrier ||--o{ Sale : ships",
+         "```", "",
+         "## Every referenced entity", "",
+         "| Entity | Columns that reference it | Models referencing it | Likely home model |", "|---|---|---:|---|"]
+    order = [e for e in core if e in refs] + sorted(e for e in refs if e not in core)
+    for ent in order:
+        r = refs[ent]
+        cols = ", ".join(f"`{c}`" for c, _ in sorted(r["cols"].items(), key=lambda x: -x[1])[:8])
+        more = "" if len(r["cols"]) <= 8 else f" +{len(r['cols']) - 8}"
+        L.append(f"| **{ent}** | {cols}{more} | {len(r['models'])} | {', '.join('`' + h + '`' for h in homes[ent]) or ''} |")
+    (ROOT / "docs" / "RELATIONSHIPS.md").write_text("\n".join(L) + "\n")
 
 
 # ---------------------------------------------------------------- UI rendering
@@ -545,15 +649,28 @@ def write_unit(d, title, about, pages, models, eps, public, reports, ui, bundles
             L.append("")
 
     if public:
-        L += ["## Public API (`/ExternalApi/v2`)", "", "| Group | Method | Path | Query / params |", "|---|---|---|---|"]
+        groups = sorted({r["group"] for r in public})
+        L += ["## Public API (`/ExternalApi/v2`)", "",
+              "Fields, parameters and body shapes: " + " · ".join(
+                  f"[{g}]({up}20-public-api/groups/{slugify(g)}.md)" for g in groups) + ".", "",
+              "| Group | Method | Path | Query / params |", "|---|---|---|---|"]
         for r in sorted(public, key=lambda r: (r["group"], r["path"], r["method"])):
             L.append(f"| {r['group']} | {r['method']} | `{r['path']}` | {cell(r['query'] or r['params'])} |")
         L.append("")
 
     if reports:
-        L += ["## Reports and their columns", "", "| Report | Title | Script | Columns |", "|---|---|---|---|"]
+        filters = json.load(open(DATA / "report-filters.json")) if (DATA / "report-filters.json").exists() else {}
+        std = {"RequestID", "Search", "LayoutName", "OperationName", "layoutName", "operationName", "IsResetGridViewPageIndex"}
+        L += ["## Reports, their filters and columns", "",
+              "Every report's callback sends `RequestID`, `Search`, `LayoutName` and `OperationName` "
+              "([protocol](" + up + "21-report-service/README.md)); **Filters** lists the extra parameters each one sends, "
+              "with the control that supplies it.", "",
+              "| Report | Title | Script | Filters | Columns |", "|---|---|---|---|---|"]
         for r in sorted(reports, key=lambda r: r["name"]):
-            L.append(f"| `{r['name']}` | {cell(r['title'])} | `{r['script']}` | {cell(', '.join(r['columns']), 900)} |")
+            f = filters.get(r["script"], {})
+            fl = {**{k: v for k, v in f.get("params", {}).items() if k not in std}, **f.get("extra", {})}
+            ftxt = ", ".join(f"`{k}`" + (f" ({cell(v, 30)})" if v and v != k else "") for k, v in fl.items())
+            L.append(f"| `{r['name']}` | {cell(r['title'])} | `{r['script']}` | {cell(ftxt, 400)} | {cell(', '.join(r['columns']), 900)} |")
         L.append("")
 
     (d / "README.md").write_text("\n".join(L))
@@ -574,6 +691,110 @@ def write_shared(shared):
         + "\n\n".join(ddl(n, m.get("fields", [])) for n, m, _ in shared if m.get("fields")) + "\n")
 
 
+def shape_lines(sh, depth=0):
+    pad = "  " * depth
+    out = []
+    if isinstance(sh, dict):
+        if "_keys" in sh:
+            return [pad + "keys: " + ", ".join(sh["_keys"])]
+        for k, v in sh.items():
+            if isinstance(v, dict):
+                out.append(f"{pad}{k}: {{")
+                out += shape_lines(v, depth + 1)
+                out.append(pad + "}")
+            elif isinstance(v, list) and v and isinstance(v[0], dict):
+                out.append(f"{pad}{k}: [")
+                out += shape_lines(v[0], depth + 1)
+                out.append(pad + "]")
+            elif isinstance(v, list):
+                out.append(f"{pad}{k}: [{v[0] if v else ''}]")
+            else:
+                out.append(f"{pad}{k}: {v}")
+    elif isinstance(sh, list):
+        if sh and isinstance(sh[0], dict):
+            out.append(pad + "[")
+            out += shape_lines(sh[0], depth + 1)
+            out.append(pad + "]")
+        else:
+            out.append(pad + str(sh))
+    else:
+        out.append(pad + str(sh))
+    return out
+
+
+def field_table(t):
+    if t.get("kind") == "values":
+        L = [f"#### {t['model']}", "", "| Value | Meaning |", "|---|---|"]
+        L += [f"| `{cell(f['name'], 60)}` | {cell(f['type'], 200)} |" for f in t["fields"]]
+        return L + [""]
+    L = [f"#### {t['model']}", "", "| Field | Type | Length | Required | Allowed values |", "|---|---|---|---|---|"]
+    for f in t["fields"]:
+        req = f.get("required", "")
+        vals = ", ".join(f"`{v}`" for v in f.get("values", []))
+        typ = f["type"] + (" (read-only)" if f.get("read_only") else "")
+        L.append(f"| `{cell(f['name'], 60)}` | {cell(typ, 60)} | {cell(f.get('length', ''), 10)} | {cell(req, 10)} | {cell(vals, 400)} |")
+    return L + [""]
+
+
+def write_api_groups():
+    """modules/20-public-api/groups/<group>.md: fields, parameters and body shapes per API group."""
+    path = DATA / "public-api-shapes.json"
+    if not path.exists():
+        return {}
+    d = json.load(open(path))
+    gdir = OUT / "20-public-api" / "groups"
+    gdir.mkdir(parents=True, exist_ok=True)
+    links = {}
+    for name, g in d["groups"].items():
+        if not g["operations"] and not g["tables"]:
+            continue
+        slug = slugify(name)
+        links[name] = slug
+        L = [f"# Public API: {name}", "",
+             "From Cin7's API Blueprint: field tables (name, type, length, required, allowed values), each "
+             "operation's query parameters, and request and response bodies as type outlines (`guid`, `string`, "
+             "`number`, `boolean`, `date`, `null`; `[ … ]` = array of). Base `/ExternalApi/v2`; headers in "
+             "[docs/PUBLIC-API.md](../../../docs/PUBLIC-API.md).", ""]
+        if g.get("resources"):
+            L += ["**Resources:** " + " · ".join(f"`{r['path']}`" for r in g["resources"]), ""]
+        if g["tables"]:
+            L += ["## Fields", ""]
+            for t in g["tables"]:
+                L += field_table(t)
+        L += ["## Operations", ""]
+        for o in g["operations"]:
+            L += [f"### {o['method']} `{o['path'].split('?')[0] or '/'}`" + (f" ({o['title']})" if o["title"] not in (o["method"], "") else ""), ""]
+            if o["params"]:
+                L += ["| Parameter | Type | Required |", "|---|---|---|"]
+                L += [f"| `{p['name']}` | {cell(p['type'], 40)} | {'yes' if p['required'] else ''} |" for p in o["params"]]
+                L.append("")
+            for key, label in [("request", "Request body"), ("response", "Response 200")]:
+                if o.get(key) is not None:
+                    L += [f"{label}:", "", "```text"] + shape_lines(o[key]) + ["```", ""]
+            for key in sorted(k for k in o if k.startswith("response_")):
+                L += [f"Response {key.split('_')[1]}:", "", "```text"] + shape_lines(o[key]) + ["```", ""]
+        (gdir / f"{slug}.md").write_text("\n".join(L) + "\n")
+    if d.get("models"):
+        L = ["# Public API: shared models and value lists", ""]
+        for t in d["models"].values():
+            L += field_table(t)
+        (gdir / "models.md").write_text("\n".join(L) + "\n")
+    if d.get("webhooks"):
+        L = ["# Webhook payloads", "",
+             "The body Cin7 POSTs for each event, as a type outline. Delivery: up to 6 attempts (1, then 5, 10, 15, 20 "
+             "and 25 minutes apart), after which the webhook is deactivated; at most 5 webhooks of one type. "
+             "Subscriptions can carry extra headers (`ExternalHeaders`).", ""]
+        for typ, sh in d["webhooks"].items():
+            L += [f"## `{typ}`", "", "```text"]
+            L += (shape_lines(sh) if not (isinstance(sh, list) and sh and isinstance(sh[0], str)) else ["keys: " + ", ".join(sh)])
+            L += ["```", ""]
+        (gdir / "webhooks.md").write_text("\n".join(L) + "\n")
+    return links
+
+
+API_LINKS = {}
+
+
 def write_front_ends():
     """Modules 20-25: hand-written prose in tools/front_ends/<slug>.md plus the generated call tables."""
     tables = {
@@ -588,6 +809,10 @@ def write_front_ends():
         d = OUT / slug
         d.mkdir(exist_ok=True)
         L = [(FRONT_ENDS / f"{slug}.md").read_text().rstrip(), ""]
+        screens = FRONT_ENDS / "screens" / f"{slug}.md"
+        if screens.exists():
+            (d / "SCREENS.md").write_text(screens.read_text())
+            L += ["Every screen, its fields, buttons, lists, dialogs and API calls: [SCREENS.md](SCREENS.md).", ""]
         if src:
             rows = [r for r in csv.DictReader(open(DATA / src)) if r.get("group") != "group"]
             L += [f"## Every call ({len(rows)})", "", "| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
@@ -606,6 +831,8 @@ def load():
     public = [r for r in csv.DictReader(open(DATA / "public-api.csv")) if r["group"] != "group"]
     models = json.load(open(DATA / "models.json"))
     ui = json.load(open(DATA / "ui.json"))
+    if (DATA / "report-ui.json").exists():
+        ui.update({f"report-service/{k}": v for k, v in json.load(open(DATA / "report-ui.json")).items()})
     reports = []
     for line in open(DATA / "report-columns.txt"):
         parts = [p.strip() for p in line.split(" ~ ")]
@@ -735,6 +962,8 @@ def main():
 
     write_shared(shared)
     write_front_ends()
+    write_api_groups()
+    write_relationships(models)
     write_index(index, len(shared))
 
 

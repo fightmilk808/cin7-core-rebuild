@@ -685,6 +685,8 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 ## Public API (`/ExternalApi/v2`)
 
+Fields, parameters and body shapes: [Attribute Set](../20-public-api/groups/attribute-set.md) · [Brand](../20-public-api/groups/brand.md) · [Carrier](../20-public-api/groups/carrier.md) · [Chart of Accounts](../20-public-api/groups/chart-of-accounts.md) · [Location](../20-public-api/groups/location.md) · [Payment Term](../20-public-api/groups/payment-term.md) · [Product Categories](../20-public-api/groups/product-categories.md) · [Reference Books](../20-public-api/groups/reference-books.md) · [Tax](../20-public-api/groups/tax.md) · [Unit of Measure](../20-public-api/groups/unit-of-measure.md).
+
 | Group | Method | Path | Query / params |
 |---|---|---|---|
 | Attribute Set | DELETE | `/ref/attributeset` | ID |

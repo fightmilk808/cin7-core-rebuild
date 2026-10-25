@@ -26,7 +26,7 @@ create table "InventoryProductsCountInfo" (
 );
 
 create table "JournalsSearchResultModel" (
-  "QBOID" text,
+  "QBOID" text,  -- -> QBO
   "Date" timestamptz,
   "DocNumber" text,
   "Selected" boolean
@@ -60,19 +60,19 @@ create table "vConsolidateCustomers" (
 );
 
 create table "vConsolidationChannelTypesStore" (
-  "EntryID" text,
+  "EntryID" text,  -- -> Entry
   "SaleChannel" text,
   "InvoiceSyncType" text,
   "COGSSyncType" text
 );
 
 create table "vLocation" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
 create table "vMailingList" (
-  "MailingListID" text,
+  "MailingListID" text,  -- -> MailingList
   "Name" text,
   "Emails" text,
   "ValidationText" text,

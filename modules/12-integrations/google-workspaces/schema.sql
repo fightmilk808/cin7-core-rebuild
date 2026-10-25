@@ -1,7 +1,7 @@
 -- Google Workspaces: one table per Cin7 Core data model, generated from data/models.json
 
 create table "ContactInfo" (
-  "ContactID" text,
+  "ContactID" text,  -- -> Contact
   "ContactTypeName" text,
   "ContactType" text,
   "ContactName" text,
@@ -9,7 +9,7 @@ create table "ContactInfo" (
 );
 
 create table "vGSuiteConfig" (
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "HasSyncContacts" boolean,
   "HasExportData" boolean,
   "GD_DefaultDirID_Printing" text,
@@ -22,7 +22,7 @@ create table "vGSuiteConfig" (
 );
 
 create table "vGSuiteLog" (
-  "LogID" text,
+  "LogID" text,  -- -> Log
   "Action" text,
   "Message" text,
   "LogDate" timestamptz

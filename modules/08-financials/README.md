@@ -383,6 +383,8 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 ## Public API (`/ExternalApi/v2`)
 
+Fields, parameters and body shapes: [Bank Accounts](../20-public-api/groups/bank-accounts.md) · [Fixed Asset Type](../20-public-api/groups/fixed-asset-type.md) · [Journal](../20-public-api/groups/journal.md) · [Money Task](../20-public-api/groups/money-task.md) · [Transactions](../20-public-api/groups/transactions.md).
+
 | Group | Method | Path | Query / params |
 |---|---|---|---|
 | Bank Accounts | GET | `/ref/account/bank` | Page,Limit,ID,Name,Bank |

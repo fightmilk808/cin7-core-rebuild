@@ -8,10 +8,10 @@ create table "B2B_SearchProduct" (
 );
 
 create table "vAbandonedCart" (
-  "CartID" text,
+  "CartID" text,  -- -> Cart
   "DateTime" timestamptz,
   "CustomerContactEmail" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerContactName" text,
   "CartTotal" numeric,
   "CartTotalCurrency" text,
@@ -19,8 +19,8 @@ create table "vAbandonedCart" (
 );
 
 create table "vAbandonedCartProduct" (
-  "ProductID" text,
-  "CartID" text,
+  "ProductID" text,  -- -> Product
+  "CartID" text,  -- -> Cart
   "ProductName" text,
   "ProductCode" text,
   "Quantity" numeric,
@@ -36,13 +36,13 @@ create table "vAccount" (
 );
 
 create table "vAddress" (
-  "AddressID" text,
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text
 );
 
 create table "vBulkListingProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Status" text,
@@ -58,7 +58,7 @@ create table "vBulkListingProduct" (
 
 create table "vContact" (
   "ID" text,
-  "ECSConfigID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
   "ECSName" text,
   "IsOrganization" boolean,
   "ContactType" text,
@@ -68,7 +68,7 @@ create table "vContact" (
 
 create table "vCustomerInvite" (
   "ID" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "ContactPerson" text,
   "Email" text,
@@ -81,12 +81,12 @@ create table "vCustomerInvite" (
 );
 
 create table "vInvoiceTemplate" (
-  "TemplateID" text,
+  "TemplateID" text,  -- -> Template
   "Name" text
 );
 
 create table "vLocation" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
@@ -97,10 +97,10 @@ create table "vNameValue" (
 
 create table "vNavbarItem" (
   "ID" text,
-  "WebPortalID" text,
+  "WebPortalID" text,  -- -> Portal
   "NavbarType" text,
   "Item" text,
-  "ItemId" text,
+  "ItemId" text,  -- -> Item (context-specific)
   "ItemName" text,
   "DisplayName" text,
   "ItemType" text,
@@ -116,7 +116,7 @@ create table "vOverviewAbandonedCarts" (
 );
 
 create table "vOverviewCustomers" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "Sales" integer,
   "Amount" numeric
@@ -127,7 +127,7 @@ create table "vOverviewSales" (
   "Date" timestamptz,
   "Number" text,
   "CustomerName" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Amount" numeric,
   "Status" text,
   "TaskType" text
@@ -139,7 +139,7 @@ create table "vPaymentMethod" (
 );
 
 create table "vPortalEmailTemplate" (
-  "WebPortalID" text,
+  "WebPortalID" text,  -- -> Portal
   "Name" text,
   "Content" text,
   "Description" text,
@@ -147,8 +147,8 @@ create table "vPortalEmailTemplate" (
 );
 
 create table "vPortalPage" (
-  "WebPortalPageID" text,
-  "WebPortalID" text,
+  "WebPortalPageID" text,  -- -> WebPortalPage
+  "WebPortalID" text,  -- -> Portal
   "Name" text,
   "LineOrder" text,
   "Content" text,
@@ -157,7 +157,7 @@ create table "vPortalPage" (
 );
 
 create table "vPortalPriceList" (
-  "WebPortalID" text,
+  "WebPortalID" text,  -- -> Portal
   "Name" text,
   "ID" text,
   "LineOrder" integer
@@ -165,28 +165,28 @@ create table "vPortalPriceList" (
 
 create table "vPriceListBrand" (
   "ID" text,
-  "WebPortalPriceListID" text,
-  "BrandID" text,
+  "WebPortalPriceListID" text,  -- -> WebPortalPriceList
+  "BrandID" text,  -- -> Brand
   "Name" text
 );
 
 create table "vPriceListCategory" (
   "ID" text,
-  "WebPortalPriceListID" text,
-  "CategoryID" text,
+  "WebPortalPriceListID" text,  -- -> WebPortalPriceList
+  "CategoryID" text,  -- -> ProductCategory
   "Name" text
 );
 
 create table "vPriceListTag" (
   "ID" text,
-  "WebPortalPriceListID" text,
+  "WebPortalPriceListID" text,  -- -> WebPortalPriceList
   "Tag" text
 );
 
 create table "vProductAttributeRow" (
   "ID" text,
   "DisplayName" text,
-  "SetID" text,
+  "SetID" text,  -- -> AttributeSet
   "ColumnNumber" text,
   "AttributeSetName" text,
   "ColumnName" text,
@@ -206,7 +206,7 @@ create table "vShippingService" (
 );
 
 create table "vSortingOption" (
-  "WebPortalID" text,
+  "WebPortalID" text,  -- -> Portal
   "ID" text,
   "Name" text,
   "B2BName" text,
@@ -214,7 +214,7 @@ create table "vSortingOption" (
 );
 
 create table "vWebPortal" (
-  "WebPortalID" text,
+  "WebPortalID" text,  -- -> Portal
   "Name" text,
   "Type" text,
   "Domain" text,
@@ -233,18 +233,18 @@ create table "vWebPortal" (
   "InstagramURL" text,
   "YouTubeURL" text,
   "LinkedInURL" text,
-  "TenantContactID" text,
-  "TenantAddressID" text,
-  "LocationID" text,
+  "TenantContactID" text,  -- -> TenantContact
+  "TenantAddressID" text,  -- -> TenantAddress
+  "LocationID" text,  -- -> Location
   "ShowImagesInShoppingCart" boolean,
   "SalesRepresentative" text,
-  "GoogleAnalyticsTrackerID" text,
-  "GoogleAnalytics4TrackerID" text,
+  "GoogleAnalyticsTrackerID" text,  -- -> GoogleAnalyticsTracker
+  "GoogleAnalytics4TrackerID" text,  -- -> GoogleAnalytics4Tracker
   "UseHubSpotTracking" boolean,
   "ShowAllCustomerOrders" boolean,
   "CreateSaleAs" text,
-  "InvoiceTemplateID" text,
-  "PriceListTemplateID" text,
+  "InvoiceTemplateID" text,  -- -> InvoiceTemplate
+  "PriceListTemplateID" text,  -- -> PriceListTemplate
   "HeaderBackgroundColor" text,
   "NavigationTextColor" text,
   "NavigationTextHoverColor" text,
@@ -310,7 +310,7 @@ create table "vWebPortal" (
   "AllowCreateOrderWhenCreditHold" boolean,
   "FamilyProductsView" integer,
   "EnabledProductReturn" boolean,
-  "ReturnDeliveryLocationID" text,
+  "ReturnDeliveryLocationID" text,  -- -> ReturnDeliveryLocation
   "ShowLeftMenuBrands" boolean,
   "ShowLeftMenuCategories" boolean,
   "ShowLeftMenuTags" boolean,
@@ -326,7 +326,7 @@ create table "vWebPortal" (
 
 create table "vWebPortalPageElements" (
   "Id" text,
-  "WebPortalId" text,
+  "WebPortalId" text,  -- -> Portal
   "Name" text,
   "LineOrder" integer,
   "IsRemovable" boolean,
@@ -338,7 +338,7 @@ create table "vWebPortalPageElements" (
 
 create table "vWebPortalPageElementsDetails" (
   "Id" text,
-  "WebPortalPageElementId" text,
+  "WebPortalPageElementId" text,  -- -> WebPortalPageElement
   "DetailsType" text,
   "LineOrder" integer,
   "LinkType" text,
@@ -353,7 +353,7 @@ create table "vWebPortalPageElementsDetails" (
 );
 
 create table "vWebPortalSale" (
-  "TaskId" text,
+  "TaskId" text,  -- -> Task (any document)
   "OrderDate" timestamptz,
   "Customer" text,
   "SaleOrderNumber" text,

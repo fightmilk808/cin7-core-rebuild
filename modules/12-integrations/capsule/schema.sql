@@ -6,7 +6,7 @@ create table "vAddressType" (
 
 create table "vContact" (
   "ID" text,
-  "ECSConfigID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
   "ECSName" text,
   "IsOrganization" boolean,
   "ContactType" text,
@@ -21,7 +21,7 @@ create table "vContactType" (
 
 create table "vEcsAddressTypesMapping" (
   "ID" text,
-  "ECSConfigID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
   "ECSAddressType" text,
   "AddressType" text,
   "SortOrder" text
@@ -29,14 +29,14 @@ create table "vEcsAddressTypesMapping" (
 
 create table "vEcsConfiguration" (
   "ID" text,
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "ShopName" text,
   "AccessToken" text,
   "RefreshToken" text,
   "PrimaryPriceTier" integer,
   "ConsolidationType" text,
   "ConsolidationTimeText" text,
-  "ConsolidateToCustomerID" text,
+  "ConsolidateToCustomerID" text,  -- -> Customer
   "IsActive" boolean,
   "PickWhenOrderStatus" text,
   "ShippingTaxed" boolean,
@@ -59,7 +59,7 @@ create table "vEcsConfiguration" (
   "ManualMapping" boolean,
   "AutoCreateNewProductAllowed" boolean,
   "MatchProductByName" boolean,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "EnableOrderRouting" boolean,
   "CreateAssembly" text,
   "IgnoreRestockForNotFulfilled" boolean,
@@ -70,13 +70,13 @@ create table "vEcsConfiguration" (
 
 create table "vEcsContactTagMapping" (
   "ID" text,
-  "ECSConfigID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
   "ECSTag" text,
   "ContactType" text,
   "SortOrder" text
 );
 
 create table "vTaxRules" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text
 );

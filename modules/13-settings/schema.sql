@@ -41,14 +41,14 @@ create table "State" (
 );
 
 create table "Template" (
-  "TemplateID" text,
+  "TemplateID" text,  -- -> Template
   "Type" text,
   "Name" text,
   "ThumbnailPath" text,
   "IsNew" boolean,
   "IsDefault" boolean,
   "Process" text,
-  "EmailTemplateID" text,
+  "EmailTemplateID" text,  -- -> EmailTemplate
   "EmailSubject" text,
   "MultilingualTemplateCode" text,
   "EmailTypes" text,
@@ -62,7 +62,7 @@ create table "WorkflowWrapper" (
 );
 
 create table "vAutomatedWorkflow" (
-  "AutomatedWorkflowID" text,
+  "AutomatedWorkflowID" text,  -- -> AutomatedWorkflow
   "Name" text,
   "Description" text,
   "IsActive" boolean,
@@ -74,8 +74,8 @@ create table "vAutomatedWorkflow" (
 
 create table "vExternalNotificationSettings" (
   "ID" text,
-  "NotificationSettingsID" text,
-  "TenantID" text,
+  "NotificationSettingsID" text,  -- -> NotificationSettings
+  "TenantID" text,  -- -> Tenant
   "IsActive" boolean,
   "IsWebhook" boolean,
   "ExternalURL" text,
@@ -87,7 +87,7 @@ create table "vExternalNotificationSettings" (
 );
 
 create table "vMailingList" (
-  "MailingListID" text,
+  "MailingListID" text,  -- -> MailingList
   "Name" text,
   "Emails" text,
   "ValidationText" text,
@@ -95,8 +95,8 @@ create table "vMailingList" (
 );
 
 create table "vMarkupRounding" (
-  "MarkupRoundingID" text,
-  "TenantID" text,
+  "MarkupRoundingID" text,  -- -> MarkupRounding
+  "TenantID" text,  -- -> Tenant
   "RangeFrom" numeric,
   "RangeTo" numeric,
   "RoundToNearest" numeric,
@@ -116,8 +116,8 @@ create table "vMultilingualTemplate" (
 );
 
 create table "vNotificationExecutionLogEmail" (
-  "ExecutionLogID" text,
-  "TenantID" text,
+  "ExecutionLogID" text,  -- -> ExecutionLog
+  "TenantID" text,  -- -> Tenant
   "NotificationSystemName" text,
   "ExecutionStartDate" timestamptz,
   "ExecutionEndDate" timestamptz,
@@ -131,8 +131,8 @@ create table "vNotificationExecutionLogEmail" (
 );
 
 create table "vNotificationExecutionLogExternal" (
-  "ExecutionLogID" text,
-  "TenantID" text,
+  "ExecutionLogID" text,  -- -> ExecutionLog
+  "TenantID" text,  -- -> Tenant
   "NotificationSystemName" text,
   "ExecutionStartDate" timestamptz,
   "ExecutionEndDate" timestamptz,
@@ -148,20 +148,20 @@ create table "vNotificationExecutionLogExternal" (
 );
 
 create table "vNotificationExecutionLogInternal" (
-  "ExecutionLogID" text,
-  "TenantID" text,
+  "ExecutionLogID" text,  -- -> ExecutionLog
+  "TenantID" text,  -- -> Tenant
   "NotificationSystemName" text,
   "ExecutionDate" timestamptz,
   "EntityName" text,
   "EntityType" text,
-  "EntityID" text,
+  "EntityID" text,  -- -> Entity (polymorphic)
   "Message" text,
   "Details" text
 );
 
 create table "vNotificationSettings" (
-  "NotificationSettingsID" text,
-  "TenantID" text,
+  "NotificationSettingsID" text,  -- -> NotificationSettings
+  "TenantID" text,  -- -> Tenant
   "IsActive" boolean,
   "IsActiveSystem" boolean,
   "ModuleName" text,
@@ -187,7 +187,7 @@ create table "vNotificationSettings" (
   "SendToSaleRep" boolean,
   "AllowSendToRelated" boolean,
   "AllowSendToSaleRep" boolean,
-  "TemplateID" text,
+  "TemplateID" text,  -- -> Template
   "TemplateRequired" boolean,
   "Group" text,
   "AvailableEmailTypes" text,
@@ -202,9 +202,9 @@ create table "vNotificationSettings" (
 );
 
 create table "vNotificationWorkflow" (
-  "NotitifcationWorkflowID" text,
-  "NotificationSettingsID" text,
-  "WorkflowID" text,
+  "NotitifcationWorkflowID" text,  -- -> NotitifcationWorkflow
+  "NotificationSettingsID" text,  -- -> NotificationSettings
+  "WorkflowID" text,  -- -> Workflow
   "Type" text,
   "ValidationText" text,
   "ValidationState" text
@@ -236,7 +236,7 @@ create table "vReferrals" (
 );
 
 create table "vTaskCategory" (
-  "TaskCategoryID" text,
+  "TaskCategoryID" text,  -- -> TaskCategory
   "Name" text,
   "Color" text,
   "BackgroundColor" text,
@@ -247,12 +247,12 @@ create table "vTaskCategory" (
 
 create table "vTaskList" (
   "Expand" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "DueName" text,
-  "TaskCategoryID" text,
+  "TaskCategoryID" text,  -- -> TaskCategory
   "TaskCategoryName" text,
-  "WorkflowID" text,
-  "UserID" text,
+  "WorkflowID" text,  -- -> Workflow
+  "UserID" text,  -- -> User
   "AssignedToName" text,
   "Name" text,
   "Details" text,
@@ -260,10 +260,10 @@ create table "vTaskList" (
   "EndDate" timestamptz,
   "CompletedDate" timestamptz,
   "Sequence" text,
-  "WorkflowProcessID" text,
+  "WorkflowProcessID" text,  -- -> WorkflowProcess
   "IsAllDay" boolean,
   "EntityType" text,
-  "EntityID" text,
+  "EntityID" text,  -- -> Entity (polymorphic)
   "TaskStatus" text,
   "LinkTo" text,
   "Importance" boolean,
@@ -287,14 +287,14 @@ create table "vTaxCalculationFrequency" (
 );
 
 create table "vTemplate" (
-  "TemplateID" text,
+  "TemplateID" text,  -- -> Template
   "Name" text,
   "Type" text,
   "Process" text
 );
 
 create table "vTenant" (
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "Company" text,
   "Comment" text,
   "Currency" text,
@@ -502,14 +502,14 @@ create table "vTenant" (
 );
 
 create table "vTenantHoliday" (
-  "HolidayID" text,
+  "HolidayID" text,  -- -> Holiday
   "Date" timestamptz,
   "Description" text,
   "Skip" boolean
 );
 
 create table "vTenantTaskSettings" (
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "IsActive" boolean,
   "ApprovalEnabled" boolean,
   "FirstDayOfWeek" integer,
@@ -517,8 +517,8 @@ create table "vTenantTaskSettings" (
 );
 
 create table "vTenantUser" (
-  "TenantID" text,
-  "UserId" text,
+  "TenantID" text,  -- -> Tenant
+  "UserId" text,  -- -> User
   "Email" text,
   "IsOwner" boolean,
   "IsCurrentUser" boolean,
@@ -533,9 +533,9 @@ create table "vTenantUser" (
 );
 
 create table "vTenantUserPageAccessEdit" (
-  "RoleID" text,
-  "UserID" text,
-  "PageID" text,
+  "RoleID" text,  -- -> Role
+  "UserID" text,  -- -> User
+  "PageID" text,  -- -> Page
   "Category" text,
   "DisplayName" text,
   "AllowReadOnly" boolean,
@@ -548,8 +548,8 @@ create table "vTenantUserPageAccessEdit" (
 );
 
 create table "vTenants" (
-  "UserID" text,
-  "TenantID" text,
+  "UserID" text,  -- -> User
+  "TenantID" text,  -- -> Tenant
   "Company" text,
   "MasterUserEmail" text,
   "Status" text,
@@ -567,7 +567,7 @@ create table "vTimezone" (
 );
 
 create table "vUserData" (
-  "UserID" text,
+  "UserID" text,  -- -> User
   "UserName" text,
   "DisplayName" text,
   "IsTFAEnabled" boolean,
@@ -582,12 +582,12 @@ create table "vUserData" (
 
 create table "vUserLoginHistory" (
   "ID" text,
-  "UserID" text,
+  "UserID" text,  -- -> User
   "IPAddress" text,
   "Country" text,
   "SysDate" timestamptz,
   "State" text,
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "Company" text
 );
 
@@ -599,7 +599,7 @@ create table "vUserPasskey" (
 );
 
 create table "vWorkflow" (
-  "WorkflowID" text,
+  "WorkflowID" text,  -- -> Workflow
   "Name" text,
   "IsActive" boolean,
   "EntityType" text,
@@ -610,7 +610,7 @@ create table "vWorkflow" (
 );
 
 create table "vWorkflowList" (
-  "WorkflowID" text,
+  "WorkflowID" text,  -- -> Workflow
   "Name" text,
   "DueDaysType" text,
   "IsActive" boolean,
@@ -618,10 +618,10 @@ create table "vWorkflowList" (
 );
 
 create table "vWorkflowProcess" (
-  "WorkflowProcessID" text,
+  "WorkflowProcessID" text,  -- -> WorkflowProcess
   "CreatedDate" timestamptz,
   "EntityName" text,
-  "EntityID" text,
+  "EntityID" text,  -- -> Entity (polymorphic)
   "EntityType" text,
   "Notes" text,
   "CompletedTaskCount" integer,
@@ -629,17 +629,17 @@ create table "vWorkflowProcess" (
 );
 
 create table "vWorkflowStep" (
-  "WorkflowStepID" text,
+  "WorkflowStepID" text,  -- -> WorkflowStep
   "Name" text,
-  "WorkflowID" text,
+  "WorkflowID" text,  -- -> Workflow
   "Sequence" integer,
   "Days" integer,
   "StartTimeStr" text,
   "EndTimeStr" text,
   "TaskCategoryName" text,
-  "TaskCategoryID" text,
+  "TaskCategoryID" text,  -- -> TaskCategory
   "UserName" text,
-  "UserID" text,
+  "UserID" text,  -- -> User
   "SkipHoliday" text,
   "ValidationText" text,
   "ValidationState" text

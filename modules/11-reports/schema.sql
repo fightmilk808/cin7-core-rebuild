@@ -45,10 +45,9 @@ create table "vMailingSettingsWrapper" (
 
 create table "vReorderSuggestionGroup" (
   "ID" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text,
-  "MailingListID" text,
-  "LocationName" text,
+  "MailingListID" text,  -- -> MailingList
   "ValidationText" text,
   "ValidationState" text
 );
@@ -59,7 +58,7 @@ create table "vReport" (
   "status" text,
   "createDate" timestamptz,
   "createdByUserName" text,
-  "reportTypeId" text,
+  "reportTypeId" text,  -- -> reportType
   "reportDate" text,
   "publishDate" timestamptz
 );
@@ -70,13 +69,13 @@ create table "vReportCurrency" (
 );
 
 create table "vReportGenerationLog" (
-  "ReportGenerationLogID" text,
-  "ReportID" text,
+  "ReportGenerationLogID" text,  -- -> ReportGenerationLog
+  "ReportID" text,  -- -> Report
   "ReportName" text,
   "ReportTitle" text,
   "StartExecutionDate" timestamptz,
   "EndExecutionDate" timestamptz,
-  "FileID" text,
+  "FileID" text,  -- -> Blob (stored file)
   "FileFormat" text,
   "FileName" text,
   "GenerationStatus" text,
@@ -95,11 +94,11 @@ create table "vReportLayout" (
 
 create table "vReportSalesDemandTemplate" (
   "TemplateName" text,
-  "TemplateID" text
+  "TemplateID" text  -- -> Template
 );
 
 create table "vScheduledReportSettings" (
-  "ReportID" text,
+  "ReportID" text,  -- -> Report
   "IsActive" boolean,
   "ReportScheduleName" text,
   "ReportName" text,
@@ -126,7 +125,7 @@ create table "vScheduledReportSettings" (
   "UniqueParameter2" text,
   "UniqueParameter3" text,
   "SaveToGDrive" boolean,
-  "GD_DirID" text,
+  "GD_DirID" text,  -- -> GD_Dir
   "GD_DirPath" text,
   "GDriveNeedsFolderUpdate" boolean,
   "ReportMode" text
@@ -135,7 +134,7 @@ create table "vScheduledReportSettings" (
 create table "vTenantSystemLog" (
   "ID" text,
   "Date" timestamptz,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Category" text,
   "Message" text,
   "Reference" text,

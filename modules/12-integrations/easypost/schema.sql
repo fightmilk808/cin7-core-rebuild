@@ -10,7 +10,7 @@ create table "ShippingReferenceData" (
 );
 
 create table "vSSTenantAddress" (
-  "AddressID" text,
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "CitySuburb" text,
@@ -26,6 +26,6 @@ create table "vShipServConf" (
 );
 
 create table "vTax" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text
 );

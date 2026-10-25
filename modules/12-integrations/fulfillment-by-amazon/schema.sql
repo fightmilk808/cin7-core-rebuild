@@ -15,7 +15,7 @@ create table "Carrier" (
 
 create table "ChannelMapping" (
   "ChannelName" text,
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "FulfillmentBoxSetting" text,
   "LogisticsProviderSetting" text
 );
@@ -51,14 +51,14 @@ create table "NewStatusStore" (
 
 create table "vEcsConfiguration" (
   "ID" text,
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "ShopName" text,
   "AccessToken" text,
   "RefreshToken" text,
   "PrimaryPriceTier" integer,
   "ConsolidationType" text,
   "ConsolidationTimeText" text,
-  "ConsolidateToCustomerID" text,
+  "ConsolidateToCustomerID" text,  -- -> Customer
   "IsActive" boolean,
   "PickWhenOrderStatus" text,
   "ShippingTaxed" boolean,
@@ -81,7 +81,7 @@ create table "vEcsConfiguration" (
   "ManualMapping" boolean,
   "AutoCreateNewProductAllowed" boolean,
   "MatchProductByName" boolean,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "EnableOrderRouting" boolean,
   "CreateAssembly" text,
   "IgnoreRestockForNotFulfilled" boolean,
@@ -92,7 +92,7 @@ create table "vEcsConfiguration" (
 
 create table "vEcsOperationLog" (
   "ID" text,
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
   "Description" text,
   "Category" text,
@@ -105,10 +105,10 @@ create table "vEcsOperationLog" (
 );
 
 create table "vEcsOverviewFulfilmentCustomersList" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "OrderCount" integer,
-  "ConfigID" text
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vEcsOverviewOrdersList" (
@@ -116,15 +116,15 @@ create table "vEcsOverviewOrdersList" (
   "SaleOrderNumber" text,
   "CustomerName" text,
   "Status" text,
-  "FulfillmentOrderID" text,
-  "SaleTaskID" text,
-  "ConfigID" text
+  "FulfillmentOrderID" text,  -- -> FulfillmentOrder
+  "SaleTaskID" text,  -- -> Sale
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vFFProduct" (
   "ID" text,
-  "ConfigID" text,
-  "FFProductID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
+  "FFProductID" text,  -- -> FFProduct
   "SKU" text,
   "FFSKU" text,
   "Name" text,
@@ -135,10 +135,10 @@ create table "vFFProduct" (
   "QuantityReserved" numeric,
   "QuantityInbound" numeric,
   "Quantity" numeric,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "MappedSKU" text,
   "MappedName" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "AdditionalField1" text,
   "AdditionalField2" text,
   "AdditionalField3" text,
@@ -155,8 +155,8 @@ create table "vFFProduct" (
 );
 
 create table "vFulfillmentInboundShipment" (
-  "InboundShipmentID" text,
-  "ConfigID" text,
+  "InboundShipmentID" text,  -- -> InboundShipment
+  "ConfigID" text,  -- -> IntegrationConfig
   "Currency" text,
   "CarrierName" text,
   "ShippingMethod" text,
@@ -168,16 +168,16 @@ create table "vFulfillmentInboundShipment" (
   "FromBox" integer,
   "ToBox" integer,
   "GeneratePaperType" text,
-  "TransferOrderID" text,
+  "TransferOrderID" text,  -- -> StockTransfer
   "HasPrintedLabels" boolean,
   "TransferOrderNumber" text,
   "OrderDate" timestamptz,
-  "ShipmentID" text,
+  "ShipmentID" text,  -- -> ment
   "ShipmentStatus" text,
   "LabelPrepType" text,
   "BoxContentsSource" text,
   "ShipmentName" text,
-  "DestinationFulfillmentCenterId" text,
+  "DestinationFulfillmentCenterId" text,  -- -> DestinationFulfillmentCenter
   "AreCasesRequired" boolean,
   "ConfirmedNeedByDate" timestamptz,
   "AddressName" text,
@@ -187,7 +187,6 @@ create table "vFulfillmentInboundShipment" (
   "AddressCity" text,
   "AddressStateOrProvinceCode" text,
   "AddressCountryCode" text,
-  "AddressStateOrProvinceCode" text,
   "AddressPostalCode" text,
   "TotalUnits" integer,
   "AmountPerUnit" numeric,
@@ -204,9 +203,9 @@ create table "vFulfillmentInboundShipment" (
 
 create table "vFulfillmentInboundShipmentBoxContent" (
   "ID" text,
-  "InboundShipmentID" text,
+  "InboundShipmentID" text,  -- -> InboundShipment
   "BoxNumber" integer,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "SKU" text,
   "ProductName" text,
   "ProductPrice" numeric,
@@ -219,7 +218,7 @@ create table "vFulfillmentInboundShipmentBoxContent" (
   "BoxDepth" numeric,
   "BoxWeight" numeric,
   "ASIN" text,
-  "TransferOrderID" text,
+  "TransferOrderID" text,  -- -> StockTransfer
   "TransferOrderNumber" text,
   "ShipmentDate" timestamptz,
   "ValidationText" text,
@@ -227,9 +226,9 @@ create table "vFulfillmentInboundShipmentBoxContent" (
 );
 
 create table "vFulfillmentInboundShipmentEstimate" (
-  "CalculationID" text,
-  "ConfigID" text,
-  "InboundShipmentID" text,
+  "CalculationID" text,  -- -> Calculation
+  "ConfigID" text,  -- -> IntegrationConfig
+  "InboundShipmentID" text,  -- -> InboundShipment
   "Carrier" text,
   "NumberOfBoxes" integer,
   "ShipmentWeight" numeric,
@@ -246,25 +245,25 @@ create table "vFulfillmentInboundShipmentEstimate" (
 );
 
 create table "vFulfillmentInboundShipmentItem" (
-  "LineID" text,
-  "InboundShipmentID" text,
-  "ConfigID" text,
+  "LineID" text,  -- -> Line (parent document's line)
+  "InboundShipmentID" text,  -- -> InboundShipment
+  "ConfigID" text,  -- -> IntegrationConfig
   "ASIN" text,
   "HasPrintedLabels" boolean,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text,
   "ProductCode" text,
   "ProductName" text,
   "ProductPrice" numeric,
   "ProductTotalPrice" numeric,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "QuantityInCase" integer,
   "QuantityReceived" integer,
   "QuantityShipped" integer,
   "SKU" text,
   "ShipmentDate" timestamptz,
   "ShipmentStatus" text,
-  "TransferOrderID" text,
+  "TransferOrderID" text,  -- -> StockTransfer
   "TransferOrderNumber" text,
   "Condition" text,
   "ReleaseDate" timestamptz,
@@ -273,10 +272,10 @@ create table "vFulfillmentInboundShipmentItem" (
 );
 
 create table "vFulfillmentInboundShipmentList" (
-  "InboundShipmentID" text,
-  "ConfigID" text,
+  "InboundShipmentID" text,  -- -> InboundShipment
+  "ConfigID" text,  -- -> IntegrationConfig
   "Currency" text,
-  "TransferOrderID" text,
+  "TransferOrderID" text,  -- -> StockTransfer
   "TransferOrderNumber" text,
   "HasPrintedLabels" boolean,
   "HasBillOfLading" boolean,
@@ -284,7 +283,7 @@ create table "vFulfillmentInboundShipmentList" (
   "HasMultipleShipments" boolean,
   "CarrierName" text,
   "ShippingMethod" text,
-  "ShipmentID" text,
+  "ShipmentID" text,  -- -> ment
   "ShipmentStatus" text,
   "TotalUnits" integer,
   "AmountPerUnit" numeric,
@@ -298,14 +297,14 @@ create table "vFulfillmentInboundShipmentList" (
 
 create table "vFulfillmentInboundShipmentPallet" (
   "ID" text,
-  "ConfigID" text,
-  "InboundShipmentID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
+  "InboundShipmentID" text,  -- -> InboundShipment
   "NumberOfPallets" integer,
   "PalletWeight" numeric,
   "PalletDepth" numeric,
   "PalletWidth" numeric,
   "PalletHeight" numeric,
-  "TransferOrderID" text,
+  "TransferOrderID" text,  -- -> StockTransfer
   "TransferOrderNumber" text,
   "ShipmentDate" timestamptz,
   "IsStackable" boolean,
@@ -353,14 +352,14 @@ create table "vInboundShipmentPrintLabes" (
 create table "vLogRecord" (
   "ID" text,
   "LogDate" text,
-  "FulfillmentOrderId" text,
-  "FFOrderID" text,
+  "FulfillmentOrderId" text,  -- -> FulfillmentOrder
+  "FFOrderID" text,  -- -> FulfilmentOrder
   "ChangesText" text,
   "ChangedBy" text
 );
 
 create table "vShortLocation" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 

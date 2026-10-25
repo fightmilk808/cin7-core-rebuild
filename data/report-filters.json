@@ -1,0 +1,405 @@
+{
+ "AccountingDimensionsSummaryReport2019": {
+  "params": {},
+  "extra": {}
+ },
+ "ActualVsPlannedTimeReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(data.From)",
+   "ToDate": "Common_Index_FormatDate(data.To)",
+   "Search": "data.Search",
+   "MeasureOfTime": "Production_CustomFilter_Get()",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "FinancialPaymentDetailsReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(from)",
+   "ToDate": "Common_Index_FormatDate(to)",
+   "Search": "search",
+   "AccountCode": "accountCode",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":customCallback?\"CustomCallback\":\"Re"
+  },
+  "extra": {}
+ },
+ "FindByPurchaseOrderReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "OnlyNotShipped": "OnlyNotShipped",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "FinishedGoodsAnalysisReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Currency": "rptCurrency",
+   "FromDate": "Common_Index_FormatDate(from)",
+   "ToDate": "Common_Index_FormatDate(to)",
+   "Search": "search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "!operationName?\"ChangeLayout\":operationName"
+  },
+  "extra": {}
+ },
+ "InventoryAgingReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "InventoryBOMComponentDetailsReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "ShowFilter": "rptShowFilter",
+   "AvailableQtyLessThan": "_availableQtyLessThan",
+   "Search": "Search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "InventoryLowOnStockReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "InventoryMovementDetailsReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(From)",
+   "ToDate": "Common_Index_FormatDate(To)",
+   "Search": "Search",
+   "Mode": "cmbMode",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "InventoryPriceListReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "InventoryReorderingReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "InventoryStockLevelReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "OnlyNonZero": "control",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "InventorySuppliersReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "InventoryVelocityReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "WithSafetyStock": "control",
+   "RecommendedAction": "recommendedFilter",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "InventoryWarehouseDetailsReport2019": {
+  "params": {},
+  "extra": {
+   "MeasureOfTime": "ShowInBlock"
+  }
+ },
+ "LotExpiryReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "LotExpireBefore": "Common_Index_FormatDate(LotExpireBefore)",
+   "Search": "Search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "Main2019": {
+  "params": {},
+  "extra": {}
+ },
+ "OutOfStockComponentsForAutoAssemblyReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "!operationName?\"ChangeLayout\":operationName"
+  },
+  "extra": {}
+ },
+ "ProductionFinishedProductsWastageRate2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(data.From)",
+   "ToDate": "Common_Index_FormatDate(data.To)",
+   "Search": "data.Search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "ProductionReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "ShowRuns": "control",
+   "Search": "Search",
+   "OnlyNotZeroShortages": "Production_Index_IsOnlyNotZeroShortages()",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "PurchaseCostAnalysisReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(From)",
+   "ToDate": "Common_Index_FormatDate(To)",
+   "Search": "Search",
+   "AllJournalCosts": "AllJournalCosts",
+   "Currency": "cmbCurrency",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "PurchaseOrderVsInvoiceReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(From)",
+   "ToDate": "Common_Index_FormatDate(To)",
+   "Search": "Search",
+   "Currency": "rptCurrency",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "Report2019": {
+  "params": {},
+  "extra": {}
+ },
+ "ReportService": {
+  "params": {},
+  "extra": {}
+ },
+ "SaleBackorderDetailsReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "SaleBackordersSummaryReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\"",
+   "IsResetGridViewPageIndex": "true"
+  },
+  "extra": {}
+ },
+ "SaleCreditNotesByProductReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(From)",
+   "ToDate": "Common_Index_FormatDate(To)",
+   "Search": "Search",
+   "IncludeAllCOGS": "IncludeAllCOGS",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "SaleCustomerOrderByProductReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(From)",
+   "ToDate": "Common_Index_FormatDate(To)",
+   "Search": "Search",
+   "IncludeAllCOGS": "IncludeAllCOGS",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "SaleOutstandingQuotesReport": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(from)",
+   "ToDate": "Common_Index_FormatDate(to)",
+   "Search": "search",
+   "Currency": "rptCurrency",
+   "QSenum": "rptQSenum",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "!operationName?\"ChangeLayout\":operationName"
+  },
+  "extra": {}
+ },
+ "SalePriceHistoryReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(from)",
+   "ToDate": "Common_Index_FormatDate(to)",
+   "Search": "search",
+   "Currency": "rptCurrency",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "!operationName?\"ChangeLayout\":operationName"
+  },
+  "extra": {}
+ },
+ "SaleProfitBySalesRepresentativeReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(From)",
+   "ToDate": "Common_Index_FormatDate(To)",
+   "Search": "Search",
+   "IncludeAllCOGS": "IncludeAllCOGS",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "SaleProfitSummaryReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(From)",
+   "ToDate": "Common_Index_FormatDate(To)",
+   "Search": "Search",
+   "IncludeAllCOGS": "IncludeAllCOGS",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "SalesByCustomerReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "ToDate": "Common_Index_FormatDate(To)",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "SalesByProductDetailsReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(From)",
+   "ToDate": "Common_Index_FormatDate(To)",
+   "Search": "Search",
+   "IncludeAllCOGS": "IncludeAllCOGS",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "SalesByProductSummaryReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(From)",
+   "ToDate": "Common_Index_FormatDate(To)",
+   "Search": "Search",
+   "IncludeAllCOGS": "IncludeAllCOGS",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "SalesDemandForecastReport": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "search",
+   "templateID": "templateID",
+   "intervalID": "intervalID",
+   "layoutName": "cmbLayoutName",
+   "operationName": "\"CustomCallback\"",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"ResetLayout\""
+  },
+  "extra": {}
+ },
+ "StockValueInventoryAgingReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "Interval": "cmbInterval",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "TaxTransactionsReport2019": {
+  "params": {},
+  "extra": {}
+ },
+ "TransactionsVsInventoryCardsReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "Search": "Search",
+   "EffectiveDate": "Common_Index_FormatDate(To)",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":\"CustomCallback\""
+  },
+  "extra": {}
+ },
+ "XeroSyncReport2019": {
+  "params": {
+   "RequestID": "window.RequestID",
+   "FromDate": "Common_Index_FormatDate(from)",
+   "ToDate": "Common_Index_FormatDate(to)",
+   "Search": "search",
+   "Status": "status",
+   "Type": "type",
+   "LayoutName": "cmbLayoutName",
+   "OperationName": "FirstLoad?\"ChangeLayout\":customCallback?\"CustomCallback\":\"Re"
+  },
+  "extra": {}
+ },
+ "local-settings": {
+  "params": {},
+  "extra": {}
+ }
+}

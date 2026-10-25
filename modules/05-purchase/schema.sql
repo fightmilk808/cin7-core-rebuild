@@ -12,7 +12,7 @@ create table "AvailableActions" (
 
 create table "CreditNoteLineSelect" (
   "FakeKey" integer,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "RemainingQuantity" numeric,
   "Price" numeric,
@@ -34,7 +34,7 @@ create table "CurrencyWithConversionRate" (
 );
 
 create table "Customer" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
   "Currency" text,
   "PaymentTerm" text,
@@ -63,7 +63,7 @@ create table "FamilyMatrix_Option" (
 );
 
 create table "FamilyMatrix_PurchaseProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Code" text,
   "Name" text,
   "Unit" text,
@@ -73,7 +73,7 @@ create table "FamilyMatrix_PurchaseProduct" (
   "Account" text,
   "Type" text,
   "TaxRule" text,
-  "BinID" text,
+  "BinID" text,  -- -> Bin
   "NonInventory" boolean,
   "Option1" text,
   "Option2" text,
@@ -90,13 +90,13 @@ create table "FamilyOption" (
 );
 
 create table "InvoiceForCreditNote" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Invoice" text,
   "Date" timestamptz
 );
 
 create table "Location" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
@@ -111,7 +111,7 @@ create table "PeriodModel" (
 );
 
 create table "ProductReplenishmentDetails" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductName" text,
   "OrderQuantity" numeric,
   "Available" numeric,
@@ -122,7 +122,7 @@ create table "ProductReplenishmentDetails" (
   "MinimumBeforeReorder" numeric,
   "ReorderQuantity" numeric,
   "SuggestedQuantity" numeric,
-  "InternalId" text,
+  "InternalId" text,  -- -> Internal
   "CartonInnerQuantity" numeric,
   "CartonQuantity" numeric,
   "NumberOfCartons" numeric,
@@ -133,8 +133,8 @@ create table "ProductReplenishmentDetails" (
 );
 
 create table "PurchaseExternalPayment" (
-  "TaskID" text,
-  "PaymentID" text
+  "TaskID" text,  -- -> Task (any document)
+  "PaymentID" text  -- -> Payment
 );
 
 create table "PurchaseIntStockLineUploadError" (
@@ -192,7 +192,7 @@ create table "PurchaseOrderLineUploadError" (
 );
 
 create table "PurchasePriceLookup" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Price" numeric
 );
 
@@ -215,7 +215,7 @@ create table "PurchaseReferenceData" (
   "DefaultPurchaseMethod" text,
   "HeadersVisible" text,
   "FixedAssetPermission" text,
-  "CurrentAttributeSetId" text,
+  "CurrentAttributeSetId" text,  -- -> AttributeSet
   "AttributeSetCopyFrom" text,
   "UsePurchasePutAway" boolean,
   "LockDate" timestamptz,
@@ -229,7 +229,7 @@ create table "PurchaseReferenceData" (
 
 create table "PurchaseStockTask" (
   "FakeID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Date" timestamptz,
   "IntermediateStockReceivedDate" timestamptz,
   "StockReceivedDate" timestamptz,
@@ -240,8 +240,8 @@ create table "PurchaseStockTask" (
 );
 
 create table "PurchaseTask" (
-  "TaskID" text,
-  "SupplierID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "SupplierID" text,  -- -> Supplier
   "SupplierName" text,
   "Contact" text,
   "Phone" text,
@@ -285,9 +285,9 @@ create table "PurchaseTask" (
   "SupplierCurrency" text,
   "SyncRequest" boolean,
   "TermDueNextMonth" integer,
-  "DropShipTaskID" text,
+  "DropShipTaskID" text,  -- -> Purchase
   "Discount" text,
-  "JobID" text,
+  "JobID" text,  -- -> Job
   "CustomField1" text,
   "CustomField2" text,
   "CustomField3" text,
@@ -315,22 +315,21 @@ create table "PurchaseTask" (
   "TaskTypeSign" integer,
   "InvoicingAndReceivingNumber" integer,
   "CombinedInvoiceCrNoteDocumentNumbers" text,
-  "InvoiceTaskForCreditNoteID" text,
+  "InvoiceTaskForCreditNoteID" text,  -- -> InvoiceTaskForCreditNote
   "InternalMark" text,
   "SimpleTaskTypeSign" integer,
   "TaskTypeName" text,
   "IntermediateStockStatus" text,
-  "InternalMark" text,
   "CountrySpecificKey" text,
   "CountrySpecificData" text,
   "ValidationText" text,
   "ValidationState" text,
   "IsArchived" boolean,
   "OrderApprove" integer,
-  "JobMilestoneID" text,
+  "JobMilestoneID" text,  -- -> JobMilestone
   "HasProductionOrder" boolean,
-  "LinkedProductionOrderID" text,
-  "SaleID" text,
+  "LinkedProductionOrderID" text,  -- -> ProductionOrder
+  "SaleID" text,  -- -> Sale
   "OrderSendStatus" text
 );
 
@@ -344,7 +343,7 @@ create table "PurchaseTaskWrapper" (
 );
 
 create table "QuickBooksSyncedPurchaseInvoice" (
-  "TaskID" text
+  "TaskID" text  -- -> Task (any document)
 );
 
 create table "ReorderEmailReferenceWrapper" (
@@ -353,7 +352,7 @@ create table "ReorderEmailReferenceWrapper" (
 
 create table "ReorderEmailWrapper" (
   "ID" text,
-  "TenantID" text
+  "TenantID" text  -- -> Tenant
 );
 
 create table "ReorderMode" (
@@ -362,10 +361,10 @@ create table "ReorderMode" (
 
 create table "ReorderSuggestionEmailRecord" (
   "ID" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "ProductName" text,
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "SupplierName" text,
   "ReorderQty" numeric,
   "ReorderDate" timestamptz,
@@ -376,7 +375,7 @@ create table "ReorderSuggestionEmailRecord" (
   "Price" numeric,
   "AvailableAtWarehouse" numeric,
   "IsSelected" boolean,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text,
   "Unit" text
 );
@@ -399,7 +398,7 @@ create table "Service_CreditNoteLineSelect" (
 );
 
 create table "Supplier" (
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "Name" text,
   "Contact" text,
   "Phone" text,
@@ -409,8 +408,8 @@ create table "Supplier" (
 );
 
 create table "SupplierDefaultTemplate" (
-  "DefaultTemplateID" text,
-  "TemplateID" text,
+  "DefaultTemplateID" text,  -- -> Template
+  "TemplateID" text,  -- -> Template
   "Type" text
 );
 
@@ -430,7 +429,7 @@ create table "TenantLocation" (
 );
 
 create table "VerifyInvoiceModel" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductName" text,
   "InvoiceQuantity" numeric,
   "CartonInnerQuantity" numeric,
@@ -443,13 +442,13 @@ create table "VerifyInvoiceModel" (
 );
 
 create table "XeroSyncedPurchaseInvoice" (
-  "TaskID" text
+  "TaskID" text  -- -> Task (any document)
 );
 
 create table "listModel" (
   "ID" text,
-  "ProductID" text,
-  "SupplierID" text,
+  "ProductID" text,  -- -> Product
+  "SupplierID" text,  -- -> Supplier
   "SKU" text,
   "Product" text,
   "Category" text,
@@ -474,18 +473,18 @@ create table "spTaskImportLogEntry" (
 );
 
 create table "vBrand" (
-  "BrandID" text,
+  "BrandID" text,  -- -> Brand
   "Name" text
 );
 
 create table "vCategory" (
-  "CategoryID" text,
+  "CategoryID" text,  -- -> ProductCategory
   "Name" text
 );
 
 create table "vCreditAllocated" (
-  "AllocationID" text,
-  "TaskID" text,
+  "AllocationID" text,  -- -> Allocation
+  "TaskID" text,  -- -> Task (any document)
   "DocNumber" text,
   "Currency" text,
   "Date" timestamptz,
@@ -494,15 +493,15 @@ create table "vCreditAllocated" (
 
 create table "vDearToDearNetworkingTaskLinks" (
   "ID" text,
-  "SourceTaskID" text,
+  "SourceTaskID" text,  -- -> Task (any document)
   "SourceType" integer,
-  "TargetTaskID" text,
+  "TargetTaskID" text,  -- -> Task (any document)
   "TargetType" integer
 );
 
 create table "vDistributedAmount" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TaskType" text,
   "ValidationText" text,
   "ValidationState" text
@@ -526,16 +525,16 @@ create table "vExtractedDocument" (
   "Status" text,
   "StatusDescription" text,
   "DateCreated" timestamptz,
-  "EntityID" text
+  "EntityID" text  -- -> Entity (polymorphic)
 );
 
 create table "vInventoryMovement" (
   "FakeID" text,
-  "TaskID" text,
-  "CardDetailsID" text,
-  "CardID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "CardDetailsID" text,  -- -> InventoryCard
+  "CardID" text,  -- -> InventoryCard
   "Date" timestamptz,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Location" text,
   "Received" boolean,
@@ -559,8 +558,8 @@ create table "vInventoryMovement" (
 
 create table "vInvoiceAdditionalCostLine" (
   "FakeID" text,
-  "TaskID" text,
-  "PurchaseCostID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "PurchaseCostID" text,  -- -> PurchaseCost
   "Description" text,
   "Reference" text,
   "Quantity" numeric,
@@ -579,9 +578,9 @@ create table "vInvoiceAdditionalCostLine" (
 
 create table "vInvoiceLine" (
   "FakeID" text,
-  "TaskID" text,
-  "InvoiceLineID" text,
-  "ProductID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "InvoiceLineID" text,  -- -> Line (parent document's line)
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Price" numeric,
   "Discount" numeric,
@@ -599,7 +598,7 @@ create table "vInvoiceLine" (
   "TaxRule" text,
   "TaxPercent" numeric,
   "LineOrder" integer,
-  "BinID" text,
+  "BinID" text,  -- -> Bin
   "Comment" text,
   "NonInventory" boolean,
   "ValidationText" text,
@@ -612,8 +611,8 @@ create table "vJobMilestone" (
 );
 
 create table "vPaymentsDue" (
-  "TaskID" text,
-  "SupplierID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "SupplierID" text,  -- -> Supplier
   "InvoiceNumber" text,
   "InvoiceDate" timestamptz,
   "DueDate" timestamptz,
@@ -626,7 +625,7 @@ create table "vPaymentsDue" (
 );
 
 create table "vProductionForDistribution" (
-  "ProductionRunID" text,
+  "ProductionRunID" text,  -- -> ProductionRun
   "ProductionOrderNumber" text,
   "Date" timestamptz,
   "Amount" numeric,
@@ -634,18 +633,18 @@ create table "vProductionForDistribution" (
 );
 
 create table "vPurchaseAllocations" (
-  "PurchaseDepositID" text,
+  "PurchaseDepositID" text,  -- -> PurchaseDeposit
   "ID" text,
-  "PurchasePaymentID" text,
-  "TaskID" text,
+  "PurchasePaymentID" text,  -- -> PurchasePayment
+  "TaskID" text,  -- -> Task (any document)
   "Flag" boolean
 );
 
 create table "vPurchaseBillOfEntryLines" (
   "FakeID" text,
-  "TaskID" text,
-  "LineID" text,
-  "ProductID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "LineID" text,  -- -> Line (parent document's line)
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Tax" numeric,
   "Total" numeric,
@@ -661,8 +660,8 @@ create table "vPurchaseBillOfEntryLines" (
 
 create table "vPurchaseCreditNoteCostLine" (
   "FakeID" text,
-  "TaskID" text,
-  "PurchaseCostID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "PurchaseCostID" text,  -- -> PurchaseCost
   "Description" text,
   "Reference" text,
   "Quantity" numeric,
@@ -681,9 +680,9 @@ create table "vPurchaseCreditNoteCostLine" (
 
 create table "vPurchaseCreditNoteLine" (
   "FakeID" text,
-  "TaskID" text,
-  "InvoiceLineID" text,
-  "ProductID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "InvoiceLineID" text,  -- -> Line (parent document's line)
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Price" numeric,
   "Discount" numeric,
@@ -706,8 +705,8 @@ create table "vPurchaseCreditNoteLine" (
 
 create table "vPurchaseCreditNotePaymentLine" (
   "FakeID" text,
-  "TaskID" text,
-  "PaymentID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "PaymentID" text,  -- -> Payment
   "Reference" text,
   "DatePaid" timestamptz,
   "Type" text,
@@ -721,7 +720,7 @@ create table "vPurchaseCreditNotePaymentLine" (
 
 create table "vPurchaseDepositWithDetails" (
   "ID" text,
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "Currency" text,
   "Amount" numeric,
   "RemainingAmount" numeric,
@@ -735,14 +734,14 @@ create table "vPurchaseDepositWithDetails" (
 
 create table "vPurchaseDeposits" (
   "ID" text,
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "SupplierName" text,
   "Currency" text,
   "Amount" numeric,
   "RemainingAmount" numeric,
   "Account" text,
-  "SourceLineID" text,
-  "CreditSourceTaskID" text,
+  "SourceLineID" text,  -- -> Line (parent document's line)
+  "CreditSourceTaskID" text,  -- -> Task (any document)
   "OrigTaskType" text,
   "Type" text,
   "Date" timestamptz
@@ -750,7 +749,7 @@ create table "vPurchaseDeposits" (
 
 create table "vPurchaseDistribution" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "InvoiceNumber" text,
   "TaskType" text,
   "ValidationText" text,
@@ -767,7 +766,7 @@ create table "vPurchaseDistributionAccountAmount" (
 );
 
 create table "vPurchaseExpense" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "AccountCode" text,
   "AccountName" text,
   "Amount" numeric,
@@ -778,7 +777,7 @@ create table "vPurchaseExpense" (
 );
 
 create table "vPurchaseForDistribution" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "InvoiceNumber" text,
   "InvoiceDate" timestamptz,
   "PONumber" text,
@@ -788,7 +787,7 @@ create table "vPurchaseForDistribution" (
 
 create table "vPurchaseManualJournals" (
   "FakeID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "ID" text,
   "Reference" text,
   "Amount" numeric,
@@ -797,15 +796,15 @@ create table "vPurchaseManualJournals" (
   "Credit" text,
   "AccrualType" text,
   "DistributeType" text,
-  "ProductionRunID" text,
+  "ProductionRunID" text,  -- -> ProductionRun
   "ValidationText" text,
   "ValidationState" text
 );
 
 create table "vPurchaseManualJournalsDistributedCosts" (
   "ID" text,
-  "ManualJournalID" text,
-  "ProductID" text,
+  "ManualJournalID" text,  -- -> ManualJournal
+  "ProductID" text,  -- -> Product
   "DistributedCost" numeric,
   "InvoiceTotal" numeric,
   "ValidationText" text,
@@ -813,9 +812,9 @@ create table "vPurchaseManualJournalsDistributedCosts" (
 );
 
 create table "vPurchaseOrderAttachement" (
-  "TaskID" text,
-  "AttachementID" text,
-  "BlobGUID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "AttachementID" text,  -- -> Attachment
+  "BlobGUID" text,  -- -> Blob (stored file)
   "ContentType" text,
   "FileName" text,
   "Date" timestamptz,
@@ -827,8 +826,8 @@ create table "vPurchaseOrderAttachement" (
 
 create table "vPurchaseOrderCostLines" (
   "FakeID" text,
-  "TaskID" text,
-  "PurchaseCostID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "PurchaseCostID" text,  -- -> PurchaseCost
   "Description" text,
   "Reference" text,
   "Quantity" numeric,
@@ -846,9 +845,9 @@ create table "vPurchaseOrderCostLines" (
 
 create table "vPurchaseOrderLines" (
   "FakeID" text,
-  "TaskID" text,
-  "OrderLineID" text,
-  "ProductID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "OrderLineID" text,  -- -> Line (parent document's line)
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Price" numeric,
   "Discount" numeric,
@@ -866,7 +865,7 @@ create table "vPurchaseOrderLines" (
   "COGSAccount" text,
   "TaxRule" text,
   "TaxPercent" numeric,
-  "BinID" text,
+  "BinID" text,  -- -> Bin
   "Comment" text,
   "NonInventory" boolean,
   "ValidationText" text,
@@ -875,8 +874,8 @@ create table "vPurchaseOrderLines" (
 
 create table "vPurchasePaymentLine" (
   "FakeID" text,
-  "TaskID" text,
-  "PaymentID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "PaymentID" text,  -- -> Payment
   "Reference" text,
   "DatePaid" timestamptz,
   "Type" text,
@@ -890,9 +889,9 @@ create table "vPurchasePaymentLine" (
 
 create table "vPurchaseStockIntermediateLines" (
   "FakeID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "ID" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "UnitCost" numeric,
   "AccountCode" text,
@@ -909,7 +908,7 @@ create table "vPurchaseStockIntermediateLines" (
   "InventoryAccount" text,
   "DefaultFixedAssetAccountCode" text,
   "COGSAccount" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "NonInventory" boolean,
   "StockReceivingNumber" integer,
   "ValidationText" text,
@@ -917,7 +916,7 @@ create table "vPurchaseStockIntermediateLines" (
 );
 
 create table "vPurchaseTaskList" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "OrderNo" text,
   "Status" text,
   "OrderDate" timestamptz,
@@ -928,7 +927,7 @@ create table "vPurchaseTaskList" (
   "POTotalAmount" numeric,
   "Currency" text,
   "TenantCurrency" text,
-  "DropShipTaskID" text,
+  "DropShipTaskID" text,  -- -> Purchase
   "PurchaseOrderStatus" integer,
   "BillStatus" text,
   "StockStatus" text,
@@ -958,7 +957,7 @@ create table "vPurchaseTaskList" (
 
 create table "vPurchaseTaskListAccounting" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Type" integer,
   "Supplier" text,
   "Contact" text,
@@ -975,7 +974,7 @@ create table "vPurchaseTaskListAccounting" (
   "CustomField8" text,
   "CustomField9" text,
   "CustomField10" text,
-  "DropShipTaskID" text,
+  "DropShipTaskID" text,  -- -> Purchase
   "Total" numeric,
   "Paid" numeric,
   "Credited" numeric,
@@ -999,11 +998,11 @@ create table "vPurchaseTaskListAccounting" (
 
 create table "vPurchaseUnstock" (
   "FakeID" text,
-  "TaskID" text,
-  "CardDetailsID" text,
-  "CardID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "CardDetailsID" text,  -- -> InventoryCard
+  "CardID" text,  -- -> InventoryCard
   "Date" timestamptz,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Location" text,
   "Name" text,
@@ -1018,7 +1017,7 @@ create table "vPurchaseUnstock" (
 );
 
 create table "vPurchase_Supplier" (
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "Name" text,
   "Currency" text,
   "PaymentTerm" text,
@@ -1029,8 +1028,8 @@ create table "vPurchase_Supplier" (
 );
 
 create table "vPurchase_SupplierAddress" (
-  "SupplierID" text,
-  "AddressID" text,
+  "SupplierID" text,  -- -> Supplier
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "Type" text,
@@ -1038,15 +1037,15 @@ create table "vPurchase_SupplierAddress" (
 );
 
 create table "vPurchase_SupplierContact" (
-  "SupplierID" text,
-  "ContactID" text,
+  "SupplierID" text,  -- -> Supplier
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "IsDefault" boolean,
   "Phone" text
 );
 
 create table "vPurchase_TenantAddress" (
-  "AddressID" text,
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "Type" text,
@@ -1057,10 +1056,10 @@ create table "vPurchase_TenantAddress" (
 create table "vReorderSuggestionEmail" (
   "ID" text,
   "CreationDate" timestamptz,
-  "ReportID" text,
-  "MailingListID" text,
-  "LocationID" text,
-  "SupplierID" text,
+  "ReportID" text,  -- -> Report
+  "MailingListID" text,  -- -> MailingList
+  "LocationID" text,  -- -> Location
+  "SupplierID" text,  -- -> Supplier
   "ProductCode" text,
   "LocationName" text,
   "Sent" boolean,
@@ -1073,11 +1072,11 @@ create table "vReorderSuggestionEmail" (
 create table "vReorderSuggestionEmailRecordTask" (
   "ID" text,
   "RequiredBy" timestamptz,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductName" text,
   "ProductCode" text,
   "Type" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Number" text,
   "From" text,
   "To" text,
@@ -1085,8 +1084,8 @@ create table "vReorderSuggestionEmailRecordTask" (
 );
 
 create table "vSupplierAddress" (
-  "SupplierID" text,
-  "AddressID" text,
+  "SupplierID" text,  -- -> Supplier
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "CitySuburb" text,
@@ -1098,8 +1097,8 @@ create table "vSupplierAddress" (
 );
 
 create table "vSupplierContact" (
-  "SupplierID" text,
-  "ContactID" text,
+  "SupplierID" text,  -- -> Supplier
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "JobTitle" text,
   "Phone" text,
@@ -1112,15 +1111,15 @@ create table "vSupplierContact" (
 );
 
 create table "vSupplierDefaultTemplate" (
-  "DefaultTemplateID" text,
-  "TemplateID" text,
-  "SupplierID" text,
+  "DefaultTemplateID" text,  -- -> Template
+  "TemplateID" text,  -- -> Template
+  "SupplierID" text,  -- -> Supplier
   "Type" text
 );
 
 create table "vSupplierFile" (
-  "FileID" text,
-  "SupplierID" text,
+  "FileID" text,  -- -> Blob (stored file)
+  "SupplierID" text,  -- -> Supplier
   "FileName" text,
   "ContentType" text,
   "UserName" text,
@@ -1130,7 +1129,7 @@ create table "vSupplierFile" (
 );
 
 create table "vSupplierList" (
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "Name" text,
   "Contact" text,
   "Phone" text,
@@ -1146,7 +1145,7 @@ create table "vSupplierList" (
 );
 
 create table "vSupplierPurchaseTasks" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "PurchaseOrderNumber" text,
   "Status" text,
   "PurchaseOrderDate" timestamptz,
@@ -1160,23 +1159,23 @@ create table "vSupplierPurchaseTasks" (
 
 create table "vSupplierPurchases" (
   "ID" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Price" numeric,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "InvoiceDate" timestamptz,
   "SupplierCurrency" text,
   "InvoiceNumber" text,
   "Name" text,
   "ProductCode" text,
-  "DropShipTaskID" text,
+  "DropShipTaskID" text,  -- -> Purchase
   "TaskTypeSign" integer,
   "TaskTypeName" text,
   "SupplierSku" text
 );
 
 create table "vTaskForDistribution" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TaskTypeName" text,
   "TaskType" integer,
   "Date" timestamptz,
@@ -1186,7 +1185,7 @@ create table "vTaskForDistribution" (
 );
 
 create table "vTenantAddress" (
-  "AddressID" text,
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "CitySuburb" text,
@@ -1198,7 +1197,7 @@ create table "vTenantAddress" (
 );
 
 create table "vTenantPaymentTermNew" (
-  "TermID" text,
+  "TermID" text,  -- -> PaymentTerm
   "Name" text,
   "Days" integer,
   "Method" integer,

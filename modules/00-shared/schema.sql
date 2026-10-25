@@ -1,16 +1,16 @@
 -- Shared Cin7 Core data models, generated from data/models.json
 
 create table "AccessInfo" (
-  "TenantID" text,
-  "UserID" text,
+  "TenantID" text,  -- -> Tenant
+  "UserID" text,  -- -> User
   "Access" text,
   "Subscription" text,
   "SubscriptionCategory" text,
   "AvailablePriceTiers" integer,
   "ImpersonatedUserName" text,
-  "ImpersonatedTenantID" text,
+  "ImpersonatedTenantID" text,  -- -> ImpersonatedTenant
   "UserName" text,
-  "FailedPaymentID" text,
+  "FailedPaymentID" text,  -- -> FailedPayment
   "Xero" boolean,
   "Quickbooks" boolean,
   "Connected" boolean,
@@ -72,7 +72,7 @@ create table "ActivityLogLine" (
   "Date" timestamptz,
   "Category" text,
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Total" integer,
   "Message" text,
   "Reference" text,
@@ -86,8 +86,8 @@ create table "AddressInfo" (
 );
 
 create table "AutoPick" (
-  "ProductID" text,
-  "BinID" text,
+  "ProductID" text,  -- -> Product
+  "BinID" text,  -- -> Bin
   "BinName" text,
   "ProductCode" text,
   "Name" text,
@@ -127,12 +127,12 @@ create table "Currency" (
 );
 
 create table "DeliveryItem" (
-  "DeliveryItemID" text,
-  "ProductID" text,
+  "DeliveryItemID" text,  -- -> DeliveryItem
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "ProductName" text,
   "ProductCode" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TaskStatus" text,
   "DeliveryNumber" text,
   "ProductSearch" text,
@@ -161,7 +161,7 @@ create table "Family" (
 );
 
 create table "History" (
-  "EntryID" text,
+  "EntryID" text,  -- -> Entry
   "ColumnsChanged" text,
   "DateChanged" timestamptz,
   "ChangedBy" text
@@ -173,10 +173,10 @@ create table "Integrate" (
 );
 
 create table "LocationsSettingsModel" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text,
   "Level" integer,
-  "ParentID" text,
+  "ParentID" text,  -- -> Parent
   "IsActive" boolean
 );
 
@@ -206,7 +206,7 @@ create table "PartnerAccessInfo" (
   "UserName" text,
   "Company" text,
   "DisplayName" text,
-  "TenantID" text
+  "TenantID" text  -- -> Tenant
 );
 
 create table "PhoneCountryCode" (
@@ -222,7 +222,7 @@ create table "PhoneCountryCode" (
 );
 
 create table "Product" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Code" text,
   "Name" text,
   "Unit" text,
@@ -232,7 +232,7 @@ create table "Product" (
   "Account" text,
   "Type" text,
   "TaxRule" text,
-  "BinID" text,
+  "BinID" text,  -- -> Bin
   "NonInventory" boolean
 );
 
@@ -248,8 +248,8 @@ create table "ProductsAffectedProductsModel" (
 );
 
 create table "ProductsRulesModel" (
-  "ProductRuleID" text,
-  "CustomFilterID" text,
+  "ProductRuleID" text,  -- -> ProductRule
+  "CustomFilterID" text,  -- -> CustomFilter
   "Name" text,
   "Priority" integer,
   "CriteriaSummary" text,
@@ -260,8 +260,8 @@ create table "ProductsSettingsModel" (
   "Selected" boolean,
   "IsActive" boolean,
   "DefaultIsActive" boolean,
-  "ProductID" text,
-  "LocationID" text,
+  "ProductID" text,  -- -> Product
+  "LocationID" text,  -- -> Location
   "ProductCode" text,
   "ProductName" text,
   "Category" text,
@@ -277,7 +277,7 @@ create table "ProductsSettingsModel" (
   "SoldLast6Months" numeric,
   "SoldLast12Months" numeric,
   "Segment" text,
-  "SettingID" text,
+  "SettingID" text,  -- -> Setting
   "MinimumOrderQuantity" numeric,
   "Packing" numeric,
   "CanBeOrdered" boolean,
@@ -289,7 +289,7 @@ create table "ProductsSettingsModel" (
   "DefaultReplenishedBy" text,
   "PredecessorProductCode" text,
   "PredecessorProductName" text,
-  "PredecessorProductID" text,
+  "PredecessorProductID" text,  -- -> PredecessorProduct
   "IsPredecessorSet" boolean,
   "ReplenishmentRecommendations" text,
   "ReplenishedBy" text,
@@ -303,7 +303,7 @@ create table "ProductsSettingsModel" (
   "RuleMaximumStockDays" integer,
   "RuleCanBeOrdered" boolean,
   "RuleIsActive" boolean,
-  "RulePredecessorProductID" text,
+  "RulePredecessorProductID" text,  -- -> RulePredecessorProduct
   "RulePredecessorProductCode" text,
   "RulePredecessorProductName" text,
   "RuleReplenishmentRecommendations" text,
@@ -320,13 +320,13 @@ create table "ReferenceDataWrapper" (
 );
 
 create table "ReportTemplate" (
-  "TemplateID" text,
+  "TemplateID" text,  -- -> Template
   "Type" text,
   "Name" text
 );
 
 create table "ScanProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Barcode" text,
   "CostingMethod" text,
   "Name" text,
@@ -337,12 +337,12 @@ create table "ScanProduct" (
   "COGSAccount" text,
   "TaxRule" text,
   "Price" numeric,
-  "BinID" text,
+  "BinID" text,  -- -> Bin
   "NonInventory" boolean
 );
 
 create table "SelectedList" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text
 );
 
@@ -365,9 +365,9 @@ create table "TimeZone" (
 );
 
 create table "TransactionModel" (
-  "TransactionID" text,
-  "BankStatementID" text,
-  "TenantID" text,
+  "TransactionID" text,  -- -> Transaction
+  "BankStatementID" text,  -- -> BankStatement
+  "TenantID" text,  -- -> Tenant
   "Date" timestamptz,
   "Reference" text,
   "PaymentReference" text,
@@ -379,11 +379,11 @@ create table "TransactionModel" (
 );
 
 create table "WorkflowHistory" (
-  "WorkflowHistoryID" text,
-  "WorkflowID" text,
-  "EntityID" text,
+  "WorkflowHistoryID" text,  -- -> WorkflowHistory
+  "WorkflowID" text,  -- -> Workflow
+  "EntityID" text,  -- -> Entity (polymorphic)
   "EntityType" text,
-  "ChildEntityID" text,
+  "ChildEntityID" text,  -- -> ChildEntity
   "ChildEntityType" text,
   "Name" text,
   "Description" text,
@@ -396,19 +396,19 @@ create table "WorkflowHistory" (
 create table "XeroLink" (
   "ID" text,
   "Type" text,
-  "TaskID" text
+  "TaskID" text  -- -> Task (any document)
 );
 
 create table "stripePaymentLogEntry" (
   "Id" text,
-  "SaleTaskId" text,
+  "SaleTaskId" text,  -- -> Sale
   "Amount" numeric,
   "AccountCode" text,
   "AccountName" text,
   "Currency" text,
   "SaleInvoiceNumber" text,
   "StatusText" text,
-  "StripePaymentId" text,
+  "StripePaymentId" text,  -- -> StripePayment
   "IsTestMode" boolean,
   "InitTime" timestamptz,
   "LastUpdateTime" timestamptz
@@ -421,12 +421,12 @@ create table "vAccountingDimensionsRealTemp" (
   "ReferenceNumber" text,
   "Amount" numeric,
   "EffectiveDate" timestamptz,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "ProductName" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "SupplierName" text,
   "ExpenseItem" text,
   "ProductionResource" text,
@@ -434,7 +434,7 @@ create table "vAccountingDimensionsRealTemp" (
 );
 
 create table "vAvailableCompanies" (
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "UserName" text,
   "Company" text,
   "IsExpired" boolean
@@ -448,7 +448,7 @@ create table "vBalanceInfo" (
 );
 
 create table "vBankStatement" (
-  "StatementID" text,
+  "StatementID" text,  -- -> Statement
   "ImportedDate" timestamptz,
   "StartDate" timestamptz,
   "EndDate" timestamptz,
@@ -459,7 +459,7 @@ create table "vBankStatement" (
 );
 
 create table "vBankTransactionMappingProfile" (
-  "ProfileID" text,
+  "ProfileID" text,  -- -> Profile
   "Name" text,
   "Data" text,
   "DateFormat" text,
@@ -478,12 +478,12 @@ create table "vChartOfAccounts" (
   "SystemAccount" text,
   "BankAccountNumber" text,
   "CurrencyCode" text,
-  "BankAccountId" text,
+  "BankAccountId" text,  -- -> BankAccount
   "ForPayments" boolean
 );
 
 create table "vCustomer" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text
 );
 
@@ -496,7 +496,7 @@ create table "vCustomerWithSupplier" (
 );
 
 create table "vDeliveryNote" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Note" text,
   "UserName" text,
   "DateTime" timestamptz
@@ -519,7 +519,7 @@ create table "vFilterProduct" (
 );
 
 create table "vFixedAssetType" (
-  "FixedAssetTypeID" text,
+  "FixedAssetTypeID" text,  -- -> FixedAssetType
   "Name" text
 );
 
@@ -530,7 +530,7 @@ create table "vMappingSettings" (
 );
 
 create table "vMoneyTaskTenantTaxationRule" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text,
   "EffectivePercentExclusive" numeric,
   "EffectivePercentInclusive" numeric,
@@ -552,7 +552,7 @@ create table "vMultilingualTemplateNewDatas" (
 );
 
 create table "vProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "SkuAutogenerationFlag" boolean,
   "ProductCode" text,
   "Name" text,
@@ -581,16 +581,16 @@ create table "vProduct" (
   "DropShipMode" text,
   "PurchaseTaxRule" text,
   "SaleTaxRule" text,
-  "FixedAssetTypeID" text,
-  "BrandID" text,
-  "DiscountID" text,
+  "FixedAssetTypeID" text,  -- -> FixedAssetType
+  "BrandID" text,  -- -> Brand
+  "DiscountID" text,  -- -> Discount
   "DefaultLocation" text,
   "NotSellable" text
 );
 
 create table "vProductAlternativeStock" (
   "FakeID" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "ProductName" text,
   "LocationName" text,
@@ -613,10 +613,10 @@ create table "vRecStatement" (
 );
 
 create table "vReconcilation" (
-  "ReconcileID" text,
-  "AccountID" text,
-  "BankStatementID" text,
-  "TransactionID" text,
+  "ReconcileID" text,  -- -> Reconcile
+  "AccountID" text,  -- -> Account
+  "BankStatementID" text,  -- -> BankStatement
+  "TransactionID" text,  -- -> Transaction
   "Date" timestamptz,
   "Reference" text,
   "PaymentReference" text,
@@ -629,11 +629,11 @@ create table "vReconcilation" (
   "MatchFound" boolean,
   "Comment" text,
   "LinkObjectName" text,
-  "LineID" text,
-  "SaleTaskID" text,
-  "PurchaseTaskID" text,
-  "MoneyTaskID" text,
-  "ExpenseClaimTaskID" text,
+  "LineID" text,  -- -> Line (parent document's line)
+  "SaleTaskID" text,  -- -> Sale
+  "PurchaseTaskID" text,  -- -> Purchase
+  "MoneyTaskID" text,  -- -> MoneyTask
+  "ExpenseClaimTaskID" text,  -- -> ExpenseClaimTask
   "MapCount" numeric,
   "ReconciledAmount" numeric,
   "AdditionalData" text,
@@ -643,9 +643,9 @@ create table "vReconcilation" (
   "DocReference" text,
   "DocDescription" text,
   "DocCurrencyConversionRate" numeric,
-  "BankRuleID" text,
+  "BankRuleID" text,  -- -> BankRule
   "BankRuleName" text,
-  "BankRuleContactID" text,
+  "BankRuleContactID" text,  -- -> BankRuleContact
   "BankRuleSearchDisabled" boolean,
   "BankRuleContactName" text,
   "BankRuleContactType" text
@@ -653,7 +653,7 @@ create table "vReconcilation" (
 
 create table "vReconcilationMatchList" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "EffectiveDate" timestamptz,
   "ObjType" text,
   "Type" text,
@@ -671,7 +671,7 @@ create table "vReconcilationMatchList" (
 );
 
 create table "vRelatedOrder" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TaskType" text,
   "TaskTypeName" text,
   "TaskNumber" text,
@@ -682,7 +682,7 @@ create table "vRelatedOrder" (
 );
 
 create table "vRelatedOrderDetails" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Quantity" numeric,
@@ -690,7 +690,7 @@ create table "vRelatedOrderDetails" (
 );
 
 create table "vSale_Customer" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text
 );
 
@@ -705,7 +705,7 @@ create table "vStandardEntity" (
 );
 
 create table "vStockTransferList" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Date" timestamptz,
   "From" text,
   "To" text,
@@ -717,7 +717,7 @@ create table "vStockTransferList" (
 );
 
 create table "vSupplier" (
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "Name" text,
   "Currency" text,
   "PaymentTerm" text,
@@ -735,12 +735,12 @@ create table "vSupplier" (
 );
 
 create table "vSyncHistory" (
-  "EntryID" text,
+  "EntryID" text,  -- -> Entry
   "DateCreated" timestamptz,
   "Status" integer,
   "Error" text,
   "Description" text,
-  "QBID" text,
+  "QBID" text,  -- -> QB
   "Entity" integer,
   "IsConsolidated" boolean,
   "IsSelected" boolean
@@ -751,10 +751,10 @@ create table "vTag" (
 );
 
 create table "vTask" (
-  "TaskID" text,
-  "TenantID" text,
-  "UserID" text,
-  "TaskCategoryID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "TenantID" text,  -- -> Tenant
+  "UserID" text,  -- -> User
+  "TaskCategoryID" text,  -- -> TaskCategory
   "IsCategoryPredefined" text,
   "Name" text,
   "Details" text,
@@ -762,7 +762,7 @@ create table "vTask" (
   "EndDate" timestamptz,
   "CompletedDate" timestamptz,
   "Sequence" integer,
-  "WorkflowID" text,
+  "WorkflowID" text,  -- -> Workflow
   "UserName" text,
   "TaskCategoryName" text,
   "TaskCategoryColor" text,
@@ -770,21 +770,20 @@ create table "vTask" (
   "IsToday" boolean,
   "IsOverdue" boolean,
   "IsCompleted" boolean,
-  "WorkflowProcessID" text,
+  "WorkflowProcessID" text,  -- -> WorkflowProcess
   "IsAllDay" boolean,
-  "EntityID" text,
+  "EntityID" text,  -- -> Entity (polymorphic)
   "EntityType" text,
   "EntityName" text,
-  "MasterEntityID" text,
+  "MasterEntityID" text,  -- -> MasterEntity
   "IsOwner" boolean,
   "WorkflowProcessState" text,
-  "ValidationText" text,
   "ValidationText" text
 );
 
 create table "vTaskFile" (
-  "FileID" text,
-  "TaskID" text,
+  "FileID" text,  -- -> Blob (stored file)
+  "TaskID" text,  -- -> Task (any document)
   "FileName" text,
   "ContentType" text,
   "UserName" text,
@@ -794,7 +793,7 @@ create table "vTaskFile" (
 );
 
 create table "vTenantAttributeSet" (
-  "SetID" text,
+  "SetID" text,  -- -> AttributeSet
   "Name" text,
   "Column1" text,
   "Column2" text,
@@ -814,12 +813,12 @@ create table "vTenantBrand" (
 );
 
 create table "vTenantCarrier" (
-  "CarrierID" text,
+  "CarrierID" text,  -- -> Carrier
   "Description" text
 );
 
 create table "vTenantContact" (
-  "ContactID" text,
+  "ContactID" text,  -- -> Contact
   "Name" text,
   "Email" text,
   "DefaultForType" boolean,
@@ -827,25 +826,25 @@ create table "vTenantContact" (
 );
 
 create table "vTenantCurrency" (
-  "CurrencyID" text,
+  "CurrencyID" text,  -- -> Currency
   "Currency" text,
   "Default" boolean,
   "Name" text
 );
 
 create table "vTenantInventoryCategory" (
-  "CategoryID" text,
+  "CategoryID" text,  -- -> ProductCategory
   "Category" text
 );
 
 create table "vTenantLocation" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text,
   "IsDefault" boolean
 );
 
 create table "vTenantPaymentTerm" (
-  "TermID" text,
+  "TermID" text,  -- -> PaymentTerm
   "Name" text,
   "Days" integer,
   "Method" integer,
@@ -853,7 +852,7 @@ create table "vTenantPaymentTerm" (
 );
 
 create table "vTenantTaxationRule" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text,
   "EffectivePercentExclusive" numeric,
   "EffectivePercentInclusive" numeric,
@@ -862,7 +861,7 @@ create table "vTenantTaxationRule" (
 );
 
 create table "vTenantUnitOfMeasure" (
-  "UnitOfMeasureID" text,
+  "UnitOfMeasureID" text,  -- -> UnitOfMeasure
   "Unit" text
 );
 

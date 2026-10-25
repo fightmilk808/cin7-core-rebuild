@@ -551,6 +551,8 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 ## Public API (`/ExternalApi/v2`)
 
+Fields, parameters and body shapes: [Price Tiers](../20-public-api/groups/price-tiers.md) · [Product](../20-public-api/groups/product.md) · [Product Family](../20-public-api/groups/product-family.md) · [Product Markup Prices](../20-public-api/groups/product-markup-prices.md) · [Stock](../20-public-api/groups/stock.md).
+
 | Group | Method | Path | Query / params |
 |---|---|---|---|
 | Price Tiers | GET | `/ref/priceTier` |  |

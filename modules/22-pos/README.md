@@ -20,6 +20,8 @@ Cordova). Configured in the main app at `/DearPos` (bundle `Pos2019`, the `/api/
 An offline-capable client app over a dedicated `/ExternalApi/POS/*` namespace: register sessions, cart and checkout,
 customer lookup, availability checks at checkout, and a terminal adapter per payment provider. The calls it needs are below.
 
+Every screen, its fields, buttons, lists, dialogs and API calls: [SCREENS.md](SCREENS.md).
+
 ## Every call (87)
 
 | path | methods | params | client_functions |

@@ -36,6 +36,12 @@ The documented integration surface: `https://inventory.dearsystems.com/ExternalA
 Events fire on status transitions only. There are none for production orders, assemblies, transfers, adjustments or
 stocktakes. Sale and purchase payloads carry a `DownloadLink` to the rendered PDF.
 
+## Fields, parameters and body shapes
+
+One page per group in [`groups/`](groups/): field tables with types, lengths, required flags and allowed values; each
+operation's parameters; request and response bodies as type outlines. Shared models and status lists:
+[`groups/models.md`](groups/models.md). Every webhook body: [`groups/webhooks.md`](groups/webhooks.md).
+
 ## Every call (295)
 
 | group | method | path | query |

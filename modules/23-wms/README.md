@@ -27,6 +27,8 @@ The page copies its controls into hidden fields and submits a form.
 A scanner-first mobile client that signs in once to get a per-device API key, then works through the public API plus a
 small `system/*` namespace for things the public API lacks (pick rounds, totes, user context). The calls are below.
 
+Every screen, its fields, buttons, lists, dialogs and API calls: [SCREENS.md](SCREENS.md).
+
 ## Every call (63)
 
 | path | methods | effect | client_functions |

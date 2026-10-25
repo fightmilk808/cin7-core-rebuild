@@ -6,7 +6,7 @@ create table "ConsolidationStore" (
 );
 
 create table "CtlgFamily" (
-  "FamilyID" text,
+  "FamilyID" text,  -- -> ProductFamily
   "SKU" text,
   "Name" text,
   "Category" text,
@@ -18,18 +18,18 @@ create table "CtlgFamily" (
   "Option1Values" text,
   "Option2Values" text,
   "Option3Values" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "ShortDescription" text,
   "Tags" text
 );
 
 create table "CtlgProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Available" numeric,
   "OnHand" numeric,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "IsStockProduct" boolean
 );
 
@@ -39,7 +39,7 @@ create table "DEARMappingModel" (
 );
 
 create table "ECommerceShop" (
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "ShopName" text
 );
 
@@ -75,7 +75,7 @@ create table "NameDescriptionModel" (
 create table "ShippingPackageType" (
   "DimensionsSupported" boolean,
   "DefaultValue" boolean,
-  "PackageID" integer,
+  "PackageID" integer,  -- -> Package
   "Description" text,
   "ShippingPackage" integer
 );
@@ -89,13 +89,12 @@ create table "ShippingService" (
   "Description" text,
   "ShippingTimeMax" integer,
   "ShippingTimeMin" integer,
-  "Description" text,
   "ShippingCategoryDescription" text,
   "ShippingCategory" text,
   "ValidForSellingFlow" boolean,
   "SurchargeApplicable" boolean,
   "DisplayName" text,
-  "ShippingServiceID" integer
+  "ShippingServiceID" integer  -- -> pingService
 );
 
 create table "SiteIdModel" (
@@ -105,17 +104,17 @@ create table "SiteIdModel" (
 );
 
 create table "eBayPublishingFailed" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProfileName" text,
   "SKU" text,
   "Name" text,
   "Result" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "ProductType" text
 );
 
 create table "eBayPublishingNotListed" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "SKU" text,
   "Type" text,
   "ProductType" text,
@@ -126,10 +125,10 @@ create table "eBayPublishingNotListed" (
   "Quantity" numeric,
   "Status" text,
   "LProfile" text,
-  "ItemID" text,
+  "ItemID" text,  -- -> Item (context-specific)
   "Selected" boolean,
-  "ImageID" text,
-  "FamilyID" text,
+  "ImageID" text,  -- -> Blob (stored file)
+  "FamilyID" text,  -- -> ProductFamily
   "ValidationText" text,
   "ValidationState" text
 );
@@ -140,23 +139,23 @@ create table "vAccount" (
 );
 
 create table "vECSOrderLog" (
-  "LogID" text,
-  "ConfigID" text,
+  "LogID" text,  -- -> Log
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
   "DownloadDate" timestamptz,
   "ProcessDate" timestamptz,
   "OrderNumber" text,
-  "SaleTaskID" text,
+  "SaleTaskID" text,  -- -> Sale
   "Status" text,
   "Type" text,
   "SaleOrderNumber" text,
-  "RefundID" text,
-  "OrderID" text,
+  "RefundID" text,  -- -> Refund
+  "OrderID" text,  -- -> Order (context-specific)
   "IsNewSale" boolean
 );
 
 create table "vECSPendingOrdersNew" (
-  "OrderLineID" text,
+  "OrderLineID" text,  -- -> Line (parent document's line)
   "OrderNumber" text,
   "DateCreated" timestamptz,
   "Name" text,
@@ -169,7 +168,7 @@ create table "vECSPendingOrdersNew" (
 );
 
 create table "vEcsBulkListing" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Status" text,
@@ -184,16 +183,16 @@ create table "vEcsBulkListing" (
 );
 
 create table "vEcsCatalogItemNew" (
-  "SIMID" text,
-  "ProductID" text,
-  "FamilyID" text,
+  "SIMID" text,  -- -> SIM
+  "ProductID" text,  -- -> Product
+  "FamilyID" text,  -- -> ProductFamily
   "EntityType" text,
   "LinkedSKU" text,
   "LinkedName" text,
   "SKU" text,
   "Name" text,
   "Status" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "SyncStockLevel" boolean,
   "Price" numeric,
   "Category" text,
@@ -207,14 +206,14 @@ create table "vEcsCatalogItemNew" (
 
 create table "vEcsConfiguration" (
   "ID" text,
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "ShopName" text,
   "AccessToken" text,
   "RefreshToken" text,
   "PrimaryPriceTier" integer,
   "ConsolidationType" text,
   "ConsolidationTimeText" text,
-  "ConsolidateToCustomerID" text,
+  "ConsolidateToCustomerID" text,  -- -> Customer
   "IsActive" boolean,
   "PickWhenOrderStatus" text,
   "ShippingTaxed" boolean,
@@ -237,7 +236,7 @@ create table "vEcsConfiguration" (
   "ManualMapping" boolean,
   "AutoCreateNewProductAllowed" boolean,
   "MatchProductByName" boolean,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "EnableOrderRouting" boolean,
   "CreateAssembly" text,
   "IgnoreRestockForNotFulfilled" boolean,
@@ -248,7 +247,7 @@ create table "vEcsConfiguration" (
 
 create table "vEcsOperationLog" (
   "ID" text,
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
   "Description" text,
   "Category" text,
@@ -261,11 +260,11 @@ create table "vEcsOperationLog" (
 );
 
 create table "vEcsOverviewCustomersList" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
   "OrderCount" integer,
   "PaidTotalAmount" numeric,
-  "ConfigID" text
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vEcsOverviewSalesList" (
@@ -278,15 +277,15 @@ create table "vEcsOverviewSalesList" (
   "OrderStatus" text,
   "FulFilmentStatus" text,
   "PaymentStatus" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TT" integer,
-  "ConfigID" text
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vEcsPaymentProcessorMapping" (
   "ID" text,
-  "ConfigID" text,
-  "PaymentProcessorID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
+  "PaymentProcessorID" text,  -- -> PaymentProcessor
   "PaymentProcessorName" text,
   "LedgerAccount" text,
   "AccountName" text,
@@ -294,7 +293,7 @@ create table "vEcsPaymentProcessorMapping" (
 );
 
 create table "vEcsProductVariation" (
-  "SIMID" text,
+  "SIMID" text,  -- -> SIM
   "SKU" text,
   "Name" text,
   "Category" text,
@@ -313,20 +312,20 @@ create table "vEcsProductVariation" (
   "CustomField9" text,
   "CustomField10" text,
   "Price" numeric,
-  "SIMFamilyID" text,
-  "ProductID" text,
+  "SIMFamilyID" text,  -- -> SIMFamily
+  "ProductID" text,  -- -> Product
   "LinkedName" text,
   "LinkedSKU" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "ValidationText" text,
   "MaxRows" integer
 );
 
 create table "vEcsTaxMapping" (
   "ID" text,
-  "ECSConfigID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
   "ECSTaxType" text,
-  "ECSTaxID" text,
+  "ECSTaxID" text,  -- -> ECSTax
   "Description" text,
   "Value" text,
   "TaxRuleName" text,
@@ -336,21 +335,21 @@ create table "vEcsTaxMapping" (
 create table "vListingProfile" (
   "id" text,
   "Name" text,
-  "ShippingProfileID" text,
+  "ShippingProfileID" text,  -- -> pingProfile
   "ShippingProfileName" text,
-  "ReadinessStateId" jsonb
+  "ReadinessStateId" jsonb  -- -> ReadinessState
 );
 
 create table "vLocation" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
 create table "vProductVariation" (
-  "ProductID" text,
-  "FamilyID" text,
+  "ProductID" text,  -- -> Product
+  "FamilyID" text,  -- -> ProductFamily
   "ProductCode" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "Name" text,
   "Option1" text,
   "Option2" text,
@@ -358,7 +357,7 @@ create table "vProductVariation" (
 );
 
 create table "vTax" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text
 );
 

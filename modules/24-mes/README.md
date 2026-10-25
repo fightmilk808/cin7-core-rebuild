@@ -14,6 +14,8 @@ bins through public `POST /v2/ref/location`.
 A tablet client over the production module's scheduler and operation endpoints
 ([`07-production`](../07-production/README.md)), exposed to device keys through a `system/*` namespace. The calls are below.
 
+Every screen, its fields, buttons, lists, dialogs and API calls: [SCREENS.md](SCREENS.md).
+
 ## Every call (40)
 
 | path | methods | effect | client_functions |

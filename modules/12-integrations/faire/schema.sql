@@ -6,12 +6,12 @@ create table "ConsolidationStore" (
 );
 
 create table "ECommerceShop" (
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "ShopName" text
 );
 
 create table "EcsProductDetails" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "SyncStockLevel" boolean,
   "UseBufferInventory" boolean,
   "BufferInventory" integer,
@@ -39,23 +39,23 @@ create table "vAccount" (
 );
 
 create table "vECSOrderLog" (
-  "LogID" text,
-  "ConfigID" text,
+  "LogID" text,  -- -> Log
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
   "DownloadDate" timestamptz,
   "ProcessDate" timestamptz,
   "OrderNumber" text,
-  "SaleTaskID" text,
+  "SaleTaskID" text,  -- -> Sale
   "Status" text,
   "Type" text,
   "SaleOrderNumber" text,
-  "RefundID" text,
-  "OrderID" text,
+  "RefundID" text,  -- -> Refund
+  "OrderID" text,  -- -> Order (context-specific)
   "IsNewSale" boolean
 );
 
 create table "vECSPendingOrdersNew" (
-  "OrderLineID" text,
+  "OrderLineID" text,  -- -> Line (parent document's line)
   "OrderNumber" text,
   "DateCreated" timestamptz,
   "Name" text,
@@ -68,7 +68,7 @@ create table "vECSPendingOrdersNew" (
 );
 
 create table "vEcsBulkListing" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Status" text,
@@ -84,22 +84,22 @@ create table "vEcsBulkListing" (
 
 create table "vEcsCarriersMapping" (
   "ID" text,
-  "ECSConfigID" text,
-  "CarrierID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
+  "CarrierID" text,  -- -> Carrier
   "Description" text,
   "ECSCarrierCode" text
 );
 
 create table "vEcsConfiguration" (
   "ID" text,
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "ShopName" text,
   "AccessToken" text,
   "RefreshToken" text,
   "PrimaryPriceTier" integer,
   "ConsolidationType" text,
   "ConsolidationTimeText" text,
-  "ConsolidateToCustomerID" text,
+  "ConsolidateToCustomerID" text,  -- -> Customer
   "IsActive" boolean,
   "PickWhenOrderStatus" text,
   "ShippingTaxed" boolean,
@@ -122,7 +122,7 @@ create table "vEcsConfiguration" (
   "ManualMapping" boolean,
   "AutoCreateNewProductAllowed" boolean,
   "MatchProductByName" boolean,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "EnableOrderRouting" boolean,
   "CreateAssembly" text,
   "IgnoreRestockForNotFulfilled" boolean,
@@ -133,7 +133,7 @@ create table "vEcsConfiguration" (
 
 create table "vEcsOperationLog" (
   "ID" text,
-  "ConfigID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
   "Date" timestamptz,
   "Description" text,
   "Category" text,
@@ -146,11 +146,11 @@ create table "vEcsOperationLog" (
 );
 
 create table "vEcsOverviewCustomersList" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text,
   "OrderCount" integer,
   "PaidTotalAmount" numeric,
-  "ConfigID" text
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vEcsOverviewSalesList" (
@@ -163,15 +163,15 @@ create table "vEcsOverviewSalesList" (
   "OrderStatus" text,
   "FulFilmentStatus" text,
   "PaymentStatus" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "TT" integer,
-  "ConfigID" text
+  "ConfigID" text  -- -> IntegrationConfig
 );
 
 create table "vEcsPaymentProcessorMapping" (
   "ID" text,
-  "ConfigID" text,
-  "PaymentProcessorID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
+  "PaymentProcessorID" text,  -- -> PaymentProcessor
   "PaymentProcessorName" text,
   "LedgerAccount" text,
   "AccountName" text,
@@ -180,9 +180,9 @@ create table "vEcsPaymentProcessorMapping" (
 
 create table "vEcsTaxMapping" (
   "ID" text,
-  "ECSConfigID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
   "ECSTaxType" text,
-  "ECSTaxID" text,
+  "ECSTaxID" text,  -- -> ECSTax
   "Description" text,
   "Value" text,
   "TaxRuleName" text,
@@ -195,12 +195,12 @@ create table "vFaireTaxonomyType" (
 );
 
 create table "vLocation" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
 create table "vTax" (
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "Description" text
 );
 

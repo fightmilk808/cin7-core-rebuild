@@ -6,22 +6,22 @@ create table "AccountingDimensionsWrapper" (
 );
 
 create table "AttachedFile" (
-  "EmailID" text,
-  "AttachmentID" text,
+  "EmailID" text,  -- -> Email
+  "AttachmentID" text,  -- -> Attachment
   "Send" boolean,
   "FileName" text,
   "ContentType" text,
-  "BlobGUID" text
+  "BlobGUID" text  -- -> Blob (stored file)
 );
 
 create table "BOMProductList" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "CodeWithName" text
 );
 
 create table "BalanceWrapper" (
   "HasErrors" boolean,
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "HistoricalAccount" text,
   "Error" text,
   "OpeningBalancesDate" timestamptz
@@ -30,7 +30,7 @@ create table "BalanceWrapper" (
 create table "BinGroup" (
   "ID" text,
   "Name" text,
-  "LocationID" text
+  "LocationID" text  -- -> Location
 );
 
 create table "Brand" (
@@ -61,11 +61,11 @@ create table "CountryRegion" (
 );
 
 create table "CustomPriceLine" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductName" text,
   "ProductCode" text,
   "CustomPrice" numeric,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "LatestPrice" numeric,
   "LatestDate" timestamptz,
   "ValidationState" text,
@@ -74,7 +74,7 @@ create table "CustomPriceLine" (
 
 create table "DearToDearContactEmail" (
   "FakeID" text,
-  "EmailID" text,
+  "EmailID" text,  -- -> Email
   "ID" text,
   "Email" text,
   "ConnectionType" integer
@@ -87,7 +87,7 @@ create table "DiscountWrapper" (
 
 create table "Email" (
   "Checked" text,
-  "EmailID" text,
+  "EmailID" text,  -- -> Email
   "From" text,
   "To" text,
   "CC" text,
@@ -150,7 +150,7 @@ create table "MovementTypeModel" (
 
 create table "OpeningBalanceLine" (
   "Code" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Name" text,
   "Currency" text,
   "CurrencyName" text,
@@ -178,7 +178,7 @@ create table "PerformedImportActions" (
 
 create table "PickZones" (
   "Value" text,
-  "LocationID" text
+  "LocationID" text  -- -> Location
 );
 
 create table "PriceTiers" (
@@ -187,7 +187,7 @@ create table "PriceTiers" (
 );
 
 create table "ProductMarkupPrices" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "PriceTier1" numeric,
   "PriceTier2" numeric,
   "PriceTier3" numeric,
@@ -239,7 +239,7 @@ create table "PurchaseReferenceData" (
   "DefaultPurchaseMethod" text,
   "HeadersVisible" text,
   "FixedAssetPermission" text,
-  "CurrentAttributeSetId" text,
+  "CurrentAttributeSetId" text,  -- -> AttributeSet
   "AttributeSetCopyFrom" text,
   "UsePurchasePutAway" boolean,
   "LockDate" timestamptz,
@@ -287,7 +287,7 @@ create table "ReasonForReturn" (
 );
 
 create table "Reassign_TenantContact" (
-  "ContactID" text,
+  "ContactID" text,  -- -> Contact
   "Name" text
 );
 
@@ -295,7 +295,7 @@ create table "Recipients" (
   "Name" text,
   "Email" text,
   "IncludeInEmail" text,
-  "SupplierCustomerID" text,
+  "SupplierCustomerID" text,  -- -> Customer
   "ConnectionType" integer
 );
 
@@ -321,8 +321,8 @@ create table "SupplyInterval" (
   "IsFriday" boolean,
   "IsSaturday" boolean,
   "IsSunday" boolean,
-  "LocationID" text,
-  "LeadSafetyOptionID" text
+  "LocationID" text,  -- -> Location
+  "LeadSafetyOptionID" text  -- -> LeadSafetyOption
 );
 
 create table "TaxInclusive" (
@@ -344,7 +344,7 @@ create table "TenantLocationPutAwayRule" (
   "ID" text,
   "Name" text,
   "IsActive" boolean,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "IsAppliedForAllProducts" boolean,
   "IsAllowBatchSplit" boolean,
   "MinCapacity" numeric,
@@ -364,7 +364,7 @@ create table "TenantLocationSupplyRule" (
   "Name" text,
   "IsActive" boolean,
   "IsAppliedForAllProducts" boolean,
-  "LocationID" text
+  "LocationID" text  -- -> Location
 );
 
 create table "WarrantySetupWrapper" (
@@ -382,20 +382,20 @@ create table "accountModel" (
 );
 
 create table "pProductAdditionalDescriptions" (
-  "SIMProductID" text,
+  "SIMProductID" text,  -- -> SIMProduct
   "AliasName" text,
   "ShopName" text,
   "ShopType" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "SKU" text,
-  "ECSConfigID" text,
-  "ECSProductID" text,
-  "ECSVariantID" text,
+  "ECSConfigID" text,  -- -> IntegrationConfig
+  "ECSProductID" text,  -- -> ECSProduct
+  "ECSVariantID" text,  -- -> ECSVariant
   "ECSDescription" text
 );
 
 create table "pProduct_AdditionalUnitsOfMeasure_SearchProduct" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Name" text,
   "Code" text,
   "Unit" text,
@@ -474,7 +474,7 @@ create table "vAccountingDimension" (
 );
 
 create table "vAccountingDimensionAttribute" (
-  "AttributeID" text,
+  "AttributeID" text,  -- -> Attribute
   "Name" text,
   "Type" text,
   "ListValues" text,
@@ -508,9 +508,9 @@ create table "vAccountingDimensionsChartOfAccount" (
 
 create table "vBOMServices" (
   "FakeID" integer,
-  "ItemID" text,
-  "ComponentProductID" text,
-  "ProductID" text,
+  "ItemID" text,  -- -> Item (context-specific)
+  "ComponentProductID" text,  -- -> ComponentProduct
+  "ProductID" text,  -- -> Product
   "Name" text,
   "Quantity" numeric,
   "Cost" numeric,
@@ -536,7 +536,7 @@ create table "vBankAccount" (
 );
 
 create table "vBankAccountToShow" (
-  "AccountID" text,
+  "AccountID" text,  -- -> Account
   "Bank" text,
   "AccountName" text,
   "AccountCode" text,
@@ -551,12 +551,12 @@ create table "vBankAccountToShow" (
 );
 
 create table "vBillOfMaterialFinishedProducts" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Cost" numeric,
   "CostingMethod" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "Unit" text,
   "PriceTier1" numeric,
   "PriceTier2" numeric,
@@ -571,12 +571,12 @@ create table "vBillOfMaterialFinishedProducts" (
 );
 
 create table "vBillOfMaterialProducts" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Cost" numeric,
   "CostingMethod" text,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "Unit" text,
   "PriceTier1" numeric,
   "PriceTier2" numeric,
@@ -591,7 +591,7 @@ create table "vBillOfMaterialProducts" (
 );
 
 create table "vBillOfMaterialServices" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Name" text,
   "PriceTear1" numeric,
   "PriceTear2" numeric,
@@ -608,9 +608,9 @@ create table "vBillOfMaterialServices" (
 
 create table "vBillOfMaterials" (
   "FakeID" integer,
-  "ItemID" text,
-  "ComponentProductID" text,
-  "ProductID" text,
+  "ItemID" text,  -- -> Item (context-specific)
+  "ComponentProductID" text,  -- -> ComponentProduct
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "Quantity" numeric,
@@ -625,17 +625,17 @@ create table "vBillOfMaterials" (
 );
 
 create table "vBin" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
 create table "vBinData" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Name" text
 );
 
 create table "vBinDataBinGroups" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Name" text
 );
 
@@ -645,13 +645,13 @@ create table "vBinGroup" (
 );
 
 create table "vBinSimple" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text,
-  "BinGroupID" text
+  "BinGroupID" text  -- -> BinGroup
 );
 
 create table "vBomVersion" (
-  "BomID" text,
+  "BomID" text,  -- -> ProductionBOM
   "Version" integer,
   "Name" text,
   "DisplayName" text,
@@ -659,17 +659,17 @@ create table "vBomVersion" (
 );
 
 create table "vBrand" (
-  "BrandID" text,
+  "BrandID" text,  -- -> Brand
   "Name" text
 );
 
 create table "vCategory" (
-  "CategoryID" text,
+  "CategoryID" text,  -- -> ProductCategory
   "Name" text
 );
 
 create table "vCondition" (
-  "ConditionID" text,
+  "ConditionID" text,  -- -> Condition
   "Field" text,
   "Condition" text,
   "Expected" text,
@@ -689,8 +689,8 @@ create table "vCountryOfOrigin" (
 );
 
 create table "vCustomPrice" (
-  "ProductID" text,
-  "CustomerID" text,
+  "ProductID" text,  -- -> Product
+  "CustomerID" text,  -- -> Customer
   "Price" numeric,
   "IsDeleted" boolean
 );
@@ -711,11 +711,11 @@ create table "vDeal" (
 
 create table "vDearToDearNetworking" (
   "ID" text,
-  "SupplierCustomerID" text,
+  "SupplierCustomerID" text,  -- -> Customer
   "Name" text,
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "SupplierName" text,
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "CustomerName" text,
   "ConnectionType" integer,
   "IsInviteSent" boolean,
@@ -729,14 +729,14 @@ create table "vDearToDearNetworking" (
 );
 
 create table "vDemandLocationID" (
-  "SupplyIntervalID" text,
-  "LocationID" text
+  "SupplyIntervalID" text,  -- -> SupplyInterval
+  "LocationID" text  -- -> Location
 );
 
 create table "vDiscountLine" (
   "FakeID" integer,
   "ID" text,
-  "DiscountID" text,
+  "DiscountID" text,  -- -> Discount
   "MinValue" numeric,
   "MaxValue" numeric,
   "Type" text,
@@ -748,9 +748,9 @@ create table "vDiscountLine" (
 create table "vDiscountMatrix" (
   "FakeID" integer,
   "ID" text,
-  "DiscountID" text,
-  "CustomerID" text,
-  "ProductID" text,
+  "DiscountID" text,  -- -> Discount
+  "CustomerID" text,  -- -> Customer
+  "ProductID" text,  -- -> Product
   "Customer" text,
   "DiscountName" text,
   "CustomerTag" text,
@@ -759,7 +759,7 @@ create table "vDiscountMatrix" (
 );
 
 create table "vDiscountMatrixCustomer" (
-  "CustomerID" text,
+  "CustomerID" text,  -- -> Customer
   "Name" text
 );
 
@@ -768,15 +768,15 @@ create table "vError" (
 );
 
 create table "vExpenseItem" (
-  "ExpenseItemID" text,
+  "ExpenseItemID" text,  -- -> ExpenseItem
   "Description" text,
   "AccountCode" text
 );
 
 create table "vFamily" (
-  "FamilyID" text,
+  "FamilyID" text,  -- -> ProductFamily
   "FamilyValue" text,
-  "RMAReturnPolicyID" text
+  "RMAReturnPolicyID" text  -- -> RMAReturnPolicy
 );
 
 create table "vIntegration" (
@@ -786,7 +786,7 @@ create table "vIntegration" (
 );
 
 create table "vLeadStatus" (
-  "StatusID" text,
+  "StatusID" text,  -- -> Status
   "Name" text,
   "IsActive" boolean,
   "IsKanban" boolean,
@@ -796,24 +796,24 @@ create table "vLeadStatus" (
 );
 
 create table "vLocation" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
 create table "vLogisticsPath" (
-  "PathID" text,
-  "WarehouseLocationID" text,
-  "ShopFloorLocationID" text,
-  "RetailLocationID" text
+  "PathID" text,  -- -> Path
+  "WarehouseLocationID" text,  -- -> WarehouseLocation
+  "ShopFloorLocationID" text,  -- -> ShopFloorLocation
+  "RetailLocationID" text  -- -> RetailLocation
 );
 
 create table "vMakeToOrderBomConfiguration" (
-  "BOMConfigurationID" text,
+  "BOMConfigurationID" text,  -- -> ProductionBOM
   "HasValidationErrors" boolean,
-  "MenuConfigurationID" text,
+  "MenuConfigurationID" text,  -- -> MenuConfiguration
   "Name" text,
-  "ProductID" text,
-  "TemplateID" text,
+  "ProductID" text,  -- -> Product
+  "TemplateID" text,  -- -> Template
   "TemplateName" text,
   "QuantityRelationsJSON" text,
   "QuantityConfigurationJSON" text,
@@ -823,9 +823,9 @@ create table "vMakeToOrderBomConfiguration" (
 );
 
 create table "vMakeToOrderBomImage" (
-  "MenuConfigurationID" text,
+  "MenuConfigurationID" text,  -- -> MenuConfiguration
   "TemplateName" text,
-  "OperationID" text,
+  "OperationID" text,  -- -> Operation
   "OriginalDetailedImageUrl" text,
   "OriginalSketchUrl" text,
   "UpdatedDetailedImageUrl" text,
@@ -839,17 +839,17 @@ create table "vMakeToOrderBomProductFamily" (
 );
 
 create table "vMakeToOrderBomProductMap" (
-  "BOMConfigurationID" text,
-  "BOMProductMapID" text,
+  "BOMConfigurationID" text,  -- -> ProductionBOM
+  "BOMProductMapID" text,  -- -> BOMProductMap
   "IsMain" boolean,
   "MappedProductCode" jsonb,
-  "MappedProductID" jsonb,
+  "MappedProductID" jsonb,  -- -> MappedProduct
   "MappedProductName" jsonb,
   "MappedProductUnit" jsonb,
-  "MenuConfigurationID" text,
+  "MenuConfigurationID" text,  -- -> MenuConfiguration
   "Name" text,
   "MenuConfigurationType" integer,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Quantity" numeric,
   "Order" numeric
 );
@@ -861,14 +861,14 @@ create table "vMakeToOrderConditionOperator" (
 
 create table "vMakeToOrderConfigMenuItem" (
   "Level" integer,
-  "MenuConfigurationID" text,
+  "MenuConfigurationID" text,  -- -> MenuConfiguration
   "Name" text,
   "Type" integer
 );
 
 create table "vMakeToOrderConfigTemplate" (
   "IsDisabled" boolean,
-  "TemplateID" text,
+  "TemplateID" text,  -- -> Template
   "TemplateName" text
 );
 
@@ -879,27 +879,27 @@ create table "vMakeToOrderJoinCondition" (
 
 create table "vMakeToOrderMappedProduct" (
   "ProductCode" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Name" text,
   "Unit" text
 );
 
 create table "vMakeToOrderMenuConfiguration" (
   "Description" text,
-  "DetailedImageID" text,
-  "MenuConfigurationID" text,
+  "DetailedImageID" text,  -- -> DetailedImage
+  "MenuConfigurationID" text,  -- -> MenuConfiguration
   "IsDefault" jsonb,
   "IsOpened" jsonb,
   "IsOptional" jsonb,
   "Name" text,
   "Order" integer,
-  "ParentID" jsonb,
+  "ParentID" jsonb,  -- -> Parent
   "PriceDelta" numeric,
-  "ProductFamilyID" jsonb,
+  "ProductFamilyID" jsonb,  -- -> ProductFamily
   "ProductFamilyName" jsonb,
   "ProductFamilyUnitOfMeasure" text,
-  "ProductID" text,
-  "SketchImageID" text,
+  "ProductID" text,  -- -> Product
+  "SketchImageID" text,  -- -> SketchImage
   "Type" integer,
   "IsCopy" boolean,
   "ValidationState" text,
@@ -907,33 +907,33 @@ create table "vMakeToOrderMenuConfiguration" (
 );
 
 create table "vMakeToOrderMenuConfigurationCondition" (
-  "MenuConfigurationConditionID" text,
+  "MenuConfigurationConditionID" text,  -- -> MenuConfigurationCondition
   "Condition" text,
   "IsHidden" boolean,
   "JoinCondition" text,
-  "MenuConfigurationID" text,
-  "RelatedMenuConfigurationID" text,
+  "MenuConfigurationID" text,  -- -> MenuConfiguration
+  "RelatedMenuConfigurationID" text,  -- -> RelatedMenuConfiguration
   "RelatedMenuConfigurationName" text,
   "ValidationState" text,
   "ValidationText" text
 );
 
 create table "vMakeToOrderQuantityMenuItem" (
-  "BOMConfigurationID" text,
-  "MenuConfigurationID" text,
+  "BOMConfigurationID" text,  -- -> ProductionBOM
+  "MenuConfigurationID" text,  -- -> MenuConfiguration
   "Name" text
 );
 
 create table "vMakeToOrderQuantityMenuItemOption" (
   "Level" integer,
-  "MenuConfigurationID" text,
+  "MenuConfigurationID" text,  -- -> MenuConfiguration
   "Name" text
 );
 
 create table "vMakeToOrderTreeConfigItem" (
   "IsDisabled" boolean,
   "Level" integer,
-  "MenuConfigurationID" text,
+  "MenuConfigurationID" text,  -- -> MenuConfiguration
   "Name" text
 );
 
@@ -946,23 +946,23 @@ create table "vMilestone" (
   "ID" text,
   "Name" text,
   "Number" integer,
-  "RMACostTypeID" text,
+  "RMACostTypeID" text,  -- -> RMACostType
   "RMACostTypeName" text,
   "ChargedTo" text,
-  "RMAReturnPolicyID" text,
+  "RMAReturnPolicyID" text,  -- -> RMAReturnPolicy
   "ValidationState" text,
   "ValidationText" text
 );
 
 create table "vMissingExpenseAccountInBOM" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text
 );
 
 create table "vOpeningBalanceFixedAsset" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "PurchaseOrderNumber" text,
   "AccountCode" text,
   "Amount" numeric
@@ -970,7 +970,7 @@ create table "vOpeningBalanceFixedAsset" (
 
 create table "vOpeningBalanceMultiCurrencyLine" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "AccountCode" text,
   "Type" text,
   "Currency" text,
@@ -983,9 +983,9 @@ create table "vOpeningBalanceMultiCurrencyLine" (
 );
 
 create table "vOpeningBalancePurchases" (
-  "TaskID" text,
-  "TenantID" text,
-  "SupplierID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "TenantID" text,  -- -> Tenant
+  "SupplierID" text,  -- -> Supplier
   "AccountCode" text,
   "SupplierName" text,
   "Currency" text,
@@ -999,9 +999,9 @@ create table "vOpeningBalancePurchases" (
 );
 
 create table "vOpeningBalanceSales" (
-  "TaskID" text,
-  "TenantID" text,
-  "CustomerID" text,
+  "TaskID" text,  -- -> Task (any document)
+  "TenantID" text,  -- -> Tenant
+  "CustomerID" text,  -- -> Customer
   "AccountCode" text,
   "CustomerName" text,
   "Currency" text,
@@ -1017,15 +1017,15 @@ create table "vOpeningBalanceSales" (
 
 create table "vOpeningBalanceStockOnHand" (
   "ID" text,
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "PurchaseOrderNumber" text,
   "AccountCode" text,
   "Amount" numeric
 );
 
 create table "vOpeningBalancesFixedAssetDetail" (
-  "CardID" text,
-  "TaskID" text,
+  "CardID" text,  -- -> InventoryCard
+  "TaskID" text,  -- -> Task (any document)
   "Date" timestamptz,
   "PurchaseDate" timestamptz,
   "DepreciationStartDate" timestamptz,
@@ -1033,9 +1033,9 @@ create table "vOpeningBalancesFixedAssetDetail" (
   "UnitCost" numeric,
   "BatchSN" text,
   "Product" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "Location" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "DepreciationMethod" text,
   "AveragingMethod" text,
   "Rate" numeric,
@@ -1051,8 +1051,8 @@ create table "vOpeningBalancesFixedAssetDetail" (
 );
 
 create table "vOpeningBalancesSOHDetail" (
-  "CardID" text,
-  "TaskID" text,
+  "CardID" text,  -- -> InventoryCard
+  "TaskID" text,  -- -> Task (any document)
   "Date" timestamptz,
   "Quantity" numeric,
   "UnitCost" numeric,
@@ -1067,7 +1067,7 @@ create table "vOpeningBalancesSOHDetail" (
 );
 
 create table "vOrderRouting" (
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "OrderRoutingEnabled" boolean,
   "OrderRoutingKeepRouting" boolean,
   "ValidationText" text,
@@ -1076,13 +1076,13 @@ create table "vOrderRouting" (
 
 create table "vOrderRoutingSettings" (
   "ID" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "LocationName" text,
   "City" text,
   "State" text,
   "ZipPostCode" text,
   "Country" text,
-  "TenantID" text,
+  "TenantID" text,  -- -> Tenant
   "ValidationText" text,
   "ValidationState" text
 );
@@ -1092,14 +1092,14 @@ create table "vPickZone" (
 );
 
 create table "vProblematicProductCode" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text
 );
 
 create table "vProductAlternative" (
-  "MainProductID" text,
-  "AlternativeProductID" text,
+  "MainProductID" text,  -- -> Product
+  "AlternativeProductID" text,  -- -> AlternativeProduct
   "AlternativeProductCode" text,
   "AlternativeProductName" text,
   "Matching" numeric,
@@ -1111,7 +1111,7 @@ create table "vProductAlternative" (
 );
 
 create table "vProductAlternativeAdd" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text
 );
@@ -1127,7 +1127,7 @@ create table "vProductCombinedList" (
   "LatestSupplier" text,
   "Status" text,
   "Selected" boolean,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "CustomField1" text,
   "CustomField2" text,
   "CustomField3" text,
@@ -1143,12 +1143,12 @@ create table "vProductCombinedList" (
   "CountVariants" integer,
   "Barcode" text,
   "BomType" text,
-  "AttributeSetID" text
+  "AttributeSetID" text  -- -> AttributeSet
 );
 
 create table "vProductImage" (
-  "ProductID" text,
-  "ImageID" text,
+  "ProductID" text,  -- -> Product
+  "ImageID" text,  -- -> Blob (stored file)
   "ContentType" text,
   "FileName" text,
   "Uri" text,
@@ -1162,10 +1162,10 @@ create table "vProductImage" (
 create table "vProductLeadSafetyOptionDisplay" (
   "FakeID" integer,
   "ID" text,
-  "ProductID" text,
-  "LocationID" text,
+  "ProductID" text,  -- -> Product
+  "LocationID" text,  -- -> Location
   "LocationName" text,
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "SupplierName" text,
   "ReorderQuantity" numeric,
   "Lead" integer,
@@ -1182,10 +1182,10 @@ create table "vProductLeadSafetyOptionDisplay" (
 create table "vProductLeadSafetyOptions" (
   "FakeID" integer,
   "ID" text,
-  "ProductID" text,
-  "LocationID" text,
+  "ProductID" text,  -- -> Product
+  "LocationID" text,  -- -> Location
   "LocationName" text,
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "SupplierName" text,
   "ReorderQuantity" numeric,
   "Lead" integer,
@@ -1196,7 +1196,7 @@ create table "vProductLeadSafetyOptions" (
 );
 
 create table "vProductList" (
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "Name" text,
   "DefaultUnitOfMeasure" text,
@@ -1206,7 +1206,7 @@ create table "vProductList" (
   "LatestSupplier" text,
   "Status" text,
   "Selected" boolean,
-  "ImageID" text,
+  "ImageID" text,  -- -> Blob (stored file)
   "CustomField1" text,
   "CustomField2" text,
   "CustomField3" text,
@@ -1223,8 +1223,8 @@ create table "vProductList" (
 create table "vProductLocation" (
   "FakeID" integer,
   "ID" text,
-  "LocationID" text,
-  "ProductID" text,
+  "LocationID" text,  -- -> Location
+  "ProductID" text,  -- -> Product
   "MinimumBeforeReorder" numeric,
   "ReorderQuantity" numeric,
   "LocationName" text,
@@ -1236,16 +1236,16 @@ create table "vProductLocation" (
 
 create table "vProductMarkups" (
   "TierNumber" integer,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "MarkupType" text,
   "UsePriceType" text,
   "MarkupValue" numeric
 );
 
 create table "vProductMovement" (
-  "CardDetailsID" text,
-  "ProductID" text,
-  "TaskID" text,
+  "CardDetailsID" text,  -- -> InventoryCard
+  "ProductID" text,  -- -> Product
+  "TaskID" text,  -- -> Task (any document)
   "Type" text,
   "Number" text,
   "Status" text,
@@ -1259,9 +1259,9 @@ create table "vProductMovement" (
 );
 
 create table "vProductMovementQuantity" (
-  "CardDetailsID" text,
-  "ProductID" text,
-  "TaskID" text,
+  "CardDetailsID" text,  -- -> InventoryCard
+  "ProductID" text,  -- -> Product
+  "TaskID" text,  -- -> Task (any document)
   "Type" text,
   "Number" text,
   "Status" text,
@@ -1274,9 +1274,9 @@ create table "vProductMovementQuantity" (
 );
 
 create table "vProductQuantityChanges" (
-  "ConfigID" text,
-  "ProductID" text,
-  "TaskID" text,
+  "ConfigID" text,  -- -> IntegrationConfig
+  "ProductID" text,  -- -> Product
+  "TaskID" text,  -- -> Task (any document)
   "ChangeDate" timestamptz,
   "Action" text,
   "Reference" text,
@@ -1289,8 +1289,8 @@ create table "vProductQuantityChanges" (
 );
 
 create table "vProductionBom" (
-  "BomID" text,
-  "ProductID" text,
+  "BomID" text,  -- -> ProductionBOM
+  "ProductID" text,  -- -> Product
   "OutputQuantity" numeric,
   "BufferPercent" numeric,
   "InstructionUrl" text,
@@ -1315,8 +1315,8 @@ create table "vProductionBom" (
 );
 
 create table "vProductionBomAttachment" (
-  "AttachmentID" text,
-  "OperationID" text,
+  "AttachmentID" text,  -- -> Attachment
+  "OperationID" text,  -- -> Operation
   "FileName" text,
   "Date" timestamptz,
   "ContentType" text,
@@ -1328,9 +1328,9 @@ create table "vProductionBomAttachment" (
 );
 
 create table "vProductionBomComponent" (
-  "BomComponentID" text,
-  "OperationID" text,
-  "ProductID" text,
+  "BomComponentID" text,  -- -> BomComponent
+  "OperationID" text,  -- -> Operation
+  "ProductID" text,  -- -> Product
   "ProductName" text,
   "ProductSku" text,
   "Quantity" numeric,
@@ -1357,11 +1357,10 @@ create table "vProductionBomComponent" (
 );
 
 create table "vProductionBomCopy" (
-  "BomID" text,
-  "ProductID" text,
+  "BomID" text,  -- -> ProductionBOM
+  "ProductID" text,  -- -> Product
   "Version" integer,
   "VersionName" text,
-  "ProductID" text,
   "ProductCode" text,
   "Name" text,
   "Description" text,
@@ -1369,8 +1368,8 @@ create table "vProductionBomCopy" (
 );
 
 create table "vProductionBomNote" (
-  "NoteID" text,
-  "OperationID" text,
+  "NoteID" text,  -- -> Note
+  "OperationID" text,  -- -> Operation
   "Note" text,
   "ValidationState" text,
   "ValidationText" text,
@@ -1378,14 +1377,14 @@ create table "vProductionBomNote" (
 );
 
 create table "vProductionBomOperation" (
-  "OperationID" text,
-  "BomID" text,
+  "OperationID" text,  -- -> Operation
+  "BomID" text,  -- -> ProductionBOM
   "Order" integer,
   "Name" text,
   "CycleTime" integer,
   "CycleTimeString" text,
   "UnitsPerCycle" numeric,
-  "WorkCenterID" text,
+  "WorkCenterID" text,  -- -> WorkCentre
   "WorkCenterName" text,
   "WorkCenterCoManProcurementType" text,
   "WorkCenterCode" text,
@@ -1400,8 +1399,8 @@ create table "vProductionBomOperation" (
 
 create table "vProductionBomOperationLink" (
   "ID" text,
-  "OperationID" text,
-  "RelatedOperationID" text,
+  "OperationID" text,  -- -> Operation
+  "RelatedOperationID" text,  -- -> RelatedOperation
   "RelationType" integer,
   "ValidationState" text,
   "ValidationText" text
@@ -1409,8 +1408,8 @@ create table "vProductionBomOperationLink" (
 
 create table "vProductionBomOperationProduct" (
   "ID" text,
-  "OperationID" text,
-  "ProductID" text,
+  "OperationID" text,  -- -> Operation
+  "ProductID" text,  -- -> Product
   "ProductName" text,
   "ProductSku" text,
   "Type" integer,
@@ -1420,7 +1419,6 @@ create table "vProductionBomOperationProduct" (
   "OutputQuantity" numeric,
   "AverageCost" numeric,
   "CostingMethod" text,
-  "PriceTier" numeric,
   "PriceTier1" numeric,
   "PriceTier2" numeric,
   "PriceTier3" numeric,
@@ -1443,9 +1441,9 @@ create table "vProductionBomOperationProduct" (
 );
 
 create table "vProductionBomResource" (
-  "BomResourceID" text,
-  "OperationID" text,
-  "ResourceID" text,
+  "BomResourceID" text,  -- -> BomResource
+  "OperationID" text,  -- -> Operation
+  "ResourceID" text,  -- -> ProductionResource
   "ResourceName" text,
   "ResourceCode" text,
   "Quantity" numeric,
@@ -1458,8 +1456,8 @@ create table "vProductionBomResource" (
 );
 
 create table "vProductionBomTemplate" (
-  "TemplateID" text,
-  "OperationID" text,
+  "TemplateID" text,  -- -> Template
+  "OperationID" text,  -- -> Operation
   "Name" text,
   "Quantity" numeric,
   "ValidationState" text,
@@ -1468,7 +1466,7 @@ create table "vProductionBomTemplate" (
 );
 
 create table "vProductionCalendar" (
-  "CalendarID" text,
+  "CalendarID" text,  -- -> Calendar
   "Year" integer,
   "WeekStart" integer,
   "ValidationState" text,
@@ -1476,8 +1474,8 @@ create table "vProductionCalendar" (
 );
 
 create table "vProductionCalendarDay" (
-  "DayID" text,
-  "CalendarID" text,
+  "DayID" text,  -- -> Day
+  "CalendarID" text,  -- -> Calendar
   "DayOfWeek" integer,
   "IsWeekend" boolean,
   "StartTime" integer,
@@ -1494,8 +1492,8 @@ create table "vProductionCalendarDay" (
 );
 
 create table "vProductionCalendarSpecialDay" (
-  "DayID" text,
-  "CalendarID" text,
+  "DayID" text,  -- -> Day
+  "CalendarID" text,  -- -> Calendar
   "Date" timestamptz,
   "IsWeekend" boolean,
   "IsHoliday" boolean,
@@ -1513,15 +1511,15 @@ create table "vProductionCalendarSpecialDay" (
 );
 
 create table "vProductionOperationItem" (
-  "ItemID" text,
-  "OperationID" text,
+  "ItemID" text,  -- -> Item (context-specific)
+  "OperationID" text,  -- -> Operation
   "Type" text,
   "Value" text,
-  "ResourceID" text,
+  "ResourceID" text,  -- -> ProductionResource
   "ResourceName" text,
   "ResourceCode" text,
   "Quantity" numeric,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductName" text,
   "ProductSku" text,
   "WastageQty" numeric,
@@ -1551,13 +1549,13 @@ create table "vProductionOperationItem" (
   "PriceTier8" numeric,
   "PriceTier9" numeric,
   "PriceTier10" numeric,
-  "TemplateID" text,
+  "TemplateID" text,  -- -> Template
   "IsBackflush" boolean,
   "CostCalculationType" integer
 );
 
 create table "vProductionResources" (
-  "ResourceID" text,
+  "ResourceID" text,  -- -> ProductionResource
   "Code" text,
   "Name" text,
   "ResourceCost" numeric,
@@ -1567,8 +1565,8 @@ create table "vProductionResources" (
 create table "vProductsAdditionalUnitsOfMeasure" (
   "FakeID" integer,
   "ID" text,
-  "ParentProductID" text,
-  "ProductID" text,
+  "ParentProductID" text,  -- -> Product
+  "ProductID" text,  -- -> Product
   "Name" text,
   "ProductCode" text,
   "DefaultUnitOfMeasure" text,
@@ -1590,13 +1588,13 @@ create table "vProductsAdditionalUnitsOfMeasure" (
 
 create table "vProductsStock" (
   "Name" text,
-  "ProductID" text,
+  "ProductID" text,  -- -> Product
   "ProductCode" text,
   "BatchSN" text,
   "ExpiryDate" timestamptz,
   "Location" text,
   "Bin" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "OnHand" numeric,
   "OnHandVolume" numeric,
   "Available" numeric,
@@ -1615,7 +1613,7 @@ create table "vProductsStock" (
 );
 
 create table "vProductsStockAllocated" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Number" text,
   "Type" text,
   "CustomerName" text,
@@ -1624,7 +1622,7 @@ create table "vProductsStockAllocated" (
 );
 
 create table "vProductsStockInTransit" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Number" text,
   "SupplierName" text,
   "Date" timestamptz,
@@ -1635,7 +1633,7 @@ create table "vProductsStockInTransit" (
 );
 
 create table "vProductsStockOnOrder" (
-  "TaskID" text,
+  "TaskID" text,  -- -> Task (any document)
   "Number" text,
   "SupplierName" text,
   "Date" timestamptz,
@@ -1651,7 +1649,7 @@ create table "vPublishingProfile" (
 );
 
 create table "vPurchase_Supplier" (
-  "SupplierID" text,
+  "SupplierID" text,  -- -> Supplier
   "Name" text,
   "Currency" text,
   "PaymentTerm" text,
@@ -1668,13 +1666,13 @@ create table "vRMACostType" (
 
 create table "vRMAExpenseAccount" (
   "DisplayName" text,
-  "RuleID" text
+  "RuleID" text  -- -> Rule (context-specific)
 );
 
 create table "vServiceUsage" (
   "ID" text,
-  "ProductID" text,
-  "TaskID" text,
+  "ProductID" text,  -- -> Product
+  "TaskID" text,  -- -> Task (any document)
   "Type" text,
   "Number" text,
   "Status" text,
@@ -1686,15 +1684,15 @@ create table "vSettings" (
   "NoWarrantyExpenseAccount" text,
   "ScrapWriteOffDefaultExpenseAccount" text,
   "WarrantyExpenseAccount" text,
-  "DefaultReturnLocationID" text,
+  "DefaultReturnLocationID" text,  -- -> ReturnLocation
   "CreateCreditNoteType" text
 );
 
 create table "vShipZoneApplyTo" (
   "ID" text,
-  "ZoneID" text,
+  "ZoneID" text,  -- -> Zone
   "Country2" text,
-  "StateID" text,
+  "StateID" text,  -- -> State
   "PostCodeFrom" text,
   "PostCodeTo" text,
   "PostCodesList" text,
@@ -1709,9 +1707,9 @@ create table "vShipZoneCountryCode" (
 
 create table "vSupplierProduct" (
   "FakeID" integer,
-  "SupplierProductID" text,
-  "SupplierID" text,
-  "ProductID" text,
+  "SupplierProductID" text,  -- -> SupplierProduct
+  "SupplierID" text,  -- -> Supplier
+  "ProductID" text,  -- -> Product
   "SupplierName" text,
   "Currency" text,
   "SupplierInventoryCode" text,
@@ -1729,12 +1727,12 @@ create table "vSupplierProduct" (
 create table "vSupplyRuleAction" (
   "ID" text,
   "SupplyTask" text,
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "TakeStockQuantity" text,
   "FulfilDemandQuantity" text,
   "Capacity" numeric,
   "SupplierCondition" text,
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "LineOrder" integer,
   "IsOtherwiseAction" boolean
 );
@@ -1751,7 +1749,7 @@ create table "vSystemAccountInfo" (
 );
 
 create table "vTenantAddress" (
-  "AddressID" text,
+  "AddressID" text,  -- -> Address
   "Line1" text,
   "Line2" text,
   "CitySuburb" text,
@@ -1763,26 +1761,26 @@ create table "vTenantAddress" (
 );
 
 create table "vTenantLocationList" (
-  "LocationID" text,
+  "LocationID" text,  -- -> Location
   "Description" text
 );
 
 create table "vTenantShipZone" (
-  "ZoneID" text,
+  "ZoneID" text,  -- -> Zone
   "Name" text,
   "IsRestZone" boolean,
   "ShortDesc" text,
   "PricesInclTax" boolean,
   "DefaultShippingCost" numeric,
   "Negative" boolean,
-  "TaxRuleID" text,
+  "TaxRuleID" text,  -- -> TaxRule
   "ValidationText" text,
   "ValidationState" text
 );
 
 create table "vTenantTaxationRuleComponent" (
   "FakeID" integer,
-  "RuleID" text,
+  "RuleID" text,  -- -> Rule (context-specific)
   "ID" text,
   "Name" text,
   "Percent" numeric,
@@ -1797,7 +1795,7 @@ create table "vWarrantySetup" (
 );
 
 create table "vWorkCenter" (
-  "WorkCenterID" text,
+  "WorkCenterID" text,  -- -> WorkCentre
   "Code" text,
   "Name" text,
   "IsCoMan" boolean,
@@ -1806,7 +1804,7 @@ create table "vWorkCenter" (
 );
 
 create table "vWorkCenters" (
-  "WorkCenterID" text,
+  "WorkCenterID" text,  -- -> WorkCentre
   "Code" text,
   "Name" text,
   "IsActive" boolean

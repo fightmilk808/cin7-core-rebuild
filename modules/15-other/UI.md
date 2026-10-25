@@ -483,3 +483,23 @@ What the page code builds and mounts into the layout's slots.
 | number field |  | `numTestPaymentAmount` | `` | required |
 | combo |  | `cmbCurrency` | `currencyStore` | shows `Code` · value `Code` |
 
+### `report-service/ProductionFinishedProductsWastageRate2019`
+
+0 grids · 4 standalone fields · 0 windows · 4 menus, buttons and other parts · 0 custom components
+
+#### Fields
+
+| Kind | Label | Renders into | Name / store | Details |
+|---|---|---|---|---|
+| combo |  | `tdReporting_Index_Period` | `DatePeriodStore` | shows `name` · value `value` · pick-only |
+| date field |  | `tdReporting_Index_From` | `` | format `UserDateFormat` |
+| date field |  | `tdReporting_Index_To` | `` | format `UserDateFormat` |
+| combo (+ add new) |  | `tdLayoutName` | `layoutStore` | shows `Layout` · value `Layout` · pick-only |
+
+#### Menus, buttons and other parts
+
+- **button** “Excel (without totals)”
+- **button** “Excel (with totals)”
+- **button** “PDF”
+- **button** “RTF”
+
