@@ -6,7 +6,7 @@ The Square connector: its settings page, mappings, logs and the endpoints behind
 |---|---:|
 | Pages | 1 |
 | Data models | 19 (plus [shared](../../00-shared/README.md)) |
-| Internal endpoints | 25 (10 write) |
+| Internal endpoints | 27 (11 write) |
 | Public API operations | 0 |
 
 ## How to rebuild it
@@ -55,7 +55,9 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
+| `/Square/AddPaymentsShop` | mvc |  | 🔴 write |  |  |  |
 | `/Square/ListOrUpdateProduct` | mvc | POST | 🔴 write | ConfigID ProductID SyncStockLevel bufferInventory useBufferInventory |  |  |
+| `/Square/Main` | mvc |  | 🟢 read |  |  |  |
 | `/Square/RemoveProduct` | mvc | POST | 🔴 write | ConfigID ProductID |  |  |
 | `/Square/SaveEcsProductLocally` | mvc | POST | 🔴 write | bufferInventory configID productID syncStockLevel useBufferInventory |  |  |
 | `/api/Square_Index_Dashboard_Summary` | api | GET | 🟢 read |  |  |  |

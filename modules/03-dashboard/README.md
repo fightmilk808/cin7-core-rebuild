@@ -6,8 +6,17 @@ The home page (`/Home`): counters and grids that link into the document lists, p
 |---|---:|
 | Pages | 2 |
 | Data models | 15 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 65 (33 write) |
+| Internal endpoints | 59 (28 write) |
 | Public API operations | 0 |
+
+## Integration endpoints this module calls
+
+Filed under their integration; listed here because pages in this module call them.
+
+| Integration | Endpoints |
+|---|---|
+| [quickbooks](../12-integrations/quickbooks/README.md) | `/Quickbooks/ConnectWizard`, `/api/QuickBooks_StartOnboardingImport`, `/api/QuickBooks_StartSync`, `/api/Quickbooks_HasConsolidatedTranscations` |
+| [xero](../12-integrations/xero/README.md) | `/api/Xero_StartOnboardingImport`, `/api/Xero_StartSync` |
 
 ## How to rebuild it
 
@@ -138,20 +147,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/api/Product_ImportInventoryList_Exceptions` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  |  |
 | `/api/Product_Index_vProductList` | api | GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | IsActive lang search |  | root |
 
-### Quickbooks
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/Quickbooks/ConnectWizard` | mvc | GET(navigate) | 🔴 write | isSandbox |  |  |
-| `/api/Quickbooks_HasConsolidatedTranscations` | api | GET | 🟢 read |  |  |  |
-
-### QuickBooks
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/QuickBooks_StartOnboardingImport` | api | POST | 🔴 write |  |  |  |
-| `/api/QuickBooks_StartSync` | api | POST | 🔴 write |  |  |  |
-
 ### SaleCommon
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
@@ -205,10 +200,3 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
 | `/api/TenantTaxationRule_Index_vTenantTaxationRule` | api | POST PUT REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  |  |
-
-### Xero
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/Xero_StartOnboardingImport` | api | POST | 🔴 write |  |  |  |
-| `/api/Xero_StartSync` | api | POST | 🔴 write |  |  |  |

@@ -88,6 +88,33 @@ MODULES = [
 ]
 
 MRP_ROUTES = {"/MRP", "/MRPList", "/MRPScheduler"}
+
+# Controller-name prefix (lower case) -> integration subfolder. An endpoint whose controller names an integration
+# belongs to that integration, whichever page calls it.
+INTEGRATION_CONTROLLERS = [
+    ("shopify", "shopify"), ("shipstation", "shipstation"), ("fba", "fulfillment-by-amazon"), ("amazon", "amazon"),
+    ("ebay", "ebay"), ("etsy", "etsy"), ("faire", "faire"), ("woocommerce", "woocommerce"),
+    ("bigcommerce", "bigcommerce"), ("magentosd", "magento-2-x"), ("magento2", "magento-2-x"), ("magento", "magento-1-x"),
+    ("walmart", "walmart"), ("vend", "lightspeed"), ("lightspeed", "lightspeed"), ("square", "square"),
+    ("avalara", "avalara"), ("paypal", "paypal"), ("authorizenet", "authorizenet"), ("pinch", "pinch"),
+    ("airwallex", "airwallex"), ("easypost", "easypost"), ("shiprush", "shiprush"), ("shippit", "shippit"),
+    ("shiptheory", "shiptheory"), ("starshipit", "starshipit"), ("hubspot", "hubspot"), ("capsule", "capsule"),
+    ("gsuite", "google-workspaces"), ("loyaltylion", "loyaltylion"), ("leaflink", "leaflink"), ("lokad", "lokad"),
+    ("xero", "xero"), ("quickbooks", "quickbooks"), ("qbo", "quickbooks"), ("dearpos", "pos"), ("pos_", "pos"),
+    ("b2b", "portal"), ("rmaportal", "rma-portal"), ("paymentgateway", "cin7-core-payments"),
+    ("warehouseapp", "warehouse-application-configuration"), ("dearapi", "cin7-core-api-setup"),
+    ("externalapi", "cin7-core-api-setup"), ("zapier", "zapier"), ("synder", "synder"), ("neto", "neto"),
+]
+
+
+def integration_of(url, known):
+    """The integration subfolder an endpoint's controller names, if any (and if that folder exists)."""
+    name = url[5:] if url.startswith("/api/") else url.lstrip("/")
+    name = name.split("/")[0].lower()
+    for prefix, slug in INTEGRATION_CONTROLLERS:
+        if name.startswith(prefix) and f"12-integrations/{slug}" in known:
+            return f"12-integrations/{slug}"
+    return None
 MRP_URL = re.compile(r"MRP")
 MRP_INPUT_URL = re.compile(r"SupplyRule|SupplyInterval|LogisticsPath|LeadSafety")
 
@@ -875,9 +902,18 @@ def main():
             bundle_units[b].add(u)
 
     ep_by = defaultdict(list)
+    called_from = defaultdict(lambda: defaultdict(list))  # module slug -> integration unit -> endpoints it calls
+    known_integ = set(integ_slug.values())
     for e in endpoints:
         units = []
-        if MRP_URL.search(e["url"]):
+        owner = integration_of(e["url"], known_integ)
+        if owner:
+            units = [owner]
+            for sec in split_sections(e["sections"]):
+                slug = section_slug.get(sec, "15-other")
+                if slug != "12-integrations":
+                    called_from[slug][owner].append(e)
+        elif MRP_URL.search(e["url"]):
             units = ["16-mrp"]
         else:
             secs = split_sections(e["sections"]) or [""]
@@ -941,6 +977,29 @@ def main():
                 extra.append(f"| [{ttl}]({u.split('/')[1]}/README.md) | {', '.join('`' + p['route'] + '`' for p in pg)} | "
                              f"{len(ep_by.get(u, []))} | {len(models_by.get(u, []))} |")
                 integ_index.append((u, ttl))
+            extra.append("")
+            extra += ["## Endpoints by integration", "",
+                      "Every internal endpoint, filed under the integration its controller names (whichever page calls it). "
+                      "Full detail, data models and UI are in each subfolder.", ""]
+            for u in units:
+                eps_u = sorted(ep_by.get(u, []), key=lambda e: e["url"])
+                if not eps_u:
+                    continue
+                pg = pages_by.get(u, [])
+                ttl = re.sub(r"\s*~\s*$", "", pg[0]["title"]) if pg else "Shared integration endpoints"
+                n_w = sum(1 for e in eps_u if "write" in e["effect"])
+                extra += [f"<details><summary><b>{ttl}</b> · {len(eps_u)} endpoints ({n_w} write)</summary>", "",
+                          "| URL | Methods | Effect |", "|---|---|---|"]
+                extra += [f"| `{cell(e['url'])}` | {cell(e['methods'])} | {EFFECT_ICON.get(e['effect'], e['effect'])} |"
+                          for e in eps_u]
+                extra += ["", "</details>", ""]
+        if called_from.get(slug):
+            extra = (extra or []) + ["## Integration endpoints this module calls", "",
+                                     "Filed under their integration; listed here because pages in this module call them.", "",
+                                     "| Integration | Endpoints |", "|---|---|"]
+            for u, eps_c in sorted(called_from[slug].items()):
+                extra.append(f"| [{u.split('/')[1]}](../{u}/README.md) | " +
+                             ", ".join(f"`{cell(e['url'], 70)}`" for e in sorted(eps_c, key=lambda e: e['url'])) + " |")
             extra.append("")
         eps = ep_by.get(slug, [])
         pgs = pages_by.get(slug, [])

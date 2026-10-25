@@ -5,21 +5,21 @@ One folder per module, each with `README.md` (what it is, how to rebuild it, pag
 | Module | Pages | Models | Internal endpoints | Public API ops |
 |---|---:|---:|---:|---:|
 | [00 Shared data models](00-shared/README.md) | | 83 | | |
-| [01 Shell and navigation](01-shell/README.md) | 0 | 0 | 134 | 0 |
+| [01 Shell and navigation](01-shell/README.md) | 0 | 0 | 130 | 0 |
 | [02 Sign-in and account](02-account/README.md) | 0 | 0 | 13 | 0 |
-| [03 Dashboard](03-dashboard/README.md) | 2 | 15 | 65 | 0 |
+| [03 Dashboard](03-dashboard/README.md) | 2 | 15 | 59 | 0 |
 | [04 Inventory](04-inventory/README.md) | 15 | 127 | 215 | 33 |
 | [05 Purchase](05-purchase/README.md) | 15 | 90 | 167 | 49 |
-| [06 Sale](06-sale/README.md) | 16 | 156 | 304 | 45 |
+| [06 Sale](06-sale/README.md) | 16 | 156 | 294 | 45 |
 | [07 Production](07-production/README.md) | 15 | 142 | 198 | 66 |
 | [08 Financials](08-financials/README.md) | 17 | 71 | 116 | 18 |
-| [09 CRM](09-crm/README.md) | 6 | 61 | 109 | 16 |
-| [10 AI](10-ai/README.md) | 2 | 7 | 25 | 0 |
+| [09 CRM](09-crm/README.md) | 6 | 61 | 107 | 16 |
+| [10 AI](10-ai/README.md) | 2 | 7 | 24 | 0 |
 | [11 Reports](11-reports/README.md) | 83 | 16 | 58 | 0 |
-| [12 Integrations](12-integrations/README.md) | 1 | 1 | 732 | 0 |
+| [12 Integrations](12-integrations/README.md) | 1 | 1 | 752 | 0 |
 | [13 Settings](13-settings/README.md) | 13 | 41 | 119 | 14 |
-| [14 Reference books](14-reference-books/README.md) | 31 | 165 | 225 | 54 |
-| [15 Unassigned endpoints](15-other/README.md) | 0 | 0 | 48 | 0 |
+| [14 Reference books](14-reference-books/README.md) | 31 | 165 | 224 | 54 |
+| [15 Unassigned endpoints](15-other/README.md) | 0 | 0 | 44 | 0 |
 | [16 MRP](16-mrp/README.md) | 3 | 15 | 33 | 0 |
 | [20 Public API and webhooks](20-public-api/README.md) | | | | |
 | [21 Report service](21-report-service/README.md) | | | | |

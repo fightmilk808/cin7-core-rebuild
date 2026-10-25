@@ -6,7 +6,7 @@ The Xero connector: its settings page, mappings, logs and the endpoints behind t
 |---|---:|
 | Pages | 1 |
 | Data models | 5 (plus [shared](../../00-shared/README.md)) |
-| Internal endpoints | 7 (3 write) |
+| Internal endpoints | 9 (5 write) |
 | Public API operations | 0 |
 
 ## How to rebuild it
@@ -52,6 +52,8 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/Xero/GetCustomersSuppliersCount` | mvc | GET | 🟢 read |  |  |  |
 | `/Xero/XeroChartOfAccounts` | mvc | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
 | `/Xero/XeroTaxRules` | mvc | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
+| `/api/Xero_StartOnboardingImport` | api | POST | 🔴 write |  |  |  |
+| `/api/Xero_StartSync` | api | POST | 🔴 write |  |  |  |
 
 ### XEROImportExport
 

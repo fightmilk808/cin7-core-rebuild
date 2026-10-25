@@ -6,7 +6,7 @@ The Google Workspaces connector: its settings page, mappings, logs and the endpo
 |---|---:|
 | Pages | 1 |
 | Data models | 3 (plus [shared](../../00-shared/README.md)) |
-| Internal endpoints | 3 (3 write) |
+| Internal endpoints | 5 (3 write) |
 | Public API operations | 0 |
 
 ## How to rebuild it
@@ -41,4 +41,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 |---|---|---|---|---|---|---|
 | `/api/GSuites_Index_Config` | api | GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  | root |
 | `/api/GSuites_Index_Contacts` | api | GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  | root |
+| `/api/GSuites_Index_Directory` | api |  | 🟢 read |  |  |  |
+| `/api/GSuites_Index_Files` | api |  | 🟢 read |  |  |  |
 | `/api/GSuites_Index_Logs` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  | root |

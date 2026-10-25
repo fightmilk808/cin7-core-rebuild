@@ -6,8 +6,17 @@ Leads, opportunities, deals and tasks.
 |---|---:|
 | Pages | 6 |
 | Data models | 61 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 109 (46 write) |
+| Internal endpoints | 107 (46 write) |
 | Public API operations | 16 |
+
+## Integration endpoints this module calls
+
+Filed under their integration; listed here because pages in this module call them.
+
+| Integration | Endpoints |
+|---|---|
+| [avalara](../12-integrations/avalara/README.md) | `/api/Avalara_Index_vTaxCodeList/TaxExemptionReason` |
+| [quickbooks](../12-integrations/quickbooks/README.md) | `/api/Quickbooks_HasConsolidatedTranscations` |
 
 ## How to rebuild it
 
@@ -107,12 +116,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/api/address/country/code` | api | GET | 🟢 read |  |  |  |
 | `/api/address/details` | api | GET | 🟢 read |  |  |  |
 | `/api/address/hasAccess` | api | GET | 🟢 read |  |  |  |
-
-### Avalara
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/Avalara_Index_vTaxCodeList/TaxExemptionReason` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
 
 ### Calendar
 
@@ -253,12 +256,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
 | `/api/Product_GetAutogenerationFlag` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
-
-### Quickbooks
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/Quickbooks_HasConsolidatedTranscations` | api | GET | 🟢 read |  |  |  |
 
 ### Sale
 

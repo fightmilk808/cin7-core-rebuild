@@ -6,7 +6,7 @@ The POS connector: its settings page, mappings, logs and the endpoints behind th
 |---|---:|
 | Pages | 1 |
 | Data models | 43 (plus [shared](../../00-shared/README.md)) |
-| Internal endpoints | 69 (32 write) |
+| Internal endpoints | 68 (31 write) |
 | Public API operations | 0 |
 
 ## How to rebuild it
@@ -159,12 +159,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
 | `/MySubscription/DetailsUpdate` | mvc | GET | 🔴 write |  |  |  |
-
-### Square
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/Square/AddPaymentsShop` | mvc |  | 🔴 write |  |  |  |
 
 ### TenantAccessToFeatures
 

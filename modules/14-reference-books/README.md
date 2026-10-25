@@ -6,8 +6,16 @@ The lookup lists everything else points at: locations, bins and logistics paths,
 |---|---:|
 | Pages | 31 |
 | Data models | 165 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 225 (109 write) |
+| Internal endpoints | 224 (108 write) |
 | Public API operations | 54 |
+
+## Integration endpoints this module calls
+
+Filed under their integration; listed here because pages in this module call them.
+
+| Integration | Endpoints |
+|---|---|
+| [quickbooks](../12-integrations/quickbooks/README.md) | `/QuickbooksImportExport/Quickbooks` |
 
 ## How to rebuild it
 
@@ -531,12 +539,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 |---|---|---|---|---|---|---|
 | `/Purchase/Cancel` | mvc | POST | 🔴 write | TaskID removeAllocations |  |  |
 | `/api/Purchase_Index_Product` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | HideNonInventory SupplierID lang |  |  |
-
-### QuickbooksImportExport
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/QuickbooksImportExport/Quickbooks` | mvc | GET(navigate) | 🔴 write |  |  |  |
 
 ### RMA
 

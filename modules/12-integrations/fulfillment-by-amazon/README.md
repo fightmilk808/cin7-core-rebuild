@@ -6,7 +6,7 @@ The Fulfillment by Amazon connector: its settings page, mappings, logs and the e
 |---|---:|
 | Pages | 1 |
 | Data models | 25 (plus [shared](../../00-shared/README.md)) |
-| Internal endpoints | 22 (12 write) |
+| Internal endpoints | 23 (12 write) |
 | Public API operations | 0 |
 
 ## How to rebuild it
@@ -79,6 +79,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/api/FBA_Index_vEcsConfiguration` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  |  |
 | `/api/FBA_Index_vFFProductList` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  | root |
 | `/api/FBA_Index_vFulfillmentInboundShipment` | api | DELETE PUT REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | ConfigID InboundShipmentID action dateFrom dateTo search status | HasErrors ID Original Updated | root |
+| `/api/FBA_Index_vFulfillmentOutboundShipmentEstimate` | api | POST | 🟢 read |  | Address BoxNumber ConfigId Items |  |
 | `/api/FBA_Index_vLog` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | ConfigID search |  | root |
 | `/api/FBA_Index_vOperLog` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | ConfigID search |  | root |
 | `/api/FBA_Index_vProductList` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | ConfigID lang search |  |  |

@@ -6,7 +6,7 @@ The QuickBooks connector: its settings page, mappings, logs and the endpoints be
 |---|---:|
 | Pages | 1 |
 | Data models | 11 (plus [shared](../../00-shared/README.md)) |
-| Internal endpoints | 26 (17 write) |
+| Internal endpoints | 37 (24 write) |
 | Public API operations | 0 |
 
 ## How to rebuild it
@@ -66,11 +66,15 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/api/QuickBooks_ImportSoH` | api | POST | 🔴 write |  |  |  |
 | `/api/QuickBooks_Index_Integration` | api | POST | 🔴 write |  |  |  |
 | `/api/QuickBooks_ReplaceProduct` | api | POST | 🔴 write |  |  |  |
+| `/api/QuickBooks_StartOnboardingImport` | api | POST | 🔴 write |  |  |  |
+| `/api/QuickBooks_StartSync` | api | POST | 🔴 write |  |  |  |
 
 ### Quickbooks
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
+| `/Quickbooks/ConnectWizard` | mvc | GET(navigate) | 🔴 write | isSandbox |  |  |
+| `/Quickbooks/ConsolidatedTransactionDetails` | mvc |  | 🟢 read |  |  |  |
 | `/Quickbooks/ExportCOGS` | mvc | POST | 🟢 read | From To |  |  |
 | `/Quickbooks/ExportHistoricalData` | mvc | POST | 🟢 read |  |  |  |
 | `/Quickbooks/GenerateSaleChannelList` | mvc | POST(read) | 🔴 write | consolidationChannelTypeJsonStr requestedSaleChannelMode |  |  |
@@ -80,17 +84,29 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/Quickbooks/QuickbooksPaymentTerms` | mvc | REST(GET read; POST/PUT/DELETE on store.sync) | 🔴 write |  |  |  |
 | `/Quickbooks/QuickbooksTaxRules` | mvc | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
 | `/Quickbooks/SetQuickbooksSyncModeDirectionBothWays` | mvc | POST | 🔴 write |  |  |  |
+| `/Quickbooks/StartConnection` | mvc |  | 🔴 write | type |  |  |
 | `/Quickbooks/VoidCOGS` | mvc | POST | 🔴 write | From To |  |  |
 | `/api/Quickbooks_Customer` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  | root |
+| `/api/Quickbooks_HasConsolidatedTranscations` | api | GET | 🟢 read |  |  |  |
+| `/api/Quickbooks_Index_ConsolidatedTranscations` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  | root |
 | `/api/Quickbooks_Index_JournalsReconciliation` | api | GET POST | 🟠 read + write | fromDate toDate |  |  |
 | `/api/Quickbooks_Index_vMailingList` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  | root |
 | `/api/Quickbooks_Location` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
+| `/api/Quickbooks_StartSync` | api | POST | 🔴 write |  |  |  |
 
 ### QuickbooksImportExport
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
 | `/QuickbooksImportExport/Quickbooks` | mvc | GET(navigate) | 🔴 write |  |  |  |
+
+### QuickbooksSynchronisation
+
+| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
+|---|---|---|---|---|---|---|
+| `/QuickbooksSynchronisation/GetLastSyncDate` | mvc | GET | 🟢 read |  |  |  |
+| `/api/QuickbooksSynchronisation_History` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | entity search status |  | root |
+| `/api/QuickbooksSynchronisation_History/BulkStatusUpdate` | api | POST | 🔴 write |  |  |  |
 
 ### TenantPaymentTerm
 

@@ -6,8 +6,16 @@ Ask AI (`/AMA`), document data extraction (upload a supplier document, get a pur
 |---|---:|
 | Pages | 2 |
 | Data models | 7 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 25 (9 write) |
+| Internal endpoints | 24 (9 write) |
 | Public API operations | 0 |
+
+## Integration endpoints this module calls
+
+Filed under their integration; listed here because pages in this module call them.
+
+| Integration | Endpoints |
+|---|---|
+| [avalara](../12-integrations/avalara/README.md) | `/api/Avalara_Index_vTaxCodeList/TaxExemptionReason` |
 
 ## How to rebuild it
 
@@ -39,12 +47,6 @@ ExtJS models the pages use; `v` prefix = view-model. Full DDL in [`schema.sql`](
 ## Internal endpoints
 
 Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL · 🔴 write. `api` = JSON under `/api/`, `mvc` = controller action.
-
-### Avalara
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/Avalara_Index_vTaxCodeList/TaxExemptionReason` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
 
 ### currency
 

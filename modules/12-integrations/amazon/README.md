@@ -6,7 +6,7 @@ The Amazon connector: its settings page, mappings, logs and the endpoints behind
 |---|---:|
 | Pages | 1 |
 | Data models | 29 (plus [shared](../../00-shared/README.md)) |
-| Internal endpoints | 44 (21 write) |
+| Internal endpoints | 45 (21 write) |
 | Public API operations | 0 |
 
 ## How to rebuild it
@@ -104,6 +104,12 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/api/Amazon_Index_vSalesPriceTiers` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
 | `/api/Amazon_Index_vTax` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  |  |
 | `/api/Amazon_Index_vTaxRules` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
+
+### AmazonBusinessShipping
+
+| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
+|---|---|---|---|---|---|---|
+| `/api/AmazonBusinessShipping/GetBhdrWarningOrDefault` | api | GET | 🟢 read |  |  |  |
 
 ### ECommerce
 

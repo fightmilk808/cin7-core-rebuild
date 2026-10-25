@@ -6,7 +6,7 @@ The Avalara connector: its settings page, mappings, logs and the endpoints behin
 |---|---:|
 | Pages | 1 |
 | Data models | 8 (plus [shared](../../00-shared/README.md)) |
-| Internal endpoints | 13 (7 write) |
+| Internal endpoints | 15 (7 write) |
 | Public API operations | 0 |
 
 ## How to rebuild it
@@ -56,6 +56,8 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/api/Avalara_Index_vProductsTaxCodeList` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  | root |
 | `/api/Avalara_Index_vSyncEntries` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  | root |
 | `/api/Avalara_Index_vTaxCodeList` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  | root |
+| `/api/Avalara_Index_vTaxCodeList/TaxExemptionReason` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
+| `/api/Avalara_Index_vTaxCodeList/hasintegration` | api | GET | 🟢 read |  |  |  |
 
 ### TenantAddress
 

@@ -6,8 +6,18 @@ The frame every page loads: top menu, global search, favourites, quick links, no
 |---|---:|
 | Pages | 0 |
 | Data models | 0 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 134 (37 write) |
+| Internal endpoints | 130 (36 write) |
 | Public API operations | 0 |
+
+## Integration endpoints this module calls
+
+Filed under their integration; listed here because pages in this module call them.
+
+| Integration | Endpoints |
+|---|---|
+| [google-workspaces](../12-integrations/google-workspaces/README.md) | `/api/GSuites_Index_Directory`, `/api/GSuites_Index_Files` |
+| [quickbooks](../12-integrations/quickbooks/README.md) | `/Quickbooks/StartConnection` |
+| [square](../12-integrations/square/README.md) | `/Square/Main` |
 
 ## How to rebuild it
 
@@ -86,13 +96,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
 | `/api/Favorites` | api | GET POST | 🟠 read + write |  |  |  |
-
-### GSuites
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/GSuites_Index_Directory` | api |  | 🟢 read |  |  |  |
-| `/api/GSuites_Index_Files` | api |  | 🟢 read |  |  |  |
 
 ### Home
 
@@ -200,12 +203,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 |---|---|---|---|---|---|---|
 | `/api/PurchaseAdvanced_Index_Email` | api |  | 🔴 write |  |  |  |
 
-### Quickbooks
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/Quickbooks/StartConnection` | mvc |  | 🔴 write | type |  |  |
-
 ### QuickLinks
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
@@ -311,12 +308,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
 | `/api/SaleMult_Index_Email` | api |  | 🔴 write |  |  |  |
-
-### Square
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/Square/Main` | mvc |  | 🟢 read |  |  |  |
 
 ### StockTransfer
 

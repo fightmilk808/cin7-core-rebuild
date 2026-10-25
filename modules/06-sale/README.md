@@ -6,8 +6,19 @@ Customers and the sale documents: quotes, simple and advanced (multi-fulfilment)
 |---|---:|
 | Pages | 16 |
 | Data models | 156 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 304 (121 write) |
+| Internal endpoints | 294 (118 write) |
 | Public API operations | 45 |
+
+## Integration endpoints this module calls
+
+Filed under their integration; listed here because pages in this module call them.
+
+| Integration | Endpoints |
+|---|---|
+| [amazon](../12-integrations/amazon/README.md) | `/api/AmazonBusinessShipping/GetBhdrWarningOrDefault` |
+| [avalara](../12-integrations/avalara/README.md) | `/api/Avalara_Index_vTaxCodeList/TaxExemptionReason`, `/api/Avalara_Index_vTaxCodeList/hasintegration` |
+| [fulfillment-by-amazon](../12-integrations/fulfillment-by-amazon/README.md) | `/api/FBA_Index_FulfillmentBoxOptions`, `/api/FBA_Index_LogisticsProviderOptions`, `/api/FBA_Index_McfChannelMapping`, `/api/FBA_Index_vFulfillmentOutboundShipmentEstimate` |
+| [quickbooks](../12-integrations/quickbooks/README.md) | `/Quickbooks/ConsolidatedTransactionDetails`, `/api/Quickbooks_HasConsolidatedTranscations`, `/api/Quickbooks_Index_ConsolidatedTranscations` |
 
 ## How to rebuild it
 
@@ -219,19 +230,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/api/address/details` | api | GET | 🟢 read |  |  |  |
 | `/api/address/hasAccess` | api | GET | 🟢 read |  |  |  |
 
-### AmazonBusinessShipping
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/AmazonBusinessShipping/GetBhdrWarningOrDefault` | api | GET | 🟢 read |  |  |  |
-
-### Avalara
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/Avalara_Index_vTaxCodeList/TaxExemptionReason` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
-| `/api/Avalara_Index_vTaxCodeList/hasintegration` | api | GET | 🟢 read |  |  |  |
-
 ### AwaitingSale
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
@@ -337,15 +335,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 |---|---|---|---|---|---|---|
 | `/api/DiscountNew_Index_vDiscountNew` | api | POST PUT REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | id | ID |  |
 
-### FBA
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/FBA_Index_FulfillmentBoxOptions` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  |  |
-| `/api/FBA_Index_LogisticsProviderOptions` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  |  |
-| `/api/FBA_Index_McfChannelMapping` | api | GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | ConfigID ConfigIds |  |  |
-| `/api/FBA_Index_vFulfillmentOutboundShipmentEstimate` | api | POST | 🟢 read |  | Address BoxNumber ConfigId Items |  |
-
 ### FFOrderList
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
@@ -421,14 +410,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/api/Purchase_Index_vTenantLocation` | api | GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | assetsOnly locationID withBins |  |  |
 | `/api/Purchase_Invoice_CheckForName` | api | POST | 🟢 read | InvoiceNumbers SupplierID |  |  |
 | `/api/Purchase_RelatedTasks` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | taskId |  | root |
-
-### Quickbooks
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/Quickbooks/ConsolidatedTransactionDetails` | mvc |  | 🟢 read |  |  |  |
-| `/api/Quickbooks_HasConsolidatedTranscations` | api | GET | 🟢 read |  |  |  |
-| `/api/Quickbooks_Index_ConsolidatedTranscations` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  | root |
 
 ### QuoteNOrderApprove
 

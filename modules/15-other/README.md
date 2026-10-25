@@ -6,7 +6,7 @@ Endpoints found in shared bundles that no menu page claims. Rebuild them where t
 |---|---:|
 | Pages | 0 |
 | Data models | 0 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 48 (23 write) |
+| Internal endpoints | 44 (20 write) |
 | Public API operations | 0 |
 
 ## How to rebuild it
@@ -61,20 +61,6 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/api/InventoroSettings_ProductRules/Reorder` | api |  | 🟢 read |  |  |  |
 | `/api/InventoroSettings_ReferenceData/RuleParameters` | api |  | 🟢 read |  |  |  |
 | `/api/InventoroSettings_Suppliers` | api |  | 🟢 read |  |  |  |
-
-### Quickbooks
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/api/Quickbooks_StartSync` | api | POST | 🔴 write |  |  |  |
-
-### QuickbooksSynchronisation
-
-| URL | Kind | Methods | Effect | Params | Body keys | Reader root |
-|---|---|---|---|---|---|---|
-| `/QuickbooksSynchronisation/GetLastSyncDate` | mvc | GET | 🟢 read |  |  |  |
-| `/api/QuickbooksSynchronisation_History` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | entity search status |  | root |
-| `/api/QuickbooksSynchronisation_History/BulkStatusUpdate` | api | POST | 🔴 write |  |  |  |
 
 ### Report
 
