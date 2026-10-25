@@ -4918,6 +4918,14 @@
 ],
 "iframe": "task-upload-frame",
 "outline": "link \"Home\"\nlink \"Reference Books\"\nbutton #divNew primary\nbutton #divRefresh primary\nslot #divFilter\ninput text#divSearchText name=divSearch placeholder \"Type text to search\"\nbutton \"Search\"#divSearch primary\nslot #WarrantySetupList_Error_Container (hidden)\nslot #WarrantySetupList_Index_Container"
+},
+"/AMA": {
+"status": 200,
+"final": "/AMA",
+"title": "Ask Me Anything",
+"modals": [],
+"iframe": null,
+"outline": "heading \"Ask Me Anything\"\nbutton \"New chat\"#new-chat-button primary (hidden)\nblock #side-panel-trigger\nblock #main-panel\nblock #prompt-default-hints\nheading \"Hi, I'm AMA. You can ask me questions about your Cin7 Core data and get insta…\"\nheading \"What would you like to find out today?\"\nslot #prompt-default-hints-sections\nslot #prompt-results\nslot #prompt-results-loading\nblock #prompt-area\nform#prompt-form\ntextarea#prompt-input placeholder \"Type your question in natural language\"\nslot #follow-up-queries-area\nbutton \"Ask\"#prompt-button primary\nbutton \"Stop\"#prompt-cancel-button\nblock #side-panel\nblock #previous-searches\nheading \"Previous questions\"#previous-searches-title (hidden)\nslot #previous-searches-list\nblock #ailab-disclaimer"
 }
 },
 "modals": {

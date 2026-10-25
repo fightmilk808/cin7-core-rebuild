@@ -13,6 +13,32 @@ Every component the page code builds, read from the shipped ExtJS bundles: grids
 
 Each screen's server-rendered HTML inside the shell, as an outline: headings, tabs, sections, labels, inputs (`#id`), buttons (`▾` = dropdown), menus, tables and `slot`s (empty `<div>`s the components below mount into). `(hidden)` parts are shown by the page code when needed. Read with GET from a signed-in session; no values are kept.
 
+### `/AMA`: Ask Me Anything
+
+```text
+heading "Ask Me Anything"
+button "New chat"#new-chat-button primary (hidden)
+block #side-panel-trigger
+block #main-panel
+block #prompt-default-hints
+heading "Hi, I'm AMA. You can ask me questions about your Cin7 Core data and get insta…"
+heading "What would you like to find out today?"
+slot #prompt-default-hints-sections
+slot #prompt-results
+slot #prompt-results-loading
+block #prompt-area
+form#prompt-form
+textarea#prompt-input placeholder "Type your question in natural language"
+slot #follow-up-queries-area
+button "Ask"#prompt-button primary
+button "Stop"#prompt-cancel-button
+block #side-panel
+block #previous-searches
+heading "Previous questions"#previous-searches-title (hidden)
+slot #previous-searches-list
+block #ailab-disclaimer
+```
+
 ### `/DocumentExtraction`: Document data extraction
 
 Frame: `ifrmIdrUploader`.

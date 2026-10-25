@@ -18,7 +18,7 @@ Both halves are in each module's `UI.md`: **Layout** is the server-rendered HTML
 tabs, sections, labels, inputs, buttons, menus, tables, dialogs and the `slot`s components mount into), and **Components
 by bundle** is what the page code builds. The shell's own layout (top bar, add-new menu, left menu, appearance settings,
 profile menu, footer) is in [`modules/01-shell/UI.md`](../modules/01-shell/UI.md). Layouts were read with GET from a
-signed-in session on 2026-10-24 (260 of 261 routes; `/AMA` streams and was skipped) and keep no field values.
+signed-in session on 2026-10-24 (all 261 routes; `/AMA` streams, so its first 240 KB were read) and keep no field values.
 
 ## Stack
 

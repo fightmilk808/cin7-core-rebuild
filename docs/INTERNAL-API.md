@@ -44,3 +44,39 @@ the same URL. So the URL that reads a thing usually saves it too. Whether a page
 For each module: one controller per screen, one REST resource per store with the four verbs, paged list reads in the
 `{root, total}` shape, the `{ID, HasErrors, Original, Updated}` save wrapper on detail records, and controller actions for
 document operations and files. Keep the names: the page scripts are wired to them.
+
+## Page access (permissions)
+
+A user's access is checked per page by a permission key named `<Controller>_<View>` (the same prefix the internal API uses). `GET /api/settings_all_permissions` returns, for the Reference Books menu, each key with its page and whether the user may open it (`{Prefix, Allowed, Link, Hidden}`); `/api/access` and `/api/PageAccess_*` cover the rest (roles, users, effective permissions). The Reference Books keys:
+
+| Permission key | Page |
+|---|---|
+| `TenantAddress_Index` | `/TenantAddress` |
+| `TenantCarrier_Index` | `/TenantCarrier` |
+| `TenantContact_Index` | `/TenantContact` |
+| `TenantInventoryCategory_Index` | `/TenantInventoryCategory` |
+| `TenantBrand_Index` | `/TenantBrand` |
+| `TenantLocation_Index` | `/TenantLocation` |
+| `TenantPaymentTerm_Index` | `/TenantPaymentTerm` |
+| `TenantTaxationRule_Index` | `/TenantTaxationRule` |
+| `TenantUnitOfMeasure_Index` | `/TenantUnitOfMeasure` |
+| `TenantAttributeSet_Index` | `/TenantAttributeSet` |
+| `TenantShipZone_Index` | `/TenantShipZone` |
+| `ChartOfAccounts_Index` | `/ChartOfAccounts` |
+| `AccountMapping_Index` | `/AccountMapping` |
+| `Bank_Index` | `/BankAccounts` |
+| `Discount_Index` | `/DiscountListNew` |
+| `FixedAsset_Index` | `/FixedAssetType` |
+| `ExpenseItems_Index` | `/ExpenseItems` |
+| `OpeningBalances_Index` | `/OpeningBalances` |
+| `Deal_Index` | `/DealList` |
+| `OrderRouting_Index` | `/OrderRouting` |
+| `DearToDearNetworking_Index` | `/DearToDearNetworking` |
+| `WarrantySetup_Index`, `RMAWarrantySetup_Index` | `/WarrantySetupList` |
+| `RMAReturnPolicy_Index` | `/RMAReturnPolicy` |
+| `RMAReasonForReturn_Index` | `/RMAReasonForReturn` |
+| `RMAReturnOrderSettings_Index` | `/RMAReturnOrderSettings` |
+| `DefaultFieldValues_Product` / `_Customer` / `_Supplier` | `/DefaultFieldValues/Product` / `Customer` / `Supplier` |
+| `MailingList_Index` | `/NotificationSettings/MailingList` |
+| `LeadStatus_Index` | `/LeadStatus` |
+| `AccountingDimensions_Settings` | `/AccountingDimensions` |
