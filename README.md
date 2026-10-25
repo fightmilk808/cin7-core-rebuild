@@ -19,6 +19,8 @@ web app, its public scripts and Cin7's published API spec (October 2026). Busine
 | [docs/INTERNAL-API.md](docs/INTERNAL-API.md) | The contract the web app's 2,177 internal endpoints follow |
 | [docs/PUBLIC-API.md](docs/PUBLIC-API.md) | The public `/ExternalApi/v2` contract: auth, paging, errors, shapes |
 | [docs/UI.md](docs/UI.md) | The visual system (themes, colours, type, icons, widgets), the shell and the main menu |
+| [docs/IMPORTS.md](docs/IMPORTS.md) | CSV layouts for document line uploads and master-data imports |
+| [docs/AUTOMATIONS.md](docs/AUTOMATIONS.md) | Automated workflows: data model, condition parameters and operators, and the 48 merge fields |
 | [docs/RELATIONSHIPS.md](docs/RELATIONSHIPS.md) | How records point at each other: every `*ID` column mapped to its entity, with an ER diagram of the core (each `schema.sql` marks reference columns `-- -> Entity`) |
 | [modules/20-public-api/groups/](modules/20-public-api/groups/) | Every public API group: field tables (types, lengths, required, allowed values), each operation's parameters, request and response body shapes, status lists, and [all 32 webhook payloads](modules/20-public-api/groups/webhooks.md) |
 | `modules/22-pos`, `23-wms`, `24-mes` → `SCREENS.md` | Every screen of the POS and the two handheld apps: navigation, fields, buttons, lists, dialogs and the API calls each makes |

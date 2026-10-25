@@ -1,0 +1,276 @@
+{
+ "/Product/ImportInventoryListJson": {
+  "bundle": "Home2019",
+  "columns": [
+   "Name",
+   "Status",
+   "Currency",
+   "PaymentTerm",
+   "TaxRule",
+   "AccountReceivable",
+   "SaleAccount",
+   "PriceTier",
+   "Discount",
+   "CreditLimit",
+   "Carrier",
+   "SalesRepresentative",
+   "Location",
+   "TaxNumber",
+   "Tags",
+   "DisplayName",
+   "IsLegalEntity",
+   "ParentCustomer",
+   "IsBillParent",
+   "AttributeSet",
+   "AdditionalAttribute1",
+   "AdditionalAttribute2",
+   "AdditionalAttribute3",
+   "AdditionalAttribute4",
+   "AdditionalAttribute5",
+   "AdditionalAttribute6",
+   "AdditionalAttribute7",
+   "AdditionalAttribute8",
+   "AdditionalAttribute9",
+   "AdditionalAttribute10",
+   "Comments",
+   "ContactName",
+   "Phone",
+   "Fax",
+   "Email",
+   "Website",
+   "ContactComment",
+   "ContactDefault"
+  ]
+ },
+ "/CustomerList/ImportCustomerListJson": {
+  "bundle": "Home2019",
+  "columns": [
+   "Name",
+   "Status",
+   "Currency",
+   "PaymentTerm",
+   "TaxRule",
+   "AccountReceivable",
+   "SaleAccount",
+   "PriceTier",
+   "Discount",
+   "CreditLimit",
+   "Carrier",
+   "SalesRepresentative",
+   "Location",
+   "TaxNumber",
+   "Tags",
+   "DisplayName",
+   "IsLegalEntity",
+   "ParentCustomer",
+   "IsBillParent",
+   "AttributeSet",
+   "AdditionalAttribute1",
+   "AdditionalAttribute2",
+   "AdditionalAttribute3",
+   "AdditionalAttribute4",
+   "AdditionalAttribute5",
+   "AdditionalAttribute6",
+   "AdditionalAttribute7",
+   "AdditionalAttribute8",
+   "AdditionalAttribute9",
+   "AdditionalAttribute10",
+   "Comments",
+   "ContactName",
+   "Phone",
+   "Fax",
+   "Email",
+   "Website",
+   "ContactComment",
+   "ContactDefault"
+  ]
+ },
+ "/SupplierList/ImportSuppliersListJson": {
+  "bundle": "Home2019",
+  "columns": [
+   "Name",
+   "Status",
+   "Currency",
+   "PaymentTerm",
+   "TaxRule",
+   "AccountPayable",
+   "Carrier",
+   "Discount",
+   "TaxNumber",
+   "AttributeSet",
+   "AdditionalAttribute1",
+   "AdditionalAttribute2",
+   "AdditionalAttribute3",
+   "AdditionalAttribute4",
+   "AdditionalAttribute5",
+   "AdditionalAttribute6",
+   "AdditionalAttribute7",
+   "AdditionalAttribute8",
+   "AdditionalAttribute9",
+   "AdditionalAttribute10",
+   "Comments",
+   "ContactName",
+   "Phone",
+   "Fax",
+   "Email",
+   "Website",
+   "ContactComment",
+   "ContactDefault",
+   "ContactIncludeInEmail",
+   "JobTitle",
+   "MobilePhone"
+  ]
+ },
+ "/OpeningBalances/ImportOutstandingPurchasesJson": {
+  "bundle": "OpeningBalances2019",
+  "columns": [
+   "CustomerName",
+   "InvoiceNumber",
+   "CustomerReference",
+   "InvoiceDate",
+   "Amount",
+   "CurrencyConversionRate"
+  ]
+ },
+ "/OpeningBalances/ImportOutstandingSalesJson": {
+  "bundle": "OpeningBalances2019",
+  "columns": [
+   "CustomerName",
+   "InvoiceNumber",
+   "CustomerReference",
+   "InvoiceDate",
+   "Amount",
+   "CurrencyConversionRate"
+  ]
+ },
+ "/Product/ImportMarkupPricesJson": {
+  "bundle": "Product2019",
+  "columns": [
+   "Action",
+   "ProductSKU",
+   "ProductName",
+   "PriceTier",
+   "MarkupType",
+   "UseType",
+   "Value"
+  ]
+ },
+ "/Product/ImportSKUUpdatesJson": {
+  "bundle": "Product2019",
+  "columns": [
+   "Action",
+   "BaseSKU",
+   "BaseProductName",
+   "BaseUnitsOfMeasure",
+   "AdditionalUnitsOfMeasureSKU",
+   "AdditionalUnitsOfMeasureName",
+   "AdditionalUnitsOfMeasureProductName",
+   "NumberOfBaseUnitsInAdditionalUnit",
+   "IAmSellingThisProduct"
+  ]
+ },
+ "/Product/ImportUoMJson": {
+  "bundle": "Product2019",
+  "columns": [
+   "Action",
+   "BaseSKU",
+   "BaseProductName",
+   "BaseUnitsOfMeasure",
+   "AdditionalUnitsOfMeasureSKU",
+   "AdditionalUnitsOfMeasureName",
+   "AdditionalUnitsOfMeasureProductName",
+   "NumberOfBaseUnitsInAdditionalUnit",
+   "IAmSellingThisProduct"
+  ]
+ },
+ "/CustomerList/ImportCustomPricesJson": {
+  "bundle": "Product2019",
+  "columns": [
+   "Action",
+   "BaseSKU",
+   "BaseProductName",
+   "BaseUnitsOfMeasure",
+   "AdditionalUnitsOfMeasureSKU",
+   "AdditionalUnitsOfMeasureName",
+   "AdditionalUnitsOfMeasureProductName",
+   "NumberOfBaseUnitsInAdditionalUnit",
+   "IAmSellingThisProduct"
+  ]
+ },
+ "/Product/ImportCustomPricesJson": {
+  "bundle": "Product2019",
+  "columns": [
+   "Action",
+   "BaseSKU",
+   "BaseProductName",
+   "BaseUnitsOfMeasure",
+   "AdditionalUnitsOfMeasureSKU",
+   "AdditionalUnitsOfMeasureName",
+   "AdditionalUnitsOfMeasureProductName",
+   "NumberOfBaseUnitsInAdditionalUnit",
+   "IAmSellingThisProduct"
+  ]
+ },
+ "/Product/ImportStockOnHandJson": {
+  "bundle": "Product2019",
+  "columns": [
+   "ProductCode",
+   "Quantity",
+   "AverageCost",
+   "Location",
+   "BatchOrSerialNumber",
+   "ExpiryDate_YYYYMMDD",
+   "ReceivedDate_YYYYMMDD"
+  ]
+ },
+ "/Product/ImportFixedAssetsJson": {
+  "bundle": "Product2019",
+  "columns": [
+   "ProductCode",
+   "Quantity",
+   "AverageCost",
+   "Location",
+   "BatchOrSerialNumber",
+   "ExpiryDate_YYYYMMDD",
+   "ReceivedDate_YYYYMMDD"
+  ]
+ },
+ "/Product/ImportImagesJson": {
+  "bundle": "Product2019",
+  "columns": [
+   "ProductSKU",
+   "ImageUrl",
+   "ImageFileName"
+  ]
+ },
+ "/ProductFamily/ImportImagesJson": {
+  "bundle": "ProductFamily2019",
+  "columns": [
+   "ProductSKU",
+   "ImageUrl",
+   "ImageFileName"
+  ]
+ },
+ "/Product/ImportProductCommodityDetailsJson": {
+  "bundle": "Shiptheory2019",
+  "columns": [
+   "ProductCode",
+   "CommodityDescription",
+   "CommodityComposition"
+  ]
+ },
+ "/Stocktake/Import": {
+  "bundle": "Stocktake2019",
+  "columns": [
+   "ProductCode",
+   "ProductName",
+   "Bin",
+   "Unit",
+   "BatchSN",
+   "ExpiryDate_YYYYMMDD",
+   "QuantityOnHand",
+   "StocktakeQuantity",
+   "ReceivedDate_YYYYMMDD"
+  ]
+ }
+}

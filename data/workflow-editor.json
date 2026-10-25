@@ -1,0 +1,935 @@
+{
+ "dicts": {
+  "ValuesMap": [
+   {
+    "Name": "CustomerName",
+    "Description": "Customer name",
+    "key": "CustomerName"
+   },
+   {
+    "Name": "CustomerContact",
+    "Description": "Customer contact",
+    "key": "CustomerContact"
+   },
+   {
+    "Name": "CustomerEmail",
+    "Description": "Customer email",
+    "key": "CustomerEmail"
+   },
+   {
+    "Name": "CustomerReference",
+    "Description": "Customer reference",
+    "key": "CustomerReference"
+   },
+   {
+    "Name": "SalesRepresentative",
+    "Description": "Sale representative",
+    "key": "SalesRepresentative"
+   },
+   {
+    "Name": "SaleOrderDate",
+    "Description": "Sale order date",
+    "key": "SaleOrderDate"
+   },
+   {
+    "Name": "SaleOrderNumber",
+    "Description": "Sale order number",
+    "key": "SaleOrderNumber"
+   },
+   {
+    "Name": "OrderTotal",
+    "Description": "Order total",
+    "key": "OrderTotal"
+   },
+   {
+    "Name": "QuoteCreatedDate",
+    "Description": "Quote created date",
+    "key": "QuoteCreatedDate"
+   },
+   {
+    "Name": "QuoteTotal",
+    "Description": "Quote total",
+    "key": "QuoteTotal"
+   },
+   {
+    "Name": "QuoteDownloadLink",
+    "Description": "Quote download link",
+    "IsLink": true,
+    "key": "QuoteDownloadLink"
+   },
+   {
+    "Name": "SupplierName",
+    "Description": "Supplier name",
+    "key": "SupplierName"
+   },
+   {
+    "Name": "SupplierContact",
+    "Description": "Supplier contact",
+    "key": "SupplierContact"
+   },
+   {
+    "Name": "SupplierEmail",
+    "Description": "Supplier email",
+    "key": "SupplierEmail"
+   },
+   {
+    "Name": "OrderDownloadLink",
+    "Description": "Order download link",
+    "IsLink": true,
+    "key": "SaleOrderDownloadLink"
+   },
+   {
+    "Name": "InvoiceDate",
+    "Description": "Invoice date",
+    "key": "InvoiceDate"
+   },
+   {
+    "Name": "InvoiceNumber",
+    "Description": "Invoice number",
+    "key": "InvoiceNumber"
+   },
+   {
+    "Name": "InvoiceDueDate",
+    "Description": "Invoice due date",
+    "key": "InvoiceDueDate"
+   },
+   {
+    "Name": "InvoiceTotal",
+    "Description": "Invoice total",
+    "key": "InvoiceTotal"
+   },
+   {
+    "Name": "InvoiceDownloadLink",
+    "Description": "Invoice download link",
+    "IsLink": true,
+    "key": "InvoiceDownloadLink"
+   },
+   {
+    "Name": "PickListDownloadLink",
+    "Description": "Pick list download link",
+    "IsLink": true,
+    "key": "PickListDownloadLink"
+   },
+   {
+    "Name": "PackListDownloadLink",
+    "Description": "Pack list download link",
+    "IsLink": true,
+    "key": "PackListDownloadLink"
+   },
+   {
+    "Name": "TrackingNumberList",
+    "Description": "List of tracking numbers",
+    "key": "TrackingNumberList"
+   },
+   {
+    "Name": "CarrierTrackingNumberList",
+    "Description": "List of tracking numbers with carrier",
+    "key": "CarrierTrackingNumberList"
+   },
+   {
+    "Name": "OrderAttachments",
+    "Description": "Order attachments",
+    "key": "OrderAttachments"
+   },
+   {
+    "Name": "BoxLabelDownloadLink",
+    "Description": "Box label download link",
+    "IsLink": true,
+    "key": "BoxLabelDownloadLink"
+   },
+   {
+    "Name": "FulfilmentCreatedDownloadLink",
+    "Description": "Document download link",
+    "IsLink": true,
+    "key": "FulfilmentCreatedDownloadLink"
+   },
+   {
+    "Name": "CreditNoteDownloadLink",
+    "Description": "Credit note download link",
+    "IsLink": true,
+    "key": "SaleCreditNoteDownloadLink"
+   },
+   {
+    "Name": "CreditNoteDownloadLink",
+    "Description": "Purchase return download link",
+    "IsLink": true,
+    "key": "PurchaseCreditNoteDownloadLink"
+   },
+   {
+    "Name": "CreditNoteDate",
+    "Description": "Credit note date",
+    "key": "CreditNoteDate"
+   },
+   {
+    "Name": "CreditNoteNumber",
+    "Description": "Credit note number",
+    "key": "CreditNoteNumber"
+   },
+   {
+    "Name": "RefundAmount",
+    "Description": "Refund amount",
+    "key": "RefundAmount"
+   },
+   {
+    "Name": "CreditNoteTotal",
+    "Description": "Credit note total",
+    "key": "CreditNoteTotal"
+   },
+   {
+    "Name": "OrderNumber",
+    "Description": "Purchase order number",
+    "key": "PurchaseOrderNumber"
+   },
+   {
+    "Name": "OrderDate",
+    "Description": "Purchase order date",
+    "key": "PurchaseOrderDate"
+   },
+   {
+    "Name": "OrderTotal",
+    "Description": "Purchase order total",
+    "key": "PurchaseOrderTotal"
+   },
+   {
+    "Name": "OrderDownloadLink",
+    "Description": "Purchase order download link",
+    "IsLink": true,
+    "key": "PurchaseOrderDownloadLink"
+   },
+   {
+    "Name": "StockReceivedDownloadLink",
+    "Description": "Receiving note download link",
+    "IsLink": true,
+    "key": "StockReceivedDownloadLink"
+   },
+   {
+    "Name": "LeadName",
+    "Description": "Lead name",
+    "key": "LeadName"
+   },
+   {
+    "Name": "LeadContact",
+    "Description": "Lead contact",
+    "key": "LeadContact"
+   },
+   {
+    "Name": "LeadEmail",
+    "Description": "Lead email",
+    "key": "LeadEmail"
+   },
+   {
+    "Name": "CustomerOrLeadName",
+    "Description": "Customer/lead name",
+    "key": "CustomerOrLeadName"
+   },
+   {
+    "Name": "CustomerOrLeadContact",
+    "Description": "Customer/lead contact",
+    "key": "CustomerOrLeadContact"
+   },
+   {
+    "Name": "CustomerOrLeadEmail",
+    "Description": "Customer/lead email",
+    "key": "CustomerOrLeadEmail"
+   },
+   {
+    "Name": "OpportunityTotal",
+    "Description": "Opportunity total",
+    "key": "OpportunityTotal"
+   },
+   {
+    "Name": "OpportunityCreatedDate",
+    "Description": "Opportunity created date",
+    "key": "OpportunityCreatedDate"
+   },
+   {
+    "Name": "OpportunityNumber",
+    "Description": "Opportunity number",
+    "key": "OpportunityNumber"
+   },
+   {
+    "Name": "OpportunityDownloadLink",
+    "Description": "Opportunity download link",
+    "key": "OpportunityDownloadLink"
+   }
+  ]
+ },
+ "groups": {
+  "n[this]": [
+   "c.exec(i[0])[0]",
+   "c.exec(i[1])[0]"
+  ],
+  "h.parse": [
+   "t[1]",
+   "t[2]",
+   "t[3]",
+   "t[4]"
+  ],
+  "m": [
+   "p[c[0]]",
+   "p[c[1]]"
+  ],
+  "this._pos": [
+   "o.pageX",
+   "o.pageY"
+  ],
+  "_findPos": [
+   "i.left",
+   "i.top"
+  ],
+  "h": [
+   "s.grid",
+   "s.grid"
+  ],
+  "this.opos": [
+   "e.pageX",
+   "e.pageY"
+  ],
+  "e.values": [
+   "e.values[0]",
+   "e.values[0]"
+  ],
+  "WorkflowEditService.value": [
+   "this._constants.EntityType.Sale",
+   "this._constants.EntityType.Opportunity"
+  ],
+  "": [
+   "this._settings.conditions.empty",
+   "this._settings.conditions.not_empty"
+  ],
+  "ValuesMap": [
+   "ValuesMap_classPrivateFieldGet(_PARAM_VALUES,this).LeadName",
+   "ValuesMap_classPrivateFieldGet(_PARAM_VALUES,this).LeadContact",
+   "ValuesMap_classPrivateFieldGet(_PARAM_VALUES,this).LeadEmail",
+   "ValuesMap_classPrivateFieldGet(_PARAM_VALUES,this).SalesRepresentative"
+  ],
+  "this.items[this.entityType].Parameters": [
+   "ValuesMap_classPrivateFieldGet(_PARAM_VALUES,this).CreditNoteNumber",
+   "ValuesMap_classPrivateFieldGet(_PARAM_VALUES,this).PurchaseCreditNoteDownloadLink"
+  ],
+  "isRecCustomerOrSupplier": [
+   "_Confirm_classPrivateFieldGet(_recipients,this).Customer",
+   "_Confirm_classPrivateFieldGet(_recipients,this).Supplier"
+  ],
+  "fields": [
+   "this.options.valueField",
+   "this.options.nameField"
+  ]
+ },
+ "stringObjs": [
+  {
+   "at": "hideProps",
+   "entries": [
+    [
+     "borderTopWidth",
+     "hide"
+    ],
+    [
+     "borderBottomWidth",
+     "hide"
+    ],
+    [
+     "paddingTop",
+     "hide"
+    ],
+    [
+     "paddingBottom",
+     "hide"
+    ],
+    [
+     "height",
+     "hide"
+    ]
+   ]
+  },
+  {
+   "at": "showProps",
+   "entries": [
+    [
+     "borderTopWidth",
+     "show"
+    ],
+    [
+     "borderBottomWidth",
+     "show"
+    ],
+    [
+     "paddingTop",
+     "show"
+    ],
+    [
+     "paddingBottom",
+     "show"
+    ],
+    [
+     "height",
+     "show"
+    ]
+   ]
+  },
+  {
+   "at": "options.items",
+   "entries": [
+    [
+     "button",
+     "input[type=button], input[type=submit], input[type=reset], button, a"
+    ],
+    [
+     "controlgroupLabel",
+     ".ui-controlgroup-label"
+    ],
+    [
+     "checkboxradio",
+     "input[type='checkbox'], input[type='radio']"
+    ],
+    [
+     "selectmenu",
+     "select"
+    ],
+    [
+     "spinner",
+     ".ui-spinner-input"
+    ]
+   ]
+  },
+  {
+   "at": "this.handles",
+   "entries": [
+    [
+     "n",
+     ".ui-resizable-n"
+    ],
+    [
+     "e",
+     ".ui-resizable-e"
+    ],
+    [
+     "s",
+     ".ui-resizable-s"
+    ],
+    [
+     "w",
+     ".ui-resizable-w"
+    ],
+    [
+     "se",
+     ".ui-resizable-se"
+    ],
+    [
+     "sw",
+     ".ui-resizable-sw"
+    ],
+    [
+     "ne",
+     ".ui-resizable-ne"
+    ],
+    [
+     "nw",
+     ".ui-resizable-nw"
+    ]
+   ]
+  },
+  {
+   "at": "options.classes",
+   "entries": [
+    [
+     "ui-tabs",
+     "ui-corner-all"
+    ],
+    [
+     "ui-tabs-nav",
+     "ui-corner-all"
+    ],
+    [
+     "ui-tabs-panel",
+     "ui-corner-bottom"
+    ],
+    [
+     "ui-tabs-tab",
+     "ui-corner-top"
+    ]
+   ]
+  },
+  {
+   "at": "",
+   "entries": [
+    [
+     "EVENT",
+     ".js-event"
+    ],
+    [
+     "ACTION",
+     ".js-action"
+    ],
+    [
+     "PANEL",
+     ".js-item-panel"
+    ],
+    [
+     "ACTION_INNER",
+     ".js-action-in"
+    ],
+    [
+     "EDIT_CONDITION",
+     ".js-btn-edit-conditions"
+    ],
+    [
+     "CLEAR_CONDITION",
+     ".js-btn-clear-conditions"
+    ]
+   ]
+  },
+  {
+   "at": "Models.value.associations",
+   "entries": [
+    [
+     "type",
+     "hasMany"
+    ],
+    [
+     "associationKey",
+     "WorkflowConditions"
+    ],
+    [
+     "model",
+     "vAutomatedWorkflowCondition"
+    ],
+    [
+     "name",
+     "WorkflowConditions"
+    ],
+    [
+     "foreignKey",
+     "AutomatedWorkflowID"
+    ],
+    [
+     "primaryKey",
+     "AutomatedWorkflowID"
+    ]
+   ]
+  },
+  {
+   "at": "Models.value.associations",
+   "entries": [
+    [
+     "type",
+     "hasMany"
+    ],
+    [
+     "associationKey",
+     "WorkflowEvents"
+    ],
+    [
+     "model",
+     "vAutomatedWorkflowEvent"
+    ],
+    [
+     "name",
+     "WorkflowEvents"
+    ],
+    [
+     "foreignKey",
+     "AutomatedWorkflowID"
+    ],
+    [
+     "primaryKey",
+     "AutomatedWorkflowID"
+    ]
+   ]
+  },
+  {
+   "at": "Models.value.associations",
+   "entries": [
+    [
+     "type",
+     "hasMany"
+    ],
+    [
+     "associationKey",
+     "ActionConditions"
+    ],
+    [
+     "model",
+     "vAutomatedWorkflowEventActionCondition"
+    ],
+    [
+     "name",
+     "ActionConditions"
+    ],
+    [
+     "foreignKey",
+     "AutomatedWorkflowEventActionID"
+    ],
+    [
+     "primaryKey",
+     "AutomatedWorkflowEventActionID"
+    ]
+   ]
+  },
+  {
+   "at": "ConditionsSettingsModal",
+   "entries": [
+    [
+     "LINE",
+     ".js-conditions-settings-line"
+    ],
+    [
+     "EXT_PARAM",
+     "extConditionsParam_"
+    ],
+    [
+     "EXT_CONDITION",
+     "extConditionsCondition_"
+    ],
+    [
+     "EXT_VALUE",
+     "extConditionsValue_"
+    ],
+    [
+     "JOIN",
+     "divConditionsJoin_"
+    ]
+   ]
+  },
+  {
+   "at": "ConditionsSettingsModal.parameters",
+   "entries": [
+    [
+     "customer_name",
+     "customer.name"
+    ],
+    [
+     "sales_rep",
+     "salesrep"
+    ],
+    [
+     "location",
+     "sale.location"
+    ],
+    [
+     "product",
+     "sale.orderproduct"
+    ],
+    [
+     "tag",
+     "sale.orderproducttag"
+    ],
+    [
+     "sale_channel",
+     "sale.saleschannel"
+    ],
+    [
+     "sale_order_state",
+     "sale.orderstate"
+    ],
+    [
+     "supplier_name",
+     "supplier.name"
+    ],
+    [
+     "purchase_product",
+     "purchase.orderproduct"
+    ],
+    [
+     "purchase_tag",
+     "purchase.orderproducttag"
+    ],
+    [
+     "purchaselocation",
+     "purchase.location"
+    ]
+   ]
+  },
+  {
+   "at": "ConditionsSettingsModal.conditions",
+   "entries": [
+    [
+     "equal",
+     "="
+    ],
+    [
+     "empty",
+     "0"
+    ],
+    [
+     "not_empty",
+     "!0"
+    ],
+    [
+     "one_of",
+     "[%]"
+    ]
+   ]
+  },
+  {
+   "at": "_Confirm_Confirm",
+   "entries": [
+    [
+     "CMB_TYPE",
+     "select.js-cmb-notification-type"
+    ],
+    [
+     "BTN_EMAIL",
+     ".js-btn-setup-email"
+    ],
+    [
+     "CMB_REPEAT",
+     "select.js-cmb-confirm-repeat"
+    ],
+    [
+     "CMB_REDIRECT",
+     "select.js-cmb-redirect-action"
+    ],
+    [
+     "CMB_REJECT",
+     "select.js-cmb-reject-action"
+    ],
+    [
+     "DIV_REDIRECT",
+     ".js-div-redirect"
+    ],
+    [
+     "REDIRECT",
+     ".js-redirect-setting"
+    ],
+    [
+     "DIV_REJECT",
+     ".js-div-reject"
+    ],
+    [
+     "REJECT",
+     ".js-reject-setting"
+    ],
+    [
+     "CMB_REJECT_TYPE",
+     "select.js-cmb-reject-notification-type"
+    ],
+    [
+     "BTN_REJECT_EMAIL",
+     ".js-btn-setup-reject-email"
+    ],
+    [
+     "CMB_RECEIVERS",
+     "select.js-cmb-receivers"
+    ],
+    [
+     "CMB_NOTIFYREP_TYPE",
+     "select.js-cmb-notifyrep-notification-type"
+    ],
+    [
+     "BTN_NOTIFYREP_EMAIL",
+     ".js-btn-setup-notifyrep-email"
+    ]
+   ]
+  },
+  {
+   "at": "_SetProperty_SetProperty.PROPERTIES",
+   "entries": [
+    [
+     "Contact",
+     "js-txt-contact big"
+    ],
+    [
+     "Phone",
+     "js-txt-phone"
+    ],
+    [
+     "Email",
+     "js-txt-email big"
+    ],
+    [
+     "Reference",
+     "js-txt-reference big"
+    ],
+    [
+     "BillingAddressLine1",
+     "js-cmb-bill-address-line1"
+    ],
+    [
+     "BillingAddressLine2",
+     "js-cmb-bill-address-line2"
+    ],
+    [
+     "VendorAddressLine1",
+     "js-cmb-bill-address-line1"
+    ],
+    [
+     "VendorAddressLine2",
+     "js-cmb-bill-address-line2"
+    ],
+    [
+     "SalesRepresentative",
+     "js-cmb-sales-representative"
+    ],
+    [
+     "Location",
+     "js-cmb-location"
+    ],
+    [
+     "OrderDate",
+     "js-txt-order-date"
+    ],
+    [
+     "ShipToCompany",
+     "js-txt-ship-company big"
+    ],
+    [
+     "ShipToContact",
+     "js-txt-ship-contact big"
+    ],
+    [
+     "ShippingAddressLine1",
+     "js-cmb-ship-address-line1"
+    ],
+    [
+     "ShippingAddressLine2",
+     "js-cmb-ship-address-line2"
+    ],
+    [
+     "ShippingNotes",
+     "js-txt-ship-notes"
+    ],
+    [
+     "OrderRequiredBy",
+     "js-txt-day-offset"
+    ],
+    [
+     "Carrier",
+     "js-cmb-carriers"
+    ],
+    [
+     "OrderComments",
+     "js-txt-order-comments"
+    ],
+    [
+     "InvoiceMemo",
+     "js-txt-invoice-memo"
+    ],
+    [
+     "CreditNoteMemo",
+     "js-txt-cn-memo"
+    ],
+    [
+     "InventoryAccount",
+     "js-cmb-inventory-account"
+    ]
+   ]
+  },
+  {
+   "at": "_SetProperty_SetProperty",
+   "entries": [
+    [
+     "STRING",
+     "String"
+    ],
+    [
+     "TEXT",
+     "Text"
+    ],
+    [
+     "INT",
+     "IntegerNullable"
+    ],
+    [
+     "DIMENSIONS",
+     "DimensionAttribute"
+    ],
+    [
+     "ADDITIONAL",
+     "AdditionalAttribute"
+    ]
+   ]
+  },
+  {
+   "at": "Actions",
+   "entries": [
+    [
+     "CMB",
+     "select.js-cmb-action"
+    ],
+    [
+     "BTN_ADD",
+     ".js-btn-add-action"
+    ],
+    [
+     "BTN_SET",
+     ".js-btn-set-action"
+    ],
+    [
+     "BTN_EDIT",
+     ".js-btn-edit-action"
+    ],
+    [
+     "BTN_CLONE",
+     ".js-btn-clone-action"
+    ],
+    [
+     "BTN_REMOVE",
+     ".js-btn-remove-action"
+    ],
+    [
+     "BTN_CONDITION",
+     ".js-btn-condition"
+    ],
+    [
+     "ACTIONS",
+     ".js-actions"
+    ]
+   ]
+  },
+  {
+   "at": "item.actionSettings",
+   "entries": [
+    [
+     "name",
+     "Assign picker"
+    ],
+    [
+     "valueField",
+     "UserID"
+    ],
+    [
+     "nameField",
+     "Email"
+    ],
+    [
+     "selectorPostfix",
+     "picker"
+    ],
+    [
+     "apiUrl",
+     "/api/vAutomatedWorkflow_Edit_vTenantUser/"
+    ]
+   ]
+  },
+  {
+   "at": "item.actionSettings",
+   "entries": [
+    [
+     "name",
+     "Reorder Backorder"
+    ],
+    [
+     "valueField",
+     "AllowMultipleOrders"
+    ],
+    [
+     "nameField",
+     "name"
+    ],
+    [
+     "selectorPostfix",
+     "ReorderBackorder"
+    ],
+    [
+     "apiUrl",
+     ""
+    ],
+    [
+     "defaultValue",
+     "false"
+    ]
+   ]
+  }
+ ]
+}
