@@ -2,12 +2,26 @@
 
 The frame every page loads: top menu, global search, favourites, quick links, notifications and chat (SignalR `messageHub`), session timeout, the activity log and access checks. Bundle `Main2019`.
 
-| | Count |
-|---|---:|
-| Pages | 0 |
-| Data models | 0 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 130 (36 write) |
-| Public API operations | 0 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **0** | **0** + [shared](../00-shared/README.md) | **130** | 36 | **0** |
+
+[🔌 Endpoints (130)](#internal-endpoints) · [🖼️ UI](UI.md)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 94
+    "write" : 28
+    "read + write" : 8
+```
+
+```mermaid
+xychart-beta horizontal
+    title "Busiest controllers"
+    x-axis ["Report", "Account", "TaskShared", "DefaultFieldValues", "account", "Calendar", "CustomerList", "MessageChat", "MySubscription", "Notifications"]
+    y-axis "endpoints" 0 --> 70
+    bar [69, 6, 6, 3, 2, 2, 2, 2, 2, 2]
+```
 
 ## Integration endpoints this module calls
 
@@ -21,7 +35,9 @@ Filed under their integration; listed here because pages in this module call the
 
 ## How to rebuild it
 
-1. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🔌 Internal API | Each controller's verbs · [contract](../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
 
 ## Internal endpoints
 

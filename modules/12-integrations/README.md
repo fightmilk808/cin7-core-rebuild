@@ -2,12 +2,11 @@
 
 The integrations catalogue (`/Integrations`) and one subfolder per connector: its settings page, mappings, sync logs and endpoints.
 
-| | Count |
-|---|---:|
-| Pages | 1 |
-| Data models | 1 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 0 (0 write) |
-| Public API operations | 0 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **1** | **1** + [shared](../00-shared/README.md) | **0** | 0 | **0** |
+
+[📄 Pages (1)](#pages) · [🧱 Models (1)](#data-models) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
 
 ## Integrations
 
@@ -1073,8 +1072,10 @@ Every internal endpoint, filed under the integration its controller names (which
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (1), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🗄️ Schema | 1 tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID` |
+| 2 | 🖥️ Screens | Server-rendered shell + page app, record from `#<guid>` · [page model](../../docs/ARCHITECTURE.md#what-a-page-is) · every control in [UI.md](UI.md) |
 
 ## Pages
 

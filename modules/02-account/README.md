@@ -2,16 +2,31 @@
 
 Sign-in, sign-out, password change, organisation switching and impersonation. Server-rendered MVC actions under `/Account/*`; a signed-in session is a cookie.
 
-| | Count |
-|---|---:|
-| Pages | 0 |
-| Data models | 0 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 13 (4 write) |
-| Public API operations | 0 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **0** | **0** + [shared](../00-shared/README.md) | **13** | 4 | **0** |
+
+[🔌 Endpoints (13)](#internal-endpoints)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 9
+    "write" : 4
+```
+
+```mermaid
+xychart-beta horizontal
+    title "Busiest controllers"
+    x-axis ["Account", "Onboarding", "Passkey", "tenantOrganisations"]
+    y-axis "endpoints" 0 --> 10
+    bar [8, 2, 2, 1]
+```
 
 ## How to rebuild it
 
-1. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🔌 Internal API | Each controller's verbs · [contract](../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
 
 ## Internal endpoints
 

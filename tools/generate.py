@@ -605,42 +605,102 @@ def layout_section(d, pages):
 
 # ---------------------------------------------------------------- module pages
 
+def _mm(text):
+    """Text safe inside a quoted Mermaid label."""
+    return str(text).replace('"', "'").replace("<", "‹").replace(">", "›")
+
+
+def overview(pages, models, eps, public, reports, has_ui):
+    """Jump links, an effect pie, the busiest controllers and a page -> controller map."""
+    out = []
+    links = []
+    if pages:
+        links.append(f"[📄 Pages ({len(pages)})](#pages)")
+    if models:
+        links.append(f"[🧱 Models ({len(models)})](#data-models)")
+    if eps:
+        links.append(f"[🔌 Endpoints ({len(eps)})](#internal-endpoints)")
+    if public:
+        links.append(f"[🌍 Public API ({len(public)})](#public-api-externalapiv2)")
+    if reports:
+        links.append(f"[📊 Reports ({len(reports)})](#reports-their-filters-and-columns)")
+    if has_ui:
+        links.append("[🖼️ UI](UI.md)")
+    if models:
+        links.append("[🗄️ schema.sql](schema.sql)")
+    if links:
+        out += [" · ".join(links), ""]
+    if len(eps) < 5:
+        return out
+
+    effects = defaultdict(int)
+    for e in eps:
+        effects["write" if e["effect"] == "write" else "read + write" if e["effect"] == "read+write" else "read"] += 1
+    by_ctrl = defaultdict(list)
+    for e in eps:
+        by_ctrl[controller_of(e["url"])].append(e)
+    top = sorted(by_ctrl, key=lambda c: (-len(by_ctrl[c]), c.lower()))[:10]
+
+    out += ["```mermaid", "pie showData title Endpoints by effect"]
+    out += [f'    "{k}" : {v}' for k, v in sorted(effects.items(), key=lambda kv: -kv[1])]
+    out += ["```", ""]
+    if len(by_ctrl) >= 3:
+        names = ", ".join(f'"{_mm(c)}"' for c in top)
+        counts = ", ".join(str(len(by_ctrl[c])) for c in top)
+        ymax = max(len(by_ctrl[c]) for c in top)
+        out += ["```mermaid", "xychart-beta horizontal", '    title "Busiest controllers"',
+                f"    x-axis [{names}]", f'    y-axis "endpoints" 0 --> {ymax + (5 - ymax % 5)}',
+                f"    bar [{counts}]", "```", ""]
+
+    shown_pages = sorted(pages, key=lambda p: (-int(p["n_api"] or 0), p["route"]))[:8]
+    if 1 < len(shown_pages) and len(by_ctrl) >= 2:
+        ctrls = top[:8]
+        edges = []
+        for i, p in enumerate(shown_pages):
+            for j, c in enumerate(ctrls):
+                n = sum(1 for e in by_ctrl[c] if p["route"] in e["pages"].split())
+                if n:
+                    edges.append(f"    p{i} -->|{n}| c{j}")
+        if edges:
+            out += ["```mermaid", "flowchart LR"]
+            out += [f'    p{i}["{_mm(p["route"])}"]' for i, p in enumerate(shown_pages)]
+            out += [f'    c{j}(["{_mm(c)}"])' for j, c in enumerate(ctrls)]
+            out += edges + ["```", "",
+                            f"<sub>Pages (left) and the controllers they call (right), busiest {len(shown_pages)} "
+                            f"pages and {len(ctrls)} controllers; numbers are endpoints.</sub>", ""]
+    return out
+
+
 def write_unit(d, title, about, pages, models, eps, public, reports, ui, bundles, extra=None, depth=1):
     d.mkdir(parents=True, exist_ok=True)
     up = "../" * depth
     has_ui = write_ui(d, title, pages, bundles, ui)
     L = [f"# {title}", "", about, ""]
     n_write = sum(1 for e in eps if "write" in e["effect"])
-    L += ["| | Count |", "|---|---:|",
-          f"| Pages | {len(pages)} |", f"| Data models | {len(models)} (plus [shared]({up}00-shared/README.md)) |",
-          f"| Internal endpoints | {len(eps)} ({n_write} write) |", f"| Public API operations | {len(public)} |"]
-    if reports:
-        L.append(f"| Reports | {len(reports)} |")
-    L.append("")
+    L += ["| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API" + (" | 📊 Reports |" if reports else " |"),
+          "|:-:|:-:|:-:|:-:|:-:" + ("|:-:|" if reports else "|"),
+          f"| **{len(pages)}** | **{len(models)}** + [shared]({up}00-shared/README.md) | **{len(eps)}** | {n_write} | "
+          f"**{len(public)}**" + (f" | **{len(reports)}** |" if reports else " |"), ""]
+    L += overview(pages, models, eps, public, reports, has_ui)
     if extra:
         L += extra
     L += ["## How to rebuild it", ""]
     steps = []
     if models:
-        steps.append(f"**Schema.** Create one table per data model below ({len(models)}), starting from the generated "
-                     "[`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.")
+        steps.append(("🗄️ Schema", f"{len(models)} tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID`"))
     if eps:
-        steps.append("**Internal API.** Implement each controller's endpoints with the verbs listed, following the "
-                     f"[internal API contract]({up}../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, "
-                     "paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.")
+        steps.append(("🔌 Internal API", f"Each controller's verbs · [contract]({up}../docs/INTERNAL-API.md) · "
+                      "paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}`"))
     if pages:
-        steps.append("**Screens.** Build each route below as a server-rendered shell that loads the shell bundle and "
-                     "the page's own app, opening a record from `#<guid>` once at load "
-                     f"([page model]({up}../docs/ARCHITECTURE.md#what-a-page-is))."
-                     + (" Every grid, column, field, button and dialog is in [UI.md](UI.md)." if has_ui else
-                        " Its page code builds no ExtJS components; the screen is server-rendered HTML."))
+        steps.append(("🖥️ Screens", f"Server-rendered shell + page app, record from `#<guid>` · "
+                      f"[page model]({up}../docs/ARCHITECTURE.md#what-a-page-is)"
+                      + (" · every control in [UI.md](UI.md)" if has_ui else " · plain server HTML, no ExtJS")))
     if public:
-        steps.append(f"**Public API.** Expose the {len(public)} operations below under `/ExternalApi/v2` with "
-                     f"header auth ([public API contract]({up}../docs/PUBLIC-API.md)).")
+        steps.append(("🌍 Public API", f"{len(public)} ops under `/ExternalApi/v2`, header auth · "
+                      f"[contract]({up}../docs/PUBLIC-API.md)"))
     if reports:
-        steps.append("**Reports.** Each report is a pivot grid over the columns listed, served by the report "
-                     f"service ([`21-report-service`]({up}21-report-service/README.md)).")
-    L += [f"{i}. {s}" for i, s in enumerate(steps, 1)] + [""]
+        steps.append(("📊 Reports", f"Pivot grids over the columns below · [report service]({up}21-report-service/README.md)"))
+    L += ["| # | Build | How |", "|:-:|---|---|"] + [f"| {i} | {a} | {b} |" for i, (a, b) in enumerate(steps, 1)] + [""]
 
     if pages:
         L += ["## Pages", "", "| Route | Menu label | Title | Bundle | Endpoints (write) |", "|---|---|---|---|---:|"]

@@ -2,12 +2,50 @@
 
 Ask AI (`/AMA`), document data extraction (upload a supplier document, get a purchase back) and generated product descriptions.
 
-| | Count |
-|---|---:|
-| Pages | 2 |
-| Data models | 7 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 24 (9 write) |
-| Public API operations | 0 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **2** | **7** + [shared](../00-shared/README.md) | **24** | 9 | **0** |
+
+[📄 Pages (2)](#pages) · [🧱 Models (7)](#data-models) · [🔌 Endpoints (24)](#internal-endpoints) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 15
+    "read + write" : 5
+    "write" : 4
+```
+
+```mermaid
+xychart-beta horizontal
+    title "Busiest controllers"
+    x-axis ["Sale", "DocumentExtraction", "SaleCommon", "currency", "Customer", "DefaultFieldValues", "MySubscription", "Purchase", "SaleMult", "SaleService"]
+    y-axis "endpoints" 0 --> 10
+    bar [6, 5, 5, 1, 1, 1, 1, 1, 1, 1]
+```
+
+```mermaid
+flowchart LR
+    p0["/DocumentExtraction"]
+    p1["/AMA"]
+    c0(["Sale"])
+    c1(["DocumentExtraction"])
+    c2(["SaleCommon"])
+    c3(["currency"])
+    c4(["Customer"])
+    c5(["DefaultFieldValues"])
+    c6(["MySubscription"])
+    c7(["Purchase"])
+    p0 -->|6| c0
+    p0 -->|5| c1
+    p0 -->|5| c2
+    p0 -->|1| c3
+    p0 -->|1| c4
+    p0 -->|1| c5
+    p0 -->|1| c6
+    p0 -->|1| c7
+```
+
+<sub>Pages (left) and the controllers they call (right), busiest 2 pages and 8 controllers; numbers are endpoints.</sub>
 
 ## Integration endpoints this module calls
 
@@ -19,9 +57,11 @@ Filed under their integration; listed here because pages in this module call the
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (7), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🗄️ Schema | 7 tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID` |
+| 2 | 🔌 Internal API | Each controller's verbs · [contract](../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
+| 3 | 🖥️ Screens | Server-rendered shell + page app, record from `#<guid>` · [page model](../../docs/ARCHITECTURE.md#what-a-page-is) · every control in [UI.md](UI.md) |
 
 ## Pages
 

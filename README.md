@@ -16,7 +16,7 @@
 | **261** | **1,633** | **544** | **295** ops · 115 paths | **1,024** | **86** | **42** · 751 endpoints | **6** |
 
 ```mermaid
-xychart-beta
+xychart-beta horizontal
     title "Internal endpoints by module"
     x-axis ["Sale", "Ref books", "Inventory", "Production", "Purchase", "Shell", "Settings", "Financials", "CRM", "Dashboard", "Reports", "Other", "MRP", "AI", "Account"]
     y-axis "endpoints" 0 --> 300
@@ -26,7 +26,7 @@ xychart-beta
 ## Integration partners
 
 ```mermaid
-xychart-beta
+xychart-beta horizontal
     title "Endpoints per integration (top 15)"
     x-axis ["Cin7 POS", "B2B Portal", "Amazon", "QuickBooks", "eBay", "ShipStation", "Shopify", "Lightspeed", "Square", "Magento 2", "Faire", "Etsy", "HubSpot", "WooCommerce", "BigCommerce"]
     y-axis "endpoints" 0 --> 70

@@ -2,16 +2,32 @@
 
 Endpoints found in shared bundles that no menu page claims. Rebuild them where their name says they belong.
 
-| | Count |
-|---|---:|
-| Pages | 0 |
-| Data models | 0 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 44 (20 write) |
-| Public API operations | 0 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **0** | **0** + [shared](../00-shared/README.md) | **44** | 20 | **0** |
+
+[🔌 Endpoints (44)](#internal-endpoints) · [🖼️ UI](UI.md)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 24
+    "write" : 12
+    "read + write" : 8
+```
+
+```mermaid
+xychart-beta horizontal
+    title "Busiest controllers"
+    x-axis ["BankAccount", "Stripe", "InventoroSettings", "BankStatement", "StocktransferList", "BudgetPlanner", "Report", "StockTransferList", "StockTransferListBulkAction"]
+    y-axis "endpoints" 0 --> 15
+    bar [13, 11, 6, 5, 5, 1, 1, 1, 1]
+```
 
 ## How to rebuild it
 
-1. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🔌 Internal API | Each controller's verbs · [contract](../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
 
 ## Internal endpoints
 

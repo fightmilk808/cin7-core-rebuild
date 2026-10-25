@@ -2,19 +2,67 @@
 
 Tenant-wide settings: general settings, users and roles (page access), document and email templates, notifications and automations, reminders, task settings, scheduled reports, user profile and subscription.
 
-| | Count |
-|---|---:|
-| Pages | 13 |
-| Data models | 41 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 119 (66 write) |
-| Public API operations | 14 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **13** | **41** + [shared](../00-shared/README.md) | **119** | 66 | **14** |
+
+[📄 Pages (13)](#pages) · [🧱 Models (41)](#data-models) · [🔌 Endpoints (119)](#internal-endpoints) · [🌍 Public API (14)](#public-api-externalapiv2) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 53
+    "write" : 46
+    "read + write" : 20
+```
+
+```mermaid
+xychart-beta horizontal
+    title "Busiest controllers"
+    x-axis ["MySubscription", "TenantGeneralSettings", "PageAccess", "UserProfile", "TenantTaskSettings", "CardOnFile", "Account", "address", "NotificationSettings", "Passkey"]
+    y-axis "endpoints" 0 --> 30
+    bar [25, 13, 12, 10, 8, 5, 4, 4, 4, 4]
+```
+
+```mermaid
+flowchart LR
+    p0["/MySubscription/Marketplace"]
+    p1["/MySubscription"]
+    p2["/PageAccess"]
+    p3["/TenantGeneralSettings"]
+    p4["/UserProfile"]
+    p5["/TaskSettings"]
+    p6["/NotificationSettings/Notifications"]
+    p7["/NotificationSettings/MailingList"]
+    c0(["MySubscription"])
+    c1(["TenantGeneralSettings"])
+    c2(["PageAccess"])
+    c3(["UserProfile"])
+    c4(["TenantTaskSettings"])
+    c5(["CardOnFile"])
+    c6(["Account"])
+    c7(["address"])
+    p0 -->|10| c0
+    p0 -->|5| c5
+    p0 -->|4| c7
+    p1 -->|15| c0
+    p1 -->|4| c7
+    p2 -->|12| c2
+    p3 -->|13| c1
+    p4 -->|10| c3
+    p4 -->|4| c6
+    p5 -->|8| c4
+```
+
+<sub>Pages (left) and the controllers they call (right), busiest 8 pages and 8 controllers; numbers are endpoints.</sub>
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (41), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
-4. **Public API.** Expose the 14 operations below under `/ExternalApi/v2` with header auth ([public API contract](../../docs/PUBLIC-API.md)).
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🗄️ Schema | 41 tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID` |
+| 2 | 🔌 Internal API | Each controller's verbs · [contract](../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
+| 3 | 🖥️ Screens | Server-rendered shell + page app, record from `#<guid>` · [page model](../../docs/ARCHITECTURE.md#what-a-page-is) · every control in [UI.md](UI.md) |
+| 4 | 🌍 Public API | 14 ops under `/ExternalApi/v2`, header auth · [contract](../../docs/PUBLIC-API.md) |
 
 ## Pages
 

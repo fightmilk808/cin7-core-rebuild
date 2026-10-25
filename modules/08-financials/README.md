@@ -2,19 +2,66 @@
 
 Money in and out outside sale and purchase documents: receive, spend and transfer money tasks, journals, expense claims, fixed assets and depreciation, bank accounts and bank rules, Cin7 Pay and Cin7 Capital.
 
-| | Count |
-|---|---:|
-| Pages | 17 |
-| Data models | 71 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 116 (63 write) |
-| Public API operations | 18 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **17** | **71** + [shared](../00-shared/README.md) | **116** | 63 | **18** |
+
+[📄 Pages (17)](#pages) · [🧱 Models (71)](#data-models) · [🔌 Endpoints (116)](#internal-endpoints) · [🌍 Public API (18)](#public-api-externalapiv2) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 53
+    "write" : 32
+    "read + write" : 31
+```
+
+```mermaid
+xychart-beta horizontal
+    title "Busiest controllers"
+    x-axis ["Cin7Pay", "MoneyTask", "ExpenseClaim", "BankRule", "ExpenseClaimReceipt", "FixedAsset", "Journal", "Depreciation", "BankAccount", "ExpenseClaimReceiptList"]
+    y-axis "endpoints" 0 --> 20
+    bar [19, 16, 11, 10, 7, 7, 6, 4, 3, 3]
+```
+
+```mermaid
+flowchart LR
+    p0["/MoneyTask/Spend"]
+    p1["/MoneyTask/Receive"]
+    p2["/BankRule"]
+    p3["/ExpenseClaimReceipt"]
+    p4["/Cin7Pay"]
+    p5["/ExpenseClaim"]
+    p6["/MoneyTask/Transfer"]
+    p7["/FixedAsset"]
+    c0(["Cin7Pay"])
+    c1(["MoneyTask"])
+    c2(["ExpenseClaim"])
+    c3(["BankRule"])
+    c4(["ExpenseClaimReceipt"])
+    c5(["FixedAsset"])
+    c6(["Journal"])
+    c7(["Depreciation"])
+    p0 -->|11| c1
+    p1 -->|10| c1
+    p2 -->|10| c3
+    p3 -->|1| c2
+    p3 -->|6| c4
+    p4 -->|19| c0
+    p5 -->|8| c2
+    p6 -->|9| c1
+    p7 -->|7| c5
+```
+
+<sub>Pages (left) and the controllers they call (right), busiest 8 pages and 8 controllers; numbers are endpoints.</sub>
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (71), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
-4. **Public API.** Expose the 18 operations below under `/ExternalApi/v2` with header auth ([public API contract](../../docs/PUBLIC-API.md)).
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🗄️ Schema | 71 tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID` |
+| 2 | 🔌 Internal API | Each controller's verbs · [contract](../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
+| 3 | 🖥️ Screens | Server-rendered shell + page app, record from `#<guid>` · [page model](../../docs/ARCHITECTURE.md#what-a-page-is) · every control in [UI.md](UI.md) |
+| 4 | 🌍 Public API | 18 ops under `/ExternalApi/v2`, header auth · [contract](../../docs/PUBLIC-API.md) |
 
 ## Pages
 

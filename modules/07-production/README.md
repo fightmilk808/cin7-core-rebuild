@@ -2,19 +2,68 @@
 
 Manufacturing: production BOMs and operations, production orders and runs, the production scheduler, capacity planner, resources and work centres, the factory calendar, assemblies (finished goods), disassemblies, job costing and inventory write-offs. MRP is its own module: [`16-mrp`](../16-mrp/README.md).
 
-| | Count |
-|---|---:|
-| Pages | 15 |
-| Data models | 142 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 198 (67 write) |
-| Public API operations | 66 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **15** | **142** + [shared](../00-shared/README.md) | **198** | 67 | **66** |
+
+[📄 Pages (15)](#pages) · [🧱 Models (142)](#data-models) · [🔌 Endpoints (198)](#internal-endpoints) · [🌍 Public API (66)](#public-api-externalapiv2) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 131
+    "write" : 41
+    "read + write" : 26
+```
+
+```mermaid
+xychart-beta horizontal
+    title "Busiest controllers"
+    x-axis ["ProductionOrder", "FinishedGoods", "IssueToProduction", "Disassembly", "JobCosting", "Purchase", "ProductionRun", "Scheduler", "CapacityPlanner", "ProductionSetup"]
+    y-axis "endpoints" 0 --> 55
+    bar [50, 23, 15, 14, 14, 13, 8, 7, 5, 5]
+```
+
+```mermaid
+flowchart LR
+    p0["/ProductionOrder"]
+    p1["/FinishedGoods"]
+    p2["/IssueToProduction"]
+    p3["/JobCosting"]
+    p4["/ProductionOrders"]
+    p5["/Disassembly"]
+    p6["/ProductionScheduler"]
+    p7["/ProductionResource"]
+    c0(["ProductionOrder"])
+    c1(["FinishedGoods"])
+    c2(["IssueToProduction"])
+    c3(["Disassembly"])
+    c4(["JobCosting"])
+    c5(["Purchase"])
+    c6(["ProductionRun"])
+    c7(["Scheduler"])
+    p0 -->|43| c0
+    p0 -->|8| c6
+    p1 -->|23| c1
+    p2 -->|15| c2
+    p2 -->|1| c5
+    p3 -->|14| c4
+    p4 -->|12| c0
+    p5 -->|14| c3
+    p6 -->|6| c0
+    p6 -->|7| c7
+    p7 -->|5| c0
+```
+
+<sub>Pages (left) and the controllers they call (right), busiest 8 pages and 8 controllers; numbers are endpoints.</sub>
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (142), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
-4. **Public API.** Expose the 66 operations below under `/ExternalApi/v2` with header auth ([public API contract](../../docs/PUBLIC-API.md)).
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🗄️ Schema | 142 tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID` |
+| 2 | 🔌 Internal API | Each controller's verbs · [contract](../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
+| 3 | 🖥️ Screens | Server-rendered shell + page app, record from `#<guid>` · [page model](../../docs/ARCHITECTURE.md#what-a-page-is) · every control in [UI.md](UI.md) |
+| 4 | 🌍 Public API | 66 ops under `/ExternalApi/v2`, header auth · [contract](../../docs/PUBLIC-API.md) |
 
 ## Pages
 

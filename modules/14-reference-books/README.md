@@ -2,12 +2,57 @@
 
 The lookup lists everything else points at: locations, bins and logistics paths, supply rules and transfer plans, chart of accounts and account mapping, tax rules, payment terms, carriers, ship zones, brands, categories, units of measure, attribute sets, discounts, order routing and default field values.
 
-| | Count |
-|---|---:|
-| Pages | 31 |
-| Data models | 165 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 224 (108 write) |
-| Public API operations | 54 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **31** | **165** + [shared](../00-shared/README.md) | **224** | 108 | **54** |
+
+[📄 Pages (31)](#pages) · [🧱 Models (165)](#data-models) · [🔌 Endpoints (224)](#internal-endpoints) · [🌍 Public API (54)](#public-api-externalapiv2) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 116
+    "read + write" : 79
+    "write" : 29
+```
+
+```mermaid
+xychart-beta horizontal
+    title "Busiest controllers"
+    x-axis ["Product", "OpeningBalances", "TenantLocationEdit", "RMA", "TenantShipZone", "Stock", "TenantContact", "ChartOfAccounts", "DearToDear", "ExpenseItemList"]
+    y-axis "endpoints" 0 --> 95
+    bar [92, 17, 15, 13, 7, 6, 6, 5, 5, 4]
+```
+
+```mermaid
+flowchart LR
+    p0["/FixedAssetType"]
+    p1["/OpeningBalances"]
+    p2["/TenantLocationEdit"]
+    p3["/RMAReturnPolicy"]
+    p4["/TenantShipZone"]
+    p5["/TenantContact"]
+    p6["/ChartOfAccounts"]
+    p7["/DearToDearNetworking"]
+    c0(["Product"])
+    c1(["OpeningBalances"])
+    c2(["TenantLocationEdit"])
+    c3(["RMA"])
+    c4(["TenantShipZone"])
+    c5(["Stock"])
+    c6(["TenantContact"])
+    c7(["ChartOfAccounts"])
+    p0 -->|91| c0
+    p0 -->|6| c5
+    p1 -->|1| c0
+    p1 -->|17| c1
+    p2 -->|14| c2
+    p3 -->|9| c3
+    p4 -->|7| c4
+    p5 -->|6| c6
+    p6 -->|5| c7
+```
+
+<sub>Pages (left) and the controllers they call (right), busiest 8 pages and 8 controllers; numbers are endpoints.</sub>
 
 ## Integration endpoints this module calls
 
@@ -19,10 +64,12 @@ Filed under their integration; listed here because pages in this module call the
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (165), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
-4. **Public API.** Expose the 54 operations below under `/ExternalApi/v2` with header auth ([public API contract](../../docs/PUBLIC-API.md)).
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🗄️ Schema | 165 tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID` |
+| 2 | 🔌 Internal API | Each controller's verbs · [contract](../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
+| 3 | 🖥️ Screens | Server-rendered shell + page app, record from `#<guid>` · [page model](../../docs/ARCHITECTURE.md#what-a-page-is) · every control in [UI.md](UI.md) |
+| 4 | 🌍 Public API | 54 ops under `/ExternalApi/v2`, header auth · [contract](../../docs/PUBLIC-API.md) |
 
 ## Pages
 

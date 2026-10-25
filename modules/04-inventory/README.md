@@ -2,19 +2,77 @@
 
 The product master (products, services, fixed assets, families/variants), stock availability per location and bin, stock adjustments, stocktakes, stock transfers, batch recall, price lists and gift cards. MRP is its own module: [`16-mrp`](../16-mrp/README.md).
 
-| | Count |
-|---|---:|
-| Pages | 15 |
-| Data models | 127 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 215 (84 write) |
-| Public API operations | 33 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **15** | **127** + [shared](../00-shared/README.md) | **215** | 84 | **33** |
+
+[📄 Pages (15)](#pages) · [🧱 Models (127)](#data-models) · [🔌 Endpoints (215)](#internal-endpoints) · [🌍 Public API (33)](#public-api-externalapiv2) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 131
+    "read + write" : 43
+    "write" : 41
+```
+
+```mermaid
+xychart-beta horizontal
+    title "Busiest controllers"
+    x-axis ["Product", "Stocktake", "ProductFamily", "Stock", "StockAdjustment", "Stocktransfer", "StockTransfer", "Recall", "PriceList", "FixedAssetType"]
+    y-axis "endpoints" 0 --> 95
+    bar [91, 21, 15, 14, 11, 11, 7, 6, 4, 3]
+```
+
+```mermaid
+flowchart LR
+    p0["/Product"]
+    p1["/ProductFamily"]
+    p2["/StockTake"]
+    p3["/Stocktake/New"]
+    p4["/StockTransfer"]
+    p5["/Stocktransfer"]
+    p6["/StockAdjustment"]
+    p7["/Stock"]
+    c0(["Product"])
+    c1(["Stocktake"])
+    c2(["ProductFamily"])
+    c3(["Stock"])
+    c4(["StockAdjustment"])
+    c5(["Stocktransfer"])
+    c6(["StockTransfer"])
+    c7(["Recall"])
+    p0 -->|91| c0
+    p0 -->|1| c2
+    p0 -->|6| c3
+    p1 -->|15| c0
+    p1 -->|15| c2
+    p2 -->|21| c1
+    p2 -->|2| c3
+    p3 -->|21| c1
+    p3 -->|2| c3
+    p4 -->|2| c3
+    p4 -->|11| c5
+    p4 -->|7| c6
+    p5 -->|2| c3
+    p5 -->|11| c5
+    p5 -->|7| c6
+    p6 -->|1| c0
+    p6 -->|2| c3
+    p6 -->|11| c4
+    p7 -->|8| c3
+    p7 -->|1| c4
+```
+
+<sub>Pages (left) and the controllers they call (right), busiest 8 pages and 8 controllers; numbers are endpoints.</sub>
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (127), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
-4. **Public API.** Expose the 33 operations below under `/ExternalApi/v2` with header auth ([public API contract](../../docs/PUBLIC-API.md)).
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🗄️ Schema | 127 tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID` |
+| 2 | 🔌 Internal API | Each controller's verbs · [contract](../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
+| 3 | 🖥️ Screens | Server-rendered shell + page app, record from `#<guid>` · [page model](../../docs/ARCHITECTURE.md#what-a-page-is) · every control in [UI.md](UI.md) |
+| 4 | 🌍 Public API | 33 ops under `/ExternalApi/v2`, header auth · [contract](../../docs/PUBLIC-API.md) |
 
 ## Pages
 

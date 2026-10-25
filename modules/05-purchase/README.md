@@ -2,19 +2,72 @@
 
 Suppliers and the purchase documents: simple and advanced purchase orders, service and drop-ship purchases, receiving (stock received / put-away), purchase invoices, credit notes, supplier payments and deposits, and the reorder screens.
 
-| | Count |
-|---|---:|
-| Pages | 15 |
-| Data models | 90 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 167 (64 write) |
-| Public API operations | 49 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **15** | **90** + [shared](../00-shared/README.md) | **167** | 64 | **49** |
+
+[📄 Pages (15)](#pages) · [🧱 Models (90)](#data-models) · [🔌 Endpoints (167)](#internal-endpoints) · [🌍 Public API (49)](#public-api-externalapiv2) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 103
+    "write" : 33
+    "read + write" : 31
+```
+
+```mermaid
+xychart-beta horizontal
+    title "Busiest controllers"
+    x-axis ["Purchase", "PurchaseAdvanced", "Supplier", "ReorderBackordered", "DocumentExtraction", "DropShipPurchase", "Reorder", "SuggestReorder", "address", "ExpenseDestribution"]
+    y-axis "endpoints" 0 --> 70
+    bar [65, 12, 8, 6, 5, 5, 5, 5, 4, 3]
+```
+
+```mermaid
+flowchart LR
+    p0["/PurchaseAdvanced"]
+    p1["/Purchase"]
+    p2["/DropShipPurchase"]
+    p3["/PurchaseService"]
+    p4["/PurchaseCreditNote"]
+    p5["/Supplier"]
+    p6["/PurchaseList"]
+    p7["/ReorderBackordered"]
+    c0(["Purchase"])
+    c1(["PurchaseAdvanced"])
+    c2(["Supplier"])
+    c3(["ReorderBackordered"])
+    c4(["DocumentExtraction"])
+    c5(["DropShipPurchase"])
+    c6(["Reorder"])
+    c7(["SuggestReorder"])
+    p0 -->|49| c0
+    p0 -->|12| c1
+    p0 -->|5| c4
+    p1 -->|59| c0
+    p1 -->|5| c4
+    p2 -->|59| c0
+    p2 -->|5| c4
+    p2 -->|5| c5
+    p3 -->|47| c0
+    p3 -->|5| c4
+    p4 -->|42| c0
+    p4 -->|5| c4
+    p5 -->|8| c2
+    p6 -->|16| c0
+    p7 -->|6| c3
+```
+
+<sub>Pages (left) and the controllers they call (right), busiest 8 pages and 8 controllers; numbers are endpoints.</sub>
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (90), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
-4. **Public API.** Expose the 49 operations below under `/ExternalApi/v2` with header auth ([public API contract](../../docs/PUBLIC-API.md)).
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🗄️ Schema | 90 tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID` |
+| 2 | 🔌 Internal API | Each controller's verbs · [contract](../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
+| 3 | 🖥️ Screens | Server-rendered shell + page app, record from `#<guid>` · [page model](../../docs/ARCHITECTURE.md#what-a-page-is) · every control in [UI.md](UI.md) |
+| 4 | 🌍 Public API | 49 ops under `/ExternalApi/v2`, header auth · [contract](../../docs/PUBLIC-API.md) |
 
 ## Pages
 

@@ -2,18 +2,40 @@
 
 The Lightspeed connector: its settings page, mappings, logs and the endpoints behind them. Part of [Integrations](../README.md).
 
-| | Count |
-|---|---:|
-| Pages | 2 |
-| Data models | 22 (plus [shared](../../00-shared/README.md)) |
-| Internal endpoints | 31 (15 write) |
-| Public API operations | 0 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **2** | **22** + [shared](../../00-shared/README.md) | **31** | 15 | **0** |
+
+[📄 Pages (2)](#pages) · [🧱 Models (22)](#data-models) · [🔌 Endpoints (31)](#internal-endpoints) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 16
+    "read + write" : 12
+    "write" : 3
+```
+
+```mermaid
+flowchart LR
+    p0["/Lightspeed"]
+    p1["/Vend"]
+    c0(["Vend"])
+    c1(["Lightspeed"])
+    p0 -->|28| c0
+    p0 -->|3| c1
+    p1 -->|28| c0
+    p1 -->|3| c1
+```
+
+<sub>Pages (left) and the controllers they call (right), busiest 2 pages and 2 controllers; numbers are endpoints.</sub>
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (22), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🗄️ Schema | 22 tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID` |
+| 2 | 🔌 Internal API | Each controller's verbs · [contract](../../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
+| 3 | 🖥️ Screens | Server-rendered shell + page app, record from `#<guid>` · [page model](../../../docs/ARCHITECTURE.md#what-a-page-is) · every control in [UI.md](UI.md) |
 
 ## Pages
 

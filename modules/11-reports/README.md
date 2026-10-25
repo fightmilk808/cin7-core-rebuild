@@ -2,20 +2,76 @@
 
 The report catalogue (`/Reports`) and each `/Report/<Name>` page. Most reports render inside a frame served by the separate report service; see [`../21-report-service`](../21-report-service/README.md).
 
-| | Count |
-|---|---:|
-| Pages | 83 |
-| Data models | 16 (plus [shared](../00-shared/README.md)) |
-| Internal endpoints | 58 (14 write) |
-| Public API operations | 0 |
-| Reports | 69 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API | 📊 Reports |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| **83** | **16** + [shared](../00-shared/README.md) | **58** | 14 | **0** | **69** |
+
+[📄 Pages (83)](#pages) · [🧱 Models (16)](#data-models) · [🔌 Endpoints (58)](#internal-endpoints) · [📊 Reports (69)](#reports-their-filters-and-columns) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+
+```mermaid
+pie showData title Endpoints by effect
+    "read" : 44
+    "read + write" : 9
+    "write" : 5
+```
+
+```mermaid
+xychart-beta horizontal
+    title "Busiest controllers"
+    x-axis ["Report", "ScheduledReportSettings", "QuickLinks", "SuggestReorder", "access", "Production", "ReportGenerationLog", "Reports", "ScheduledReportProcess"]
+    y-axis "endpoints" 0 --> 40
+    bar [38, 8, 4, 3, 1, 1, 1, 1, 1]
+```
+
+```mermaid
+flowchart LR
+    p0["/Report/InventoryVelocity"]
+    p1["/ScheduledReportSettings"]
+    p2["/Report/AccountSummary"]
+    p3["/Report/BalanceSheet"]
+    p4["/Report/GeneralLedger"]
+    p5["/Report/ProfitAndLoss"]
+    p6["/Report/SalesTaxSummary"]
+    p7["/Report/TrialBalance"]
+    c0(["Report"])
+    c1(["ScheduledReportSettings"])
+    c2(["QuickLinks"])
+    c3(["SuggestReorder"])
+    c4(["access"])
+    c5(["Production"])
+    c6(["ReportGenerationLog"])
+    c7(["Reports"])
+    p0 -->|1| c0
+    p0 -->|8| c1
+    p0 -->|3| c3
+    p0 -->|1| c6
+    p1 -->|1| c0
+    p1 -->|8| c1
+    p1 -->|1| c6
+    p2 -->|6| c0
+    p2 -->|4| c2
+    p3 -->|5| c0
+    p3 -->|4| c2
+    p4 -->|5| c0
+    p4 -->|4| c2
+    p5 -->|5| c0
+    p5 -->|4| c2
+    p6 -->|5| c0
+    p6 -->|4| c2
+    p7 -->|6| c0
+    p7 -->|4| c2
+```
+
+<sub>Pages (left) and the controllers they call (right), busiest 8 pages and 8 controllers; numbers are endpoints.</sub>
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (16), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
-4. **Reports.** Each report is a pivot grid over the columns listed, served by the report service ([`21-report-service`](../21-report-service/README.md)).
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🗄️ Schema | 16 tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID` |
+| 2 | 🔌 Internal API | Each controller's verbs · [contract](../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
+| 3 | 🖥️ Screens | Server-rendered shell + page app, record from `#<guid>` · [page model](../../docs/ARCHITECTURE.md#what-a-page-is) · every control in [UI.md](UI.md) |
+| 4 | 📊 Reports | Pivot grids over the columns below · [report service](../21-report-service/README.md) |
 
 ## Pages
 

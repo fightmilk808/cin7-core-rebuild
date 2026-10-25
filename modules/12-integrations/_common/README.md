@@ -2,16 +2,17 @@
 
 Integration endpoints that no single connector page claims (shared by several, or by the catalogue).
 
-| | Count |
-|---|---:|
-| Pages | 0 |
-| Data models | 0 (plus [shared](../../00-shared/README.md)) |
-| Internal endpoints | 1 (0 write) |
-| Public API operations | 0 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **0** | **0** + [shared](../../00-shared/README.md) | **1** | 0 | **0** |
+
+[🔌 Endpoints (1)](#internal-endpoints)
 
 ## How to rebuild it
 
-1. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🔌 Internal API | Each controller's verbs · [contract](../../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
 
 ## Internal endpoints
 

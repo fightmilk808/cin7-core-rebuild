@@ -2,18 +2,19 @@
 
 The EasyPost connector: its settings page, mappings, logs and the endpoints behind them. Part of [Integrations](../README.md).
 
-| | Count |
-|---|---:|
-| Pages | 1 |
-| Data models | 5 (plus [shared](../../00-shared/README.md)) |
-| Internal endpoints | 1 (1 write) |
-| Public API operations | 0 |
+| 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
+|:-:|:-:|:-:|:-:|:-:|
+| **1** | **5** + [shared](../../00-shared/README.md) | **1** | 1 | **0** |
+
+[📄 Pages (1)](#pages) · [🧱 Models (5)](#data-models) · [🔌 Endpoints (1)](#internal-endpoints) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
 
 ## How to rebuild it
 
-1. **Schema.** Create one table per data model below (5), starting from the generated [`schema.sql`](schema.sql). Ids are GUIDs; join on the `*ID` fields.
-2. **Internal API.** Implement each controller's endpoints with the verbs listed, following the [internal API contract](../../../docs/INTERNAL-API.md): one URL per store for GET/POST/PUT/DELETE, paged reads returning `{root, total}`, saves wrapped as `{ID, HasErrors, Original, Updated}`.
-3. **Screens.** Build each route below as a server-rendered shell that loads the shell bundle and the page's own app, opening a record from `#<guid>` once at load ([page model](../../../docs/ARCHITECTURE.md#what-a-page-is)). Every grid, column, field, button and dialog is in [UI.md](UI.md).
+| # | Build | How |
+|:-:|---|---|
+| 1 | 🗄️ Schema | 5 tables from [`schema.sql`](schema.sql); GUID ids, join on `*ID` |
+| 2 | 🔌 Internal API | Each controller's verbs · [contract](../../../docs/INTERNAL-API.md) · paged `{root, total}` · saves `{ID, HasErrors, Original, Updated}` |
+| 3 | 🖥️ Screens | Server-rendered shell + page app, record from `#<guid>` · [page model](../../../docs/ARCHITECTURE.md#what-a-page-is) · every control in [UI.md](UI.md) |
 
 ## Pages
 
