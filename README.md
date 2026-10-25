@@ -6,6 +6,7 @@
 [![Models](https://img.shields.io/badge/data%20models-1%2C024-d29922)](docs/RELATIONSHIPS.md)
 [![Integrations](https://img.shields.io/badge/integrations-42-f85149)](modules/12-integrations/README.md)
 [![Webhooks](https://img.shields.io/badge/webhooks-32-6e7781)](modules/20-public-api/groups/webhooks.md)
+[![MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 **Cin7 Core (DEAR Inventory), mapped: every page, endpoint, model and integration, and how to rebuild each module.** Structure only, no business rules. Read from the shipped web app, its public scripts and Cin7's published API spec (October 2026).
 
@@ -113,3 +114,5 @@ flowchart LR
 | Rebuild `data/ui.json` | `node tools/extract_ui.js <bundles> data/ui.json` |
 | CLI + MCP server over this map | [cin7-core-cli](https://github.com/fightmilk808/cin7-core-cli) |
 | Browser extension starter | [cin7-core-extension-example](https://github.com/fightmilk808/cin7-core-extension-example) |
+
+<sub>Independent research, not affiliated with or endorsed by Cin7. Cin7 and DEAR are trademarks of their owners. It records structure only (page names, routes, fields, truncated handler names); no Cin7 source files, customer data or credentials are included. The MIT license covers this repo's own docs and tools.</sub> · [MIT](LICENSE)
