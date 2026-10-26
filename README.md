@@ -115,4 +115,19 @@ flowchart LR
 | CLI + MCP server over this map | [cin7-core-cli](https://github.com/fightmilk808/cin7-core-cli) |
 | Browser extension starter | [cin7-core-extension-example](https://github.com/fightmilk808/cin7-core-extension-example) |
 
+## Agent skills
+
+Copy a folder from [skills/](skills/) to `~/.claude/skills/` (or your agent's skills folder). Each one works from this map and says plainly where the map has no answer.
+
+| Skill | For |
+|---|---|
+| [cin7-import-files](skills/cin7-import-files/SKILL.md) | Turn a spreadsheet into a Cin7 import CSV (builds the file; a person uploads it) |
+| [cin7-webhooks](skills/cin7-webhooks/SKILL.md) | Pick an event, its payload shape, and a receiver to handle it |
+| [cin7-automations](skills/cin7-automations/SKILL.md) | Draft automation rules and notification templates with the right merge fields |
+| [cin7-reports](skills/cin7-reports/SKILL.md) | Find the built-in report, filters and columns for a question, or the nearest public API list |
+| [cin7-integrations](skills/cin7-integrations/SKILL.md) | How a connector (Shopify, ShipStation, Xero, …) is wired, for troubleshooting |
+| [cin7-clone-module](skills/cin7-clone-module/SKILL.md) | Plan and scaffold your own version of a module from its tables, screens and endpoints |
+| [cin7-map-endpoint](skills/cin7-map-endpoint/SKILL.md) | Add a missing endpoint to the map from a sanitised HAR capture |
+| [cin7-mirror-db](https://github.com/fightmilk808/cin7-core-cli/blob/main/skills/cin7-mirror-db/SKILL.md) · [cin7-core](https://github.com/fightmilk808/cin7-core-cli/blob/main/skills/cin7-core/SKILL.md) | In the CLI repo: mirror Cin7 into a database · look things up |
+
 <sub>Independent research, not affiliated with or endorsed by Cin7. Cin7 and DEAR are trademarks of their owners. It records structure only (page names, routes, fields, truncated handler names); no Cin7 source files, customer data or credentials are included. The MIT license covers this repo's own docs and tools.</sub> · [MIT](LICENSE)
