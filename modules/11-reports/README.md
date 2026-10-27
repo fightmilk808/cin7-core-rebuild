@@ -244,7 +244,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/api/Report_Audit_Categories` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
 | `/api/Report_Audit_Users` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
 | `/api/Report_TransactionPeriodReference` | api | GET | 🟢 read |  |  |  |
-| `/api/Report_TransactionPeriods` | api |  | 🟢 read |  |  |  |
+| `/api/Report_TransactionPeriods` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | status year |  | root |
 | `/api/Report_TransactionPeriodsYears` | api | GET | 🟢 read |  |  |  |
 | `/api/Report_VATReturnList` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  | root |
 | `/api/Report_v` | api |  | 🟢 read |  |  |  |

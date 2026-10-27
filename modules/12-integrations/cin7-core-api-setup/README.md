@@ -4,13 +4,14 @@ The Cin7 Core API setup connector: its settings page, mappings, logs and the end
 
 | 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
 |:-:|:-:|:-:|:-:|:-:|
-| **1** | **4** + [shared](../../00-shared/README.md) | **6** | 1 | **0** |
+| **1** | **4** + [shared](../../00-shared/README.md) | **7** | 2 | **0** |
 
-[📄 Pages (1)](#pages) · [🧱 Models (4)](#data-models) · [🔌 Endpoints (6)](#internal-endpoints) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+[📄 Pages (1)](#pages) · [🧱 Models (4)](#data-models) · [🔌 Endpoints (7)](#internal-endpoints) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
 
 ```mermaid
 pie showData title Endpoints by effect
     "read" : 5
+    "write" : 1
     "read + write" : 1
 ```
 
@@ -47,6 +48,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
+| `/api/DearApi_Index_ApiExplorer` | api | POST | 🔴 write |  | ApiApplicationId Method Payload Url |  |
 | `/api/DearApi_Index_Dashboard_Summary` | api | GET | 🟢 read |  |  |  |
 | `/api/DearApi_Index_vApplicationNG` | api | GET PUT | 🟠 read + write |  |  |  |
 | `/api/DearApi_Index_vDearApiRequestsNG` | api | GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | ID appId search |  | root |

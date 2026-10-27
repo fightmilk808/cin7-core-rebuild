@@ -378,7 +378,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/api/Product_Index_BOMProducts` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | search |  | root |
 | `/api/Product_Index_Channels` | api | GET | 🟢 read | productID |  |  |
 | `/api/Product_Index_Cost` | api | POST | 🟢 read | CostType costType |  |  |
-| `/api/Product_Index_CostingMethod` | api | POST | 🔴 write |  |  |  |
+| `/api/Product_Index_CostingMethod` | api | GET POST | 🔴 write | productId |  |  |
 | `/api/Product_Index_CustomPrices` | api | DELETE REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | ProductID filter nonExistingOnly productID returnCount |  | root |
 | `/api/Product_Index_CustomerTags` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
 | `/api/Product_Index_DeleteDeprecated` | api | POST | 🔴 write |  |  |  |

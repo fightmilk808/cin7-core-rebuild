@@ -11,8 +11,8 @@ The frame every page loads: top menu, global search, favourites, quick links, no
 ```mermaid
 pie showData title Endpoints by effect
     "read" : 94
-    "write" : 28
-    "read + write" : 8
+    "write" : 27
+    "read + write" : 9
 ```
 
 ```mermaid
@@ -29,7 +29,7 @@ Filed under their integration; listed here because pages in this module call the
 
 | Integration | Endpoints |
 |---|---|
-| [google-workspaces](../12-integrations/google-workspaces/README.md) | `/api/GSuites_Index_Directory`, `/api/GSuites_Index_Files` |
+| [google-workspaces](../12-integrations/google-workspaces/README.md) | `/api/GSuites_Index_Directory`, `/api/GSuites_Index_Files`, `/api/GSuites_Index_Files/GetAccessToken` |
 | [quickbooks](../12-integrations/quickbooks/README.md) | `/Quickbooks/StartConnection` |
 | [square](../12-integrations/square/README.md) | `/Square/Main` |
 
@@ -99,13 +99,13 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/ExpenseClaim_Index_Email` | api |  | 🔴 write |  |  |  |
+| `/api/ExpenseClaim_Index_Email` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🔴 write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
 
 ### ExpenseClaimReceipt
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/ExpenseClaimReceipt_Index_Email` | api |  | 🔴 write |  |  |  |
+| `/api/ExpenseClaimReceipt_Index_Email` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🔴 write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
 
 ### Favorites
 
@@ -169,7 +169,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/Opportunity_Index_Email` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | TaskID |  |  |
+| `/api/Opportunity_Index_Email` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
 
 ### organisations
 
@@ -205,19 +205,19 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/ProductionOrder_Index_Email` | api |  | 🔴 write |  |  |  |
+| `/api/ProductionOrder_Index_Email` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🔴 write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
 
 ### Purchase
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/Purchase_Index_Email` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | TaskID |  |  |
+| `/api/Purchase_Index_Email` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
 
 ### PurchaseAdvanced
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/PurchaseAdvanced_Index_Email` | api |  | 🔴 write |  |  |  |
+| `/api/PurchaseAdvanced_Index_Email` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🔴 write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
 
 ### QuickLinks
 
@@ -304,38 +304,38 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/RMA_Index_Email` | api |  | 🔴 write |  |  |  |
-| `/api/RMA_RO_Email` | api |  | 🔴 write |  |  |  |
+| `/api/RMA_Index_Email` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🔴 write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
+| `/api/RMA_RO_Email` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🔴 write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
 
 ### Sale
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/Sale_Index_Email` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | TaskID |  |  |
+| `/api/Sale_Index_Email` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
 
 ### SaleCommon
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/SaleCommon_ShippingService_Email` | api | POST | 🔴 write | TaskID |  |  |
+| `/api/SaleCommon_ShippingService_Email` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
 
 ### SaleMult
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/SaleMult_Index_Email` | api |  | 🔴 write |  |  |  |
+| `/api/SaleMult_Index_Email` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🔴 write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
 
 ### StockTransfer
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/StockTransfer_Index_Email` | api |  | 🔴 write |  |  |  |
+| `/api/StockTransfer_Index_Email` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🔴 write | AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID |  |  |
 
 ### Stocktransfer
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/Stocktransfer_Index_Email` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | TaskID |  |  |
+| `/api/Stocktransfer_Index_Email` | api | POST REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | TaskID |  |  |
 
 ### Task
 

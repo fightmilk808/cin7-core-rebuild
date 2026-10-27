@@ -1,7 +1,7 @@
 # Cin7 Core rebuild
 
 [![Pages](https://img.shields.io/badge/pages-261-1f6feb)](modules/README.md)
-[![Internal endpoints](https://img.shields.io/badge/internal%20endpoints-1%2C633-8957e5)](docs/INTERNAL-API.md)
+[![Internal endpoints](https://img.shields.io/badge/internal%20endpoints-1%2C652-8957e5)](docs/INTERNAL-API.md)
 [![Public API](https://img.shields.io/badge/public%20API-295%20ops-2ea44f)](docs/PUBLIC-API.md)
 [![Models](https://img.shields.io/badge/data%20models-1%2C024-d29922)](docs/RELATIONSHIPS.md)
 [![Integrations](https://img.shields.io/badge/integrations-42-f85149)](modules/12-integrations/README.md)
@@ -14,14 +14,14 @@
 
 | 📄 Pages | 🔌 Internal `/api` | 🎛️ Controller actions | 🌍 Public API | 🧱 Models | 📊 Reports | 🔗 Integrations | 🖥️ Front ends |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| **261** | **1,633** | **544** | **295** ops · 115 paths | **1,024** | **86** | **42** · 751 endpoints | **6** |
+| **261** | **1,652** | **544** | **295** ops · 115 paths | **1,024** | **86** | **42** · 755 endpoints | **6** |
 
 ```mermaid
 xychart-beta horizontal
     title "Internal endpoints by module"
-    x-axis ["Sale", "Ref books", "Inventory", "Production", "Purchase", "Shell", "Settings", "Financials", "CRM", "Dashboard", "Reports", "Other", "MRP", "AI", "Account"]
+    x-axis ["Sale", "Ref books", "Inventory", "Production", "Purchase", "Shell", "Settings", "Financials", "CRM", "Dashboard", "Other", "Reports", "MRP", "AI", "Account"]
     y-axis "endpoints" 0 --> 300
-    bar [294, 224, 215, 198, 167, 130, 119, 116, 107, 59, 58, 44, 33, 24, 13]
+    bar [294, 224, 215, 199, 167, 130, 119, 116, 107, 59, 59, 58, 33, 24, 13]
 ```
 
 ## Integration partners
@@ -31,21 +31,21 @@ xychart-beta horizontal
     title "Endpoints per integration (top 15)"
     x-axis ["Cin7 POS", "B2B Portal", "Amazon", "QuickBooks", "eBay", "ShipStation", "Shopify", "Lightspeed", "Square", "Magento 2", "Faire", "Etsy", "HubSpot", "WooCommerce", "BigCommerce"]
     y-axis "endpoints" 0 --> 70
-    bar [68, 62, 45, 37, 34, 34, 32, 31, 27, 27, 27, 27, 25, 24, 24]
+    bar [69, 62, 45, 37, 34, 34, 32, 31, 27, 27, 27, 27, 25, 24, 24]
 ```
 
 | Category | Endpoints | Partners `endpoints` |
 |---|:-:|---|
 | 🛒 E-commerce | 134 | [Shopify](modules/12-integrations/shopify/README.md) `32` · [Magento 2](modules/12-integrations/magento-2-x/README.md) `27` · [Magento 1](modules/12-integrations/magento-1-x/README.md) `27` · [WooCommerce](modules/12-integrations/woocommerce/README.md) `24` · [BigCommerce](modules/12-integrations/bigcommerce/README.md) `24` · [Neto](modules/12-integrations/neto/README.md) `0` |
 | 🏬 Marketplaces | 202 | [Amazon](modules/12-integrations/amazon/README.md) `45` · [eBay](modules/12-integrations/ebay/README.md) `34` · [Etsy](modules/12-integrations/etsy/README.md) `27` · [Faire](modules/12-integrations/faire/README.md) `27` · [LeafLink](modules/12-integrations/leaflink/README.md) `24` · [FBA](modules/12-integrations/fulfillment-by-amazon/README.md) `23` · [Walmart](modules/12-integrations/walmart/README.md) `22` |
-| 🧾 POS | 126 | [Cin7 POS](modules/12-integrations/pos/README.md) `68` · [Lightspeed](modules/12-integrations/lightspeed/README.md) `31` · [Square](modules/12-integrations/square/README.md) `27` |
+| 🧾 POS | 127 | [Cin7 POS](modules/12-integrations/pos/README.md) `69` · [Lightspeed](modules/12-integrations/lightspeed/README.md) `31` · [Square](modules/12-integrations/square/README.md) `27` |
 | 🚚 Shipping | 52 | [ShipStation](modules/12-integrations/shipstation/README.md) `34` · [Shiptheory](modules/12-integrations/shiptheory/README.md) `11` · [StarShipIT](modules/12-integrations/starshipit/README.md) `2` · [Shippit](modules/12-integrations/shippit/README.md) `2` · [ShipRush](modules/12-integrations/shiprush/README.md) `2` · [EasyPost](modules/12-integrations/easypost/README.md) `1` |
 | 📒 Accounting | 46 | [QuickBooks](modules/12-integrations/quickbooks/README.md) `37` · [Xero](modules/12-integrations/xero/README.md) `9` · [Synder](modules/12-integrations/synder/README.md) `0` |
 | 💳 Payments | 50 | [Cin7 Core Payments](modules/12-integrations/cin7-core-payments/README.md) `20` · [Authorize.Net](modules/12-integrations/authorizenet/README.md) `11` · [PayPal](modules/12-integrations/paypal/README.md) `10` · [Pinch](modules/12-integrations/pinch/README.md) `9` · [Airwallex](modules/12-integrations/airwallex/README.md) `0` |
 | 🧮 Tax | 15 | [Avalara](modules/12-integrations/avalara/README.md) `15` |
 | 🤝 CRM · loyalty | 36 | [HubSpot](modules/12-integrations/hubspot/README.md) `25` · [Capsule](modules/12-integrations/capsule/README.md) `9` · [LoyaltyLion](modules/12-integrations/loyaltylion/README.md) `2` |
 | 🌐 Portals | 74 | [B2B Portal](modules/12-integrations/portal/README.md) `62` · [RMA Portal](modules/12-integrations/rma-portal/README.md) `12` |
-| 🔧 Other | 16 | [Cin7 Core API setup](modules/12-integrations/cin7-core-api-setup/README.md) `6` · [Lokad](modules/12-integrations/lokad/README.md) `5` · [Google Workspace](modules/12-integrations/google-workspaces/README.md) `5` · [Zapier](modules/12-integrations/zapier/README.md) `0` · [WMS config](modules/12-integrations/warehouse-application-configuration/README.md) `0` |
+| 🔧 Other | 18 | [Cin7 Core API setup](modules/12-integrations/cin7-core-api-setup/README.md) `7` · [Google Workspace](modules/12-integrations/google-workspaces/README.md) `6` · [Lokad](modules/12-integrations/lokad/README.md) `5` · [Zapier](modules/12-integrations/zapier/README.md) `0` · [WMS config](modules/12-integrations/warehouse-application-configuration/README.md) `0` |
 
 All 42, with pages and models: [modules/12-integrations](modules/12-integrations/README.md) · by integration: [endpoints-by-integration](modules/12-integrations/README.md#integrations).
 
@@ -55,7 +55,7 @@ All 42, with pages and models: [modules/12-integrations](modules/12-integrations
 flowchart LR
     U([Browser]) --> APP
     subgraph APP[inventory.dearsystems.com]
-      MVC[Page shells<br/>261 routes] --- API["/api/*<br/>1,633 JSON"]
+      MVC[Page shells<br/>261 routes] --- API["/api/*<br/>1,652 JSON"]
       MVC --- ACT[Controller actions<br/>544]
       PUB["/ExternalApi/v2<br/>295 ops · 32 webhooks"]
     end
@@ -85,15 +85,15 @@ Each folder: `README.md` (pages, models, endpoints, API ops, reports, how to reb
 |---|---|:-:|:-:|---|---|:-:|:-:|
 | 00 | [Shared models](modules/00-shared/README.md) | | | 13 | [Settings](modules/13-settings/README.md) | 119 | 14 |
 | 01 | [Shell](modules/01-shell/README.md) | 130 | | 14 | [Reference books](modules/14-reference-books/README.md) | 224 | 54 |
-| 02 | [Account](modules/02-account/README.md) | 13 | | 15 | [Unassigned](modules/15-other/README.md) | 44 | |
+| 02 | [Account](modules/02-account/README.md) | 13 | | 15 | [Unassigned](modules/15-other/README.md) | 59 | |
 | 03 | [Dashboard](modules/03-dashboard/README.md) | 59 | | 16 | [MRP](modules/16-mrp/README.md) | 33 | |
 | 04 | [Inventory](modules/04-inventory/README.md) | 215 | 33 | 20 | [Public API + webhooks](modules/20-public-api/README.md) | | 295 |
 | 05 | [Purchase](modules/05-purchase/README.md) | 167 | 49 | 21 | [Report service](modules/21-report-service/README.md) | | |
 | 06 | [Sale](modules/06-sale/README.md) | 294 | 45 | 22 | [POS](modules/22-pos/README.md) | | |
-| 07 | [Production](modules/07-production/README.md) | 198 | 66 | 23 | [WMS handheld](modules/23-wms/README.md) | | |
+| 07 | [Production](modules/07-production/README.md) | 199 | 66 | 23 | [WMS handheld](modules/23-wms/README.md) | | |
 | 08 | [Financials](modules/08-financials/README.md) | 116 | 18 | 24 | [MES shop floor](modules/24-mes/README.md) | | |
 | 09 | [CRM](modules/09-crm/README.md) | 107 | 16 | 25 | [B2B + RMA portals](modules/25-portals/README.md) | | |
-| 10 | [AI](modules/10-ai/README.md) | 24 | | 12 | [Integrations](modules/12-integrations/README.md) (42) | 751 | |
+| 10 | [AI](modules/10-ai/README.md) | 24 | | 12 | [Integrations](modules/12-integrations/README.md) (42) | 755 | |
 | 11 | [Reports](modules/11-reports/README.md) | 58 | | | | | |
 
 ## Build order

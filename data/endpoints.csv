@@ -264,7 +264,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/CustomerList_Import_Exceptions,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),,,,0,Dashboard,/Home,Home2019
 /api/CustomerList_ImportCustomPrices_Exceptions,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),,,,13,Inventory Settings › Reference books,/FixedAssetType /Product,Product2019
 /api/CustomerList_Index_DeleteDeprecated,api,write,POST,,,,0,Sale,/CustomerList,CustomerList2019
-/api/CustomerList_Index_vCustomerList,api,read,,,,,0,Sale,/CustomerList,CustomerList2019
+/api/CustomerList_Index_vCustomerList,api,read,REST(GET read; POST/PUT/DELETE on store.sync),IsActive filter fromDate lang search toDate,,root,32,Sale,/CustomerList,CustomerList2019
 /api/CustomerList_Merge,api,write,POST,,,,0,Sale,/CustomerList,CustomerList2019
 /api/CustomerList_SalesStatements,api,write,POST,Action CaptchaToken ID TemplateID fromDate toDate,,,0,Sale,/CustomerList,CustomerList2019
 /api/CustomerPayment_Index_Cin7Pay,api,read+write,GET POST,,,,0,Sale,/CustomerPayment,CustomerPayment2019
@@ -301,6 +301,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/Deal_Index_vSaleCoupon,api,read,REST(GET read; POST/PUT/DELETE on store.sync),dealID lang search,,root,10,CRM,/Deal,Deal2019
 /api/Deal_Index_vTag,api,read,,,,,34,CRM,/Deal,Deal2019
 /api/DealList_Index_vDeal,api,read,REST(GET read; POST/PUT/DELETE on store.sync),search,,root,11,Settings › Reference books,/DealList,DealList2019
+/api/DearApi_Index_ApiExplorer,api,write,POST,,ApiApplicationId Method Payload Url,,0,Integrations,/ExternalApi,ExternalApi2019
 /api/DearApi_Index_Dashboard_Summary,api,read,GET,,,,0,Integrations,/ExternalApi,ExternalApi2019
 /api/DearApi_Index_vApplicationNG,api,read+write,GET PUT,,,,0,Integrations,/ExternalApi,ExternalApi2019
 /api/DearApi_Index_vDearApiRequestsNG,api,read,GET REST(GET read; POST/PUT/DELETE on store.sync),ID appId search,,root,10,Integrations,/ExternalApi,ExternalApi2019
@@ -309,6 +310,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/DearApi_Index_vEndpoints,api,read,REST(GET read; POST/PUT/DELETE on store.sync),apiVersion,,root,3,Integrations,/ExternalApi,ExternalApi2019
 /api/DearPos_Index_AspnetRole,api,read,REST(GET read; POST/PUT/DELETE on store.sync),ConfigID,,,4,Integrations,/DearPos,Pos2019
 /api/DearPos_Index_CashManagementReasons,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),configID,,root,2,Integrations,/DearPos,Pos2019
+/api/DearPos_Index_Dashboard,api,read,GET,,,,0,Integrations,/DearPos,Pos2019
 /api/DearPos_Index_Dashboard_Settings,api,read,GET,,,,0,Integrations,/DearPos,Pos2019
 /api/DearPos_Index_Dashboard_Summary,api,read,GET,,,,0,Integrations,/DearPos,Pos2019
 /api/DearPos_Index_EcsBulkList,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),Category ConfigID Family Tag brandID lang listStatus listedInConfigID search,,root,12,Integrations,/DearPos,Pos2019
@@ -384,8 +386,8 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/DiscountNew_Index_vDiscountNew,api,read+write,POST PUT REST(GET read; POST/PUT/DELETE on store.sync),id,ID,,5,Sale Settings › Reference books,/DiscountListNew /DiscountNew,DiscountListNew2019 DiscountNew2019
 /api/DocumentExtraction_BuildEntity,api,write,POST,,,,0,AI Purchase,/DocumentExtraction /DropShipPurchase /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseService,AdvancedPurchase2019 DocumentExtraction2024 PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseService2019 SimplePurchase2019
 /api/DocumentExtraction_Index_LogEntries,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),,,root,5,AI Purchase,/DocumentExtraction /DropShipPurchase /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseService,AdvancedPurchase2019 DocumentExtraction2024 PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseService2019 SimplePurchase2019
-/api/DocumentExtraction_Index_MapExtractedDocument,api,read,GET,entityID entityType,,,0,AI Purchase,/DocumentExtraction /DropShipPurchase /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseService,AdvancedPurchase2019 DocumentExtraction2024 PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseService2019 SimplePurchase2019
-/api/DocumentExtraction_Index_vExtractedDocument,api,read,,,,,0,AI Purchase,/DocumentExtraction /DropShipPurchase /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseService,AdvancedPurchase2019 DocumentExtraction2024 PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseService2019 SimplePurchase2019
+/api/DocumentExtraction_Index_MapExtractedDocument,api,read+write,GET PATCH,entityID entityType,,,0,AI Purchase,/DocumentExtraction /DropShipPurchase /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseService,AdvancedPurchase2019 DocumentExtraction2024 PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseService2019 SimplePurchase2019
+/api/DocumentExtraction_Index_vExtractedDocument,api,read,DELETE GET REST(GET read; POST/PUT/DELETE on store.sync),DocumentName entityType nextPageToken,,Documents,5,AI Purchase,/DocumentExtraction /DropShipPurchase /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseService,AdvancedPurchase2019 DocumentExtraction2024 PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseService2019 SimplePurchase2019
 /api/DropShipPurchase_Index_vPurchaseTask,api,read+write,PUT REST(GET read; POST/PUT/DELETE on store.sync),CountrySpecificKey id lang,ClientDateTime HasErrors ID Lang Original Updated,,6,Purchase,/DropShipPurchase,PurchaseDropShip2019
 /api/EasyPost_Index_vShipServConf,api,read+write,GET(read) PUT REST(GET read; POST/PUT/DELETE on store.sync),id,,Configurations,4,Integrations,/EasyPost,EasyPost2019
 /api/EbayNG_Index_CheckFamily,api,read+write,GET PUT,,,,0,Integrations,/eBayNG,eBay2019
@@ -454,7 +456,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/ExpenseClaim_Index_Approve,api,write,POST,,,,0,Financials,/ExpenseClaim,ExpenseClaim2019
 /api/ExpenseClaim_Index_Authorise,api,write,POST,,,,0,Financials,/ExpenseClaim,ExpenseClaim2019
 /api/ExpenseClaim_Index_Decline,api,write,POST,,,,0,Financials,/ExpenseClaim,ExpenseClaim2019
-/api/ExpenseClaim_Index_Email,api,write,,,,,0,Shell (every page),,Main2019
+/api/ExpenseClaim_Index_Email,api,write,POST REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,9,Shell (every page),,Main2019
 /api/ExpenseClaim_Index_History,api,read,,,,,0,Financials,/ExpenseClaim,ExpenseClaim2019
 /api/ExpenseClaim_Index_Transactions,api,read,REST(GET read; POST/PUT/DELETE on store.sync),id,,,8,Financials,/ExpenseClaim,ExpenseClaim2019
 /api/ExpenseClaim_Index_vExpenseClaimList,api,read,REST(GET read; POST/PUT/DELETE on store.sync),filter search,,root,12,Financials,/ExpenseClaimList,ExpenseClaimList2019
@@ -463,7 +465,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/ExpenseClaim_Index_vReceiptTask,api,read+write,POST PUT REST(GET read; POST/PUT/DELETE on store.sync),id,ClientDateTime HasErrors ID Original Updated,,3,Financials,/ExpenseClaimReceipt,ExpenseClaimReceipt2019
 /api/ExpenseClaimList_Email,api,write,POST,CaptchaToken ID TemplateID lang,,,0,Financials,/ExpenseClaimList,ExpenseClaimList2019
 /api/ExpenseClaimList_ReportTemplates,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,3,Financials,/ExpenseClaimList,ExpenseClaimList2019
-/api/ExpenseClaimReceipt_Index_Email,api,write,,,,,0,Shell (every page),,Main2019
+/api/ExpenseClaimReceipt_Index_Email,api,write,POST REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,9,Shell (every page),,Main2019
 /api/ExpenseClaimReceipt_Index_vExpenseClaimReceiptAttachement,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),,,,13,Financials,/ExpenseClaimReceipt,ExpenseClaimReceipt2019
 /api/ExpenseClaimReceipt_Index_vSupplier,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),,,,15,Financials,/ExpenseClaimReceipt,ExpenseClaimReceipt2019
 /api/ExpenseClaimReceipt_SubmitForApproval,api,write,POST,,,,0,Financials,/ExpenseClaimReceiptList,ExpenseClaimReceiptList2019
@@ -560,8 +562,9 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/GiftCards_Index_vList,api,read,POST REST(GET read; POST/PUT/DELETE on store.sync),search showUsedCards,,root,18,Inventory,/GiftCards,GiftCards2019
 /api/GSuites_Index_Config,api,read+write,GET REST(GET read; POST/PUT/DELETE on store.sync),,,root,10,Integrations,/GSuites,GSuites2019 GSuites2019Partial
 /api/GSuites_Index_Contacts,api,read+write,GET REST(GET read; POST/PUT/DELETE on store.sync),,,root,9,Integrations,/GSuites,GSuites2019
-/api/GSuites_Index_Directory,api,read,,,,,0,Shell (every page),,GSuites2019Partial
-/api/GSuites_Index_Files,api,read,,,,,0,Shell (every page),,GSuites2019Partial
+/api/GSuites_Index_Directory,api,read,GET,parentId,,,0,Shell (every page),,GSuites2019Partial
+/api/GSuites_Index_Files,api,read,GET POST,UploadToID pageName parentId,,,0,Shell (every page),,GSuites2019Partial
+/api/GSuites_Index_Files/GetAccessToken,api,read,GET,,,,0,Shell (every page),,GSuites2019Partial
 /api/GSuites_Index_Logs,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),,,root,4,Integrations,/GSuites,GSuites2019
 /api/Home_Partner_vTenantUser,api,read,REST(GET read; POST/PUT/DELETE on store.sync),valid,,,17,CRM Settings,/TaskList /TaskSettings,Main2019 TaskList2019 TaskSettings2019
 /api/HubSpot_Index/CatalogViewList,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),Category HubSpotID Type listStatus search,,root,23,Integrations,/HubSpot,HubSpot2019
@@ -589,10 +592,25 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/HubSpot_Index_vProductToExport,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),Category HubSpotID Type listStatus search,,root,17,Integrations,/HubSpot,HubSpot2019
 /api/HubSpot_Index_vSalesPriceTiers,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,2,Integrations,/HubSpot,HubSpot2019
 /api/InternalNotificationLog,api,read,REST(GET read; POST/PUT/DELETE on store.sync),deliveryType,,root,17,Settings,/NotificationSettings/MailingList /NotificationSettings/Notifications,NotificationSettingsMailingList2019 NotificationSettingsNotifications2019
-/api/InventoroSettings_ProductRules,api,read,,,,,0,,,InventoroSettings2019
-/api/InventoroSettings_ProductRules/Reorder,api,read,,,,,0,,,InventoroSettings2019
+/api/InventoroSettings_Locations,api,read+write,PUT REST(GET read; POST/PUT/DELETE on store.sync),customFilterId search showMode updateOnlyEmpty,,,5,,,InventoroSettings2019
+/api/InventoroSettings_Locations/boms,api,read,,,,,0,,,InventoroSettings2019
+/api/InventoroSettings_Locations/RecalculateHierarchy,api,write,POST,,,,0,,,InventoroSettings2019
+/api/InventoroSettings_Logs,api,read,REST(GET read; POST/PUT/DELETE on store.sync),endDate startDate username,,,0,,,InventoroSettings2019
+/api/InventoroSettings_Logs/filters/users,api,read,REST(GET read; POST/PUT/DELETE on store.sync),Name,,,0,,,InventoroSettings2019
+/api/InventoroSettings_Logs/products/details,api,read,,logID,,,0,,,InventoroSettings2019
+/api/InventoroSettings_ProductRules,api,read,DELETE REST(GET read; POST/PUT/DELETE on store.sync),customFilterId search showMode,,,6,,,InventoroSettings2019
+/api/InventoroSettings_ProductRules/AffectedProducts,api,read,REST(GET read; POST/PUT/DELETE on store.sync),customFilterId search showMode,,,3,,,InventoroSettings2019
+/api/InventoroSettings_ProductRules/ProductCounts,api,read,POST,,,,0,,,InventoroSettings2019
+/api/InventoroSettings_ProductRules/ProductFilters,api,read,,,,,0,,,InventoroSettings2019
+/api/InventoroSettings_ProductRules/Reorder,api,read,PUT,,,,0,,,InventoroSettings2019
+/api/InventoroSettings_Products,api,read,REST(GET read; POST/PUT/DELETE on store.sync),customFilterId isBundle search segmentID showMode,,,51,,,InventoroSettings2019
+/api/InventoroSettings_Products/update,api,write,PUT,,,,0,,,InventoroSettings2019
+/api/InventoroSettings_ProductSegments,api,read,,id,,,0,,,InventoroSettings2019
+/api/InventoroSettings_ReferenceData,api,read,,,,,0,,,InventoroSettings2019
+/api/InventoroSettings_ReferenceData/Predecessors,api,read,REST(GET read; POST/PUT/DELETE on store.sync),locationID productID,,,34,,,InventoroSettings2019
 /api/InventoroSettings_ReferenceData/RuleParameters,api,read,,,,,0,,,InventoroSettings2019
-/api/InventoroSettings_Suppliers,api,read,,,,,0,,,InventoroSettings2019
+/api/InventoroSettings_Strategy,api,write,PUT,strategy,,,0,,,InventoroSettings2019
+/api/InventoroSettings_Suppliers,api,read,PUT REST(GET read; POST/PUT/DELETE on store.sync),customFilterId search showMode updateOnlyEmpty,,,0,,,InventoroSettings2019
 /api/InventoryTaskAttachment,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),TaskID,,,24,Inventory,/StockAdjustment /StockTake /Stocktake/New,StockAdjustment2019 Stocktake2019
 /api/IssueToProduction_Index_Job,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,6,Production,/IssueToProduction,IssueToProduction2019
 /api/IssueToProduction_Index_Product,api,read,REST(GET read; POST/PUT/DELETE on store.sync),LocationID ProductID lang,,,12,Production,/IssueToProduction,IssueToProduction2019
@@ -603,7 +621,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/IssueToProduction_Index_vJobMilestones,api,read,REST(GET read; POST/PUT/DELETE on store.sync),jobID,,,2,Production,/IssueToProduction,IssueToProduction2019
 /api/IssueToProduction_Scan,api,read,REST(GET read; POST/PUT/DELETE on store.sync),lang locationId search,,,13,Production,/IssueToProduction,IssueToProduction2019
 /api/IssueToProduction_Scan_InventoryMode,api,read,POST,,,,0,Production,/IssueToProduction,IssueToProduction2019
-/api/IssueToProductionList_Index_vIssueToProductionList,api,read,,,,,0,Production,/IssueToProductionList,IssueToProductionList2019
+/api/IssueToProductionList_Index_vIssueToProductionList,api,read,REST(GET read; POST/PUT/DELETE on store.sync),search,,root,6,Production,/IssueToProductionList,IssueToProductionList2019
 /api/JobCosting_Index_GenerateSaleTask,api,write,POST,,,,0,Production,/JobCosting,JobCosting2019
 /api/JobCosting_Index_LinkingSale,api,read,REST(GET read; POST/PUT/DELETE on store.sync),CustomerID,,,5,Production,/JobCosting,JobCosting2019
 /api/JobCosting_Index_LinkSaleTask,api,write,POST,,,,0,Production,/JobCosting,JobCosting2019
@@ -784,7 +802,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/OpeningBalances_vOpeningBalanceStockOnHand,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,5,Settings › Reference books,/OpeningBalances,OpeningBalances2019
 /api/OpeningBalances_vSupplier,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),,,,15,Settings › Reference books,/OpeningBalances,OpeningBalances2019
 /api/Opportunity_Index_Category,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,37,CRM,/Opportunity,Opportunity2019
-/api/Opportunity_Index_Email,api,read+write,POST REST(GET read; POST/PUT/DELETE on store.sync),TaskID,,,5,Shell (every page),,Main2019
+/api/Opportunity_Index_Email,api,read+write,POST REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,14,Shell (every page),,Main2019
 /api/Opportunity_Index_Family,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,34,CRM,/Opportunity,Opportunity2019
 /api/Opportunity_Index_FamilyProducts,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,13,CRM,/Opportunity,Opportunity2019
 /api/Opportunity_Index_History,api,read,,,,,0,CRM,/Opportunity,Opportunity2019
@@ -801,7 +819,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/Opportunity_Index_vOpportunityAttachement,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),OpportunityID,,,13,CRM,/Opportunity,Opportunity2019
 /api/Opportunity_Index_WorkflowHistory,api,read,REST(GET read; POST/PUT/DELETE on store.sync),entityID,,,13,CRM,/Opportunity,Opportunity2019
 /api/OpportunityList_BulkActions,api,write,POST,Action CaptchaToken ID TemplateID lang,,,0,CRM,/OpportunityList,OpportunityList2019
-/api/OpportunityList_Index_vOpportunity,api,read,,,,,0,CRM,/OpportunityList,OpportunityList2019
+/api/OpportunityList_Index_vOpportunity,api,read,REST(GET read; POST/PUT/DELETE on store.sync),endDate lang limit opportunityOrSale opportunityStatus saleFilter salesRep search showAll startDate,,root,0,CRM,/OpportunityList,OpportunityList2019
 /api/OpportunityList_Index_vTenantContact,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,5,CRM,/OpportunityList,OpportunityList2019
 /api/OrderRouting_Index_vOrderRouting,api,read+write,PUT REST(GET read; POST/PUT/DELETE on store.sync),,,,5,Settings › Reference books,/OrderRouting,OrderRouting2019
 /api/OrderRouting_Index_vTenantLocation,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,2,Settings › Reference books,/OrderRouting,OrderRouting2019
@@ -883,7 +901,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/Product_Index_BOMProducts,api,read,REST(GET read; POST/PUT/DELETE on store.sync),search,,root,2,Inventory Settings › Reference books,/FixedAssetType /Product,Product2019
 /api/Product_Index_Channels,api,read,GET,productID,,,0,Inventory Settings › Reference books,/FixedAssetType /Product,Product2019
 /api/Product_Index_Cost,api,read,POST,CostType costType,,,0,Inventory Settings › Reference books,/FixedAssetType /Product /StockAdjustment,Product2019 StockAdjustment2019
-/api/Product_Index_CostingMethod,api,write,POST,,,,0,Inventory Settings › Reference books,/FixedAssetType /Product,Product2019
+/api/Product_Index_CostingMethod,api,write,GET POST,productId,,,0,Inventory Settings › Reference books,/FixedAssetType /Product,Product2019
 /api/Product_Index_CustomerTags,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,1,Inventory Settings › Reference books,/FixedAssetType /Product,Product2019
 /api/Product_Index_CustomPrices,api,read+write,DELETE REST(GET read; POST/PUT/DELETE on store.sync),ProductID filter nonExistingOnly productID returnCount,,root,9,Inventory Settings › Reference books,/FixedAssetType /Product,Product2019
 /api/Product_Index_DeleteDeprecated,api,write,POST,,,,0,Inventory Settings › Reference books,/FixedAssetType /Product,Product2019
@@ -950,7 +968,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/ProductionOrder_Index_AlternativeProducts/substitute,api,write,PUT,productionOrderID,,,0,Production,/ProductionOrder,ProductionOrder
 /api/ProductionOrder_Index_ComponentAvailability,api,read,GET,orderId productId shopFloorId warehouseId,,,0,Production,/ProductionOrder,ProductionOrder
 /api/ProductionOrder_Index_ConsumptionBins,api,read,POST,,,,0,Inventory Production Purchase,/ProductionCalendar /ProductionOrder /ProductionOrders /ProductionResource /ProductionScheduler /ProductionSetup /Purchase /PurchaseAdvanced /StockTransfer /Stocktransfer,AdvancedPurchase2019 ProductionCalendar ProductionOrder ProductionOrdersList ProductionResource ProductionSetup Scheduler SimplePurchase2019 StockTransfer2019
-/api/ProductionOrder_Index_Email,api,write,,,,,0,Shell (every page),,Main2019
+/api/ProductionOrder_Index_Email,api,write,POST REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,9,Shell (every page),,Main2019
 /api/ProductionOrder_Index_GetPlanDates,api,read,POST,Version ignoreLeadTime locationId orderId plannedDate productId quantity requiredByDate type,,,0,Production,/ProductionOrder,ProductionOrder
 /api/ProductionOrder_Index_ProductionOrderBulk,api,write,POST,,Action Filter ProductionOrderIDs Schedule,,0,Production,/ProductionOrders /ProductionScheduler,ProductionOrdersList Scheduler
 /api/ProductionOrder_Index_ProductionOrderBulkPermissions,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),,,,2,Production,/ProductionOrders,ProductionOrdersList
@@ -996,7 +1014,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/Purchase_Index_CoManCheck,api,read,GET,taskID,,,0,Production Purchase Sale,/DropShipPurchase /MRPScheduler /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseList /PurchaseService /RMA /RMAReturnOrder,AdvancedPurchase2019 MRPScheduler PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseList2019 PurchaseService2019 RMA2019 RMAReturnOrder2019 SimplePurchase2019
 /api/Purchase_Index_CoManCheck/CanBeCompleted,api,read,POST,masterTaskID taskID,,,0,Production Purchase Sale,/DropShipPurchase /MRPScheduler /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseList /PurchaseService /RMA /RMAReturnOrder,AdvancedPurchase2019 MRPScheduler PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseList2019 PurchaseService2019 RMA2019 RMAReturnOrder2019 SimplePurchase2019
 /api/Purchase_Index_CoManCheck/HasProduction,api,read,GET,masterTaskID taskID,,,0,Production Purchase Sale,/DropShipPurchase /MRPScheduler /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseList /PurchaseService /RMA /RMAReturnOrder,AdvancedPurchase2019 MRPScheduler PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseList2019 PurchaseService2019 RMA2019 RMAReturnOrder2019 SimplePurchase2019
-/api/Purchase_Index_Email,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),TaskID,,,5,Shell (every page),,Main2019
+/api/Purchase_Index_Email,api,read+write,POST REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,14,Shell (every page),,Main2019
 /api/Purchase_Index_Family,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,15,Purchase,/DropShipPurchase /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseService,AdvancedPurchase2019 PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseService2019 SimplePurchase2019
 /api/Purchase_Index_FamilyMatrixProduct,api,read,,,,,0,Purchase,/DropShipPurchase /Purchase /PurchaseAdvanced,AdvancedPurchase2019 PurchaseDropShip2019 SimplePurchase2019
 /api/Purchase_Index_FamilyProducts,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,30,Purchase,/PurchaseAdvanced,AdvancedPurchase2019
@@ -1041,7 +1059,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/Purchase_RelatedTasks,api,read,REST(GET read; POST/PUT/DELETE on store.sync),taskId,,root,8,Production Purchase Sale,/DropShipPurchase /MRPScheduler /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseList /PurchaseService /RMA /RMAReturnOrder,AdvancedPurchase2019 MRPScheduler PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseList2019 PurchaseService2019 RMA2019 RMAReturnOrder2019 SimplePurchase2019
 /api/Purchase_Scan,api,read,REST(GET read; POST/PUT/DELETE on store.sync),SupplierID lang search,,,13,Purchase,/DropShipPurchase /Purchase /PurchaseAdvanced,AdvancedPurchase2019 PurchaseDropShip2019 SimplePurchase2019
 /api/Purchase_Scan_InventoryMode,api,read,POST,SupplierID barcodes lang,,,0,Purchase,/DropShipPurchase /Purchase /PurchaseAdvanced,AdvancedPurchase2019 PurchaseDropShip2019 SimplePurchase2019
-/api/PurchaseAdvanced_Index_Email,api,write,,,,,0,Shell (every page),,Main2019
+/api/PurchaseAdvanced_Index_Email,api,write,REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,9,Shell (every page),,Main2019
 /api/PurchaseAdvanced_Index_History,api,read,,,,,0,Purchase,/PurchaseAdvanced,AdvancedPurchase2019
 /api/PurchaseAdvanced_Index_InventoryMovementsWithAmount,api,read,GET,invoiceTaskID,,,0,Purchase,/PurchaseAdvanced,AdvancedPurchase2019
 /api/PurchaseAdvanced_Index_Transactions,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,16,Purchase,/PurchaseAdvanced,AdvancedPurchase2019
@@ -1098,7 +1116,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/Report_Audit_Users,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,2,Reports,/Report/AuditReport,AuditReport2019
 /api/Report_AuditReport2019,api,read,REST(GET read; POST/PUT/DELETE on store.sync),category desc endDate search start startDate user,,root,8,Reports,/Report/AuditReport,ActivityLogs AuditReport2019 Main2019
 /api/Report_TransactionPeriodReference,api,read,GET,,,,0,Reports,/Report/TransactionPeriods,TransactionPeriods
-/api/Report_TransactionPeriods,api,read,,,,,0,Reports,/Report/TransactionPeriods,TransactionPeriods
+/api/Report_TransactionPeriods,api,read,REST(GET read; POST/PUT/DELETE on store.sync),status year,,root,0,Reports,/Report/TransactionPeriods,TransactionPeriods
 /api/Report_TransactionPeriodsYears,api,read,GET,,,,0,Reports,/Report/TransactionPeriods,TransactionPeriods
 /api/Report_v,api,read,,,,,0,Integrations Reports,/Report/AccountSummary /Report/BalanceSheet /Report/FixedAssetOverview /Report/GeneralLedger /Report/ProfitAndLoss /Report/SalesTaxSummary /Report/TrialBalance /Shopify,AccountSummaryReport2019 BalanceSheetReport2019 FixedAssetOverviewReport2019 GeneralLedgerReport2019 ProfitAndLossReport2019 Report2019 SalesTaxSummaryReport2019 Shopify2019 TrialBalanceReport2019
 /api/Report_vAccountCodeParameter,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,13,Reports,/Report/AccountSummary /Report/InventoryVelocity /ScheduledReportSettings,AccountSummaryReport2019 InventoryVelocityReport2019_Service ScheduledReportSettings2019
@@ -1120,7 +1138,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/RMA_Index_Authorise,api,write,POST,,,,0,Sale,/RMA,RMA2019
 /api/RMA_Index_Category,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,7,Sale,/RMAReturnOrder,RMAReturnOrder2019
 /api/RMA_Index_Countries,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,39,Sale Settings › Reference books,/RMA /RMAReturnOrder /RMAReturnPolicy,RMA2019 RMAReturnOrder2019 RMAReturnPolicy2019
-/api/RMA_Index_Email,api,write,,,,,0,Shell (every page),,Main2019
+/api/RMA_Index_Email,api,write,REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,9,Shell (every page),,Main2019
 /api/RMA_Index_ExpenseAccounts,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),,,,6,Sale Settings › Reference books,/RMAReturnOrder /RMAReturnOrderSettings,RMAReturnOrder2019 RMAReturnOrderSettings2019
 /api/RMA_Index_LineInfo,api,read+write,PUT REST(GET read; POST/PUT/DELETE on store.sync),rmaProductID rmaTaskID,,,42,Sale,/RMA,RMA2019
 /api/RMA_Index_Product,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),CostingMethod TaskLocationID customerID lang,,,55,Sale,/RMAReturnOrder,RMAReturnOrder2019
@@ -1162,7 +1180,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/RMA_Index_vTenantSaleTaxationRule,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,8,Sale,/RMAReturnOrder,RMAReturnOrder2019
 /api/RMA_Index_vTenantUnitOfMeasure,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,8,Sale,/RMAReturnOrder,RMAReturnOrder2019
 /api/RMA_RO_Authorise,api,write,POST,,,,0,Sale,/RMAReturnOrder,RMAReturnOrder2019
-/api/RMA_RO_Email,api,write,,,,,0,Shell (every page),,Main2019
+/api/RMA_RO_Email,api,write,REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,9,Shell (every page),,Main2019
 /api/RMA_RO_LineInfo,api,read+write,GET PUT,RmaReturnOrderTaskID rmaProductID rmaTaskID,,,0,Sale,/RMAReturnOrder,RMAReturnOrder2019
 /api/RMA_RO_RestockTransfer,api,read,GET,fromLocation toLocation,,,0,Sale,/RMAReturnOrder,RMAReturnOrder2019
 /api/RMA_RO_vRMAReturnOrder,api,read+write,PATCH PUT REST(GET read; POST/PUT/DELETE on store.sync),ID,,,35,Sale,/RMAReturnOrder,RMAReturnOrder2019
@@ -1180,7 +1198,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/Sale_Index_Category,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,51,CRM Sale,/AwaitingSale /Opportunity /Sale /SaleService,AwaitingSale2019 Opportunity2019 ServiceSale2019 SimpleSale2019
 /api/Sale_Index_Coupon,api,read+write,GET POST PUT,taskID,,,0,AI CRM Sale,/AwaitingSale /CreditNote /DocumentExtraction /Opportunity /Sale /SaleList /SaleMultiple /SaleService,AwaitingSale2019 CreditNote2019 DocumentExtraction2024 Opportunity2019 SaleMultiple2019 SalesList2019 ServiceSale2019 SimpleSale2019
 /api/Sale_Index_CurrentCredit,api,read,GET,CustomerID,,,0,Sale,/AwaitingSale /Sale /SaleService,AwaitingSale2019 ServiceSale2019 SimpleSale2019
-/api/Sale_Index_Email,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),TaskID,,,5,Shell (every page),,Main2019
+/api/Sale_Index_Email,api,read+write,POST REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,14,Shell (every page),,Main2019
 /api/Sale_Index_ExchangeLinks,api,read,GET,taskId,,,0,Sale,/SaleMultiple,SaleMultiple2019
 /api/Sale_Index_ExchangeParent,api,read,GET,taskId,,,0,Sale,/SaleMultiple,SaleMultiple2019
 /api/Sale_Index_Family,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,15,Sale,/Sale,SimpleSale2019
@@ -1229,7 +1247,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/Sale_Scan_InventoryMode,api,read,POST,LocationID PriceTier ScanSource TaskID lang search,,,0,Sale,/Sale,SimpleSale2019
 /api/SaleCommon_GetAvailableLocations,api,read,REST(GET read; POST/PUT/DELETE on store.sync),withBins,,,3,AI Dashboard Sale,/AwaitingSale /CreditNote /DocumentExtraction /Home /Sale /SaleList /SaleMultiple /SaleService,AwaitingSale2019 CreditNote2019 DocumentExtraction2024 Home2019 SaleMultiple2019 SalesList2019 ServiceSale2019 SimpleSale2019
 /api/SaleCommon_RelatedTasks,api,read,GET REST(GET read; POST/PUT/DELETE on store.sync),taskId,,root,8,AI Sale,/AwaitingSale /CreditNote /DocumentExtraction /Sale /SaleList /SaleMultiple /SaleService,AwaitingSale2019 CreditNote2019 DocumentExtraction2024 SaleMultiple2019 SalesList2019 ServiceSale2019 SimpleSale2019
-/api/SaleCommon_ShippingService_Email,api,write,POST,TaskID,,,0,Shell (every page),,Main2019
+/api/SaleCommon_ShippingService_Email,api,read+write,POST REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,9,Shell (every page),,Main2019
 /api/SaleCommon_TaxRules/purchase,api,read,GET,,,,0,AI Sale,/AwaitingSale /CreditNote /DocumentExtraction /Sale /SaleList /SaleMultiple /SaleService,AwaitingSale2019 CreditNote2019 DocumentExtraction2024 SaleMultiple2019 SalesList2019 ServiceSale2019 SimpleSale2019
 /api/SaleCommon_TaxRules/sale,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,6,AI Purchase Sale,/AwaitingSale /CreditNote /DocumentExtraction /DropShipPurchase /Purchase /PurchaseAdvanced /PurchaseCreditNote /PurchaseService /Sale /SaleList /SaleMultiple /SaleService,AdvancedPurchase2019 AwaitingSale2019 CreditNote2019 DocumentExtraction2024 PurchaseCreditNote2019 PurchaseDropShip2019 PurchaseService2019 SaleMultiple2019 SalesList2019 ServiceSale2019 SimplePurchase2019 SimpleSale2019
 /api/SaleCommon_TaxRules/saleAll,api,read,GET,,,,0,AI Sale,/AwaitingSale /CreditNote /DocumentExtraction /Sale /SaleList /SaleMultiple /SaleService,AwaitingSale2019 CreditNote2019 DocumentExtraction2024 SaleMultiple2019 SalesList2019 ServiceSale2019 SimpleSale2019
@@ -1241,7 +1259,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/SaleMult_Index_AutoPickFromInvoice,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,15,Sale,/SaleMultiple,SaleMultiple2019
 /api/SaleMult_Index_Category,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,7,Sale,/SaleMultiple,SaleMultiple2019
 /api/SaleMult_Index_CurrentCredit,api,read,GET,CustomerID,,,0,Sale,/SaleMultiple,SaleMultiple2019
-/api/SaleMult_Index_Email,api,write,,,,,0,Shell (every page),,Main2019
+/api/SaleMult_Index_Email,api,write,POST REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,9,Shell (every page),,Main2019
 /api/SaleMult_Index_Family,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,27,Sale,/SaleMultiple,SaleMultiple2019
 /api/SaleMult_Index_FamilyProductsAvailability,api,read,,,,,0,Sale,/SaleMultiple,SaleMultiple2019
 /api/SaleMult_Index_GetShippingLabel,api,read+write,GET PUT,ShippingServiceID TaskID box,TaskID TrackNum,,0,Sale,/SaleMultiple,SaleMultiple2019
@@ -1289,6 +1307,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/ScheduledReportSettings_Edit_vScheduledReportSettings,api,read+write,POST PUT REST(GET read; POST/PUT/DELETE on store.sync),id,ID,,33,Reports,/Report/InventoryVelocity /ScheduledReportSettings,InventoryVelocityReport2019_Service ScheduledReportSettings2019
 /api/ScheduledReportSettings_Index_vScheduledReportSettings,api,read+write,DELETE REST(GET read; POST/PUT/DELETE on store.sync),reportID status term,,root,33,Reports,/Report/InventoryVelocity /ScheduledReportSettings,InventoryVelocityReport2019_Service ScheduledReportSettings2019
 /api/Scheduler_Calendar_vProductionOrders,api,read+write,PUT,requiredByUpdate,Status,,0,Production,/ProductionScheduler,Scheduler
+/api/Scheduler_Calendar_vProductionOrders/GetPlannedProductionOrders,api,read,GET,endDate search shopFloorId startDate withRefData,,,0,Production,/ProductionScheduler,Scheduler
 /api/Scheduler_Index_CompleteOperation,api,write,POST,,,,0,Production,/ProductionScheduler,Scheduler
 /api/Scheduler_Index_StartOperation,api,write,POST,,,,0,Production,/ProductionScheduler,Scheduler
 /api/Scheduler_Index_vEditor/StartEdit,api,write,POST,locationId,,,0,Production,/ProductionScheduler,Scheduler
@@ -1422,8 +1441,8 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/Stocktake_New_vTag,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,1,Inventory,/StockTake /Stocktake/New,Stocktake2019
 /api/Stocktake_New_ZeroProducts,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,20,Inventory,/StockTake /Stocktake/New,Stocktake2019
 /api/StockTransfer_Index_AutoPick,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,38,Inventory,/StockTransfer /Stocktransfer,StockTransfer2019
-/api/StockTransfer_Index_Email,api,write,,,,,0,Shell (every page),,Main2019
-/api/Stocktransfer_Index_Email,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),TaskID,,,5,Shell (every page),,Main2019
+/api/StockTransfer_Index_Email,api,write,REST(GET read; POST/PUT/DELETE on store.sync),AttachmentID EmailID PrintEntityID PrintTemplateID TaskID parentSaleTaskID,,,9,Shell (every page),,Main2019
+/api/Stocktransfer_Index_Email,api,read+write,POST REST(GET read; POST/PUT/DELETE on store.sync),TaskID,,,5,Shell (every page),,Main2019
 /api/Stocktransfer_Index_Family,api,read,REST(GET read; POST/PUT/DELETE on store.sync),,,,8,Inventory,/StockTransfer /Stocktransfer,StockTransfer2019
 /api/Stocktransfer_Index_FamilyProductsAvailability,api,read,,,,,0,Inventory,/StockTransfer /Stocktransfer,StockTransfer2019
 /api/Stocktransfer_Index_LocationWithBins,api,read,REST(GET read; POST/PUT/DELETE on store.sync),LocationFromID LocationToID,,,6,Inventory,/StockTransfer /Stocktransfer,StockTransfer2019
@@ -1437,7 +1456,7 @@ url,kind,effect,methods,params,body_keys,reader_root,n_fields,sections,pages,bun
 /api/StockTransfer_Scan_InventoryMode,api,read,POST,,,,0,Inventory,/StockTransfer /Stocktransfer,StockTransfer2019
 /api/StockTransferAttachment,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),TaskID,,,53,Inventory,/StockTransfer /Stocktransfer,StockTransfer2019
 /api/StockTransferList_Index_StockTransferBulkPermissions,api,read+write,REST(GET read; POST/PUT/DELETE on store.sync),,,,2,,,StockTransferList2019
-/api/StocktransferList_Index_vStockTransferTask,api,read,,,,,0,,,StockTransferList2019
+/api/StocktransferList_Index_vStockTransferTask,api,read,GET(read),search status,,root,9,,,StockTransferList2019
 /api/StocktransferList_Index_vStockTransferTask/Filter,api,read,,,,,0,,,StockTransferList2019
 /api/StocktransferList_Index_vStockTransferTask/GetAllFromLocations,api,read,,,,,0,,,StockTransferList2019
 /api/StocktransferList_Index_vStockTransferTask/GetAllToLocations,api,read,,,,,0,,,StockTransferList2019

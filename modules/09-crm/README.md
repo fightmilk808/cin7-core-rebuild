@@ -297,7 +297,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/OpportunityList/Undo` | mvc | POST | 🔴 write | opportunityIDs |  |  |
 | `/OpportunityList/Void` | mvc | POST | 🔴 write | opportunityIDs |  |  |
 | `/api/OpportunityList_BulkActions` | api | POST | 🔴 write | Action CaptchaToken ID TemplateID lang |  |  |
-| `/api/OpportunityList_Index_vOpportunity` | api |  | 🟢 read |  |  |  |
+| `/api/OpportunityList_Index_vOpportunity` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | endDate lang limit opportunityOrSale opportunityStatus saleFilter salesRep search showAll startDate |  | root |
 | `/api/OpportunityList_Index_vTenantContact` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |  |  |  |
 
 ### Product
