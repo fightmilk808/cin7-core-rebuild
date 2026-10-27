@@ -4,14 +4,14 @@ The Google Workspaces connector: its settings page, mappings, logs and the endpo
 
 | 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
 |:-:|:-:|:-:|:-:|:-:|
-| **1** | **3** + [shared](../../00-shared/README.md) | **5** | 3 | **0** |
+| **1** | **3** + [shared](../../00-shared/README.md) | **6** | 3 | **0** |
 
-[📄 Pages (1)](#pages) · [🧱 Models (3)](#data-models) · [🔌 Endpoints (5)](#internal-endpoints) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+[📄 Pages (1)](#pages) · [🧱 Models (3)](#data-models) · [🔌 Endpoints (6)](#internal-endpoints) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
 
 ```mermaid
 pie showData title Endpoints by effect
     "read + write" : 3
-    "read" : 2
+    "read" : 3
 ```
 
 ## How to rebuild it
@@ -48,6 +48,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 |---|---|---|---|---|---|---|
 | `/api/GSuites_Index_Config` | api | GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  | root |
 | `/api/GSuites_Index_Contacts` | api | GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  | root |
-| `/api/GSuites_Index_Directory` | api |  | 🟢 read |  |  |  |
-| `/api/GSuites_Index_Files` | api |  | 🟢 read |  |  |  |
+| `/api/GSuites_Index_Directory` | api | GET | 🟢 read | parentId |  |  |
+| `/api/GSuites_Index_Files` | api | GET POST | 🟢 read | UploadToID pageName parentId |  |  |
+| `/api/GSuites_Index_Files/GetAccessToken` | api | GET | 🟢 read |  |  |  |
 | `/api/GSuites_Index_Logs` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  | root |

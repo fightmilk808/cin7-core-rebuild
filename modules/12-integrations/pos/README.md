@@ -4,13 +4,13 @@ The POS connector: its settings page, mappings, logs and the endpoints behind th
 
 | 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
 |:-:|:-:|:-:|:-:|:-:|
-| **1** | **43** + [shared](../../00-shared/README.md) | **68** | 31 | **0** |
+| **1** | **43** + [shared](../../00-shared/README.md) | **69** | 31 | **0** |
 
-[📄 Pages (1)](#pages) · [🧱 Models (43)](#data-models) · [🔌 Endpoints (68)](#internal-endpoints) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+[📄 Pages (1)](#pages) · [🧱 Models (43)](#data-models) · [🔌 Endpoints (69)](#internal-endpoints) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
 
 ```mermaid
 pie showData title Endpoints by effect
-    "read" : 37
+    "read" : 38
     "read + write" : 21
     "write" : 10
 ```
@@ -20,7 +20,7 @@ xychart-beta horizontal
     title "Busiest controllers"
     x-axis ["DearPos", "MoneyTask", "UserImage", "dearPos", "MySubscription", "TenantAccessToFeatures"]
     y-axis "endpoints" 0 --> 65
-    bar [61, 2, 2, 1, 1, 1]
+    bar [62, 2, 2, 1, 1, 1]
 ```
 
 ## How to rebuild it
@@ -106,6 +106,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/DearPos/UploadLogoImage` | mvc | POST | 🔴 write |  |  |  |
 | `/api/DearPos_Index_AspnetRole` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | ConfigID |  |  |
 | `/api/DearPos_Index_CashManagementReasons` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | configID |  | root |
+| `/api/DearPos_Index_Dashboard` | api | GET | 🟢 read |  |  |  |
 | `/api/DearPos_Index_Dashboard_Settings` | api | GET | 🟢 read |  |  |  |
 | `/api/DearPos_Index_Dashboard_Summary` | api | GET | 🟢 read |  |  |  |
 | `/api/DearPos_Index_EcsBulkList` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | Category ConfigID Family Tag brandID lang listStatus listedInConfigID search |  | root |

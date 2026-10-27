@@ -370,7 +370,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 |---|---|---|---|---|---|---|
 | `/CustomerList/Print` | mvc | POST | 🟢 read (logs) | IDList TemplateID dateFrom dateTo |  |  |
 | `/api/CustomerList_Index_DeleteDeprecated` | api | POST | 🔴 write |  |  |  |
-| `/api/CustomerList_Index_vCustomerList` | api |  | 🟢 read |  |  |  |
+| `/api/CustomerList_Index_vCustomerList` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | IsActive filter fromDate lang search toDate |  | root |
 | `/api/CustomerList_Merge` | api | POST | 🔴 write |  |  |  |
 | `/api/CustomerList_SalesStatements` | api | POST | 🔴 write | Action CaptchaToken ID TemplateID fromDate toDate |  |  |
 

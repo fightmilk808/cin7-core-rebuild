@@ -4,15 +4,15 @@ Suppliers and the purchase documents: simple and advanced purchase orders, servi
 
 | 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
 |:-:|:-:|:-:|:-:|:-:|
-| **15** | **90** + [shared](../00-shared/README.md) | **167** | 64 | **49** |
+| **15** | **90** + [shared](../00-shared/README.md) | **167** | 65 | **49** |
 
 [📄 Pages (15)](#pages) · [🧱 Models (90)](#data-models) · [🔌 Endpoints (167)](#internal-endpoints) · [🌍 Public API (49)](#public-api-externalapiv2) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
 
 ```mermaid
 pie showData title Endpoints by effect
-    "read" : 103
+    "read" : 102
     "write" : 33
-    "read + write" : 31
+    "read + write" : 32
 ```
 
 ```mermaid
@@ -236,8 +236,8 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | `/DocumentExtraction/Upload` | mvc |  | 🔴 write |  |  |  |
 | `/api/DocumentExtraction_BuildEntity` | api | POST | 🔴 write |  |  |  |
 | `/api/DocumentExtraction_Index_LogEntries` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |  |  | root |
-| `/api/DocumentExtraction_Index_MapExtractedDocument` | api | GET | 🟢 read | entityID entityType |  |  |
-| `/api/DocumentExtraction_Index_vExtractedDocument` | api |  | 🟢 read |  |  |  |
+| `/api/DocumentExtraction_Index_MapExtractedDocument` | api | GET PATCH | 🟠 read + write | entityID entityType |  |  |
+| `/api/DocumentExtraction_Index_vExtractedDocument` | api | DELETE GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | DocumentName entityType nextPageToken |  | Documents |
 
 ### DropShipPurchase
 

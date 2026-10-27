@@ -19,14 +19,14 @@ The integrations catalogue (`/Integrations`) and one subfolder per connector: it
 | [Avalara](avalara/README.md) | `/Avalara` | 15 | 8 |
 | [BigCommerce](bigcommerce/README.md) | `/Bigcommerce` | 24 | 17 |
 | [Capsule](capsule/README.md) | `/Capsule` | 9 | 7 |
-| [Cin7 Core API setup](cin7-core-api-setup/README.md) | `/ExternalApi` | 6 | 4 |
+| [Cin7 Core API setup](cin7-core-api-setup/README.md) | `/ExternalApi` | 7 | 4 |
 | [Cin7 Core Payments](cin7-core-payments/README.md) | `/PaymentGateway` | 20 | 9 |
 | [EasyPost](easypost/README.md) | `/EasyPost` | 1 | 5 |
 | [eBay](ebay/README.md) | `/eBayNG` | 34 | 31 |
 | [Etsy](etsy/README.md) | `/Etsy` | 27 | 27 |
 | [Faire](faire/README.md) | `/Faire` | 27 | 21 |
 | [Fulfillment by Amazon](fulfillment-by-amazon/README.md) | `/FBA` | 23 | 25 |
-| [Google Workspaces](google-workspaces/README.md) | `/GSuites` | 5 | 3 |
+| [Google Workspaces](google-workspaces/README.md) | `/GSuites` | 6 | 3 |
 | [HubSpot](hubspot/README.md) | `/HubSpot` | 25 | 19 |
 | [LeafLink](leaflink/README.md) | `/LeafLink` | 24 | 18 |
 | [Lightspeed](lightspeed/README.md) | `/Lightspeed`, `/Vend` | 31 | 22 |
@@ -38,7 +38,7 @@ The integrations catalogue (`/Integrations`) and one subfolder per connector: it
 | [PayPal](paypal/README.md) | `/PayPal` | 10 | 2 |
 | [Pinch](pinch/README.md) | `/Pinch` | 9 | 2 |
 | [Portal](portal/README.md) | `/Portal` | 62 | 30 |
-| [POS](pos/README.md) | `/DearPos` | 68 | 43 |
+| [POS](pos/README.md) | `/DearPos` | 69 | 43 |
 | [QuickBooks](quickbooks/README.md) | `/Quickbooks` | 37 | 11 |
 | [RMA Portal](rma-portal/README.md) | `/RmaPortal` | 12 | 6 |
 | [Shippit](shippit/README.md) | `/Shippit` | 2 | 6 |
@@ -206,10 +206,11 @@ Every internal endpoint, filed under the integration its controller names (which
 
 </details>
 
-<details><summary><b>Cin7 Core API setup</b> · 6 endpoints (1 write)</summary>
+<details><summary><b>Cin7 Core API setup</b> · 7 endpoints (2 write)</summary>
 
 | URL | Methods | Effect |
 |---|---|---|
+| `/api/DearApi_Index_ApiExplorer` | POST | 🔴 write |
 | `/api/DearApi_Index_Dashboard_Summary` | GET | 🟢 read |
 | `/api/DearApi_Index_vApplicationNG` | GET PUT | 🟠 read + write |
 | `/api/DearApi_Index_vDearApiRequestsNG` | GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |
@@ -393,14 +394,15 @@ Every internal endpoint, filed under the integration its controller names (which
 
 </details>
 
-<details><summary><b>Google Workspaces</b> · 5 endpoints (3 write)</summary>
+<details><summary><b>Google Workspaces</b> · 6 endpoints (3 write)</summary>
 
 | URL | Methods | Effect |
 |---|---|---|
 | `/api/GSuites_Index_Config` | GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |
 | `/api/GSuites_Index_Contacts` | GET REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |
-| `/api/GSuites_Index_Directory` |  | 🟢 read |
-| `/api/GSuites_Index_Files` |  | 🟢 read |
+| `/api/GSuites_Index_Directory` | GET | 🟢 read |
+| `/api/GSuites_Index_Files` | GET POST | 🟢 read |
+| `/api/GSuites_Index_Files/GetAccessToken` | GET | 🟢 read |
 | `/api/GSuites_Index_Logs` | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |
 
 </details>
@@ -697,7 +699,7 @@ Every internal endpoint, filed under the integration its controller names (which
 
 </details>
 
-<details><summary><b>POS</b> · 68 endpoints (31 write)</summary>
+<details><summary><b>POS</b> · 69 endpoints (31 write)</summary>
 
 | URL | Methods | Effect |
 |---|---|---|
@@ -717,6 +719,7 @@ Every internal endpoint, filed under the integration its controller names (which
 | `/UserImage/Upload` | POST | 🔴 write |
 | `/api/DearPos_Index_AspnetRole` | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read |
 | `/api/DearPos_Index_CashManagementReasons` | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |
+| `/api/DearPos_Index_Dashboard` | GET | 🟢 read |
 | `/api/DearPos_Index_Dashboard_Settings` | GET | 🟢 read |
 | `/api/DearPos_Index_Dashboard_Summary` | GET | 🟢 read |
 | `/api/DearPos_Index_EcsBulkList` | REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write |

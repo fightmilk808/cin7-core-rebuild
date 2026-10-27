@@ -4,23 +4,23 @@ Endpoints found in shared bundles that no menu page claims. Rebuild them where t
 
 | 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
 |:-:|:-:|:-:|:-:|:-:|
-| **0** | **0** + [shared](../00-shared/README.md) | **44** | 20 | **0** |
+| **0** | **0** + [shared](../00-shared/README.md) | **59** | 24 | **0** |
 
-[🔌 Endpoints (44)](#internal-endpoints) · [🖼️ UI](UI.md)
+[🔌 Endpoints (59)](#internal-endpoints) · [🖼️ UI](UI.md)
 
 ```mermaid
 pie showData title Endpoints by effect
-    "read" : 24
-    "write" : 12
-    "read + write" : 8
+    "read" : 35
+    "write" : 15
+    "read + write" : 9
 ```
 
 ```mermaid
 xychart-beta horizontal
     title "Busiest controllers"
-    x-axis ["BankAccount", "Stripe", "InventoroSettings", "BankStatement", "StocktransferList", "BudgetPlanner", "Report", "StockTransferList", "StockTransferListBulkAction"]
-    y-axis "endpoints" 0 --> 15
-    bar [13, 11, 6, 5, 5, 1, 1, 1, 1]
+    x-axis ["InventoroSettings", "BankAccount", "Stripe", "BankStatement", "StocktransferList", "BudgetPlanner", "Report", "StockTransferList", "StockTransferListBulkAction"]
+    y-axis "endpoints" 0 --> 25
+    bar [21, 13, 11, 5, 5, 1, 1, 1, 1]
 ```
 
 ## How to rebuild it
@@ -73,10 +73,25 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 |---|---|---|---|---|---|---|
 | `/InventoroSettings/ExportProducts` | mvc | POST | 🟢 read |  |  |  |
 | `/InventoroSettings/ExportSuppliers` | mvc | POST | 🟢 read |  |  |  |
-| `/api/InventoroSettings_ProductRules` | api |  | 🟢 read |  |  |  |
-| `/api/InventoroSettings_ProductRules/Reorder` | api |  | 🟢 read |  |  |  |
+| `/api/InventoroSettings_Locations` | api | PUT REST(GET read; POST/PUT/DELETE on store.sync) | 🟠 read + write | customFilterId search showMode updateOnlyEmpty |  |  |
+| `/api/InventoroSettings_Locations/RecalculateHierarchy` | api | POST | 🔴 write |  |  |  |
+| `/api/InventoroSettings_Locations/boms` | api |  | 🟢 read |  |  |  |
+| `/api/InventoroSettings_Logs` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | endDate startDate username |  |  |
+| `/api/InventoroSettings_Logs/filters/users` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | Name |  |  |
+| `/api/InventoroSettings_Logs/products/details` | api |  | 🟢 read | logID |  |  |
+| `/api/InventoroSettings_ProductRules` | api | DELETE REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | customFilterId search showMode |  |  |
+| `/api/InventoroSettings_ProductRules/AffectedProducts` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | customFilterId search showMode |  |  |
+| `/api/InventoroSettings_ProductRules/ProductCounts` | api | POST | 🟢 read |  |  |  |
+| `/api/InventoroSettings_ProductRules/ProductFilters` | api |  | 🟢 read |  |  |  |
+| `/api/InventoroSettings_ProductRules/Reorder` | api | PUT | 🟢 read |  |  |  |
+| `/api/InventoroSettings_ProductSegments` | api |  | 🟢 read | id |  |  |
+| `/api/InventoroSettings_Products` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | customFilterId isBundle search segmentID showMode |  |  |
+| `/api/InventoroSettings_Products/update` | api | PUT | 🔴 write |  |  |  |
+| `/api/InventoroSettings_ReferenceData` | api |  | 🟢 read |  |  |  |
+| `/api/InventoroSettings_ReferenceData/Predecessors` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | locationID productID |  |  |
 | `/api/InventoroSettings_ReferenceData/RuleParameters` | api |  | 🟢 read |  |  |  |
-| `/api/InventoroSettings_Suppliers` | api |  | 🟢 read |  |  |  |
+| `/api/InventoroSettings_Strategy` | api | PUT | 🔴 write | strategy |  |  |
+| `/api/InventoroSettings_Suppliers` | api | PUT REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | customFilterId search showMode updateOnlyEmpty |  |  |
 
 ### Report
 
@@ -94,7 +109,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/StocktransferList_Index_vStockTransferTask` | api |  | 🟢 read |  |  |  |
+| `/api/StocktransferList_Index_vStockTransferTask` | api | GET(read) | 🟢 read | search status |  | root |
 | `/api/StocktransferList_Index_vStockTransferTask/Filter` | api |  | 🟢 read |  |  |  |
 | `/api/StocktransferList_Index_vStockTransferTask/GetAllFromLocations` | api |  | 🟢 read |  |  |  |
 | `/api/StocktransferList_Index_vStockTransferTask/GetAllToLocations` | api |  | 🟢 read |  |  |  |

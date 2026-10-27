@@ -4,13 +4,13 @@ Manufacturing: production BOMs and operations, production orders and runs, the p
 
 | 📄 Pages | 🧱 Models | 🔌 Endpoints | ✍️ Can write | 🌍 Public API |
 |:-:|:-:|:-:|:-:|:-:|
-| **15** | **142** + [shared](../00-shared/README.md) | **198** | 67 | **66** |
+| **15** | **142** + [shared](../00-shared/README.md) | **199** | 67 | **66** |
 
-[📄 Pages (15)](#pages) · [🧱 Models (142)](#data-models) · [🔌 Endpoints (198)](#internal-endpoints) · [🌍 Public API (66)](#public-api-externalapiv2) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
+[📄 Pages (15)](#pages) · [🧱 Models (142)](#data-models) · [🔌 Endpoints (199)](#internal-endpoints) · [🌍 Public API (66)](#public-api-externalapiv2) · [🖼️ UI](UI.md) · [🗄️ schema.sql](schema.sql)
 
 ```mermaid
 pie showData title Endpoints by effect
-    "read" : 131
+    "read" : 132
     "write" : 41
     "read + write" : 26
 ```
@@ -20,7 +20,7 @@ xychart-beta horizontal
     title "Busiest controllers"
     x-axis ["ProductionOrder", "FinishedGoods", "IssueToProduction", "Disassembly", "JobCosting", "Purchase", "ProductionRun", "Scheduler", "CapacityPlanner", "ProductionSetup"]
     y-axis "endpoints" 0 --> 55
-    bar [50, 23, 15, 14, 14, 13, 8, 7, 5, 5]
+    bar [50, 23, 15, 14, 14, 13, 8, 8, 5, 5]
 ```
 
 ```mermaid
@@ -50,7 +50,7 @@ flowchart LR
     p4 -->|12| c0
     p5 -->|14| c3
     p6 -->|6| c0
-    p6 -->|7| c7
+    p6 -->|8| c7
     p7 -->|5| c0
 ```
 
@@ -378,7 +378,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
-| `/api/IssueToProductionList_Index_vIssueToProductionList` | api |  | 🟢 read |  |  |  |
+| `/api/IssueToProductionList_Index_vIssueToProductionList` | api | REST(GET read; POST/PUT/DELETE on store.sync) | 🟢 read | search |  | root |
 
 ### JobCosting
 
@@ -594,6 +594,7 @@ Grouped by controller. Effect: 🟢 read · 🟠 read + write at the same URL ·
 | URL | Kind | Methods | Effect | Params | Body keys | Reader root |
 |---|---|---|---|---|---|---|
 | `/api/Scheduler_Calendar_vProductionOrders` | api | PUT | 🟠 read + write | requiredByUpdate | Status |  |
+| `/api/Scheduler_Calendar_vProductionOrders/GetPlannedProductionOrders` | api | GET | 🟢 read | endDate search shopFloorId startDate withRefData |  |  |
 | `/api/Scheduler_Index_CompleteOperation` | api | POST | 🔴 write |  |  |  |
 | `/api/Scheduler_Index_StartOperation` | api | POST | 🔴 write |  |  |  |
 | `/api/Scheduler_Index_vEditor/StartEdit` | api | POST | 🔴 write | locationId |  |  |

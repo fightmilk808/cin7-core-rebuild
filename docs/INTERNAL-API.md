@@ -1,6 +1,6 @@
 # Internal API contract
 
-The web app's own endpoints, used only by a signed-in browser (session cookie). 1,633 JSON endpoints under `/api/` and 544
+The web app's own endpoints, used only by a signed-in browser (session cookie). 1,652 JSON endpoints under `/api/` and 544
 controller actions. Every module folder lists its endpoints with methods, parameters, body keys and reader root.
 
 ## Naming
