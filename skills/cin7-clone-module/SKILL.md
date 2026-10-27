@@ -5,7 +5,7 @@ description: Turn one module of the cin7-core-rebuild map (for example Inventory
 
 # Clone a Cin7 module
 
-The map says what Cin7 Core's screens, fields, tables and endpoints are. It says **nothing** about business rules or calculations: no costing, no allocation, no status transitions, no tax or rounding, no validation beyond field names and types. Those come from the person.
+The map says what Cin7 Core's screens, fields, tables and endpoints are. It says **nothing** about business rules or calculations: no costing, no allocation, no status transitions, no tax or rounding, no validation beyond field names and types. For settings, inventory, purchase, sale, production, MRP, reference books, ShipStation and Shopify, [`rules/`](../../rules/README.md) records what Cin7 does, tagged by how sure it is. Show the person those rules, read the module's Gotchas first, and let them decide; everything else still comes from the person.
 
 ## Read, in this order
 

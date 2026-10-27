@@ -8,7 +8,7 @@
 [![Webhooks](https://img.shields.io/badge/webhooks-32-6e7781)](modules/20-public-api/groups/webhooks.md)
 [![MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-**Cin7 Core (DEAR Inventory), mapped: every page, endpoint, model and integration, and how to rebuild each module.** Structure only, no business rules. Read from the shipped web app, its public scripts and Cin7's published API spec (October 2026).
+**Cin7 Core (DEAR Inventory), mapped: every page, endpoint, model and integration, and how to rebuild each module.** Structure, plus [business rules](rules/README.md) for settings, inventory, purchase, sale, production, MRP, reference books, ShipStation and Shopify. Read from the shipped web app, its public scripts and Cin7's published API spec (October 2026).
 
 ## At a glance
 
