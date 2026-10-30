@@ -76,6 +76,7 @@ flowchart LR
 | [UI](docs/UI.md) | Themes, colours, type, icons, widgets, shell, menu |
 | [RELATIONSHIPS](docs/RELATIONSHIPS.md) | Every `*ID` → entity, ER diagram |
 | [IMPORTS](docs/IMPORTS.md) · [AUTOMATIONS](docs/AUTOMATIONS.md) | CSV layouts · workflow model and 48 merge fields |
+| [LOCATION-FULFILLMENT-TESTING](docs/LOCATION-FULFILLMENT-TESTING.md) | How to test Shopify/ShipStation location and fulfilment handling, and what a simulator cannot prove |
 
 ## Modules
 

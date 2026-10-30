@@ -2,6 +2,8 @@
 
 Rules spec for the ShipStation connector of the sandbox. The structure map (page, fields, tables, endpoints) is in `spec/modules/12-integrations/shipstation/` (`README.md`, `UI.md`, `schema.sql`); the page is built in `src/sandbox/modules/m12_apps.py` and `m12_shipping_finance.py`. This file adds behaviour. Sale-side rules live in `rules/sale.md`, `rules/settings.md` and `rules/reference-books.md`. Page-script findings (what the shipped browser code does) are in `rules/shipstation-client.md`.
 
+> Rebuilding the location and fulfilment behaviour? See [docs/LOCATION-FULFILLMENT-TESTING.md](../docs/LOCATION-FULFILLMENT-TESTING.md) for the test matrices and their limits.
+
 Sources: the public Cin7 Core help center, read in full; ShipStation's public API documentation; the repo spec; and the client-script notes in `rules/shipstation-client.md`.
 
 ## ⚠️ Gotchas: the sneaky stuff

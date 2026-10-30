@@ -28,6 +28,8 @@ Each rule carries a tag: `[DOC]` Cin7 documentation, `[API]` the public API, `[C
 | ShipStation | [shipstation.md](shipstation.md) | [shipstation-client.md](shipstation-client.md) | A sale that fails the export rules is skipped with no error |
 | Shopify | [shopify.md](shopify.md) | [shopify-client.md](shopify-client.md) | Disconnecting wipes the links between the two systems, plus logs and pending orders |
 
+Testing process for the Shopify and ShipStation location and fulfilment rules: [docs/LOCATION-FULFILLMENT-TESTING.md](../docs/LOCATION-FULFILLMENT-TESTING.md).
+
 Not covered yet: financials, CRM, reports, the other integrations, POS, WMS and B2B.
 
 ## Limits
