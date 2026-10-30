@@ -5,6 +5,8 @@ Behaviour rules for the Shopify connector (page `/Shopify`, bundle `Shopify2019`
 each setting does and how data moves. Rules only: no company data, no credentials. Everything below comes from public
 documentation; no store, app or API was called.
 
+> Rebuilding the location and fulfilment behaviour? See [docs/LOCATION-FULFILLMENT-TESTING.md](../docs/LOCATION-FULFILLMENT-TESTING.md) for the test matrices and their limits.
+
 ## ⚠️ Gotchas: the sneaky stuff
 
 The surprising, easy-to-get-wrong and silently failing behaviours, worst first. Each links to the section with the full rule. Tags are explained in "How to read this file" below.
